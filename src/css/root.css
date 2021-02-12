@@ -1,5 +1,6 @@
 :root {
   --background: hsla(0, 0%, 95%, 1);
+  --background-alt: hsla(0, 0%, 90%, 1);
   --card-bg: hsla(0, 0%, 90%, 0.9);
   --top-bar: #aaa;
   --body-padding: 1em;
@@ -19,6 +20,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: hsla(0, 0%, 30%, 1);
+    --background-alt: hsla(0, 0%, 20%, 1);
     --top-bar: #666;
     --body-padding: 1em;
     --button-secondary: #222;

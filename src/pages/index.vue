@@ -1,27 +1,18 @@
 <template lang="pug">
 main
-  header 
-    h1 Словарь
-    .spacer
-    .user USER
-  article
-    .card
-      h1 {{ newWord }}
+  app-header
+  add-form
+  add-new
+  words-list
 </template>
 
 <script setup >
-import { ref } from "vue";
-import { generateWords } from "../use/randomWords";
-
-const newWord = ref(generateWords());
 </script>
 
 <style lang="stylus" scoped>
-header
+main
   display: flex
-  align-items: center
-
-article
-  display: flex
+  flex-flow: column
   justify-content: center
+  background-color: var(--background)
 </style>

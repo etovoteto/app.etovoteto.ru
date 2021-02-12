@@ -21,6 +21,10 @@ button {
   background-color: var(--button-secondary);
 }
 
+button svg {
+  font-size: 1.8em;
+}
+
 button:hover {
   background-color: var(--button);
 }

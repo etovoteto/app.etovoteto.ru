@@ -1,12 +1,10 @@
 const config = {
-  appPath: 'etovoteto',
+  appPath: '#words',
   dbVersion: 1,
   peers: null, // ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
 }
 
-//@ts-ignore
 import Gun from 'gun/gun'
-//@ts-ignore
 import SEA from 'gun/sea.js'
 import 'gun/lib/then'
 import 'gun/lib/radix'
@@ -24,10 +22,8 @@ export const appPath = config.appPath
 export const db = gun.get(appPath)
 export const soul = Gun.node.soul
 export const isNode = Gun.node.is
-//@ts-ignore
 export const getState = Gun.state.is //(node,'key') => timestamp
 export const sea = SEA
-//@ts-ignore
 export const genUuid = Gun.text.random
 
 export async function getShortHash(text) {
@@ -55,5 +51,14 @@ function checkDbVersion(local, current) {
     localStorage.dbVersion = current
   } else {
     console.info('DB version: ' + local)
+  }
+}
+
+export function formatDate(date) {
+  if (!date) return
+  let theDate = new Date(Number(date))
+  return {
+    date: theDate.toLocaleDateString('en-CA'),
+    time: theDate.toLocaleTimeString('en-CA'),
   }
 }
