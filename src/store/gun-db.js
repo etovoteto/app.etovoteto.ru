@@ -1,5 +1,5 @@
 const config = {
-  appPath: '#words',
+  appPath: 'etovoteto',
   dbVersion: 1,
   peers: null, // ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
 }

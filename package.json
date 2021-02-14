@@ -1,19 +1,19 @@
 {
-  "name": "project-app",
-  "title": "Project app",
-  "description": "A graph playground for project collaboration",
-  "author": "DeFUCC <davay@frkt.ru> (https://defucc.me/)",
+  "name": "this-is-it",
+  "title": "ЭТОВОТЭТО",
+  "description": "Игра в придумывание слов и их значений",
+  "author": "DeFUCC <davay@etovoteto.ru> (https://defucc.me/)",
   "license": "MIT",
-  "homepage": "https://project.frkt.ru",
+  "homepage": "https://app.etovoteto.ru",
   "bugs": {
-    "url": "https://github.com/DeFUCC/project-app/issues",
-    "email": "davay@frkt.ru"
+    "url": "https://github.com/DeFUCC/",
+    "email": "davay@etovoteto.ru"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/DeFUCC/project-app.git"
   },
-  "version": "0.6.1",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -29,7 +29,7 @@
     "markdown-it": "^12.0.4",
     "markdown-it-link-attributes": "^3.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "qrcode": "^1.4.4",
+    "@qrcode/svg": "^1.0.0-beta.2",
     "vue": "^3.0.5",
     "vue-router": "^4.0.3"
   },

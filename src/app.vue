@@ -1,4 +1,5 @@
 <template lang="pug">
+app-header
 router-view(v-slot="{Component}")
   transition(name="fade")
     component(:is="Component")
@@ -7,4 +8,10 @@ router-view(v-slot="{Component}")
 <script setup >
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus">
+main
+  display: flex
+  flex-flow: column
+  justify-content: center
+  background-color: var(--background)
+</style>

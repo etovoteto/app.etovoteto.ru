@@ -7,9 +7,11 @@ for (var key in grams) {
   grams[key].sorted = sorted.sort()
 }
 
-export function generateWords(n = 1, max) {
+export function generateWords(n = 1, max, crypto = false) {
+  const random = crypto ? cryptoRand : Math.random
+
   if (max && max > n) {
-    n = Math.ceil(Math.random() * max)
+    n = Math.ceil(random() * max)
   }
   var words = []
   for (var i = 0; i < n; i++) {
@@ -17,7 +19,7 @@ export function generateWords(n = 1, max) {
     // last will be our 1gram used to find a proper follower
     var last = w
     while (true) {
-      var rand = Math.random()
+      var rand = random()
       var p_list = grams[last].sorted
       // find the follower corresponding to the random number
       // Note: p_list containes the accumulated probabilities of
@@ -38,4 +40,10 @@ export function generateWords(n = 1, max) {
     words.push(w.substring(1))
   }
   return words.join(' ')
+}
+
+function cryptoRand() {
+  const randomBuffer = new Uint32Array(1)
+  ;(window.crypto || window.msCrypto).getRandomValues(randomBuffer)
+  return randomBuffer[0] / (0xffffffff + 1)
 }

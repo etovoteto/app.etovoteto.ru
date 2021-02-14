@@ -5,29 +5,25 @@ import { gun, sea, db } from 'store@gun-db'
 export const vowels = 'аеёиоуыюя'
 
 export const newWord = reactive({
-  word: '',
-  stress: 0,
+  word: generateWords(),
+  stress: 1,
 })
 
-export function generate() {
-  let word = generateWords()
-  newWord.word = word
-  let vow = 0
+export async function generateRecord(word = generateWords(), stress = 1) {
   for (let i = 0; i <= word.length; i++) {
     if (vowels.includes(word[i])) {
-      newWord.stress = i
+      stress = i
       break
     }
   }
+  let hash = await sea.work(record, null, null, { name: 'SHA-256' })
+  let text = JSON.stringify({ word, stress })
+  return { text, hash }
 }
 
 export async function addWord() {
-  const record = JSON.stringify({
-    word: newWord.word,
-    stress: newWord.stress,
-  })
-  var hash = await sea.work(record, null, null, { name: 'SHA-256' })
-  db.get(hash).put(record)
+  const { text, hash } = generateRecord()
+  db.get(hash).put(text)
 }
 
 export function setStress(i) {

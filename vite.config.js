@@ -25,7 +25,7 @@ export default {
     },
   },
   server: {
-    port: 3000,
+    port: 3030,
   },
   optimizeDeps: {
     include: [
@@ -45,16 +45,16 @@ export default {
     moduleExclude('text-encoding'),
     VitePWA({
       manifest: {
-        name: 'Project app',
-        theme_color: '#777',
+        name: 'ЭТОВОТЭТО',
+        theme_color: '#999',
         icons: [
           {
-            src: '/icons/feeds192.png',
+            src: '/icons/logo192.png',
             type: 'image/png',
             sizes: '192x192',
           },
           {
-            src: '/icons/feeds512.png',
+            src: '/icons/logo512.png',
             type: 'image/png',
             sizes: '512x512',
           },

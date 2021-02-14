@@ -1,11 +1,9 @@
 <template lang="pug">
 main
-  add-form
-  add-new
-  words-list
+  user-playground
 </template>
 
-<script setup >
+<script setup>
 </script>
 
 <style lang="stylus" scoped></style>
