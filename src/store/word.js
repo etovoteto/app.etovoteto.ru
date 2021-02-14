@@ -1,6 +1,7 @@
 import { reactive } from 'vue'
 import { generateWords } from 'use@randomWords'
-import { gun, sea, db } from 'store@gun-db'
+import { gun, sea, db, appPath } from 'store@gun-db'
+import { user } from 'store@user'
 
 export const vowels = 'аеёиоуыюя'
 
@@ -22,9 +23,18 @@ export async function generateRecord(word = generateWords(), stress = 1) {
   return { text, hash }
 }
 
-export async function addWord() {
-  const { text, hash } = await generateRecord()
-  db.get(hash).put(text)
+export async function addWord(word, stress, room, cert) {
+  const { text, hash } = await generateRecord(word, stress)
+  let opt
+  if (cert) {
+    opt = { cert }
+  }
+  gun
+    .get('~' + room)
+    .get(appPath)
+    .get('#words')
+    .get(user.is.pub + '#' + hash)
+    .put(text, null, { opt })
 }
 
 export function setStress(i) {

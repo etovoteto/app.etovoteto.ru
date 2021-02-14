@@ -4,14 +4,14 @@ article
   p {{ pair.pub }}
   button(@click="generateUser()") Generate
   user-avatar(:pub="pair?.pub", @click="authUser()")
-  button(@click="addWord()") add
+  button(@click="addWord(undefined, undefined, main, cert)") add
 </template>
 
 <script setup>
 import { sea, gun, appPath } from "store@gun-db";
 import { defineProps, ref } from "vue";
 import { logOut } from "store@user";
-import { generateRecord } from "store@word";
+import { generateRecord, addWord } from "store@word";
 
 const props = defineProps({
   main: String,
@@ -27,22 +27,6 @@ async function generateUser() {
 
 function authUser() {
   gun.user().auth(pair.value);
-}
-
-async function addWord() {
-  let { text, hash } = await generateRecord();
-  gun
-    .get("~" + props.main)
-    .get(appPath)
-    .get("#words")
-    .get(pair.value.pub + "#" + hash)
-    .put(
-      text,
-      (d) => {
-        if (d.err) console.log(d.err);
-      },
-      { opt: { cert: props.cert } }
-    );
 }
 </script>
 

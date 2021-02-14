@@ -8,7 +8,7 @@
     button(@click="certify()") Certify
     p {{ cert }}
   section
-    button(@click="addWord()") Add word
+    button(@click="addWord(undefined, undefined, pair.pub)") Add word
     .word(v-for="(record, key) in words", :key="key")
       word-title(:word="record.word", :stress="record.stress")
       user-avatar(:pub="key.slice(0, 88)", size="small")
@@ -22,7 +22,7 @@
 import { sea, gun, appPath } from "store@gun-db";
 import { ref } from "vue";
 import { user } from "store@user";
-import { generateRecord } from "store@word";
+import { generateRecord, addWord } from "store@word";
 
 gun.on("auth", async () => {
   console.log("auth");
@@ -66,17 +66,6 @@ function toBan(pub) {
 
 function authUser() {
   gun.user().auth(pair.value);
-}
-
-async function addWord() {
-  let { text, hash } = await generateRecord();
-
-  gun
-    .get("~" + pair.value.pub)
-    .get(appPath)
-    .get("#words")
-    .get(user.is.pub + "#" + hash)
-    .put(text);
 }
 </script>
 
