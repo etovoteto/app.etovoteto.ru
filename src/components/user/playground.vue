@@ -69,14 +69,14 @@ function authUser() {
 }
 
 async function addWord() {
-  let word = generateRecord();
-  const hash = await sea.work(word, null, null, { name: "SHA-256" });
+  let { text, hash } = await generateRecord();
+
   gun
     .get("~" + pair.value.pub)
     .get(appPath)
     .get("#words")
     .get(user.is.pub + "#" + hash)
-    .put(word);
+    .put(text);
 }
 </script>
 

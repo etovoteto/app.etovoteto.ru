@@ -30,15 +30,14 @@ function authUser() {
 }
 
 async function addWord() {
-  let word = generateRecord();
-  const hash = await sea.work(word, null, null, { name: "SHA-256" });
+  let { text, hash } = await generateRecord();
   gun
     .get("~" + props.main)
     .get(appPath)
     .get("#words")
     .get(pair.value.pub + "#" + hash)
     .put(
-      word,
+      text,
       (d) => {
         if (d.err) console.log(d.err);
       },

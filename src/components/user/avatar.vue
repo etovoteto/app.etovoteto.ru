@@ -35,7 +35,7 @@ watchEffect(() => {
   border-radius: 8em
 
 .current
-  box-shadow: 0 0 20px 0 #ff8800
+  box-shadow: 0 0 0px 4px #ff8800
 
 .small
   width: 1.5em

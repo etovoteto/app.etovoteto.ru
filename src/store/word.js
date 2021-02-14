@@ -16,13 +16,14 @@ export async function generateRecord(word = generateWords(), stress = 1) {
       break
     }
   }
-  let hash = await sea.work(record, null, null, { name: 'SHA-256' })
   let text = JSON.stringify({ word, stress })
+  let hash = await sea.work(text, null, null, { name: 'SHA-256' })
+
   return { text, hash }
 }
 
 export async function addWord() {
-  const { text, hash } = generateRecord()
+  const { text, hash } = await generateRecord()
   db.get(hash).put(text)
 }
 
