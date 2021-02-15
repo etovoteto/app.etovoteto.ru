@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { newWord, addWord, generate, setStress, vowels } from "store@word";
+import { newWord, addWord, setStress, vowels } from "store@word";
 </script>
 
 <style lang="stylus" scoped>

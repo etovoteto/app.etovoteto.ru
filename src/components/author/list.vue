@@ -1,10 +1,10 @@
 <template lang="pug">
 .list
+  button(@click="addPlayer()")
+    i.iconify(data-icon="la:plus")
   .player(v-for="(player, key) in players", :key="player") 
     user-avatar(:pub="key", size="small", @click="authUser(player.pair)")
     .name {{ player.name }}
-  button(@click="addPlayer()")
-    i.iconify(data-icon="la:plus")
 </template>
 
 <script setup>

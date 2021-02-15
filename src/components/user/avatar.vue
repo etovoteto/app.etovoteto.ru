@@ -1,8 +1,12 @@
 <template lang="pug">
-.avatar(v-if="pub")
+.avatar(
+  v-if="pub",
+  :style="{ background: current ? pubGradient(pub) : 'transparent' }"
+)
   img.avatar(
     v-if="pic",
     :src="pic",
+    :title="pub",
     :class="{ [size]: true, current: current }"
   )
 </template>
@@ -11,6 +15,7 @@
 import { computed, defineProps, ref, watchEffect } from "vue";
 import { useAvatar } from "use@avatar";
 import { user } from "store@user";
+import { pubGradient } from "use@colors";
 
 const props = defineProps({
   pub: String,
@@ -21,10 +26,10 @@ const props = defineProps({
 });
 
 const pic = ref("");
-const current = computed(() => props.pub == user.is.pub);
+const current = computed(() => props.pub == user.is?.pub);
 
 watchEffect(() => {
-  if (props.pub) {
+  if (props.pub && props.pub.includes(".")) {
     pic.value = useAvatar(props.pub);
   }
 });
@@ -33,9 +38,10 @@ watchEffect(() => {
 <style lang="stylus" scoped>
 .avatar
   border-radius: 8em
-
-.current
-  box-shadow: 0 0 0px 4px #ff8800
+  width: min-content
+  height: min-content
+  padding: 4px
+  display: flex
 
 .small
   width: 1.5em

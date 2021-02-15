@@ -1,10 +1,14 @@
-import { gun, appPath } from './gun-db'
+import { gun } from './gun-db'
 import { reactive, watch } from 'vue'
 
 export const user = reactive({
   is: null,
   profile: {
-    title: '',
+    name: '',
+  },
+  room: {
+    pub: '',
+    role: 'guest',
   },
 })
 
@@ -19,26 +23,16 @@ export function authUser(alias, pass) {
 }
 
 gun.on('auth', async () => {
-  console.log('auth')
   logIn()
 })
 
 export function loadUser(pub) {
   gun
     .user(pub)
-    .get(appPath)
     .get('profile')
     .map()
     .on((data, key) => {
       user.profile[key] = data
-    })
-  gun
-    .user(pub)
-    .get(appPath)
-    .get('rate')
-    .map()
-    .on((data, key) => {
-      user.rates[key] = data
     })
 }
 
@@ -52,7 +46,7 @@ gun.user().recall({ sessionStorage: true }, (ack) => {
 export function logIn() {
   user.is = gun.user().is
   loadUser(user.is.pub)
-  console.info('You successfully logged in as ' + user.is.pub + '.')
+  console.info('Logged in as ', user.is.pub)
 }
 
 export function findUser(alias, cb) {
@@ -91,12 +85,12 @@ export function createUser(alias, pass) {
 }
 
 export function logOut() {
+  let is = !!user.is?.pub
   gun.user().leave()
   setTimeout(() => {
-    if (!gun.user()._?.sea) {
-      user.is = null
-      notify('User logged out')
-      window.location.reload()
+    if (is && !gun.user()._?.sea) {
+      user.is = {}
+      console.info('User logged out')
     }
   }, 300)
 }

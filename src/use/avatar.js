@@ -8,15 +8,15 @@ export function useAvatar(pub, size = 800) {
 
   drawGradient(ctx, decoded[0][42], decoded[1][42], size)
   drawCircles(decoded[0], ctx, size, 250)
-  ctx.globalCompositeOperation = 'screen'
+  ctx.globalCompositeOperation = 'multiply'
   drawCircles(decoded[1], ctx, size, 100)
   return canvas.toDataURL()
 }
 
 function drawGradient(ctx, top, bottom, size) {
   var gradient = ctx.createLinearGradient(0, 0, 0, size)
-  gradient.addColorStop(0, `hsl(0,0%,${top * 100}%)`)
-  gradient.addColorStop(1, `hsl(0,0%,${bottom * 100}%)`)
+  gradient.addColorStop(0, `hsl(0,0%,${50 + top * 50}%)`)
+  gradient.addColorStop(1, `hsl(0,0%,${50 + bottom * 50}%)`)
 
   ctx.fillStyle = gradient
   ctx.fillRect(0, 0, size, size)

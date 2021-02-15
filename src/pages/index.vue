@@ -2,7 +2,7 @@
 main
   word-form
   word-new
-  words-list
+  word-list
 </template>
 
 <script setup>

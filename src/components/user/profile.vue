@@ -8,10 +8,10 @@ article
 </template>
 
 <script setup>
-import { sea, gun, appPath } from "store@gun-db";
+import { sea, gun } from "store@gun-db";
 import { defineProps, ref } from "vue";
 import { logOut } from "store@user";
-import { generateRecord, addWord } from "store@word";
+import { addWord } from "store@word";
 
 const props = defineProps({
   main: String,

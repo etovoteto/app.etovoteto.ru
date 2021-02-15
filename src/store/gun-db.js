@@ -1,8 +1,13 @@
 const config = {
-  appPath: 'etovoteto',
-  dbVersion: 1,
+  appPub:
+    'ACHCKvZFFLdiFhtqSiKyxPNIjdRXtkS3WV9jKCP-XsQ.AGhaxvEDsiD8_MBbZrc_gR-sjNeLJ-cT0ISM2Smor6k',
+  cert:
+    'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
+  dbVersion: 29,
   peers: null, // ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
 }
+
+checkDbVersion(localStorage.dbVersion, config.dbVersion)
 
 import Gun from 'gun/gun'
 import SEA from 'gun/sea.js'
@@ -14,12 +19,12 @@ import 'gun/lib/rindexed'
 import 'gun/lib/webrtc'
 import 'gun/nts'
 
-checkDbVersion(localStorage.dbVersion, config.dbVersion)
-
 export const gun = Gun(config.peers)
+export const gunRoom = Gun(config.peers)
 window.gun = gun //for debugging
-export const appPath = config.appPath
-export const db = gun.get(appPath)
+export const appPub = config.appPub
+export const cert = config.cert
+export const db = gun.get('~' + appPub)
 export const soul = Gun.node.soul
 export const isNode = Gun.node.is
 export const getState = Gun.state.is //(node,'key') => timestamp
@@ -27,7 +32,7 @@ export const sea = SEA
 export const genUuid = Gun.text.random
 
 export async function getShortHash(text) {
-  return await sea.work(text, appPath, null, { name: 'SHA-1', encode: 'hex' })
+  return await sea.work(text, appPub, null, { name: 'SHA-1', encode: 'hex' })
 }
 
 export function cutUuid(key) {
@@ -48,6 +53,7 @@ function checkDbVersion(local, current) {
       `New DB version ${current} detected. Clearing local database.`,
     )
     localStorage.clear()
+    indexedDB.deleteDatabase('radata')
     localStorage.dbVersion = current
   } else {
     console.info('DB version: ' + local)

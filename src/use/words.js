@@ -1,30 +1,33 @@
-import { db, formatDate } from 'store@gun-db'
+import { gun, appPub } from 'store@gun-db'
 import { ref, reactive, watchEffect } from 'vue'
+import { getState } from '../store/gun-db'
 
-export const words = reactive({})
+export function useWords(room = appPub) {
+  const obj = reactive({})
 
-db.map().on((data, key) => {
-  let record = JSON.parse(data)
-  if (!record.word) return
-  words[key] = record
-})
+  gun
+    .get('~' + room)
+    .get('#word')
+    .map()
+    .on((data, key) => {
+      let hash = key.slice(0, 44)
+      let author = key.slice(-87)
+      let record = JSON.parse(data)
+      obj[hash] = obj[hash] || record
+      obj[hash].authors = obj[hash].authors || {}
+      obj[hash].authors[author] = true
+    })
 
-db.once((d) => {
-  let timestamps = d?.['_']?.['>']
-  if (!timestamps) return
-  for (let key in words) {
-    let word = words[key]
-    let timestamp = timestamps[key]
-    word.timestamp = timestamp
-    word.date = formatDate(timestamp).date
-    word.time = formatDate(timestamp).time
+  const list = ref([])
+
+  watchEffect(() => {
+    list.value = Object.values(obj).sort((a, b) =>
+      a.timestamp > b.timestamp ? -1 : 1,
+    )
+  })
+
+  return {
+    obj,
+    list,
   }
-})
-
-export const wordList = ref([])
-
-watchEffect(() => {
-  wordList.value = Object.values(words).sort((a, b) =>
-    a.timestamp > b.timestamp ? -1 : 1,
-  )
-})
+}
