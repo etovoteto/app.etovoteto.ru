@@ -53,7 +53,6 @@ function checkDbVersion(local, current) {
       `New DB version ${current} detected. Clearing local database.`,
     )
     localStorage.clear()
-    indexedDB.deleteDatabase('radata')
     localStorage.dbVersion = current
   } else {
     console.info('DB version: ' + local)

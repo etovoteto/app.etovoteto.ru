@@ -7,9 +7,16 @@ export function useAvatar(pub, size = 800) {
   const decoded = split.map((single) => decodeUrlSafeBase64(single))
 
   drawGradient(ctx, decoded[0][42], decoded[1][42], size)
-  drawCircles(decoded[0], ctx, size, 250)
-  ctx.globalCompositeOperation = 'multiply'
-  drawCircles(decoded[1], ctx, size, 100)
+  drawCircles(decoded[0], ctx, size, 450)
+  ctx.globalCompositeOperation = 'lighter'
+  drawCircles(decoded[1], ctx, size, 200)
+
+  let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+  ctx.globalCompositeOperation = 'source-over'
+  ctx.scale(-1, 1)
+  ctx.translate(-400, 0)
+  ctx.drawImage(canvas, 400, 0, 800, 800, 0, 0, size, size)
+
   return canvas.toDataURL()
 }
 
