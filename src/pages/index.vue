@@ -1,11 +1,11 @@
 <template lang="pug">
 main
-  add-form
-  add-new
+  word-form
+  word-new
   words-list
 </template>
 
-<script setup >
+<script setup>
 </script>
 
 <style lang="stylus" scoped></style>
