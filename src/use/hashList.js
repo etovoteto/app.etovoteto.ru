@@ -3,7 +3,7 @@ import { gun, hashObj } from 'store@gun-db'
 import { ref, reactive } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { Room } from 'store@room'
+import { currentRoom } from 'store@room'
 import { user } from 'store@user'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
