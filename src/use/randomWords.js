@@ -1,4 +1,4 @@
-import grams from './ru-grams'
+import { ru as grams } from 'store@grams'
 
 // create a sorted list for all keys
 for (var key in grams) {

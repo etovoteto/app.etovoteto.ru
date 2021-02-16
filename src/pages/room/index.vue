@@ -1,5 +1,6 @@
 <template lang="pug">
-words
+main
+  room-browse
 </template>
 
 <script setup>

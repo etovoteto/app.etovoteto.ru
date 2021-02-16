@@ -1,5 +1,8 @@
 <template lang="pug">
-words
+article
+  word-form
+  word-add
+  words-list
 </template>
 
 <script setup>

@@ -1,50 +1,33 @@
 import { reactive } from 'vue'
 import { generateWords } from 'use@randomWords'
-import { gun, sea, appPub, cert } from 'store@gun-db'
-import { user } from 'store@user'
+import { addHashed } from './room'
 export const vowels = 'аеёиоуыюя'
 
-export const newWord = reactive({
-  word: generateWords(),
-  stress: 1,
+export const record = reactive({
+  word: '',
+  stress: 0,
 })
 
 export function generate() {
-  newWord.word = generateWords()
-  newWord.stress = firstStress(newWord.word)
+  record.word = generateWords()
+  record.stress = firstStress(record.word)
 }
 
-export async function hashWord(word = generateWords(), stress) {
-  let text = JSON.stringify({ word, stress })
-  let hash = await sea.work(text, null, null, { name: 'SHA-256' })
-  return { text, hash }
-}
-
-export async function addWord(room = appPub, certificate = cert) {
-  if (!user.is.pub) return
+export async function addWord() {
   if (!verifyWord()) {
     console.warn('word is not correct')
     return
   }
-  const { text, hash } = await hashWord(
-    newWord.word.toLowerCase(),
-    newWord.stress,
-  )
-
-  let opt
-  if (certificate) {
-    opt = { cert: certificate }
+  let obj = {
+    word: record.word.toLowerCase(),
+    stress: record.stress,
   }
-  gun
-    .get('~' + room)
-    .get('#word')
-    .get(hash + '#' + user.is.pub)
-    .put(text, null, { opt })
+  addHashed('word', obj)
 }
 
 export function setStress(i) {
-  if (!vowels.includes(newWord.word[i])) return
-  newWord.stress = i
+  if (!vowels.includes(record.word[i])) return
+  record.stress = i
 }
 
 function firstStress(word) {
@@ -55,12 +38,8 @@ function firstStress(word) {
   }
 }
 
-function verifyWord(word = newWord.word, stress = newWord.stress) {
-  let wordOk = isChar(word)
+function verifyWord(word = record.word, stress = record.stress) {
+  let wordOk = /^[а-яА-Я]+$/.test(word)
   let stressOk = vowels.includes(word[stress])
   return wordOk && stressOk
-}
-
-function isChar(str) {
-  return /^[а-яА-Я]+$/.test(str)
 }

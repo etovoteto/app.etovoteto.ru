@@ -37,7 +37,7 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .avatar
-  border-radius: 8em
+  border-radius: 80em
   width: min-content
   height: min-content
   padding: 4px
@@ -57,4 +57,7 @@ watchEffect(() => {
 
 .large
   width: 10em
+
+.huge
+  width: 60vw
 </style>

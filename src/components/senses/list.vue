@@ -1,20 +1,19 @@
 <template lang="pug">
 .list 
-  .card(v-for="(word, key) in list", :key="word.timestamp") 
+  .card(v-for="(sense, key) in list", :key="sense.timestamp") 
     user-avatar(
-      v-for="(is, author) in word.authors",
+      v-for="(is, author) in sense.authors",
       :key="author",
       :pub="author",
       size="small"
     )
-    h2(:title="word.timestamp")
-      word-title(:word="word.word", :stress="word.stress")
+    h2(:title="sense.timestamp") {{ sense.text }}
 </template>
 
 <script setup>
-import { useWords } from "use@words";
+import { useHashList } from "use@hashList";
 
-const { list } = useWords();
+const { list } = useHashList("sense");
 </script>
 
 <style lang="stylus" scoped>

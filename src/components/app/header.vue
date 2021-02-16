@@ -1,14 +1,14 @@
 <template lang="pug">
 header 
   router-link(to="/")
-    i.iconify(data-icon="la:book")
+    i.iconify(data-icon="la:comment-dots")
   .spacer
-  router-link.user(to="/u")
-    i.iconify(data-icon="teenyicons:user-square-outline")
+  router-link(to="/sense")
+    i.iconify(data-icon="la:comment")
   router-link(to="/my")
     user-avatar(:pub="user.is?.pub", size="small")
-  router-link(to="/inbox")
-    i.iconify(data-icon="la:trash")
+  router-link.user(to="/room")
+    i.iconify(data-icon="la:comments")
   router-link(to="/lab")
     i.iconify(data-icon="la:flask")
 </template>

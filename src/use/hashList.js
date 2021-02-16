@@ -1,13 +1,15 @@
-import { gun, appPub } from 'store@gun-db'
-import { ref, reactive, watchEffect } from 'vue'
-import { getState } from '../store/gun-db'
+import { gun } from 'store@gun-db'
 
-export function useWords(room = appPub) {
+import { ref, reactive, watchEffect } from 'vue'
+import { mainRoom } from 'store@room'
+import { throttledWatch } from '@vueuse/core'
+
+export function useHashList(tag = 'word', room = mainRoom.pub) {
   const obj = reactive({})
 
   gun
-    .get('~' + room)
-    .get('#word')
+    .get(`~${room}`)
+    .get(`#${tag}`)
     .map()
     .on((data, key) => {
       let hash = key.slice(0, 44)
@@ -20,12 +22,11 @@ export function useWords(room = appPub) {
 
   const list = ref([])
 
-  watchEffect(() => {
+  throttledWatch(obj, () => {
     list.value = Object.values(obj).sort((a, b) =>
       a.timestamp > b.timestamp ? -1 : 1,
     )
   })
-
   return {
     obj,
     list,

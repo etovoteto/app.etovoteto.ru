@@ -1,18 +1,18 @@
 <template lang="pug">
-.new-word
+.new-word(v-if="record.word")
   .letter(
     @click="setStress(i)",
-    v-for="(letter, i) in newWord.word.slice('')",
-    :class="{ vowel: vowels.includes(letter), active: i == newWord.stress }"
+    v-for="(letter, i) in record.word.slice('')",
+    :class="{ vowel: vowels.includes(letter), active: i == record.stress }"
   ) {{ letter }}
-    .stress ´
+    .stress ´ //stress sign
   .buttons
     button(@click="addWord()") 
       i.iconify(data-icon="la:plus")
 </template>
 
 <script setup>
-import { newWord, addWord, setStress, vowels } from "store@word";
+import { record, addWord, setStress, vowels } from "store@word";
 </script>
 
 <style lang="stylus" scoped>

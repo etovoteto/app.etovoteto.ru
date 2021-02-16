@@ -1,6 +1,6 @@
 <template lang="pug">
 article
-  user-avatar(:pub="user.is?.pub", size="large")
+  author-profile
 </template>
 
 <script setup>

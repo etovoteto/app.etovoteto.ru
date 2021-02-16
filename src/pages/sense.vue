@@ -1,5 +1,5 @@
 <template lang="pug">
-words
+senses
 </template>
 
 <script setup>

@@ -1,5 +1,6 @@
 <template lang="pug">
 app-header
+app-users
 router-view(v-slot="{Component}")
   transition(name="fade")
     keep-alive

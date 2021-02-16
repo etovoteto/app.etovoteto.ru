@@ -1,5 +1,5 @@
 <template lang="pug">
-words
+lab-graph
 </template>
 
 <script setup>

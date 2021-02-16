@@ -1,6 +1,8 @@
 <template lang="pug">
-main
-  user-playground
+article
+  sense-form
+  sense-part
+  senses-list
 </template>
 
 <script setup>

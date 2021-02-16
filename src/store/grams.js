@@ -1,4 +1,4 @@
-export default {
+export const ru = {
   а: {
     '1': ' ',
     '0.56': 'н',

@@ -71,13 +71,7 @@ export function createUser(alias, pass) {
   })
   gun.user().create(alias, pass, async (ack) => {
     if (!ack.err) {
-      let id = await getShortHash(ack.pub)
-      let dbUser = db
-        .get('user')
-        .get(id)
-        .put(generateUser(alias, ack.pub), () => {
-          window.location.reload()
-        })
+      console.log('creating')
     } else {
       error(ack.err)
     }

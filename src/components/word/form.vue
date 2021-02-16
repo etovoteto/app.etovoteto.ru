@@ -1,16 +1,16 @@
 <template lang="pug">
-.form
-  input(v-model="newWord.word")
+form(@submit.prevent.stop)
+  input(v-model="record.word")
   span.generate(@click="generate()")
     i.iconify(data-icon="teenyicons:refresh-alt-solid")
 </template>
 
 <script setup>
-import { newWord, addWord, generate, setStress, vowels } from "store@word";
+import { record, generate } from "store@word";
 </script>
 
 <style lang="stylus" scoped>
-.form
+form
   position: relative
 
 input

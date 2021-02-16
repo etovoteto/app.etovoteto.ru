@@ -1,13 +1,17 @@
 <template lang="pug">
-section HEY
-  p {{ user.is.alias }}
-  p {{ cert }}
-  graph-scan
+article
+  nav
+    router-link(to="/lab/cert") cert
+    router-link(to="/lab/graph") graph
+  router-view(v-slot="{Component}")
+    transition(name="fade")
+      component(:is="Component")
 </template>
 
 <script setup>
-import { cert } from "store@cert";
-import { user } from "../store/user";
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+nav a
+  padding: 2em
+</style>

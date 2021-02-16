@@ -7,9 +7,9 @@ export function useAvatar(pub, size = 800) {
   const decoded = split.map((single) => decodeUrlSafeBase64(single))
 
   drawGradient(ctx, decoded[0][42], decoded[1][42], size)
-  drawCircles(decoded[0], ctx, size, 450)
+  drawCircles(decoded[0], ctx, size, 350)
   ctx.globalCompositeOperation = 'lighter'
-  drawCircles(decoded[1], ctx, size, 200)
+  drawCircles(decoded[1], ctx, size, 100)
 
   let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
   ctx.globalCompositeOperation = 'source-over'
@@ -22,8 +22,8 @@ export function useAvatar(pub, size = 800) {
 
 function drawGradient(ctx, top, bottom, size) {
   var gradient = ctx.createLinearGradient(0, 0, 0, size)
-  gradient.addColorStop(0, `hsl(0,0%,${50 + top * 50}%)`)
-  gradient.addColorStop(1, `hsl(0,0%,${50 + bottom * 50}%)`)
+  gradient.addColorStop(0, `hsl(0,0%,${70 + top * 30}%)`)
+  gradient.addColorStop(1, `hsl(0,0%,${70 + bottom * 30}%)`)
 
   ctx.fillStyle = gradient
   ctx.fillRect(0, 0, size, size)
@@ -33,7 +33,7 @@ function drawCircles(data, ctx, size, radius) {
   const chunks = chunkIt(data, 7)
   chunks.forEach((chunk) => {
     if (chunk.length == 7) {
-      let x = chunk[0] * size
+      let x = size / 2 + (chunk[0] * size) / 2
       let y = chunk[1] * size
       let r = chunk[2] * radius
       let h = chunk[3] * 360
