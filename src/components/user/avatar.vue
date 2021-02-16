@@ -26,10 +26,12 @@ const props = defineProps({
 });
 
 const pic = ref("");
-const current = computed(() => props.pub == user.is?.pub);
+const current = computed(
+  () => props.pub == user.is?.pub || props.size == "nano"
+);
 
 watchEffect(() => {
-  if (props.pub && props.pub.includes(".")) {
+  if (props.pub && props.pub.includes(".") && props.size != "nano") {
     pic.value = useAvatar(props.pub);
   }
 });
@@ -39,8 +41,11 @@ watchEffect(() => {
 .avatar
   border-radius: 80em
   width: min-content
+  min-width: 0.5rem
   height: min-content
+  min-height: 0.5rem
   padding: 4px
+  margin: 0 6px
   display: flex
 
 .small

@@ -1,7 +1,8 @@
-import { hashObj, roomGun } from './gun-db'
+import { roomGun } from './gun-db'
 import { user } from './user'
+import { reactive } from 'vue'
 
-let appPair = {
+const appPair = {
   pub:
     'ACHCKvZFFLdiFhtqSiKyxPNIjdRXtkS3WV9jKCP-XsQ.AGhaxvEDsiD8_MBbZrc_gR-sjNeLJ-cT0ISM2Smor6k',
   priv: 'JwDHPqohvEowZtJji5wBuLt4bMJBW_-ouhGVQeSrVDA',
@@ -16,19 +17,13 @@ export const mainRoom = {
     'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
 }
 
-export async function addHashed(
-  tag,
-  obj,
-  room = mainRoom.pub,
-  certificate = mainRoom.cert,
-) {
-  const { text, hash } = await hashObj(obj)
-  gun
-    .get(`~${room}`)
-    .get(`#${tag}`)
-    .get(`${hash}#${user.is.pub}`)
-    .put(text, null, { opt: { cert: certificate } })
-}
+export const current = reactive({
+  pub: appPair.pub,
+  cert: {
+    full:
+      'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
+  },
+})
 
 export async function issueAppCert(
   users = '*',

@@ -1,11 +1,12 @@
-import { gun } from 'store@gun-db'
+import { gun, hashObj } from 'store@gun-db'
 
-import { ref, reactive, watchEffect } from 'vue'
-import { mainRoom } from 'store@room'
-import { throttledWatch } from '@vueuse/core'
-import { getState } from '../store/gun-db'
+import { ref, reactive } from 'vue'
+import { useSorter } from 'use@sorter'
+import { useIntersectionObserver } from '@vueuse/core'
+import { current } from 'store@room'
+import { user } from 'store@user'
 
-export function useHashList(tag = 'word', room = mainRoom.pub) {
+export function useHashList(tag = 'word', room = current.pub) {
   const obj = reactive({})
   let timestamps = {}
   gun
@@ -27,15 +28,41 @@ export function useHashList(tag = 'word', room = mainRoom.pub) {
       obj[hash].authors[author] = true
     })
 
-  const list = ref([])
+  const options = reactive({
+    orderBy: 'timestamp',
+    search: '',
+    limit: 12,
+    page: 12,
+    total: 0,
+    main: tag,
+  })
+  const { sorted } = useSorter(obj, options)
 
-  throttledWatch(obj, () => {
-    list.value = Object.values(obj).sort((a, b) =>
-      a.timestamp > b.timestamp ? -1 : 1,
-    )
+  const more = ref()
+
+  useIntersectionObserver(more, ([{ isIntersecting }]) => {
+    if (isIntersecting) {
+      options.limit += options.page
+    }
   })
   return {
     obj,
-    list,
+    sorted,
+    options,
+    more,
   }
+}
+
+export async function addHashed(
+  tag,
+  obj,
+  room = current.pub,
+  certificate = current.cert.full,
+) {
+  const { text, hash } = await hashObj(obj)
+  gun
+    .get(`~${room}`)
+    .get(`#${tag}`)
+    .get(`${hash}#${user.is.pub}`)
+    .put(text, null, { opt: { cert: certificate } })
 }

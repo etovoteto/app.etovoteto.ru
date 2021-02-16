@@ -62,4 +62,5 @@ html {
 #app > main {
   display: flex;
   flex-flow: column;
+  max-width: 55ch;
 }

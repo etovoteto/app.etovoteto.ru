@@ -6,50 +6,18 @@ function sort({ data }) {
   let list = Object.values(data.list)
   let more = false
   let total = list.length
-  let { status, orderBy, search, filterMy, limit } = data.options
-  let statusCount = {}
-  for (st in status) {
-    statusCount[st] = 0
-  }
+  let { orderBy, search, limit, main = 'word' } = data.options
 
   list = list.filter(Boolean)
 
-  list = list.filter((item) => {
-    statusCount[item.status]++
-    return status[item.status]
-  })
-
   if (search) {
     list = list.filter((item) => {
-      return item.title.toLowerCase().includes(search.toLowerCase())
+      return item[main].toLowerCase().includes(search.toLowerCase())
     })
   }
 
-  if (orderBy == 'AB') {
-    list.sort(sortByAB)
-  }
-  if (orderBy == 'createdAt') {
-    list.sort(sortByCreated)
-  }
+  list.sort(sortBy(orderBy))
 
-  if (orderBy == 'rating') {
-    list.sort(sortByRating)
-  }
-
-  if (filterMy) {
-    list = list.filter((item) => {
-      if (
-        item.myRate &&
-        ((filterMy.star && item.myRate.star) ||
-          (filterMy.seen && item.myRate.seen) ||
-          (filterMy.trash && item.myRate.trash))
-      ) {
-        return false
-      } else {
-        return true
-      }
-    })
-  }
   let count = list.length
   if (count > limit) {
     list.length = limit
@@ -58,17 +26,7 @@ function sort({ data }) {
     more = false
   }
 
-  postMessage({ list, count, total, more, statusCount })
-}
-
-function sortByRating(a, b) {
-  let aS = countRates(a, 'star') - countRates(a, 'trash')
-  let bS = countRates(b, 'star') - countRates(b, 'trash')
-  if (aS == bS) {
-    return countRates(a, 'seen') - countRates(b, 'seen')
-  } else {
-    return bS - aS
-  }
+  postMessage({ list, count, total, more })
 }
 
 function countRates(item, type) {
@@ -95,6 +53,13 @@ function sortByAB(a, b) {
   return 0
 }
 
-function sortByCreated(a, b) {
-  return b.createdAt - a.createdAt
+function sortByTimestamp(a, b) {
+  return b.timestamp - a.timestamp
+}
+
+function sortBy(prop) {
+  return function (a, b) {
+    if (b[prop] >= a[prop]) return 1
+    else return -1
+  }
 }

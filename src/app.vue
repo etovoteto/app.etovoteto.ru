@@ -1,10 +1,9 @@
 <template lang="pug">
 app-header
-app-users
+user-change
 router-view(v-slot="{Component}")
   transition(name="fade")
-    keep-alive
-      component(:is="Component")
+    component(:is="Component")
 </template>
 
 <script setup >

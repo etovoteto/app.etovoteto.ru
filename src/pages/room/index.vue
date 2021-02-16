@@ -1,6 +1,6 @@
 <template lang="pug">
 main
-  room-browse
+  rooms
 </template>
 
 <script setup>
