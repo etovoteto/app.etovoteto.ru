@@ -6,8 +6,6 @@ main
       .cert(v-for="(cert, key) in currentRoom.certs", :key="key") 
         .key {{ key }}
         .cert {{ cert }}
-  section.list
-    p list
 </template>
 
 <script setup>
