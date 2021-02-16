@@ -44,11 +44,8 @@ import {
   addWord,
   setStress,
   vowels,
+  capitalFirst,
 } from "store@word";
-
-function capitalFirst(text) {
-  return text[0].toUpperCase() + text.slice(1);
-}
 </script>
 
 <style lang="stylus" scoped>

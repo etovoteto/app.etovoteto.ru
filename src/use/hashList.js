@@ -3,10 +3,10 @@ import { gun, hashObj } from 'store@gun-db'
 import { ref, reactive } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { current } from 'store@room'
+import { Room } from 'store@room'
 import { user } from 'store@user'
 
-export function useHashList(tag = 'word', room = current.pub) {
+export function useHashList(tag = 'word', room = currentRoom.pub) {
   const obj = reactive({})
   let timestamps = {}
   gun
@@ -56,8 +56,8 @@ export function useHashList(tag = 'word', room = current.pub) {
 export async function addHashed(
   tag,
   obj,
-  room = current.pub,
-  certificate = current.cert.full,
+  room = currentRoom.pub,
+  certificate = currentRoom.certs.full,
 ) {
   const { text, hash } = await hashObj(obj)
   gun

@@ -1,6 +1,7 @@
-import { roomGun } from './gun-db'
-import { user } from './user'
+import { roomGun } from 'store@gun-db'
+import { user } from 'store@user'
 import { reactive } from 'vue'
+import { appModel } from 'store@model'
 
 const appPair = {
   pub:
@@ -11,19 +12,21 @@ const appPair = {
   epriv: 'zP3uDliPugDAAdi3KmzxtXuP0Y0m5NJK2vaXlY_DzK0',
 }
 
-export const mainRoom = {
+export const currentRoom = reactive({
   pub: appPair.pub,
-  cert:
-    'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
-}
-
-export const current = reactive({
-  pub: appPair.pub,
-  cert: {
+  certs: {
     full:
       'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
   },
 })
+
+issueCerts()
+
+export async function issueCerts() {
+  for (let tag of appModel) {
+    currentRoom.certs[tag] = await issueAppCert(undefined, tag)
+  }
+}
 
 export async function issueAppCert(
   users = '*',

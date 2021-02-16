@@ -26,7 +26,7 @@ main
           :pub="author",
           size="small"
         )
-      .text {{ sense.sense }}
+      .text {{ capitalFirst(sense.sense) }}
     .more(
       ref="more",
       v-if="sorted.more",
@@ -44,6 +44,7 @@ import {
   generate,
   more,
 } from "store@sense";
+import { capitalFirst } from "../store/word";
 </script>
 
 <style lang="stylus" scoped>

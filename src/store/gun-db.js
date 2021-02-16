@@ -1,10 +1,6 @@
 const config = {
-  dbVersion: 29,
   peers: null, // ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
 }
-
-import { syncDbVersion } from './dev'
-syncDbVersion(localStorage.dbVersion, config.dbVersion)
 
 import Gun from 'gun/gun'
 import SEA from 'gun/sea.js'

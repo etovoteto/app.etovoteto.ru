@@ -1,4 +1,4 @@
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { useHashList, addHashed } from 'use@hashList'
 export const record = reactive({
   sense: '',
@@ -7,7 +7,7 @@ export const record = reactive({
 
 export const { sorted, options, more } = useHashList('sense')
 
-import { parts } from 'store@lingvo'
+import { parts, senseMask } from 'store@model'
 import { generateWords } from '../use/randomWords'
 export { parts }
 
@@ -29,7 +29,7 @@ export async function addSense() {
 }
 
 function verifySense(sense = record.sense, part = record.part) {
-  let senseOk = sense && /^[а-я А-Я 1-9"«»!?,.-]+$/.test(sense)
+  let senseOk = sense && senseMask.test(sense)
   let partOk = part && parts[part]
   return senseOk && partOk
 }

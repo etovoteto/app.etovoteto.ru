@@ -1,4 +1,4 @@
-import { ru as grams } from 'store@lingvo'
+import { ru as grams } from 'store@model'
 
 // create a sorted list for all keys
 for (var key in grams) {
