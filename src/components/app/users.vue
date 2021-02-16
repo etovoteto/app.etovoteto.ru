@@ -24,6 +24,7 @@ async function addPlayer() {
 
 <style lang="stylus" scoped>
 .list
+  z-index: 10
   position: fixed
   top: 1em
   right: 1em

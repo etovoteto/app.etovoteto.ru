@@ -5,7 +5,7 @@
     v-for="(letter, i) in record.word.slice('')",
     :class="{ vowel: vowels.includes(letter), active: i == record.stress }"
   ) {{ letter }}
-    .stress ´ //stress sign
+    .stress ´
   .buttons
     button(@click="addWord()") 
       i.iconify(data-icon="la:plus")

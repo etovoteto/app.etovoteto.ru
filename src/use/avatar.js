@@ -1,4 +1,8 @@
+const cache = {}
+
 export function useAvatar(pub, size = 800) {
+  if (cache[pub]) return cache[pub]
+
   const canvas = document.createElement('canvas')
   canvas.width = canvas.height = size
   const ctx = canvas.getContext('2d')
@@ -17,7 +21,8 @@ export function useAvatar(pub, size = 800) {
   ctx.translate(-400, 0)
   ctx.drawImage(canvas, 400, 0, 800, 800, 0, 0, size, size)
 
-  return canvas.toDataURL()
+  cache[pub] = canvas.toDataURL()
+  return cache[pub]
 }
 
 function drawGradient(ctx, top, bottom, size) {

@@ -1,26 +1,34 @@
 import { reactive, ref } from 'vue'
 
-export const newSense = reactive({
+export const record = reactive({
   text: '',
-  part: '',
+  part: 'noun',
 })
 
-export const parts = {
-  noun: 'сущ',
-  adj: 'прил',
-  verb: 'глаг',
-  adv: 'нареч',
+import { parts } from 'store@lingvo'
+import { generateWords } from '../use/randomWords'
+import { addHashed } from './room'
+export { parts }
+
+export function generate() {
+  record.text = generateWords(8, 20)
 }
 
-export const allParts = {
-  noun: 'сущ',
-  adj: 'прил',
-  verb: 'гл',
-  adv: 'нареч',
-  pron: 'мест',
-  ptcl: 'прич',
-  trans: 'деепр',
-  prep: 'предл',
-  conj: 'союз',
-  part: 'част',
+export async function addSense() {
+  if (!verifySense()) {
+    console.warn('sense is not correct')
+    return
+  }
+  let obj = {
+    text: record.text,
+    part: record.part,
+  }
+  addHashed('sense', obj)
+  record.text = ''
+}
+
+function verifySense(text = record.text, part = record.part) {
+  let textOk = text && /^[а-я А-Я 1-9"«»!?,.-]+$/.test(text)
+  let partOk = part && parts[part]
+  return textOk && partOk
 }

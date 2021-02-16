@@ -1,5 +1,6 @@
 <template lang="pug">
-lab-graph
+.lab
+  lab-graph
 </template>
 
 <script setup>

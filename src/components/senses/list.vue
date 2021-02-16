@@ -1,18 +1,20 @@
 <template lang="pug">
 .list 
-  .card(v-for="(sense, key) in list", :key="sense.timestamp") 
+  .card(v-for="(sense, key) in list", :key="sense") 
+    .content
+      .part {{ parts[sense.part] }}.
+      .text {{ sense.text }}
     user-avatar(
       v-for="(is, author) in sense.authors",
       :key="author",
       :pub="author",
       size="small"
     )
-    h2(:title="sense.timestamp") {{ sense.text }}
 </template>
 
 <script setup>
 import { useHashList } from "use@hashList";
-
+import { parts } from "store@sense";
 const { list } = useHashList("sense");
 </script>
 
@@ -20,11 +22,20 @@ const { list } = useHashList("sense");
 .list
   display: flex
   flex-flow: column
-  align-items: center
+  align-items: flex-start
   padding: 1em
+
+.part
+  color: var(--text-light)
+
+.text
+  font-size: 1.2em
 
 .card
   padding: 0.5em 1rem
   display: flex
   align-items: center
+  padding: 1em
+  margin: 1em 0
+  background-color: var(--background-alt)
 </style>

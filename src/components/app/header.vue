@@ -24,5 +24,5 @@ header
   font-size: 2em
 
   a
-    padding: 4px 1em
+    padding: 4px 0.5em
 </style>

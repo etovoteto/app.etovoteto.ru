@@ -1,4 +1,4 @@
-import { ru as grams } from 'store@grams'
+import { ru as grams } from 'store@lingvo'
 
 // create a sorted list for all keys
 for (var key in grams) {
