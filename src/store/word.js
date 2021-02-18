@@ -34,7 +34,7 @@ export function setStress(i) {
   record.stress = i
 }
 
-export function getWord(word, stress) {
+export function renderWord(word, stress) {
   let str = word.slice(0, stress + 1) + stressMark + word.slice(stress + 1)
   return str[0].toUpperCase() + str.slice(1)
 }

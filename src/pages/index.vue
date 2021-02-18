@@ -18,15 +18,16 @@ main
 
   .list
     transition-group(name="list") 
-      .card(v-for="(word, key) in sorted.list", :key="word.timestamp") 
-        .word(:title="word.timestamp")
-          span(v-if="word", v-html="getWord(word.word, word.stress)")
-        user-avatar(
-          v-for="(is, author) in word.authors",
-          :key="author",
-          :pub="author",
-          size="small"
+      word-card(
+        v-for="(word, key) in sorted.list",
+        :key="word.timestamp",
+        :word="word"
+      ) 
+        button.link(
+          v-if="!isLinking(word)",
+          @click="link(word, () => { $router.push('/sense'); })"
         )
+          i.iconify(data-icon="la:link")
       .more(
         key="more",
         ref="more",
@@ -38,7 +39,6 @@ main
 <script setup>
 import {
   record,
-  getWord,
   generate,
   addWord,
   setStress,
@@ -46,8 +46,9 @@ import {
   capitalFirst,
 } from "store@word";
 import { watchEffect } from "vue";
-import { useHashList } from "use@hashList";
 
+import { linking, link, isLinking } from "store@link";
+import { useHashList } from "use@hashList";
 const { sorted, options, more } = useHashList("word");
 
 watchEffect(() => {
@@ -109,20 +110,4 @@ input
   flex-flow: column
   align-items: center
   padding: 1em
-
-  .card
-    padding: 2em
-    margin: 1em
-    display: flex
-    flex-flow: row wrap
-    align-items: center
-    background-color: var(--background-alt)
-
-  .word
-    font-size: 2em
-
-  .more
-    font-size: 2em
-    padding: 3em
-    background-color: var(--top-bar)
 </style>

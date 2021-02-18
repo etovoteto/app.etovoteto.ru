@@ -17,17 +17,16 @@ main
 
   .list 
     transition-group(name="list")
-      .card(v-for="(sense, key) in sorted.list", :key="sense") 
-        .content 
-          .info {{ parts[sense.part] }}.
-          .spacer
-          user-avatar(
-            v-for="(is, author) in sense.authors",
-            :key="author",
-            :pub="author",
-            size="small"
-          )
-        .text {{ capitalFirst(sense.sense) }}
+      sense-card(
+        v-for="(sense, key) in sorted.list",
+        :key="sense.sense",
+        :sense="sense"
+      ) 
+        button.link(
+          v-if="!isLinking(sense)",
+          @click="link(sense, () => { $router.push('/'); })"
+        )
+          i.iconify(data-icon="la:link")
       .more(
         key="more",
         ref="more",
@@ -37,8 +36,8 @@ main
 </template>
 
 <script setup>
-import { record, parts, addSense, generate } from "store@sense";
-import { capitalFirst } from "../store/word";
+import { record, addSense, generate, parts } from "store@sense";
+import { linking, isLinking, link } from "store@link";
 import { useHashList } from "../use/hashList";
 
 const { sorted, options, more } = useHashList("sense");
@@ -86,23 +85,6 @@ textarea
   flex-flow: column
   align-items: flex-start
   padding: 1em
-
-  .card
-    padding: 0.5em 1rem
-    display: flex
-    flex-flow: column
-    padding: 1em
-    margin: 1em 0
-    background-color: var(--background-alt)
-
-    .content
-      color: var(--text-light)
-      display: flex
-      align-items: center
-      flex-flow: row
-
-    .text
-      font-size: 1.2em
 
   .more
     font-size: 2em

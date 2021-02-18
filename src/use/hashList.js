@@ -5,40 +5,10 @@ import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { user } from 'store@user'
-import { onMounted } from 'vue'
 import { onBeforeUnmount } from 'vue'
+import { getLinks } from '../store/link'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
-  const obj = ref({})
-  let ev = null
-
-  onMounted(() => {
-    console.log('mounbted', tag, room, obj)
-    let timestamps = {}
-    gun
-      .get(`~${room}`)
-      .get(`#${tag}`)
-      .on((d, k) => {
-        timestamps = d['_']['>']
-      })
-      .map()
-      .on((data, key, g, _ev) => {
-        ev = _ev
-        let hash = key.slice(0, 44)
-        let author = key.slice(-87)
-        let record = JSON.parse(data)
-        obj.value[hash] = obj.value[hash] || record
-        if (typeof record != 'object') return
-        obj.value[hash].timestamp = timestamps[key]
-        obj.value[hash].authors = obj.value[hash].authors || {}
-        obj.value[hash].authors[author] = true
-      })
-  })
-
-  onBeforeUnmount(() => {
-    if (ev) ev.off()
-  })
-
   const options = reactive({
     orderBy: 'timestamp',
     search: '',
@@ -47,7 +17,35 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
     total: 0,
     main: tag,
   })
+
+  const obj = reactive({})
   const { sorted } = useSorter(obj, options)
+  let ev = null
+  let timestamps = {}
+
+  gun
+    .get(`~${room}`)
+    .get(`#${tag}`)
+    .on((d, k) => {
+      timestamps = d['_']['>']
+    })
+    .map()
+    .on((data, key, g, _ev) => {
+      ev = _ev
+      let hash = key.slice(0, 44)
+      let author = key.slice(-87)
+      let record = JSON.parse(data)
+      if (typeof record != 'object') {
+        record = { data: record }
+      }
+      obj[hash] = obj[hash] || record
+      obj[hash].type = tag
+      obj[hash].hash = hash
+
+      obj[hash].timestamp = timestamps[key]
+      obj[hash].authors = obj[hash].authors || {}
+      obj[hash].authors[author] = true
+    })
 
   const more = ref()
 
@@ -74,6 +72,17 @@ export async function addHashed(tag, obj, room = currentRoom.pub) {
     .put(text, null, { opt: { cert: certificate } })
 }
 
-export function linkHashes(from, to, room = currentRoom.pub) {
-  gun.get(`!${room}`).get('link').get(`${from}@${to}`)
+export function getHashed(tag, hash, room = currentRoom.pub) {
+  const record = ref({})
+  gun
+    .get(`~${room}`)
+    .get(`#${tag}`)
+    .get({ '.': { '*': hash } })
+    .map()
+    .on((d, k) => {
+      record.value = JSON.parse(d)
+      record.value.authors = record.value.authors || {}
+      record.value.authors[k.slice(-87)] = true
+    })
+  return record
 }

@@ -5,7 +5,6 @@ main
 
   section.current CURRENT
     .id(:style="{ background: pubGradient(currentRoom.pub, 90) }") {{ currentRoom.pub }}
-      button(@click="exitRoom()") Exit room
   nav.buttons
     button(@click="createRoom()") Create
 

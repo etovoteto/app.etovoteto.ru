@@ -1,11 +1,11 @@
 import { roomGun, sea, gun } from 'store@gun-db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
-import { appModel } from 'store@model'
+import { model } from 'store@model'
 import { addHashed } from '../use/hashList'
 
 export const appPub =
-  '0VP6NxIi6C6K2W73UXlozdx2pB1J_Ps3sX7vm2sz-Os.EWrQjS-qI28859cZJ5ywEcTvJN5fVXMl9XenJpkeTYM'
+  '15YuGEIWqnJ0JnlQ_Ll_X_0dnGb8xfgeLMGmT0jBfH8.TxkcukMo46_JEqWIeJjWZaSulWPvwjwE7SYOVssbWLI'
 
 export const roomKey = ref({})
 export const currentRoom = reactive({
@@ -35,7 +35,7 @@ export async function exitRoom(pub) {
 
 export function initRoom(pair, title = 'Main') {
   roomGun.user().auth(pair, async () => {
-    for (let tag of appModel.list) {
+    for (let tag in model) {
       let crt = await issueCert(tag, pair)
       roomGun.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
       roomGun.get(`~${pair.pub}`).get('title').put(title)
@@ -43,13 +43,9 @@ export function initRoom(pair, title = 'Main') {
   })
 }
 
-export async function issueCert(
-  tag = 'word',
-  pair = appPair,
-  hashed = true,
-  users = '*',
-  personal = true,
-) {
+export async function issueCert(tag = 'word', pair = appPair, users = '*') {
+  let hashed = model[tag].hashed
+  let personal = model[tag].personal
   let path = { '*': `${hashed ? '#' : ''}${tag}` }
   if (personal) {
     path['+'] = '*'
@@ -58,6 +54,7 @@ export async function issueCert(
     let cert = await SEA.certify(users, path, pair, null, {
       blacklist: 'banlist',
     })
+    console.log(cert)
     return cert
   } catch (e) {
     console.log(e)

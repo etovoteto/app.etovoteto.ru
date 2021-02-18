@@ -1,6 +1,10 @@
 <template lang="pug">
 app-header
-.room-line(:style="{ background: pubGradient(currentRoom.pub, 90) }") 
+.room-line(
+  v-if="currentRoom.pub != appPub",
+  :style="{ background: pubGradient(currentRoom.pub, 90) }"
+) 
+  button(@click="exitRoom()") Exit room
 user-change
 linking
 router-view(v-slot="{Component}")
@@ -9,7 +13,7 @@ router-view(v-slot="{Component}")
 </template>
 
 <script setup >
-import { currentRoom } from "./store/room";
+import { currentRoom, appPub, exitRoom } from "./store/room";
 import { pubGradient } from "./use/colors";
 </script>
 
