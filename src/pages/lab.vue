@@ -1,11 +1,14 @@
 <template lang="pug">
-graph
+main
+  section
+    graph
 </template>
 
 <script setup>
 </script>
 
 <style lang="stylus" scoped>
-nav a
-  padding: 2em
+nav button
+  padding: 1em 2em
+  margin: 1em
 </style>

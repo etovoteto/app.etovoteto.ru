@@ -20,7 +20,8 @@ export function useSorter(list, options) {
     [list, options],
     () => {
       if (list) {
-        sort(list)
+        console.log(list)
+        sort()
       }
     },
     {
@@ -29,7 +30,7 @@ export function useSorter(list, options) {
     },
   )
 
-  function sort(list) {
+  function sort() {
     sorter.postMessage({
       list: toRaw(list),
       options: toRaw(options),

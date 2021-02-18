@@ -1,25 +1,51 @@
 <template lang="pug">
 main
-  section.current
-    .id {{ currentRoom.pub }}
-    .certs
-      .cert(v-for="(cert, key) in currentRoom.certs", :key="key") 
-        .key {{ key }}
-        .cert {{ cert }}
+  section.main
+    h2 ROOMS
+
+  section.current CURRENT
+    .id(:style="{ background: pubGradient(currentRoom.pub, 90) }") {{ currentRoom.pub }}
+      button(@click="exitRoom()") Exit room
+  nav.buttons
+    button(@click="createRoom()") Create
+    button(@click="initRoom()") Init
+    button(@click="initRoom()") Add
+
+  section.rooms
+    .room(
+      v-for="room in sorted.list",
+      :key="room",
+      :style="{ background: pubGradient(room.pub, 90) }"
+    ) {{ room.pub }}
+      button(@click="enterRoom(room.pub)") Enter
 </template>
 
 <script setup>
-import { currentRoom } from "store@room";
+import {
+  appPub,
+  roomKey,
+  currentRoom,
+  createRoom,
+  enterRoom,
+  exitRoom,
+  initRoom,
+  sorted,
+} from "store@room";
+import { useAvatar } from "../use/avatar";
+import { pubGradient } from "../use/colors";
 </script>
 
 <style lang="stylus" scoped>
 section
-  padding: 4em 1em
+  padding: 2em 1em
   display: flex
   flex-flow: row wrap
 
   > div
     padding: 1em
+
+.id
+  background-position: 0% 50%
 
 .cert
   display: flex

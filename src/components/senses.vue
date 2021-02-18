@@ -16,22 +16,24 @@ main
       i.iconify(data-icon="la:plus")
 
   .list 
-    .card(v-for="(sense, key) in sorted.list", :key="sense") 
-      .content
-        .info {{ parts[sense.part] }}.
-        .spacer
-        user-avatar(
-          v-for="(is, author) in sense.authors",
-          :key="author",
-          :pub="author",
-          size="small"
-        )
-      .text {{ capitalFirst(sense.sense) }}
-    .more(
-      ref="more",
-      v-if="sorted.more",
-      @click="options.limit += options.page"
-    ) {{ options.limit }} / {{ sorted.total }}
+    transition-group(name="list")
+      .card(v-for="(sense, key) in sorted.list", :key="sense") 
+        .content 
+          .info {{ parts[sense.part] }}.
+          .spacer
+          user-avatar(
+            v-for="(is, author) in sense.authors",
+            :key="author",
+            :pub="author",
+            size="small"
+          )
+        .text {{ capitalFirst(sense.sense) }}
+      .more(
+        key="more",
+        ref="more",
+        v-if="sorted.more",
+        @click="options.limit += options.page"
+      ) {{ options.limit }} / {{ sorted.total }}
 </template>
 
 <script setup>

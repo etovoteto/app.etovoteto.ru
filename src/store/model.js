@@ -3,8 +3,14 @@ export const stressMark = '&#x301;'
 export const wordMask = /^[а-яА-Я]+$/
 export const senseMask = /^[а-я А-Я 1-9"«»!?,.-]+$/
 
-export const appModel = ['#word', '#sense', '#link', 'author', 'room']
-
+export const appModel = {
+  list: ['word', 'sense', 'link', 'author', 'room'],
+  hashed: {
+    word: true,
+    sense: true,
+    link: true,
+  },
+}
 export const parts = {
   noun: 'сущ',
   adj: 'прил',

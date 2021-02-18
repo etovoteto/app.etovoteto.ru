@@ -1,7 +1,8 @@
-import { roomGun } from 'store@gun-db'
+import { roomGun, sea, gun } from 'store@gun-db'
 import { user } from 'store@user'
-import { reactive } from 'vue'
+import { reactive, ref, watchEffect } from 'vue'
 import { appModel } from 'store@model'
+import { addHashed, useHashList } from '../use/hashList'
 
 const appPair = {
   pub:
@@ -12,39 +13,62 @@ const appPair = {
   epriv: 'zP3uDliPugDAAdi3KmzxtXuP0Y0m5NJK2vaXlY_DzK0',
 }
 
+export const roomKey = ref(appPair)
 export const currentRoom = reactive({
   pub: appPair.pub,
-  certs: {
-    full:
-      'SEA{"m":{"c":"*","w":[{"*":"#word","+":"*"},{"*":"#sense","+":"*"},{"*":"author","+":"*"},{"*":"link","+":"*"},{"*":"room","+":"*"}],"wb":"banlist"},"s":"bH72gggJmnv5tmQHgiC1g4WE6FnqbyAnbLQkAjHX/zAcu0uO+ad5gr/dOfx51wdi6bh15lSLvbEZmd2OAwqnpw=="}',
-  },
 })
 
-issueCerts()
+export const { sorted, options, more } = useHashList('room')
 
-export async function issueCerts() {
-  for (let tag of appModel) {
-    currentRoom.certs[tag] = await issueAppCert(undefined, tag)
-  }
+roomGun.on('auth', async () => {
+  console.info('You entered a room')
+})
+
+export const appPub = appPair.pub
+
+export async function createRoom() {
+  let pair = await sea.pair()
+  initRoom(pair)
+  addHashed('room', { pub: pair.pub })
 }
 
-export async function issueAppCert(
+export async function enterRoom(pub) {
+  user.currentRoom = pub
+  currentRoom.pub = pub
+}
+
+export async function exitRoom(pub) {
+  user.currentRoom = null
+  currentRoom.pub = appPair.pub
+}
+
+export function initRoom(pair, title = 'Main') {
+  roomGun.user().auth(pair, async () => {
+    for (let tag of appModel.list) {
+      let crt = await issueCert(tag, pair)
+      roomGun.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
+      roomGun.get(`~${pair.pub}`).get('title').put(title)
+    }
+  })
+}
+
+export async function issueCert(
+  tag = 'word',
+  pair = appPair,
+  hashed = true,
   users = '*',
-  tag = '#word',
   personal = true,
 ) {
-  let path = { '*': tag }
+  let path = { '*': `${hashed ? '#' : ''}${tag}` }
   if (personal) {
     path['+'] = '*'
   }
-  let cert = await SEA.certify(users, path, appPair, null, {
-    blacklist: 'banlist',
-  })
-  return cert
+  try {
+    let cert = await SEA.certify(users, path, pair, null, {
+      blacklist: 'banlist',
+    })
+    return cert
+  } catch (e) {
+    console.log(e)
+  }
 }
-
-import { asyncComputed } from '@vueuse/core'
-
-export const cert = asyncComputed(async () => {
-  return await issueAppCert()
-})

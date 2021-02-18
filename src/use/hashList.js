@@ -23,6 +23,7 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
       let author = key.slice(-87)
       let record = data
       obj[hash] = obj[hash] || record
+      if (typeof record != 'object') return
       obj[hash].timestamp = timestamps[key]
       obj[hash].authors = obj[hash].authors || {}
       obj[hash].authors[author] = true
@@ -53,12 +54,8 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
   }
 }
 
-export async function addHashed(
-  tag,
-  obj,
-  room = currentRoom.pub,
-  certificate = currentRoom.certs.full,
-) {
+export async function addHashed(tag, obj, room = currentRoom.pub) {
+  let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
   gun
     .get(`~${room}`)

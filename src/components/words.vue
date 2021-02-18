@@ -16,21 +16,23 @@ main
       button(@click="addWord()") 
         i.iconify(data-icon="la:plus")
 
-  .list 
-    .card(v-for="(word, key) in sorted.list", :key="word.timestamp") 
-      .word(:title="word.timestamp")
-        span(v-if="word", v-html="getWord(word.word, word.stress)")
-      user-avatar(
-        v-for="(is, author) in word.authors",
-        :key="author",
-        :pub="author",
-        size="small"
-      )
-    .more(
-      ref="more",
-      v-if="sorted.more",
-      @click="options.limit += options.page"
-    ) {{ options.limit }} / {{ sorted.total }}
+  .list
+    transition-group(name="list") 
+      .card(v-for="(word, key) in sorted.list", :key="word.timestamp") 
+        .word(:title="word.timestamp")
+          span(v-if="word", v-html="getWord(word.word, word.stress)")
+        user-avatar(
+          v-for="(is, author) in word.authors",
+          :key="author",
+          :pub="author",
+          size="small"
+        )
+      .more(
+        key="more",
+        ref="more",
+        v-if="sorted.more",
+        @click="options.limit += options.page"
+      ) {{ options.limit }} / {{ sorted.total }}
 </template>
 
 <script setup>

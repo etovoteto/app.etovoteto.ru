@@ -1,6 +1,7 @@
 const cache = {}
 
 export function useAvatar(pub, size = 800) {
+  if (!pub) return
   if (cache[pub]) return cache[pub]
 
   const canvas = document.createElement('canvas')
