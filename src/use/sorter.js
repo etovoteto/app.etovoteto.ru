@@ -19,9 +19,10 @@ export function useSorter(list, options) {
   debouncedWatch(
     [list, options],
     () => {
-      if (list) {
-        console.log(list)
-        sort()
+      console.log(list.value)
+      if (list.value && Object.keys(list.value).length > 0) {
+        console.log(list.value)
+        sort(list.value)
       }
     },
     {
@@ -30,14 +31,15 @@ export function useSorter(list, options) {
     },
   )
 
-  function sort() {
+  function sort(obj) {
     sorter.postMessage({
-      list: toRaw(list),
+      list: toRaw(obj),
       options: toRaw(options),
     })
   }
 
   sorter.onmessage = (e) => {
+    console.log(e.data.list)
     sorted.list = e.data.list
     sorted.count = e.data.count
     sorted.more = e.data.more
@@ -46,6 +48,5 @@ export function useSorter(list, options) {
 
   return {
     sorted,
-    options,
   }
 }

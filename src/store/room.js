@@ -2,34 +2,25 @@ import { roomGun, sea, gun } from 'store@gun-db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
 import { appModel } from 'store@model'
-import { addHashed, useHashList } from '../use/hashList'
+import { addHashed } from '../use/hashList'
 
-const appPair = {
-  pub:
-    'ACHCKvZFFLdiFhtqSiKyxPNIjdRXtkS3WV9jKCP-XsQ.AGhaxvEDsiD8_MBbZrc_gR-sjNeLJ-cT0ISM2Smor6k',
-  priv: 'JwDHPqohvEowZtJji5wBuLt4bMJBW_-ouhGVQeSrVDA',
-  epub:
-    'FlAuUWCmnZ8WK903lhLKf2VFpHQFFINviU9XxdTpi2Y.uscKgZ8Oo_vpAwvxyf8Jp6pfYen2WbOlESDZI55v-A4',
-  epriv: 'zP3uDliPugDAAdi3KmzxtXuP0Y0m5NJK2vaXlY_DzK0',
-}
+export const appPub =
+  '0VP6NxIi6C6K2W73UXlozdx2pB1J_Ps3sX7vm2sz-Os.EWrQjS-qI28859cZJ5ywEcTvJN5fVXMl9XenJpkeTYM'
 
-export const roomKey = ref(appPair)
+export const roomKey = ref({})
 export const currentRoom = reactive({
-  pub: appPair.pub,
+  pub: appPub,
 })
-
-export const { sorted, options, more } = useHashList('room')
 
 roomGun.on('auth', async () => {
   console.info('You entered a room')
 })
 
-export const appPub = appPair.pub
-
 export async function createRoom() {
   let pair = await sea.pair()
   initRoom(pair)
   addHashed('room', { pub: pair.pub })
+  console.log(pair)
 }
 
 export async function enterRoom(pub) {
@@ -39,7 +30,7 @@ export async function enterRoom(pub) {
 
 export async function exitRoom(pub) {
   user.currentRoom = null
-  currentRoom.pub = appPair.pub
+  currentRoom.pub = appPub
 }
 
 export function initRoom(pair, title = 'Main') {

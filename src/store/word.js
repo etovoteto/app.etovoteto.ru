@@ -1,6 +1,6 @@
 import { reactive, watchEffect } from 'vue'
 import { generateWords } from 'use@randomWords'
-import { useHashList, addHashed } from 'use@hashList'
+import { addHashed } from 'use@hashList'
 
 import { vowels, stressMark, wordMask } from 'store@model'
 
@@ -11,16 +11,10 @@ export const record = reactive({
   stress: 0,
 })
 
-export const { sorted, options, more } = useHashList('word')
-
 export function generate() {
   record.word = generateWords()
   record.stress = firstStress(record.word)
 }
-
-watchEffect(() => {
-  options.search = record.word
-})
 
 export async function addWord() {
   if (!verifyWord()) {

@@ -5,8 +5,6 @@ export const record = reactive({
   part: 'noun',
 })
 
-export const { sorted, options, more } = useHashList('sense')
-
 import { parts, senseMask } from 'store@model'
 import { generateWords } from '../use/randomWords'
 export { parts }
