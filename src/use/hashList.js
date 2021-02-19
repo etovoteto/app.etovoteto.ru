@@ -6,7 +6,6 @@ import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { user } from 'store@user'
 import { onBeforeUnmount } from 'vue'
-import { getLinks } from '../store/link'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
   const options = reactive({
@@ -19,33 +18,34 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
   })
 
   const obj = reactive({})
-  const { sorted } = useSorter(obj, options)
+
   let ev = null
   let timestamps = {}
 
   gun
     .get(`~${room}`)
     .get(`#${tag}`)
-    .on((d, k) => {
+    .on(function (d, k) {
       timestamps = d['_']['>']
-    })
-    .map()
-    .on((data, key, g, _ev) => {
-      ev = _ev
-      let hash = key.slice(0, 44)
-      let author = key.slice(-87)
-      let record = JSON.parse(data)
-      if (typeof record != 'object') {
-        record = { data: record }
-      }
-      obj[hash] = obj[hash] || record
-      obj[hash].type = tag
-      obj[hash].hash = hash
 
-      obj[hash].timestamp = timestamps[key]
-      obj[hash].authors = obj[hash].authors || {}
-      obj[hash].authors[author] = true
+      this.map().on(function (data, key) {
+        let hash = key.slice(0, 44)
+        let author = key.slice(-87)
+        let record = JSON.parse(data)
+        if (typeof record != 'object') {
+          record = { data: record }
+        }
+        obj[hash] = obj[hash] || record
+        obj[hash].type = tag
+        obj[hash].hash = hash
+
+        obj[hash].timestamp = timestamps?.[key]
+        obj[hash].authors = obj[hash].authors || {}
+        obj[hash].authors[author] = true
+      })
     })
+
+  const { sorted } = useSorter(obj, options)
 
   const more = ref()
 
@@ -80,9 +80,10 @@ export function getHashed(tag, hash, room = currentRoom.pub) {
     .get({ '.': { '*': hash } })
     .map()
     .on((d, k) => {
+      console.log(k, d)
       record.value = JSON.parse(d)
       record.value.authors = record.value.authors || {}
       record.value.authors[k.slice(-87)] = true
     })
-  return record
+  return { record }
 }

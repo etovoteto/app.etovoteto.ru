@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   .form
-    textarea(:cols="24", :rows="4", v-model="record.sense")
+    textarea(:cols="24", :rows="4", v-model="newSense.sense")
     .generate(@click="generate()")
       i.iconify(data-icon="teenyicons:refresh-alt-solid")
 
@@ -9,8 +9,8 @@ main
     button.part(
       v-for="(part, key) in parts",
       :key="key",
-      @click="record.part = key",
-      :class="{ active: record.part == key }"
+      @click="newSense.part = key",
+      :class="{ active: newSense.part == key }"
     ) {{ part }}
     button.add(@click="addSense()")
       i.iconify(data-icon="la:plus")
@@ -19,8 +19,8 @@ main
     transition-group(name="list")
       sense-card(
         v-for="(sense, key) in sorted.list",
-        :key="sense.sense",
-        :sense="sense"
+        :key="sense.hash",
+        :record="sense"
       ) 
         button.link(
           v-if="!isLinking(sense)",
@@ -36,7 +36,7 @@ main
 </template>
 
 <script setup>
-import { record, addSense, generate, parts } from "store@sense";
+import { newSense, addSense, generate, parts } from "store@sense";
 import { linking, isLinking, link } from "store@link";
 import { useHashList } from "../use/hashList";
 

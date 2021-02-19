@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { useHashList, addHashed } from 'use@hashList'
-export const record = reactive({
+export const newSense = reactive({
   sense: '',
   part: 'noun',
 })
@@ -10,7 +10,7 @@ import { generateWords } from '../use/randomWords'
 export { parts }
 
 export function generate() {
-  record.sense = generateWords(8, 20)
+  newSense.sense = generateWords(8, 20)
 }
 
 export async function addSense() {
@@ -19,14 +19,14 @@ export async function addSense() {
     return
   }
   let obj = {
-    sense: record.sense,
-    part: record.part,
+    sense: newSense.sense,
+    part: newSense.part,
   }
   addHashed('sense', obj)
-  record.sense = ''
+  newSense.sense = ''
 }
 
-function verifySense(sense = record.sense, part = record.part) {
+function verifySense(sense = newSense.sense, part = newSense.part) {
   let senseOk = sense && senseMask.test(sense)
   let partOk = part && parts[part]
   return senseOk && partOk

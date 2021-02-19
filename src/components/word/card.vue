@@ -1,29 +1,22 @@
 <template lang="pug">
 .card 
-  .word(:title="word.timestamp")
-    span(v-if="word", v-html="renderWord(word.word, word.stress)")
+  .word(:title="record.timestamp")
+    span(v-if="record", v-html="renderWord(record.word, record.stress)")
   user-avatar(
-    v-for="(is, author) in word.authors",
+    v-for="(is, author) in record.authors",
     :key="author",
     :pub="author",
     size="nano"
   )
   slot
-  .senses
-    sense-row(
-      v-for="(linker, hash) in word.links",
-      :key="hash",
-      :linker="linker",
-      :hash="hash"
-    )
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-import { renderWord } from "../store/word";
+import { renderWord } from "store@word";
 
 const props = defineProps({
-  word: Object,
+  record: Object,
 });
 </script>
 

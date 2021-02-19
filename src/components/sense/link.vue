@@ -6,8 +6,8 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { pubGradient } from "../use/colors";
-import { getHashed } from "../use/hashList";
+import { pubGradient } from "use@colors";
+import { getHashed } from "use@hashList";
 pubGradient;
 const props = defineProps({
   linker: String,

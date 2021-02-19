@@ -1,9 +1,9 @@
 <template lang="pug">
 .card(v-if="linking")
-  word-card(v-if="linking.type == 'word'", :word="linking")
+  word-card(v-if="linking.type == 'word'", :record="linking")
     button.link(@click="unlink()")
       i.iconify(data-icon="la:unlink")
-  sense-card(v-if="linking.type == 'sense'", :sense="linking")
+  sense-card(v-if="linking.type == 'sense'", :record="linking")
     button.link(@click="unlink()")
       i.iconify(data-icon="la:unlink")
 </template>

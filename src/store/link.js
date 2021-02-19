@@ -1,6 +1,4 @@
-import { reactive, ref, watchEffect } from 'vue'
-import { useHashList, addHashed } from 'use@hashList'
-import { useRouter } from 'vue-router'
+import { reactive, ref } from 'vue'
 import { currentRoom } from './room'
 import { user } from './user'
 export const linking = ref({})
@@ -17,6 +15,7 @@ export function link(node, cb) {
   let lnk = linking.value
   if (lnk && lnk.hash && node && node.hash && lnk.type != node.type) {
     linkHashes(lnk.hash, node.hash)
+    unlink()
   } else {
     linking.value = node
     if (cb) cb()
@@ -32,7 +31,8 @@ async function linkHashes(from, to) {
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get(from + to)
+    .get(from)
+    .get(to)
     .put(user.is.pub, null, {
       opt: {
         cert: certificate,
@@ -41,7 +41,8 @@ async function linkHashes(from, to) {
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get(to + from)
+    .get(to)
+    .get(from)
     .put(user.is.pub, null, {
       opt: {
         cert: certificate,
@@ -49,15 +50,15 @@ async function linkHashes(from, to) {
     })
 }
 
-export function getLinks(record, hash) {
-  record.links = {}
+export function useLinks(hash) {
+  const links = reactive({})
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get({ '.': { '*': hash } })
+    .get(hash)
     .map()
     .on((d, k) => {
-      let to = k.slice(-44)
-      record.links[to] = d
+      links[k] = d
     })
+  return { links }
 }

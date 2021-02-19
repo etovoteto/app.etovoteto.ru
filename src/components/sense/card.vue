@@ -1,25 +1,25 @@
 <template lang="pug">
 .card
   .content 
-    .info {{ parts[sense.part] }}.
+    .info {{ parts[record.part] }}.
     slot
     .spacer
     user-avatar(
-      v-for="(is, author) in sense.authors",
+      v-for="(is, author) in record.authors",
       :key="author",
       :pub="author",
       size="nano"
     )
-  .text {{ capitalFirst(sense.sense) }}
+  .text {{ capitalFirst(record.sense) }}
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-import { capitalFirst } from "../store/word";
-import { parts } from "../store/model";
+import { capitalFirst } from "store@word";
+import { parts } from "store@model";
 
 const props = defineProps({
-  sense: Object,
+  record: Object,
 });
 </script>
 
