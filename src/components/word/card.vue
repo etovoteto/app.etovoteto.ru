@@ -8,13 +8,12 @@
     author-dots(:authors="record.authors")
 
   .links(v-if="record != linking")
-    .link(
+    sense-link(
       v-for="(linker, hash) in links",
-      :key="hash",
+      :key="hash + linker",
       :linker="linker",
       :hash="hash"
     )
-      sense-link(:hash="hash", :linker="linker")
 </template>
 
 <script setup>
@@ -45,9 +44,4 @@ const { links } = useLinks(props.record.hash);
 
 .word
   font-size: 2em
-
-.more
-  font-size: 2em
-  padding: 3em
-  background-color: var(--top-bar)
 </style>

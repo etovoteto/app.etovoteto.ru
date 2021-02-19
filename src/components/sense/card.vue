@@ -7,13 +7,12 @@
     author-dots(:authors="record.authors")
   .text {{ capitalFirst(record.sense) }}
   .links(v-if="record != linking")
-    .link(
+    word-link(
       v-for="(linker, hash) in links",
-      :key="hash",
+      :key="hash + linker",
       :linker="linker",
       :hash="hash"
     )
-      word-link(:hash="hash", :linker="linker")
 </template>
 
 <script setup>
