@@ -2,25 +2,31 @@
 .card
   .content 
     .info {{ parts[record.part] }}.
-    slot
+    link-button(:record="record")
     .spacer
-    user-avatar(
-      v-for="(is, author) in record.authors",
-      :key="author",
-      :pub="author",
-      size="nano"
-    )
+    author-dots(:authors="record.authors")
   .text {{ capitalFirst(record.sense) }}
+  .links(v-if="record != linking")
+    .link(
+      v-for="(linker, hash) in links",
+      :key="hash",
+      :linker="linker",
+      :hash="hash"
+    )
+      word-link(:hash="hash", :linker="linker")
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 import { capitalFirst } from "store@word";
+
+import { useLinks, linking } from "store@link";
 import { parts } from "store@model";
 
 const props = defineProps({
   record: Object,
 });
+const { links } = useLinks(props.record.hash);
 </script>
 
 <style lang="stylus" scoped>
@@ -33,6 +39,7 @@ const props = defineProps({
   background-color: var(--background-alt)
 
   .content
+    width: 100%
     color: var(--text-light)
     display: flex
     align-items: center

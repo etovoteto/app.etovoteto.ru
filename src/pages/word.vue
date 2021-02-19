@@ -1,7 +1,8 @@
 <template lang="pug">
 main
-  room-page
-  room-list
+  word-form
+  word-new
+  word-list
 </template>
 
 <script setup>

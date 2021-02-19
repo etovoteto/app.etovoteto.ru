@@ -3,6 +3,11 @@ export const stressMark = '&#x301;'
 export const wordMask = /^[а-яА-Я]+$/
 export const senseMask = /^[а-я А-Я 1-9"«»!?,.-]+$/
 
+export const links = {
+  word: 'sense',
+  sense: 'word',
+}
+
 export const model = {
   word: {
     title: 'Слово',

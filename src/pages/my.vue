@@ -1,6 +1,6 @@
 <template lang="pug">
 main
-  user-profile
+  author-profile
 </template>
 
 <script setup>

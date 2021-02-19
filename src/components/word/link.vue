@@ -1,6 +1,7 @@
 <template lang="pug">
-.row(v-if="record[hash]") {{ hash }}
-  word-card(:record="record")
+.row
+  p {{ record.data }}
+    author-avatar(:pub="linker", size="nano") 
 </template>
 
 <script setup>

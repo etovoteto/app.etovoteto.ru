@@ -26,7 +26,7 @@
     "@vueuse/core": "^4.1.0",
     "@vueuse/router": "^4.1.1",
     "color-hash": "^1.0.3",
-    "gun": "https://github.com/amark/gun.git",
+    "gun": "github:amark/gun",
     "image-compressor": "^2.0.3",
     "markdown-it": "^12.0.4",
     "markdown-it-link-attributes": "^3.0.0",

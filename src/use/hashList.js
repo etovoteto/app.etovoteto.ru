@@ -1,11 +1,10 @@
-import { gun, hashObj } from 'store@gun-db'
+import { gun, hashObj, roomGun } from 'store@gun-db'
 
 import { ref, reactive } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { user } from 'store@user'
-import { onBeforeUnmount } from 'vue'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
   const options = reactive({
@@ -36,7 +35,7 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
           record = { data: record }
         }
         obj[hash] = obj[hash] || record
-        obj[hash].type = tag
+        obj[hash].tag = tag
         obj[hash].hash = hash
 
         obj[hash].timestamp = timestamps?.[key]
@@ -73,17 +72,17 @@ export async function addHashed(tag, obj, room = currentRoom.pub) {
 }
 
 export function getHashed(tag, hash, room = currentRoom.pub) {
-  const record = ref({})
-  gun
+  const record = reactive({})
+  roomGun
     .get(`~${room}`)
     .get(`#${tag}`)
-    .get({ '.': { '*': hash } })
     .map()
-    .on((d, k) => {
-      console.log(k, d)
-      record.value = JSON.parse(d)
-      record.value.authors = record.value.authors || {}
-      record.value.authors[k.slice(-87)] = true
+    .on(function (data, key) {
+      if (key.includes(hash)) {
+        record.data = JSON.parse(data)
+        record.authors = record.authors || {}
+        record.authors[key.slice(-87)] = true
+      }
     })
   return { record }
 }

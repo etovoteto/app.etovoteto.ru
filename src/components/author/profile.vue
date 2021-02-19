@@ -1,6 +1,6 @@
 <template lang="pug">
 .profile
-  user-avatar(:pub="user.is?.pub", size="huge")
+  author-avatar(:pub="user.is?.pub", size="huge")
   h2 {{ user.profile.name }}
   button(@click="logOut()") log out
 </template>

@@ -13,7 +13,7 @@ export function isLinking(node) {
 
 export function link(node, cb) {
   let lnk = linking.value
-  if (lnk && lnk.hash && node && node.hash && lnk.type != node.type) {
+  if (lnk && lnk.hash && node && node.hash && lnk.tag != node.tag) {
     linkHashes(lnk.hash, node.hash)
     unlink()
   } else {

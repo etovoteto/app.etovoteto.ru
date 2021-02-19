@@ -1,7 +1,7 @@
 <template lang="pug">
 .list
   .player(v-for="(player, key) in players", :key="player") 
-    user-avatar(:pub="key", size="small", @click="authUser(player.pair)")
+    author-avatar(:pub="key", size="small", @click="authUser(player.pair)")
   button(@click="addPlayer()")
     i.iconify(data-icon="la:plus")
 </template>

@@ -1,7 +1,6 @@
 <template lang="pug">
 main
-  section
-    graph
+  app-graph
 </template>
 
 <script setup>
