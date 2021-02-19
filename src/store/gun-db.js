@@ -1,5 +1,5 @@
 const config = {
-  peers: ['http://127.0.0.1:4200/gun', 'https://gun-feeds.glitch.me/gun'],
+  peers: ['https://gun-feeds.glitch.me/gun'], //'http://127.0.0.1:4200/gun',
 }
 
 import Gun from 'gun/gun'
