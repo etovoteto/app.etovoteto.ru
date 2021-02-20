@@ -3,9 +3,9 @@
   .content
     .word(:title="record.timestamp")
       span(v-if="record", v-html="renderWord(record.word, record.stress)")
-    link-button(:record="record")
-    .spacer
     author-dots(:authors="record.authors")
+    .spacer
+    link-button(:record="record")
 
   .links(v-if="record != linking")
     def-link(

@@ -50,6 +50,8 @@ body {
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  hyphens: auto;
 }
 
 #app {
@@ -63,4 +65,5 @@ html {
   display: flex;
   flex-flow: column;
   max-width: 55ch;
+  padding: 1em;
 }

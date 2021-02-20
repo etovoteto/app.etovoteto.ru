@@ -1,10 +1,10 @@
 <template lang="pug">
 .card
   .content 
-    .info {{ parts[record.part] }}.
-    link-button(:record="record")
-    .spacer
+    .info {{ parts[record.part].name }}.
     author-dots(:authors="record.authors")
+    .spacer
+    link-button(:record="record")
   .text {{ capitalFirst(record.def) }}
   .links(v-if="record != linking")
     word-link(
@@ -20,7 +20,7 @@ import { defineProps } from "vue";
 import { capitalFirst } from "model@word";
 
 import { useLinks, linking } from "model@link";
-import { parts } from "model@model";
+import { parts } from "store@locale";
 
 const props = defineProps({
   record: Object,

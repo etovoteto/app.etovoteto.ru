@@ -1,7 +1,6 @@
 <template lang="pug">
 main
   def-form
-  def-new
   def-list
 </template>
 

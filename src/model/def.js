@@ -1,26 +1,24 @@
-import { reactive } from 'vue'
+import { parts, defMask } from 'store@locale'
+import { generateWords } from 'use@randomWords'
+import { computed, reactive } from 'vue'
 import { useHashList, addHashed } from 'store@hashList'
 export const newDef = reactive({
   def: '',
   part: 'noun',
 })
 
-import { parts, defMask } from 'model@model'
-import { generateWords } from 'use@randomWords'
-export { parts }
+export const isValid = computed(() => {
+  return newDef.def.includes(' ') && newDef.def.length > 10
+})
 
-export function generate() {
-  newDef.def = generateWords(8, 20)
-}
-
-export async function addDef() {
+export async function addDef(part) {
   if (!verifyDef()) {
     console.warn('def is not correct')
     return
   }
   let obj = {
     def: newDef.def,
-    part: newDef.part,
+    part: part,
   }
   addHashed('def', obj)
   newDef.def = ''

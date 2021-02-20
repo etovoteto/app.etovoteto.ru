@@ -12,16 +12,19 @@
 
 <script setup>
 import { useHashList } from "store@hashList";
-
+import { watchEffect } from "vue";
+import { newDef } from "model@def";
 const { sorted, options, more } = useHashList("def");
+
+watchEffect(() => {
+  options.search = newDef.def;
+});
 </script>
 
 <style lang="stylus" scoped>
 .list
   display: flex
   flex-flow: column
-  align-items: flex-start
-  padding: 1em
 
   .more
     font-size: 2em

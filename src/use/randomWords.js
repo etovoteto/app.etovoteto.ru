@@ -1,4 +1,4 @@
-import { ru as grams } from 'model@model'
+import { ru as grams } from 'store@locale'
 
 // create a sorted list for all keys
 for (var key in grams) {

@@ -1,17 +1,17 @@
 <template lang="pug">
 .row(v-if="record.data")
   .content
-    .info {{ parts[record.data.part] }}.
-    author-avatar(:pub="linker", size="nano")
-    .spacer
+    .part(:style="{ textDecorationStyle: parts[record.data.part].underline }") {{ parts[record.data.part].name }}.
     author-dots(:authors="record.authors")
+    .spacer
+    author-avatar(:pub="linker", size="nano")
   .text {{ capitalFirst(record.data.def) }}
 </template>
 
 <script setup>
 import { defineProps, ref } from "vue";
 import { getHashed } from "store@hashList";
-import { parts } from "model@model";
+import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
 
 const props = defineProps({
@@ -33,6 +33,9 @@ const { record } = getHashed("def", props.hash);
     display: flex
     align-items: center
     flex-flow: row
+
+  .part
+    text-decoration: underline
 
   .text
     font-size: 1.2em

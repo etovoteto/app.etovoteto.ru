@@ -1,4 +1,4 @@
-export const vowels = 'аеёиоуыюя'
+export const vowels = 'аеёиоуыэюя'
 export const stressMark = '&#x301;'
 export const wordMask = /^[а-яА-Я]+$/
 export const defMask = /^[а-я А-Я 1-9"«»!?,.-]+$/
@@ -37,10 +37,22 @@ export const model = {
 }
 
 export const parts = {
-  noun: 'сущ',
-  adj: 'прил',
-  verb: 'глаг',
-  adv: 'нареч',
+  noun: {
+    name: 'сущ',
+    underline: 'solid',
+  },
+  adj: {
+    name: 'прил',
+    underline: 'wavy',
+  },
+  verb: {
+    name: 'глаг',
+    underline: 'double',
+  },
+  adv: {
+    name: 'нареч',
+    underline: 'dotted',
+  },
 }
 
 export const allParts = {

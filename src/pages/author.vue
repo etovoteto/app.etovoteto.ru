@@ -1,10 +1,9 @@
 <template lang="pug">
-main
-  .panel
+.panels
+  .me
     author-profile(v-if="user.is?.pub")
     author-form(v-else)
-  article
-    author-list
+  author-list
 </template>
 
 <script setup>
@@ -12,6 +11,14 @@ import { user } from "store@user";
 </script>
 
 <style lang="stylus" scoped>
-main
+.panels
+  width: 100%
   display: flex
+  flex-flow: row wrap
+  max-width: 55ch
+
+.me
+  padding: 1em
+  display: flex
+  flex-flow: row wrap
 </style>

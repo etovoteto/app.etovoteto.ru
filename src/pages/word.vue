@@ -1,7 +1,6 @@
 <template lang="pug">
 main
   word-form
-  word-new
   word-list
 </template>
 

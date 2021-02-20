@@ -1,7 +1,7 @@
 import { roomGun, sea, gun } from 'store@gun-db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
-import { model } from 'model@model'
+import { model } from 'store@locale'
 import { addHashed } from 'store@hashList'
 
 export const appPub =

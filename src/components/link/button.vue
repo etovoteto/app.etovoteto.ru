@@ -11,7 +11,7 @@ button.link(v-else, @click="unlink()")
 <script setup>
 import { isLinking, link, unlink } from "model@link";
 import { defineProps } from "vue";
-import { links } from "model@model";
+import { links } from "store@locale";
 
 const props = defineProps({
   record: Object,

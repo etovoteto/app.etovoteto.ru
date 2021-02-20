@@ -5,12 +5,7 @@
       v-for="(word, key) in sorted.list",
       :key="word.timestamp",
       :record="word"
-    ) 
-      button.link(
-        v-if="!isLinking(word)",
-        @click="link(word, () => { $router.push('/def'); })"
-      )
-        i.iconify(data-icon="la:link")
+    )
     .more(
       key="more",
       ref="more",
@@ -20,7 +15,6 @@
 </template>
 
 <script setup>
-import { link, isLinking } from "model@link";
 import { useHashList } from "store@hashList";
 import { newWord } from "model@word";
 import { watchEffect } from "vue";
@@ -34,6 +28,5 @@ watchEffect(() => {
 .list
   display: flex
   flex-flow: column
-  align-items: center
-  padding: 1em
+  align-items: stretch
 </style>

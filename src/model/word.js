@@ -1,8 +1,7 @@
 import { reactive, watchEffect } from 'vue'
-import { generateWords } from 'use@randomWords'
 import { addHashed } from 'store@hashList'
 
-import { vowels, stressMark, wordMask } from 'model@model'
+import { vowels, stressMark, wordMask } from 'store@locale'
 
 export { vowels }
 
@@ -11,19 +10,14 @@ export const newWord = reactive({
   stress: 0,
 })
 
-export function generate() {
-  newWord.word = generateWords()
-  newWord.stress = firstStress(newWord.word)
-}
-
-export async function addWord() {
-  if (!verifyWord()) {
+export async function addWord(stress) {
+  if (!verifyWord(undefined, stress)) {
     console.warn('word is not correct')
     return
   }
   let obj = {
     word: newWord.word.toLowerCase(),
-    stress: newWord.stress,
+    stress: stress,
   }
   addHashed('word', obj)
   newWord.word = ''
