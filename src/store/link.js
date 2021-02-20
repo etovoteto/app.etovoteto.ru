@@ -15,14 +15,14 @@ export function link(node, cb) {
   let lnk = linking.value
   if (lnk && lnk.hash && node && node.hash && lnk.tag != node.tag) {
     linkHashes(lnk.hash, node.hash)
-    unlink()
+    linking.value = null
   } else {
     linking.value = node
     if (cb) cb()
   }
 }
 
-async function linkHashes(from, to) {
+export async function linkHashes(from, to) {
   let certificate = await gun
     .get(`~${currentRoom.pub}`)
     .get('cert')

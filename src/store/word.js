@@ -35,6 +35,7 @@ export function setStress(i) {
 }
 
 export function renderWord(word, stress) {
+  if (!word) return
   let str = word.slice(0, stress + 1) + stressMark + word.slice(stress + 1)
   return str[0].toUpperCase() + str.slice(1)
 }

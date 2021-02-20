@@ -6,6 +6,8 @@ header
   router-link(to="/sense")
     i.iconify(data-icon="la:comment")
   router-link(to="/my")
+    span(v-if="!user.is")
+      i.iconify(data-icon="la:user")
     author-avatar(:pub="user.is?.pub", size="small")
   router-link.user(to="/room")
     i.iconify(data-icon="la:comments")
@@ -25,4 +27,7 @@ header
 
   a
     padding: 4px 0.5em
+
+  .router-link-active
+    background-color: var(--top-bar)
 </style>

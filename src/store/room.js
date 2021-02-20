@@ -5,12 +5,22 @@ import { model } from 'store@model'
 import { addHashed } from '../use/hashList'
 
 export const appPub =
-  'FKpW6azeZY34Sf3EHx9fd4kR3nwH8nkGbxHWWfeYg-A.zIYJXr6C-r6YQkSylS0uJ8m5ftivZoRw1ykxksKsydw'
+  'WD7zTrcNIbnItGLU9E9Da_nRJ-9ZoO2rwW8BdalQaSM.tkh-17Uev5txezlR6geIfRJnkMX9eckx12QY0ms7XtY'
 
 export const roomKey = ref({})
 export const currentRoom = reactive({
   pub: appPub,
 })
+
+export const roomCerts = reactive({})
+
+roomGun
+  .get('~' + appPub)
+  .get('cert')
+  .map()
+  .on((d, k) => {
+    roomCerts[k] = d
+  })
 
 roomGun.on('auth', async () => {
   console.info('You entered a room')

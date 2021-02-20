@@ -5,6 +5,7 @@ import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { user } from 'store@user'
+import { linking, link } from '../store/link'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
   const options = reactive({
@@ -69,6 +70,7 @@ export async function addHashed(tag, obj, room = currentRoom.pub) {
     .get(`#${tag}`)
     .get(`${hash}#${user.is.pub}`)
     .put(text, null, { opt: { cert: certificate } })
+  link({ hash, tag, ...obj })
 }
 
 export function getHashed(tag, hash, room = currentRoom.pub) {

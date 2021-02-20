@@ -2,7 +2,7 @@
   --background: hsla(0, 0%, 95%, 1);
   --background-alt: hsla(0, 0%, 90%, 1);
   --card-bg: hsla(0, 0%, 90%, 0.9);
-  --top-bar: #aaa;
+  --top-bar: #ccc;
   --body-padding: 1em;
   --button-secondary: #cccccc;
   --button: #999;
@@ -21,7 +21,7 @@
   :root {
     --background: hsla(0, 0%, 30%, 1);
     --background-alt: hsla(0, 0%, 20%, 1);
-    --top-bar: #666;
+    --top-bar: #444;
     --body-padding: 1em;
     --button-secondary: #222;
     --button: #343434;
