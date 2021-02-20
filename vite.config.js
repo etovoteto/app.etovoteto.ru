@@ -2,7 +2,7 @@ import ViteComponents from 'vite-plugin-components'
 import Voie from 'vite-plugin-voie'
 import PurgeIcons from 'vite-plugin-purge-icons'
 import vue from '@vitejs/plugin-vue'
-import { VitePWA } from 'vite-plugin-pwa'
+// import { VitePWA } from 'vite-plugin-pwa'
 import alias from '@rollup/plugin-alias'
 
 const moduleExclude = (match) => {
@@ -43,24 +43,24 @@ export default {
   },
   plugins: [
     moduleExclude('text-encoding'),
-    VitePWA({
-      manifest: {
-        name: 'ЭТОВОТЭТО',
-        theme_color: '#999',
-        icons: [
-          {
-            src: '/icons/logo192.png',
-            type: 'image/png',
-            sizes: '192x192',
-          },
-          {
-            src: '/icons/logo512.png',
-            type: 'image/png',
-            sizes: '512x512',
-          },
-        ],
-      },
-    }),
+    // VitePWA({
+    //   manifest: {
+    //     name: 'ЭТОВОТЭТО',
+    //     theme_color: '#999',
+    //     icons: [
+    //       {
+    //         src: '/icons/logo192.png',
+    //         type: 'image/png',
+    //         sizes: '192x192',
+    //       },
+    //       {
+    //         src: '/icons/logo512.png',
+    //         type: 'image/png',
+    //         sizes: '512x512',
+    //       },
+    //     ],
+    //   },
+    // }),
     alias({
       entries: [
         { find: /^store\@(.*)/, replacement: '/src/store/$1.js' },
