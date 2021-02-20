@@ -72,7 +72,7 @@ export default {
     vue(),
     Voie({
       extensions: ['vue', 'md'],
-      importMode: 'async',
+      importMode: 'sync',
     }),
     ViteComponents({
       // relative paths to the directory to search for components.

@@ -43,5 +43,6 @@ const { links } = useLinks(props.record.hash);
     flex-flow: row
 
 .word
-  font-size: 2em
+  font-size: 1.7em
+  font-weight: bold
 </style>
