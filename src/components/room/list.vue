@@ -13,8 +13,8 @@
 
 <script setup>
 import { pubGradient } from "use@colors";
-import { useHashList } from "use@hashList";
-import { enterRoom, createRoom } from "store@room";
+import { useHashList } from "store@hashList";
+import { enterRoom, createRoom } from "model@room";
 
 const { sorted, options, more } = useHashList("room");
 </script>

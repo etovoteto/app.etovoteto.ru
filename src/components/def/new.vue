@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { newDef, parts, addDef } from "store@def";
+import { newDef, parts, addDef } from "model@def";
 </script>
 
 <style lang="stylus" scoped>

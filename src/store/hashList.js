@@ -3,9 +3,9 @@ import { gun, hashObj, roomGun } from 'store@gun-db'
 import { ref, reactive } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { currentRoom } from 'store@room'
+import { currentRoom } from 'model@room'
 import { user } from 'store@user'
-import { linking, link } from '../store/link'
+import { linking, link } from 'model@link'
 
 export function useHashList(tag = 'word', room = currentRoom.pub) {
   const options = reactive({

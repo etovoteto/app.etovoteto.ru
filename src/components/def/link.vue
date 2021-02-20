@@ -10,9 +10,9 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashed } from "use@hashList";
-import { parts } from "store@model";
-import { capitalFirst } from "../../store/word";
+import { getHashed } from "store@hashList";
+import { parts } from "model@model";
+import { capitalFirst } from "model@word";
 
 const props = defineProps({
   linker: String,

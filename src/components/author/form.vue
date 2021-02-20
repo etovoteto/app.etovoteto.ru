@@ -8,7 +8,7 @@ form(@submit.prevent.stop)
 <script setup>
 import { sea } from "store@gun-db";
 import { reactive } from "vue";
-import { authUser } from "../../store/user";
+import { authUser } from "store@user";
 
 const author = reactive({
   name: "",

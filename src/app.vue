@@ -12,8 +12,8 @@ router-view(v-slot="{Component}")
 </template>
 
 <script setup >
-import { currentRoom, appPub, exitRoom } from "./store/room";
-import { pubGradient } from "./use/colors";
+import { currentRoom, appPub, exitRoom } from "model@room";
+import { pubGradient } from "use@colors";
 </script>
 
 <style lang="stylus">

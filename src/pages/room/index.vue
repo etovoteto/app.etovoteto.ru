@@ -9,7 +9,7 @@ main
 
 <script setup>
 import { ref } from "vue";
-import { initRoom, roomCerts } from "../../store/room";
+import { initRoom, roomCerts } from "model@room";
 
 const pair = ref("");
 </script>

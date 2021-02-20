@@ -17,10 +17,10 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { capitalFirst } from "store@word";
+import { capitalFirst } from "model@word";
 
-import { useLinks, linking } from "store@link";
-import { parts } from "store@model";
+import { useLinks, linking } from "model@link";
+import { parts } from "model@model";
 
 const props = defineProps({
   record: Object,

@@ -18,8 +18,8 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { renderWord } from "store@word";
-import { useLinks, linking } from "store@link";
+import { renderWord } from "model@word";
+import { useLinks, linking } from "model@link";
 const props = defineProps({
   record: Object,
 });

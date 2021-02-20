@@ -1,12 +1,12 @@
 import { reactive } from 'vue'
-import { useHashList, addHashed } from 'use@hashList'
+import { useHashList, addHashed } from 'store@hashList'
 export const newDef = reactive({
   def: '',
   part: 'noun',
 })
 
-import { parts, defMask } from 'store@model'
-import { generateWords } from '../use/randomWords'
+import { parts, defMask } from 'model@model'
+import { generateWords } from 'use@randomWords'
 export { parts }
 
 export function generate() {

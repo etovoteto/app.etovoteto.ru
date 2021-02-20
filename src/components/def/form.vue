@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { generate, newDef } from "store@def";
+import { generate, newDef } from "model@def";
 </script>
 
 <style lang="stylus" scoped>

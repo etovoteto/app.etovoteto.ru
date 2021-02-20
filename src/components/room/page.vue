@@ -4,7 +4,7 @@ section.current CURRENT ROOM
 </template>
 
 <script setup>
-import { currentRoom } from "store@room";
+import { currentRoom } from "model@room";
 import { pubGradient } from "use@colors";
 </script>
 

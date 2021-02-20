@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { useHashList } from "use@hashList";
+import { useHashList } from "store@hashList";
 
 const { sorted, options, more } = useHashList("def");
 </script>

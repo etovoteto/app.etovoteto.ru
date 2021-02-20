@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { linking, unlink } from "store@link";
+import { linking, unlink } from "model@link";
 </script>
 
 <style lang="stylus" scoped></style>

@@ -20,9 +20,9 @@
 </template>
 
 <script setup>
-import { link, isLinking } from "store@link";
-import { useHashList } from "use@hashList";
-import { newWord } from "store@word";
+import { link, isLinking } from "model@link";
+import { useHashList } from "store@hashList";
+import { newWord } from "model@word";
 import { watchEffect } from "vue";
 const { sorted, options, more } = useHashList("word");
 watchEffect(() => {

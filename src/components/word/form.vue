@@ -6,7 +6,7 @@ form(@submit.prevent.stop)
 </template>
 
 <script setup>
-import { generate, newWord } from "store@word";
+import { generate, newWord } from "model@word";
 </script>
 
 <style lang="stylus" scoped>

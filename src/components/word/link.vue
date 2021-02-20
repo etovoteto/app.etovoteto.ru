@@ -12,8 +12,8 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashed } from "use@hashList";
-import { renderWord } from "../../store/word";
+import { getHashed } from "store@hashList";
+import { renderWord } from "model@word";
 
 const props = defineProps({
   linker: String,

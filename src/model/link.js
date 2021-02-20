@@ -1,6 +1,6 @@
 import { reactive, ref } from 'vue'
-import { currentRoom } from './room'
-import { user } from './user'
+import { currentRoom } from 'model@room'
+import { user } from 'store@user'
 export const linking = ref({})
 
 export function unlink() {

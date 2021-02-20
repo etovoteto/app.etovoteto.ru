@@ -1,8 +1,8 @@
 import { roomGun, sea, gun } from 'store@gun-db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
-import { model } from 'store@model'
-import { addHashed } from '../use/hashList'
+import { model } from 'model@model'
+import { addHashed } from 'store@hashList'
 
 export const appPub =
   'lFZPTLmzmLfWmJlmYHzE3yYcr-gWYCfogbEMQMrjLvY.GwXTqQaoXud2_ZO-4S329dX9elpYlA5qtkoBVvKc00M'
@@ -64,7 +64,6 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
     let cert = await SEA.certify(users, path, pair, null, {
       blacklist: 'banlist',
     })
-    console.log(cert)
     return cert
   } catch (e) {
     console.log(e)

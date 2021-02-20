@@ -1,8 +1,8 @@
 import { reactive, watchEffect } from 'vue'
 import { generateWords } from 'use@randomWords'
-import { addHashed } from 'use@hashList'
+import { addHashed } from 'store@hashList'
 
-import { vowels, stressMark, wordMask } from 'store@model'
+import { vowels, stressMark, wordMask } from 'model@model'
 
 export { vowels }
 
