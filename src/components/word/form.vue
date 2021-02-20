@@ -24,6 +24,7 @@ input
 
 .new-word
   display: flex
+  flex-flow: row wrap
   font-size: 3em
   justify-content: center
   user-select: none
@@ -44,10 +45,13 @@ input
 
   .vowel
     cursor: pointer
-    font-weight: bold
     opacity: 0.9
     text-decoration: underline
 
     &:hover
       opacity: 1
+
+      &::before
+        content: '´'
+        position: absolute
 </style>

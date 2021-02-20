@@ -24,11 +24,10 @@ const { record } = getHashed("def", props.hash);
 
 <style lang="stylus" scoped>
 .row
-  padding: 1em 0
+  padding: 1em 0 0 0
   margin: 0
 
   .content
-    width: 100%
     color: var(--text-light)
     display: flex
     align-items: center

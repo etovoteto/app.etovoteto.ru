@@ -8,7 +8,7 @@ export const newDef = reactive({
 })
 
 export const isValid = computed(() => {
-  return newDef.def.includes(' ') && newDef.def.length > 10
+  return verifyDef(newDef.def)
 })
 
 export async function addDef(part) {
@@ -25,7 +25,7 @@ export async function addDef(part) {
 }
 
 function verifyDef(def = newDef.def, part = newDef.part) {
-  let defOk = def && defMask.test(def)
+  let defOk = def && defMask.test(def) && def.length > 10
   let partOk = part && parts[part]
   return defOk && partOk
 }

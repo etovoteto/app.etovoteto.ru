@@ -34,5 +34,6 @@ const { record } = getHashed("word", props.hash);
   flex-flow: row
 
 .word
-  font-size: 2em
+  font-size: 1.4em
+  font-weight: bold
 </style>

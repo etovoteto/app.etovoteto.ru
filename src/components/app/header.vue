@@ -4,7 +4,6 @@ header(
 )
   router-link(to="/word")
     i.iconify(data-icon="la:comment-dots")
-  .spacer
   router-link(to="/def")
     i.iconify(data-icon="la:comment")
   router-link(to="/author")

@@ -1,7 +1,7 @@
 <template lang="pug">
 .form
   textarea(
-    placeholder="Несуществующее понятие минимум из двух слов",
+    placeholder="Придумайте понятие как минимум из двух слов и не менее 10 знаков",
     :rows="3",
     v-model="newDef.def",
     :class="{ valid: isValid }"
