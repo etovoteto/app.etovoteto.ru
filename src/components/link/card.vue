@@ -1,7 +1,7 @@
 <template lang="pug">
 .card(v-if="linking")
   word-card(v-if="linking.tag == 'word'", :record="linking")
-  sense-card(v-if="linking.tag == 'sense'", :record="linking")
+  def-card(v-if="linking.tag == 'def'", :record="linking")
 </template>
 
 <script setup>

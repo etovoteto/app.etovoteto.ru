@@ -5,7 +5,6 @@ app-header
   :style="{ background: pubGradient(currentRoom.pub, 90) }"
 ) 
   button(@click="exitRoom()") Exit room
-author-changer
 link-card
 router-view(v-slot="{Component}")
   transition(name="fade")

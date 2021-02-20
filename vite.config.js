@@ -65,6 +65,7 @@ export default {
       entries: [
         { find: /^store\@(.*)/, replacement: '/src/store/$1.js' },
         { find: /^use\@(.*)/, replacement: '/src/use/$1.js' },
+        { find: /^model\@(.*)/, replacement: '/src/model/$1.js' },
       ],
     }),
     vue(),

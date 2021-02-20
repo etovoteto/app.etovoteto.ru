@@ -5,7 +5,7 @@
     author-avatar(:pub="linker", size="nano")
     .spacer
     author-dots(:authors="record.authors")
-  .text {{ capitalFirst(record.data.sense) }}
+  .text {{ capitalFirst(record.data.def) }}
 </template>
 
 <script setup>
@@ -19,7 +19,7 @@ const props = defineProps({
   hash: String,
 });
 
-const { record } = getHashed("sense", props.hash);
+const { record } = getHashed("def", props.hash);
 </script>
 
 <style lang="stylus" scoped>

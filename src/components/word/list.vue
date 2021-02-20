@@ -8,7 +8,7 @@
     ) 
       button.link(
         v-if="!isLinking(word)",
-        @click="link(word, () => { $router.push('/sense'); })"
+        @click="link(word, () => { $router.push('/def'); })"
       )
         i.iconify(data-icon="la:link")
     .more(

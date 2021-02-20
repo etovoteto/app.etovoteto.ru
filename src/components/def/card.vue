@@ -5,7 +5,7 @@
     link-button(:record="record")
     .spacer
     author-dots(:authors="record.authors")
-  .text {{ capitalFirst(record.sense) }}
+  .text {{ capitalFirst(record.def) }}
   .links(v-if="record != linking")
     word-link(
       v-for="(linker, hash) in links",

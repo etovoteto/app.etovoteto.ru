@@ -1,6 +1,8 @@
 <template lang="pug">
 main
-  author-profile
+  def-form
+  def-new
+  def-list
 </template>
 
 <script setup>

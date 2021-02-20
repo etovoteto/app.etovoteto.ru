@@ -8,7 +8,7 @@
     author-dots(:authors="record.authors")
 
   .links(v-if="record != linking")
-    sense-link(
+    def-link(
       v-for="(linker, hash) in links",
       :key="hash + linker",
       :linker="linker",

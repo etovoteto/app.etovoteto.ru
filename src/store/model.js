@@ -1,11 +1,11 @@
 export const vowels = 'аеёиоуыюя'
 export const stressMark = '&#x301;'
 export const wordMask = /^[а-яА-Я]+$/
-export const senseMask = /^[а-я А-Я 1-9"«»!?,.-]+$/
+export const defMask = /^[а-я А-Я 1-9"«»!?,.-]+$/
 
 export const links = {
-  word: 'sense',
-  sense: 'word',
+  word: 'def',
+  def: 'word',
 }
 
 export const model = {
@@ -14,7 +14,7 @@ export const model = {
     hashed: true,
     personal: true,
   },
-  sense: {
+  def: {
     title: 'Значение',
     hashed: true,
     personal: true,

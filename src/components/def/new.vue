@@ -3,15 +3,15 @@
   button.part(
     v-for="(part, key) in parts",
     :key="key",
-    @click="newSense.part = key",
-    :class="{ active: newSense.part == key }"
+    @click="newDef.part = key",
+    :class="{ active: newDef.part == key }"
   ) {{ part }}
-  button.add(@click="addSense()")
+  button.add(@click="addDef()")
     i.iconify(data-icon="la:plus")
 </template>
 
 <script setup>
-import { newSense, parts, addSense } from "store@sense";
+import { newDef, parts, addDef } from "store@def";
 </script>
 
 <style lang="stylus" scoped>

@@ -1,12 +1,12 @@
 <template lang="pug">
 .form
-  textarea(:cols="24", :rows="4", v-model="newSense.sense")
+  textarea(:cols="24", :rows="4", v-model="newDef.def")
   .generate(@click="generate()")
     i.iconify(data-icon="teenyicons:refresh-alt-solid")
 </template>
 
 <script setup>
-import { generate, newSense } from "store@sense";
+import { generate, newDef } from "store@def";
 </script>
 
 <style lang="stylus" scoped>

@@ -5,7 +5,7 @@ import { model } from 'store@model'
 import { addHashed } from '../use/hashList'
 
 export const appPub =
-  'WD7zTrcNIbnItGLU9E9Da_nRJ-9ZoO2rwW8BdalQaSM.tkh-17Uev5txezlR6geIfRJnkMX9eckx12QY0ms7XtY'
+  'lFZPTLmzmLfWmJlmYHzE3yYcr-gWYCfogbEMQMrjLvY.GwXTqQaoXud2_ZO-4S329dX9elpYlA5qtkoBVvKc00M'
 
 export const roomKey = ref({})
 export const currentRoom = reactive({

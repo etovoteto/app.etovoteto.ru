@@ -5,7 +5,7 @@ main
   router-link.card(to="/word")
     i.iconify(data-icon="la:comment-dots")
     .title Слова
-  router-link.card(to="/sense") 
+  router-link.card(to="/def") 
     i.iconify(data-icon="la:comment")
     .title Определения
   router-link.card(to="/room") 

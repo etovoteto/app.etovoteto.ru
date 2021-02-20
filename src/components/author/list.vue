@@ -1,8 +1,5 @@
 <template lang="pug">
-main
-  sense-form
-  sense-new
-  sense-list
+p LIST
 </template>
 
 <script setup>
