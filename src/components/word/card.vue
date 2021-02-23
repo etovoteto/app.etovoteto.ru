@@ -1,7 +1,10 @@
 <template lang="pug">
 .card
   .content
-    .word(:title="record.timestamp")
+    router-link.word(
+      :to="'/word/' + safeHash(record.hash)",
+      :title="record.timestamp"
+    )
       span(v-if="record", v-html="renderWord(record.word, record.stress)")
     author-dots(:authors="record.authors")
     .spacer
@@ -21,6 +24,8 @@
 import { defineProps } from "vue";
 import { renderWord } from "model@word";
 import { useLinks, linking } from "model@link";
+import { safeHash } from "../../store/db";
+
 const props = defineProps({
   record: Object,
 });
