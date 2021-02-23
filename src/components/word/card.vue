@@ -8,12 +8,13 @@
     link-button(:record="record")
 
   .links(v-if="record != linking")
-    def-link(
-      v-for="(linker, hash) in links",
-      :key="hash + linker",
-      :linker="linker",
-      :hash="hash"
-    )
+    transition-group(name="list")
+      def-link(
+        v-for="(linker, hash) in links",
+        :key="hash + linker",
+        :linker="linker",
+        :hash="hash"
+      )
 </template>
 
 <script setup>

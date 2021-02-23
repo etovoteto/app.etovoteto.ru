@@ -1,5 +1,5 @@
 import { reactive, watchEffect } from 'vue'
-import { addHashed } from 'store@hashList'
+import { addHashedPersonal } from 'store@list'
 
 import { vowels, stressMark, wordMask } from 'store@locale'
 
@@ -19,7 +19,7 @@ export async function addWord(stress) {
     word: newWord.word.toLowerCase(),
     stress: stress,
   }
-  addHashed('word', obj)
+  addHashedPersonal('word', obj)
   newWord.word = ''
 }
 

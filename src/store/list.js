@@ -1,18 +1,33 @@
-import { gun, hashObj, roomGun } from 'store@gun-db'
+import { gun, hashObj, roomGun } from 'store@db'
 
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'model@room'
 import { user } from 'store@user'
 import { linking, link } from 'model@link'
 
-export function useHashList(tag = 'word', room = currentRoom.pub) {
+export function useCount(tag, hashed = true, room = currentRoom?.pub) {
+  const counter = reactive({})
+  gun
+    .get(`~${room}`)
+    .get(`${hashed ? '#' : ''}${tag}`)
+    .map()
+    .once((d, k) => {
+      counter[k] = true
+    })
+  const count = computed(() => {
+    return Object.keys(counter).length
+  })
+  return count
+}
+
+export function useList(tag = 'word', hashed = true, room = currentRoom.pub) {
   const options = reactive({
     orderBy: 'timestamp',
     search: '',
-    limit: 12,
-    page: 12,
+    limit: 5,
+    page: 5,
     total: 0,
     main: tag,
   })
@@ -24,14 +39,18 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
 
   gun
     .get(`~${room}`)
-    .get(`#${tag}`)
+    .get(`${hashed ? '#' : ''}${tag}`)
     .on(function (d, k) {
       timestamps = d['_']['>']
 
       this.map().on(function (data, key) {
-        let hash = key.slice(0, 44)
+        let hash = key
+        let record = data
         let author = key.slice(-87)
-        let record = JSON.parse(data)
+        if (hashed) {
+          hash = key.slice(0, 44)
+          record = JSON.parse(data)
+        }
         if (typeof record != 'object') {
           record = { data: record }
         }
@@ -62,7 +81,7 @@ export function useHashList(tag = 'word', room = currentRoom.pub) {
   }
 }
 
-export async function addHashed(tag, obj, room = currentRoom.pub) {
+export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
   gun
@@ -73,7 +92,7 @@ export async function addHashed(tag, obj, room = currentRoom.pub) {
   link({ hash, tag, ...obj })
 }
 
-export function getHashed(tag, hash, room = currentRoom.pub) {
+export function getHashedPersonal(tag, hash, room = currentRoom.pub) {
   const record = reactive({})
   roomGun
     .get(`~${room}`)

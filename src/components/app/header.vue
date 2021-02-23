@@ -6,14 +6,14 @@ header(
     i.iconify(data-icon="la:comment-dots")
   router-link(to="/def")
     i.iconify(data-icon="la:comment")
-  router-link(to="/author")
-    span(v-if="!user.is")
+  router-link(to="/me")
+    span(v-if="!user.is?.pub")
       i.iconify(data-icon="la:user-plus")
-    author-avatar(:pub="user.is?.pub", size="small")
+    author-avatar(v-else, :pub="user.is?.pub", size="small")
   router-link.user(to="/room")
     i.iconify(data-icon="la:comments")
-  router-link(to="/lab")
-    i.iconify(data-icon="la:flask")
+  router-link(to="/author")
+    i.iconify(data-icon="la:users")
 </template>
 
 <script setup>

@@ -7,12 +7,13 @@
     link-button(:record="record")
   .text {{ capitalFirst(record.def) }}
   .links(v-if="record != linking")
-    word-link(
-      v-for="(linker, hash) in links",
-      :key="hash + linker",
-      :linker="linker",
-      :hash="hash"
-    )
+    transition-group(name="list")
+      word-link(
+        v-for="(linker, hash) in links",
+        :key="hash + linker",
+        :linker="linker",
+        :hash="hash"
+      )
 </template>
 
 <script setup>

@@ -1,11 +1,11 @@
-import { roomGun, sea, gun } from 'store@gun-db'
+import { roomGun, sea, gun } from 'store@db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
-import { addHashed } from 'store@hashList'
+import { addHashedPersonal } from 'store@list'
 
 export const appPub =
-  'lFZPTLmzmLfWmJlmYHzE3yYcr-gWYCfogbEMQMrjLvY.GwXTqQaoXud2_ZO-4S329dX9elpYlA5qtkoBVvKc00M'
+  'vCHZH0AqZ_QfHXDngLzS69p-Xu7Mn3GJf1ZP4jzaKtE.lC8d78SghL84Eg1KO1u-zzjW_SgHw3cLQOQraerLAHQ'
 
 export const roomKey = ref({})
 export const currentRoom = reactive({
@@ -26,29 +26,29 @@ roomGun.on('auth', async () => {
   console.info('You entered a room')
 })
 
-export async function createRoom() {
-  let pair = await sea.pair()
-  initRoom(pair)
-  addHashed('room', { pub: pair.pub })
-  console.log(pair)
-}
-
 export async function enterRoom(pub) {
   user.currentRoom = pub
   currentRoom.pub = pub
 }
 
-export async function exitRoom(pub) {
+export async function leaveRoom(pub) {
   user.currentRoom = null
   currentRoom.pub = appPub
 }
 
-export function initRoom(pair, title = 'Main') {
+export async function createRoom() {
+  let pair = await sea.pair()
+  initCerts(pair)
+  addHashedPersonal('room', { pub: pair.pub })
+  let enc = await sea.encrypt(pair, gun.user()._.sea)
+  gun.user().get('myRooms').get(pair.pub).put(enc)
+}
+
+export function initCerts(pair) {
   roomGun.user().auth(pair, async () => {
     for (let tag in model) {
       let crt = await issueCert(tag, pair)
       roomGun.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
-      roomGun.get(`~${pair.pub}`).get('title').put(title)
     }
   })
 }
@@ -68,4 +68,20 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
   } catch (e) {
     console.log(e)
   }
+}
+
+export async function joinRoom(pub = user.is.pub, room = currentRoom.pub) {
+  let certificate = await gun.get(`~${room}`).get('cert').get('author').then()
+  let timestamp = Date.now()
+  gun
+    .get(`~${room}`)
+    .get('author')
+    .get(pub)
+    .put(
+      { joined: timestamp, entered: timestamp, leaved: 0, presence: timestamp },
+      null,
+      { opt: { cert: certificate } },
+    )
+  gun.user().get('currentRoom').put(currentRoom.pub)
+  gun.user().get('rooms').get(pub).put(timestamp)
 }

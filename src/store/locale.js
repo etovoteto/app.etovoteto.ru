@@ -31,7 +31,7 @@ export const model = {
   },
   author: {
     title: 'Автор',
-    hashed: true,
+    hashed: false,
     personal: true,
   },
 }

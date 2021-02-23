@@ -12,7 +12,7 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashed } from "store@hashList";
+import { getHashedPersonal } from "store@list";
 import { renderWord } from "model@word";
 
 const props = defineProps({
@@ -20,7 +20,7 @@ const props = defineProps({
   hash: String,
 });
 
-const { record } = getHashed("word", props.hash);
+const { record } = getHashedPersonal("word", props.hash);
 </script>
 
 <style lang="stylus" scoped>

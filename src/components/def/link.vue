@@ -10,7 +10,7 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashed } from "store@hashList";
+import { getHashedPersonal } from "store@list";
 import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
 
@@ -19,7 +19,7 @@ const props = defineProps({
   hash: String,
 });
 
-const { record } = getHashed("def", props.hash);
+const { record } = getHashedPersonal("def", props.hash);
 </script>
 
 <style lang="stylus" scoped>

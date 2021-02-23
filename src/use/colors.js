@@ -1,5 +1,5 @@
 import ColorHash from 'color-hash'
-import { soul, isNode, cutUuid } from 'store@gun-db'
+import { soul, isNode, cutUuid } from 'store@db'
 import { usePreferredDark } from '@vueuse/core'
 
 const isDark = usePreferredDark()

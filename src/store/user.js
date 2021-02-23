@@ -1,4 +1,4 @@
-import { gun } from './gun-db'
+import { gun } from './db'
 import { reactive, watch } from 'vue'
 
 export const user = reactive({
@@ -12,12 +12,12 @@ export const user = reactive({
   },
 })
 
-export function authUser(alias, pass) {
-  gun.user().auth(alias, pass, (ack) => {
+export function authUser(pair, cb) {
+  gun.user().auth(pair, (ack) => {
     if (!ack.err) {
-      logIn()
+      logIn(cb)
     } else {
-      error(ack.err)
+      console.error(ack.err)
     }
   })
 }
@@ -43,10 +43,11 @@ gun.user().recall({ sessionStorage: true }, (ack) => {
   }
 })
 
-export function logIn() {
+export function logIn(cb) {
   user.is = gun.user().is
   loadUser(user.is.pub)
   console.info('Logged in as ', user.is.pub)
+  if (cb) cb()
 }
 
 export function findUser(alias, cb) {

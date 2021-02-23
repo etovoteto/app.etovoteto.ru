@@ -1,10 +1,7 @@
 <template lang="pug">
 app-header
-.room-line(
-  v-if="currentRoom.pub != appPub",
-  :style="{ background: pubGradient(currentRoom.pub, 90) }"
-) 
-  button(@click="exitRoom()") Exit room
+app-dev
+room-line
 link-card
 router-view(v-slot="{Component}")
   transition(name="fade")
@@ -12,8 +9,7 @@ router-view(v-slot="{Component}")
 </template>
 
 <script setup >
-import { currentRoom, appPub, exitRoom } from "model@room";
-import { pubGradient } from "use@colors";
+import { currentRoom } from "./model/room";
 </script>
 
 <style lang="stylus">
@@ -22,8 +18,4 @@ main
   flex-flow: column
   justify-content: center
   background-color: var(--background)
-
-.room-line
-  width: 100%
-  height: 2em
 </style>

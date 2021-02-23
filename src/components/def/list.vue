@@ -11,10 +11,10 @@
 </template>
 
 <script setup>
-import { useHashList } from "store@hashList";
+import { useList } from "store@list";
 import { watchEffect } from "vue";
 import { newDef } from "model@def";
-const { sorted, options, more } = useHashList("def");
+const { sorted, options, more } = useList("def");
 
 watchEffect(() => {
   options.search = newDef.def;

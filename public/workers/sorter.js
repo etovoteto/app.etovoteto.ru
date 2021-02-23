@@ -59,6 +59,12 @@ function sortByTimestamp(a, b) {
 
 function sortBy(prop) {
   return function (a, b) {
+    if (!a) {
+      return -1
+    }
+    if (!b) {
+      return 1
+    }
     if (b[prop] >= a[prop]) return 1
     else return -1
   }

@@ -13,10 +13,10 @@
 
 <script setup>
 import { pubGradient } from "use@colors";
-import { useHashList } from "store@hashList";
+import { useList } from "store@list";
 import { enterRoom, createRoom } from "model@room";
 
-const { sorted, options, more } = useHashList("room");
+const { sorted, options, more } = useList("room");
 </script>
 
 <style lang="stylus" scoped>

@@ -21,7 +21,7 @@ article
 
 <script setup >
 import { onBeforeUnmount, reactive, ref } from "vue";
-import { gun } from "store@gun-db";
+import { gun } from "store@db";
 import { itemColor } from "use@colors";
 
 const graph = ref({});

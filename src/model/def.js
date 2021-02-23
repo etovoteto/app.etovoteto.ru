@@ -1,7 +1,7 @@
 import { parts, defMask } from 'store@locale'
 import { generateWords } from 'use@randomWords'
 import { computed, reactive } from 'vue'
-import { useHashList, addHashed } from 'store@hashList'
+import { addHashedPersonal } from 'store@list'
 export const newDef = reactive({
   def: '',
   part: 'noun',
@@ -20,7 +20,7 @@ export async function addDef(part) {
     def: newDef.def,
     part: part,
   }
-  addHashed('def', obj)
+  addHashedPersonal('def', obj)
   newDef.def = ''
 }
 

@@ -15,10 +15,10 @@
 </template>
 
 <script setup>
-import { useHashList } from "store@hashList";
+import { useList } from "store@list";
 import { newWord } from "model@word";
 import { watchEffect } from "vue";
-const { sorted, options, more } = useHashList("word");
+const { sorted, options, more } = useList("word");
 watchEffect(() => {
   options.search = newWord.word;
 });
