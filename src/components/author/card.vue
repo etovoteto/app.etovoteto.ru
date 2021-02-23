@@ -4,7 +4,8 @@
   .name {{ author.name }}
   slot
   .spacer
-  small.enter(v-if="test", @click="testAuthor(test)") test
+  .enter(v-if="test", @click="testAuthor(test)")
+    i.iconify(data-icon="la:sign-in-alt")
 </template>
 
 <script setup>
@@ -41,4 +42,9 @@ my.get("test").once((d) => {
 <style lang="stylus" scoped>
 .card
   display: flex
+
+.enter
+  font-size: 1.2rem
+  padding: 2px
+  cursor: pointer
 </style>
