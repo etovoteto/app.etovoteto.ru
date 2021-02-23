@@ -29,6 +29,7 @@ input
   justify-content: center
   user-select: none
   align-items: center
+  font-weight: bold
 
   .letter
     margin: 2px
