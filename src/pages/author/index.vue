@@ -1,7 +1,5 @@
 <template lang="pug">
-router-view(v-slot="{Component}")
-  transition(name="fade")
-    component(:is="Component")
+author-list
 </template>
 
 <script setup>

@@ -45,3 +45,40 @@ export async function hashObj(obj) {
   let hash = await sea.work(text, null, null, { name: 'SHA-256' })
   return { text, hash }
 }
+
+const encode_regex = /[\+=\/]/g
+const decode_regex = /[\._\-]/g
+
+// Buffer -> Base64 String -> Url Safe Base64 String
+export function safeHash(unsafe) {
+  if (!unsafe) return
+  return unsafe.replace(encode_regex, encodeChar)
+}
+
+// Url Safe Base64 String -> Base64 String -> Buffer
+export function unsafeHash(safe) {
+  if (!safe) return
+  return safe.replace(decode_regex, decodeChar)
+}
+
+function encodeChar(c) {
+  switch (c) {
+    case '+':
+      return '-'
+    case '=':
+      return '.'
+    case '/':
+      return '_'
+  }
+}
+
+function decodeChar(c) {
+  switch (c) {
+    case '-':
+      return '+'
+    case '.':
+      return '='
+    case '_':
+      return '/'
+  }
+}

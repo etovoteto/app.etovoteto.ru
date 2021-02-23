@@ -3,18 +3,18 @@
   nav.buttons
     button(@click="createRoom()") Create
   transition-group(name="list")
-    .room(
+    router-link.room(
+      :to="'/room/' + room.pub",
       v-for="room in sorted.list",
       :key="room",
       :style="{ background: pubGradient(room.pub, 90) }"
     ) {{ room.pub }}
-      button(@click="enterRoom(room.pub)") Enter
 </template>
 
 <script setup>
 import { pubGradient } from "use@colors";
 import { useList } from "store@list";
-import { enterRoom, createRoom } from "model@room";
+import { createRoom } from "model@room";
 
 const { sorted, options, more } = useList("room");
 </script>

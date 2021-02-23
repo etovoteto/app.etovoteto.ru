@@ -64,3 +64,27 @@ export function useAuthors(room = currentRoom.pub) {
     more,
   }
 }
+
+export function useTagAuthors(
+  tag = 'word',
+  hashed = true,
+  room = currentRoom.pub,
+) {
+  const authors = reactive({})
+  gun
+    .get(`~${room}`)
+    .get(`${hashed ? '#' : ''}${tag}`)
+    .map()
+    .once((data, key) => {
+      let hash = key
+      let record = data
+      let author = key.slice(-87)
+      if (hashed) {
+        hash = key.slice(0, 44)
+        record = JSON.parse(data)
+      }
+      authors[author] = authors[author] || {}
+      authors[author][hash] = record
+    })
+  return authors
+}

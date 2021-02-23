@@ -10,10 +10,10 @@ header(
     span(v-if="!user.is?.pub")
       i.iconify(data-icon="la:user-plus")
     author-avatar(v-else, :pub="user.is?.pub", size="small")
-  router-link.user(to="/room")
-    i.iconify(data-icon="la:comments")
   router-link(to="/author")
     i.iconify(data-icon="la:users")
+  router-link.user(to="/room")
+    i.iconify(data-icon="la:comments")
 </template>
 
 <script setup>

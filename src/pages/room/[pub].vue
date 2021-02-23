@@ -1,12 +1,12 @@
 <template lang="pug">
-p {{ id }}
+room-page(:pub="pub")
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 
 const props = defineProps({
-  id: String,
+  pub: String,
 });
 </script>
 

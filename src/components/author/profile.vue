@@ -1,30 +1,29 @@
 <template lang="pug">
-router-link.card(:to="'/author/' + pub")
-  author-avatar(:pub="pub", size="small")
+.profile
+  author-avatar(:pub="pub", size="big")
   .name {{ author.name }}
-  .spacer
-  slot
+  .room {{ author.currentRoom }}
+  .enter(v-if="author.test", @click="testAuthor(author.test)")
+    i.iconify(data-icon="la:sign-in-alt")
 </template>
 
 <script setup>
 import { defineProps, reactive, ref } from "vue";
 import { gun } from "store@db";
-import { testAuthor } from "../../model/author";
+import { testAuthor } from "model@author";
 
 const props = defineProps({
   pub: String,
-  author: Object,
 });
 
 const author = reactive({
   name: "",
 });
 
-const test = ref("");
 const my = gun.get(`~${props.pub}`);
 
 my.get("currentRoom").on((d) => {
-  console.log(d);
+  author.currentRoom = d;
 });
 
 my.get("profile")
@@ -33,13 +32,15 @@ my.get("profile")
 
 // TESTING AUTHORS
 my.get("test").once((d) => {
-  test.value = d;
+  author.test = d;
 });
 </script>
 
 <style lang="stylus" scoped>
-.card
+.profile
   display: flex
+  flex-flow: column
+  align-items: center
   padding: 1em
 
 .enter

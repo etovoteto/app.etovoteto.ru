@@ -27,12 +27,12 @@ roomGun.on('auth', async () => {
 })
 
 export async function enterRoom(pub) {
-  user.currentRoom = pub
+  gun.user().get('currentRoom').put(pub)
   currentRoom.pub = pub
 }
 
 export async function leaveRoom(pub) {
-  user.currentRoom = null
+  gun.user().get('currentRoom').put(appPub)
   currentRoom.pub = appPub
 }
 
