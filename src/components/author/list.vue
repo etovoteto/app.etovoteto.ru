@@ -3,7 +3,7 @@ section
   transition-group(name="list")
     author-card(
       v-for="author in sorted.list",
-      :key="author",
+      :key="author.pub",
       :pub="author?.pub"
     )
       .count

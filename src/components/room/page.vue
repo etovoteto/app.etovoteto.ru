@@ -1,6 +1,7 @@
 <template lang="pug">
 section
   header(:style="{ background: pubGradient(pub, 90) }") {{ pub }}
+  button(@click="enterRoom(pub)") Enter
 </template>
 
 <script setup>
@@ -11,8 +12,6 @@ import { defineProps } from "vue";
 const props = defineProps({
   pub: String,
 });
-
-enterRoom(props.pub);
 </script>
 
 <style lang="stylus" scoped></style>

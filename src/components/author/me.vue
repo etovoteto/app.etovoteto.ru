@@ -6,9 +6,6 @@
     :editable="true",
     @update="updateName($event)"
   )
-  .rooms
-    room-badge(v-for="(room, pub) in rooms", :key="room", :room="room")
-
   button(@click="logOut()") log out
 </template>
 
@@ -24,15 +21,6 @@ function updateName(newName) {
     gun.user().get("profile").get("name").put(newName);
   }
 }
-
-const rooms = ref({});
-gun
-  .user()
-  .get("myRooms")
-  .map()
-  .once((d, k) => {
-    rooms.value[k] = d;
-  });
 </script>
 
 <style lang="stylus" scoped>
@@ -45,4 +33,5 @@ gun
 
 .rooms
   display: flex
+  flex-flow: column
 </style>

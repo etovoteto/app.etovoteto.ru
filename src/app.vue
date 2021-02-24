@@ -1,8 +1,8 @@
 <template lang="pug">
-app-title
-app-header
+header
+  app-title
+  app-nav
 app-dev
-room-line
 link-card
 router-view(v-slot="{Component}")
   transition(name="fade")

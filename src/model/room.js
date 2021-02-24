@@ -3,6 +3,8 @@ import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'
+import { generateWords } from '../use/randomWords'
+import { capitalFirst } from './word'
 
 export const appPub =
   'vCHZH0AqZ_QfHXDngLzS69p-Xu7Mn3GJf1ZP4jzaKtE.lC8d78SghL84Eg1KO1u-zzjW_SgHw3cLQOQraerLAHQ'
@@ -12,15 +14,17 @@ export const currentRoom = reactive({
   pub: appPub,
 })
 
-export const roomCerts = reactive({})
-
-roomDb
-  .get('~' + appPub)
-  .get('cert')
-  .map()
-  .on((d, k) => {
-    roomCerts[k] = d
-  })
+export function useRoomCerts(pub = currentRoom.pub) {
+  const roomCerts = reactive({})
+  roomDb
+    .get('~' + pub)
+    .get('cert')
+    .map()
+    .on((d, k) => {
+      roomCerts[k] = d
+    })
+  return roomCerts
+}
 
 roomDb.on('auth', async () => {
   console.info('You entered a room')
@@ -38,18 +42,19 @@ export async function leaveRoom(pub) {
 
 export async function createRoom() {
   let pair = await sea.pair()
-  initCerts(pair)
+  initRoom(pair)
   addHashedPersonal('room', { pub: pair.pub })
   let enc = await sea.encrypt(pair, gun.user()._.sea)
-  gun.user().get('myRooms').get(pair.pub).put(enc)
+  gun.user().get('ownRooms').get(pair.pub).put(enc)
 }
 
-export function initCerts(pair) {
+export function initRoom(pair) {
   roomDb.user().auth(pair, async () => {
     for (let tag in model) {
       let crt = await issueCert(tag, pair)
-      console.log(crt)
-      roomDb.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
+      roomDb.user().get('cert').get(tag).put(crt)
+      roomDb.user().get('owner').put(user.is.pub)
+      roomDb.user().get('title').put(capitalFirst(generateWords()))
     }
   })
 }

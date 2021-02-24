@@ -6,6 +6,7 @@ export const user = reactive({
   profile: {
     name: '',
   },
+  ownRooms: {},
   room: {
     pub: '',
     role: 'guest',
@@ -33,6 +34,13 @@ export function loadUser(pub) {
     .map()
     .on((data, key) => {
       user.profile[key] = data
+    })
+  gun
+    .user()
+    .get('ownRooms')
+    .map()
+    .once((d, k) => {
+      user.ownRooms[k] = d
     })
 }
 

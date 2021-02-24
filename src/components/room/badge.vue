@@ -1,10 +1,15 @@
 <template lang="pug">
-p {{ title || pub }}
+router-link.badge(
+  :to="'/room/' + pub",
+  :style="{ background: pubGradient(pub, 90) }"
+) {{ title || pub }}
+  slot
 </template>
 
 <script setup>
 import { defineProps, ref } from "vue";
 import { gun } from "store@db";
+import { pubGradient } from "use@colors";
 
 const props = defineProps({
   pub: String,
@@ -18,4 +23,8 @@ roomDb.get("title").on((d, k) => {
 });
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.badge
+  padding: 0.5em
+  margin: 2px
+</style>

@@ -1,12 +1,11 @@
 import { sea } from 'store@db'
 import { user, authUser, logIn } from 'store@user'
-import { addHashedPersonal } from 'store@list'
-import { gun } from '../store/db'
-import { currentRoom, joinRoom } from './room'
+import { gun } from 'store@db'
+import { currentRoom, joinRoom } from 'model@room'
 import { reactive, ref } from 'vue'
-import { useSorter } from '../use/sorter'
+import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { links } from '../store/locale'
+import { links } from 'store@locale'
 
 export { logIn }
 

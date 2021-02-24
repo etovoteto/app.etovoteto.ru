@@ -1,5 +1,5 @@
 <template lang="pug">
-header(
+nav(
   :style="{ background: currentRoom.pub != appPub ? pubGradient(currentRoom.pub, 90) : 'none' }"
 )
   router-link(to="/word")
@@ -12,18 +12,26 @@ header(
     author-avatar(v-else, :pub="user.is?.pub", size="small")
   router-link(to="/author")
     i.iconify(data-icon="la:users")
-  router-link.user(to="/room")
-    i.iconify(data-icon="la:comments")
+  transition(name="fade")
+    router-link.user(to="/room", v-if="currentRoom.pub == appPub")
+      i.iconify(data-icon="la:comments")
+    router-link(
+      :to="{ path: '/room', query: { room: '' } }",
+      v-else,
+      @click="leaveRoom()"
+    )
+      i.iconify(data-icon="la:sign-out-alt")
 </template>
 
 <script setup>
 import { user } from "store@user";
 import { appPub, currentRoom } from "model@room";
 import { pubGradient } from "use@colors";
+import { leaveRoom } from "model@room";
 </script>
 
 <style lang="stylus" scoped>
-header
+nav
   display: flex
   align-items: center
   font-size: 2em

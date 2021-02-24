@@ -1,14 +1,14 @@
 <template lang="pug">
 .rooms
-  nav.buttons
-    button(@click="createRoom()") Create
+  button(@click="createRoom()") Create
   transition-group(name="list")
-    router-link.room(
-      :to="{ path: '/room/' + room.pub, query: { room: room.pub } }",
-      v-for="room in sorted.list",
-      :key="room",
-      :style="{ background: pubGradient(room.pub, 90) }"
-    ) {{ room.pub }}
+    room-card(v-for="room in sorted.list", :key="room", :pub="room.pub") 
+    .more(
+      key="more",
+      ref="more",
+      v-if="sorted.more",
+      @click="options.limit += options.page"
+    ) {{ options.limit }} / {{ sorted.total }}
 </template>
 
 <script setup>
@@ -21,10 +21,14 @@ const { sorted, options, more } = useList("room");
 
 <style lang="stylus" scoped>
 .rooms
-  padding: 2em 1em
+  padding: 0
   display: flex
-  flex-flow: row wrap
+  flex-flow: column
 
   > div
     padding: 1em
+
+  .room
+    padding: 1em
+    margin: 0.5em 0
 </style>

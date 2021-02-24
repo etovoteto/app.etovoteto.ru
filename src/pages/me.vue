@@ -2,6 +2,7 @@
 main
   author-me(v-if="user.is?.pub")
   author-auth(v-else)
+  author-lists
 </template>
 
 <script setup>

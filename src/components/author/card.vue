@@ -9,7 +9,7 @@ router-link.card(:to="'/author/' + pub")
 <script setup>
 import { defineProps, reactive, ref } from "vue";
 import { gun } from "store@db";
-import { testAuthor } from "../../model/author";
+import { testAuthor } from "model@author";
 
 const props = defineProps({
   pub: String,
