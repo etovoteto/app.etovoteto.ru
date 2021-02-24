@@ -6,6 +6,8 @@ import { reactive, ref } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { links } from 'store@locale'
+import { capitalFirst } from './word'
+import { generateWords } from '../use/randomWords'
 
 export { logIn }
 
@@ -16,7 +18,8 @@ export async function generate() {
     let enc = await sea.encrypt(pair, 'test')
     gun.user().get('test').put(enc)
     // END OF TEST
-    joinRoom(pair.pub)
+    gun.user().get('profile').get('name').put(capitalFirst(generateWords()))
+    joinRoom()
   })
 }
 // TEST AUTHORS

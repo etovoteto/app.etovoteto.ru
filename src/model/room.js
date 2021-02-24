@@ -76,20 +76,7 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
   }
 }
 
-export async function joinRoom(pub = user.is.pub, room = currentRoom.pub) {
-  console.log(pub, room)
-  let certificate = await gun.get(`~${room}`).get('cert').get('author').then()
-  console.log(certificate)
-  let timestamp = Date.now()
-  gun
-    .get(`~${room}`)
-    .get('author')
-    .get(pub)
-    .put(
-      { joined: timestamp, entered: timestamp, leaved: 0, presence: timestamp },
-      null,
-      { opt: { cert: certificate } },
-    )
-  gun.user().get('currentRoom').put(currentRoom.pub)
-  gun.user().get('rooms').get(pub).put(timestamp)
+export async function joinRoom(room = currentRoom.pub) {
+  gun.user().get('currentRoom').put(room)
+  gun.user().get('rooms').get(room).put(Date.now())
 }

@@ -6,14 +6,14 @@
   "license": "MIT",
   "homepage": "https://app.etovoteto.ru",
   "bugs": {
-    "url": "https://github.com/DeFUCC/",
+    "url": "https://github.com/DeFUCC/app.etovoteto.ru",
     "email": "davay@etovoteto.ru"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DeFUCC/project-app.git"
+    "url": "https://github.com/DeFUCC/app.etovoteto.ru"
   },
-  "version": "0.2.9",
+  "version": "0.3.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,29 +23,29 @@
     "@iconify/iconify": "^1.0.7",
     "@mattkrick/sanitize-svg": "^0.3.1",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "^4.1.0",
-    "@vueuse/router": "^4.1.1",
+    "@vueuse/core": "^4.2.2",
+    "@vueuse/router": "^4.2.2",
     "color-hash": "^1.0.3",
     "gun": "github:amark/gun",
     "image-compressor": "^2.0.3",
     "markdown-it": "^12.0.4",
     "markdown-it-link-attributes": "^3.0.0",
     "markdown-it-task-lists": "^2.1.1",
-    "vue": "^3.0.5",
-    "vue-router": "^4.0.3"
+    "vue": "^3.0.6",
+    "vue-router": "^4.0.4"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.300",
-    "@prettier/plugin-pug": "^1.13.3",
+    "@iconify/json": "^1.1.308",
+    "@prettier/plugin-pug": "^1.13.4",
     "@rollup/plugin-alias": "^3.1.2",
     "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.0.6",
     "pug": "^3.0.0",
     "stylus": "^0.54.8",
-    "vite": "^2.0.0-beta.67",
-    "vite-plugin-components": "^0.6.6",
-    "vite-plugin-purge-icons": "^0.6.0",
-    "vite-plugin-pwa": "^0.4.6",
+    "vite": "^2.0.3",
+    "vite-plugin-components": "0.6.12",
+    "vite-plugin-purge-icons": "^0.7.0",
+    "vite-plugin-pwa": "^0.5.3",
     "vite-plugin-voie": "^0.7.3"
   }
 }

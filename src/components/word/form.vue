@@ -1,6 +1,6 @@
 <template lang="pug">
 form(@submit.prevent.stop)
-  input(v-model="newWord.word")
+  input(v-model="newWord.word", placeholder="Несуществующее слово")
   .new-word(v-if="newWord.word")
     .letter(
       @click="addWord(i)",
@@ -19,7 +19,7 @@ form
   flex-flow: column
 
 input
-  font-size: 2rem
+  font-size: 1.6rem
   text-align: center
 
 .new-word

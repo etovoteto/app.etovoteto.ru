@@ -40,5 +40,5 @@ nav
     padding: 4px 0.5em
 
   .router-link-active
-    background-color: var(--top-bar)
+    background-color: var(--bar-color)
 </style>
