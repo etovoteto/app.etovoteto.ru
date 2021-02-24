@@ -12,3 +12,15 @@ export const router = createRouter({
     }
   },
 })
+
+router.beforeEach((to, from, next) => {
+  if (!hasQueryParams(to) && hasQueryParams(from)) {
+    next({ ...to, query: from.query })
+  } else {
+    next()
+  }
+})
+
+function hasQueryParams(route) {
+  return !!Object.keys(route.query).length
+}

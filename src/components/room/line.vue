@@ -3,7 +3,7 @@
   v-if="currentRoom.pub != appPub",
   :style="{ background: pubGradient(currentRoom.pub, 90) }"
 ) 
-  button(@click="leaveRoom()") Leave room
+  button(@click="leaveRoom(); $router.push({ query: { room: '' } })") Leave room
 </template>
 
 <script setup>
