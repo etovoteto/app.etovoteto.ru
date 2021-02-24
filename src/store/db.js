@@ -13,7 +13,7 @@ import 'gun/lib/rindexed'
 import 'gun/nts'
 
 export const gun = Gun(config.peers)
-export const roomGun = Gun(config.peers)
+export const roomDb = Gun(config.peers)
 window.gun = gun //for debugging
 export const cert = config.cert
 export const soul = Gun.node.soul

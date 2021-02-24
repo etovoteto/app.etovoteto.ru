@@ -1,4 +1,4 @@
-import { roomGun, sea, gun } from 'store@db'
+import { roomDb, sea, gun } from 'store@db'
 import { user } from 'store@user'
 import { reactive, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
@@ -14,7 +14,7 @@ export const currentRoom = reactive({
 
 export const roomCerts = reactive({})
 
-roomGun
+roomDb
   .get('~' + appPub)
   .get('cert')
   .map()
@@ -22,7 +22,7 @@ roomGun
     roomCerts[k] = d
   })
 
-roomGun.on('auth', async () => {
+roomDb.on('auth', async () => {
   console.info('You entered a room')
 })
 
@@ -45,10 +45,11 @@ export async function createRoom() {
 }
 
 export function initCerts(pair) {
-  roomGun.user().auth(pair, async () => {
+  roomDb.user().auth(pair, async () => {
     for (let tag in model) {
       let crt = await issueCert(tag, pair)
-      roomGun.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
+      console.log(crt)
+      roomDb.get(`~${pair.pub}`).get('cert').get(tag).put(crt)
     }
   })
 }
@@ -71,7 +72,9 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
 }
 
 export async function joinRoom(pub = user.is.pub, room = currentRoom.pub) {
+  console.log(pub, room)
   let certificate = await gun.get(`~${room}`).get('cert').get('author').then()
+  console.log(certificate)
   let timestamp = Date.now()
   gun
     .get(`~${room}`)

@@ -1,4 +1,4 @@
-import { gun, hashObj, roomGun } from 'store@db'
+import { gun, hashObj, roomDb } from 'store@db'
 
 import { ref, reactive, computed } from 'vue'
 import { useSorter } from 'use@sorter'
@@ -94,7 +94,7 @@ export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
 
 export function getHashedPersonal(tag, hash, room = currentRoom.pub) {
   const record = reactive({})
-  roomGun
+  roomDb
     .get(`~${room}`)
     .get(`#${tag}`)
     .map()

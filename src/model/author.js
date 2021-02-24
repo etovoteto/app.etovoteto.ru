@@ -6,13 +6,14 @@ import { currentRoom, joinRoom } from './room'
 import { reactive, ref } from 'vue'
 import { useSorter } from '../use/sorter'
 import { useIntersectionObserver } from '@vueuse/core'
+import { links } from '../store/locale'
 
 export { logIn }
 
 export async function generate() {
   let pair = await sea.pair()
   authUser(pair, async () => {
-    // SAVING PAIR FOR TESTING PURPOSES. TO BE DELETED
+    // SAVING THE PAIR FOR TESTING PURPOSES. TO BE DELETED
     let enc = await sea.encrypt(pair, 'test')
     gun.user().get('test').put(enc)
     // END OF TEST
@@ -35,20 +36,37 @@ export function useAuthors(room = currentRoom.pub) {
     main: 'author',
   })
 
-  const obj = reactive({})
-  let timestamps = {}
+  const authors = reactive({})
+
+  Object.keys(links).forEach((tag) => {
+    gun
+      .get(`~${room}`)
+      .get(`#${tag}`)
+      .map()
+      .once((data, key) => {
+        let author = key.slice(-87)
+
+        let hash = key.slice(0, 44)
+        let record = JSON.parse(data)
+
+        authors[author] = authors[author] || { pub: author }
+        authors[author][tag] = authors[author][tag] || {}
+        authors[author][tag][hash] = record
+      })
+  })
 
   gun
     .get(`~${room}`)
-    .get('author')
+    .get('link')
     .map()
-    .on(function (data, key) {
-      let pub = key
-      obj[key] = { ...data }
-      obj[key].pub = key
+    .map()
+    .once((data, key) => {
+      authors[data] = authors[data] || {}
+      authors[data]['link'] = authors[data]['link'] || {}
+      authors[data]['link'][key] = true
     })
 
-  const { sorted } = useSorter(obj, options)
+  const { sorted } = useSorter(authors, options)
 
   const more = ref()
 
@@ -58,33 +76,9 @@ export function useAuthors(room = currentRoom.pub) {
     }
   })
   return {
-    obj,
+    authors,
     sorted,
     options,
     more,
   }
-}
-
-export function useTagAuthors(
-  tag = 'word',
-  hashed = true,
-  room = currentRoom.pub,
-) {
-  const authors = reactive({})
-  gun
-    .get(`~${room}`)
-    .get(`${hashed ? '#' : ''}${tag}`)
-    .map()
-    .once((data, key) => {
-      let hash = key
-      let record = data
-      let author = key.slice(-87)
-      if (hashed) {
-        hash = key.slice(0, 44)
-        record = JSON.parse(data)
-      }
-      authors[author] = authors[author] || {}
-      authors[author][hash] = record
-    })
-  return authors
 }

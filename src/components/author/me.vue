@@ -1,10 +1,14 @@
 <template lang="pug">
 .profile
   author-avatar(:pub="user.is?.pub", size="big")
-  h2 {{ user.profile.name }}
-  input(v-model="name")
+  edit-title.name(
+    :title="user.profile.name",
+    :editable="true",
+    @update="updateName($event)"
+  )
   .rooms
-    .room(v-for="(room, pub) in rooms", :key="room") {{ pub }}
+    room-badge(v-for="(room, pub) in rooms", :key="room", :room="room")
+
   button(@click="logOut()") log out
 </template>
 
@@ -12,12 +16,14 @@
 import { user, logOut } from "store@user";
 import { reactive, ref, watchEffect } from "vue";
 import { gun } from "store@db";
+
 const name = ref("");
-watchEffect(() => {
-  if (name.value) {
-    gun.user().get("profile").get("name").put(name.value);
+
+function updateName(newName) {
+  if (newName) {
+    gun.user().get("profile").get("name").put(newName);
   }
-});
+}
 
 const rooms = ref({});
 gun
@@ -33,6 +39,9 @@ gun
 .profile
   display: flex
   flex-flow: column
+
+.name
+  font-size: 2em
 
 .rooms
   display: flex

@@ -1,5 +1,6 @@
 <template lang="pug">
-author-list
+main
+  author-list
 </template>
 
 <script setup>

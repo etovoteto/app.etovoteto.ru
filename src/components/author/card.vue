@@ -23,10 +23,6 @@ const author = reactive({
 const test = ref("");
 const my = gun.get(`~${props.pub}`);
 
-my.get("currentRoom").on((d) => {
-  console.log(d);
-});
-
 my.get("profile")
   .get("name")
   .on((d) => (author.name = d));

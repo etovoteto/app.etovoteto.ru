@@ -4,7 +4,7 @@
     button(@click="createRoom()") Create
   transition-group(name="list")
     router-link.room(
-      :to="'/room/' + room.pub",
+      :to="{ path: '/room/' + room.pub, query: { room: room.pub } }",
       v-for="room in sorted.list",
       :key="room",
       :style="{ background: pubGradient(room.pub, 90) }"

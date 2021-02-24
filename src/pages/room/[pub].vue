@@ -1,5 +1,6 @@
 <template lang="pug">
-room-page(:pub="pub")
+main
+  room-page(:pub="pub")
 </template>
 
 <script setup>

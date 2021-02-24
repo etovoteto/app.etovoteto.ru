@@ -1,4 +1,5 @@
 <template lang="pug">
+app-title
 app-header
 app-dev
 room-line

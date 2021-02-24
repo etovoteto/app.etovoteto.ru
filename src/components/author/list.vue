@@ -3,15 +3,18 @@ section
   transition-group(name="list")
     author-card(
       v-for="author in sorted.list",
-      :key="author?.pub",
+      :key="author",
       :pub="author?.pub"
     )
       .count
         i.iconify(data-icon="la:comment-dots")
-        span {{ countWords(author.pub) }}
+        span {{ count(author.word) }}
       .count 
         i.iconify(data-icon="la:comment")
-        span {{ countDefs(author.pub) }}
+        span {{ count(author.def) }}
+      .count 
+        i.iconify(data-icon="la:link")
+        span {{ count(author.link) / 2 }}
     .more(
       key="more",
       ref="more",
@@ -24,21 +27,12 @@ section
 import { user } from "store@user";
 import { useList } from "store@list";
 import { useAuthors } from "model@author";
-import { useTagAuthors } from "../../model/author";
 
 const { sorted, options, more } = useAuthors();
-const words = useTagAuthors("word");
 
-function countWords(pub) {
-  if (!words[pub]) return 0;
-  return Object.keys(words[pub]).length;
-}
-
-const defs = useTagAuthors("def");
-
-function countDefs(pub) {
-  if (!defs[pub]) return 0;
-  return Object.keys(defs[pub]).length;
+function count(list) {
+  if (!list) return 0;
+  return Object.keys(list).length;
 }
 </script>
 
