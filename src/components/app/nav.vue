@@ -1,19 +1,17 @@
 <template lang="pug">
-nav(
-  :style="{ background: currentRoom.pub != appPub ? pubGradient(currentRoom.pub, 90) : 'none' }"
-)
+nav
   router-link(to="/word")
     i.iconify(data-icon="la:comment-dots")
   router-link(to="/def")
     i.iconify(data-icon="la:comment")
-  router-link(to="/me")
+  router-link(to="/my")
     span(v-if="!user.is?.pub")
       i.iconify(data-icon="la:user-plus")
     author-avatar(v-else, :pub="user.is?.pub", size="small")
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")
-    router-link.user(to="/room", v-if="currentRoom.pub == appPub")
+    router-link.user(to="/room", v-if="state.isRoot")
       i.iconify(data-icon="la:comments")
     router-link(
       :to="{ path: '/room', query: { room: '' } }",
@@ -25,8 +23,7 @@ nav(
 
 <script setup>
 import { user } from "store@user";
-import { appPub, currentRoom } from "model@room";
-import { pubGradient } from "use@colors";
+import { state } from "model@room";
 import { leaveRoom } from "model@room";
 </script>
 

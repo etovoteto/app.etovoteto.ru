@@ -2,8 +2,8 @@
 section
   transition-group(name="list")
     author-card(
-      v-for="author in sorted.list",
-      :key="author.pub",
+      v-for="(author, i) in sorted.list",
+      :key="author.pub || i",
       :pub="author?.pub"
     )
       .count

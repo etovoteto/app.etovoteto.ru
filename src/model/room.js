@@ -1,43 +1,36 @@
 import { roomDb, sea, gun } from 'store@db'
 import { user } from 'store@user'
-import { reactive, ref, watchEffect } from 'vue'
+import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'
 import { generateWords } from '../use/randomWords'
 import { capitalFirst } from './word'
 
+export const roomKey = ref({})
+
 export const appPub =
   'vCHZH0AqZ_QfHXDngLzS69p-Xu7Mn3GJf1ZP4jzaKtE.lC8d78SghL84Eg1KO1u-zzjW_SgHw3cLQOQraerLAHQ'
 
-export const roomKey = ref({})
-export const currentRoom = reactive({
-  pub: appPub,
+export const state = reactive({
+  title: 'ЭТОВОТЭТО!',
+  room: appPub,
+  isRoot: computed(() => {
+    return appPub == state.room
+  }),
 })
-
-export function useRoomCerts(pub = currentRoom.pub) {
-  const roomCerts = reactive({})
-  roomDb
-    .get('~' + pub)
-    .get('cert')
-    .map()
-    .on((d, k) => {
-      roomCerts[k] = d
-    })
-  return roomCerts
-}
 
 roomDb.on('auth', async () => {
   console.info('You entered a room')
 })
 
-export async function enterRoom(pub) {
+export function enterRoom(pub) {
   gun.user().get('currentRoom').put(pub)
-  currentRoom.pub = pub
+  state.room = pub
 }
 
-export async function leaveRoom(pub) {
+export function leaveRoom(pub) {
   gun.user().get('currentRoom').put(appPub)
-  currentRoom.pub = appPub
+  state.room = appPub
 }
 
 export async function createRoom() {
@@ -76,7 +69,19 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
   }
 }
 
-export async function joinRoom(room = currentRoom.pub) {
+export async function joinRoom(room = state.room) {
   gun.user().get('currentRoom').put(room)
   gun.user().get('rooms').get(room).put(Date.now())
+}
+
+export function useRoomCerts(pub = state.room) {
+  const roomCerts = reactive({})
+  roomDb
+    .get('~' + pub)
+    .get('cert')
+    .map()
+    .on((d, k) => {
+      roomCerts[k] = d
+    })
+  return roomCerts
 }

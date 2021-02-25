@@ -1,6 +1,7 @@
 import { reactive, ref } from 'vue'
-import { currentRoom } from 'model@room'
 import { user } from 'store@user'
+import { state } from 'model@room'
+
 export const linking = ref({})
 
 export function unlink() {
@@ -24,12 +25,12 @@ export function link(node, cb) {
 
 export async function linkHashes(from, to) {
   let certificate = await gun
-    .get(`~${currentRoom.pub}`)
+    .get(`~${state.room}`)
     .get('cert')
     .get('link')
     .then()
   gun
-    .get(`~${currentRoom.pub}`)
+    .get(`~${state.room}`)
     .get('link')
     .get(from)
     .get(to)
@@ -39,7 +40,7 @@ export async function linkHashes(from, to) {
       },
     })
   gun
-    .get(`~${currentRoom.pub}`)
+    .get(`~${state.room}`)
     .get('link')
     .get(to)
     .get(from)
@@ -53,7 +54,7 @@ export async function linkHashes(from, to) {
 export function useLinks(hash) {
   const links = reactive({})
   gun
-    .get(`~${currentRoom.pub}`)
+    .get(`~${state.room}`)
     .get('link')
     .get(hash)
     .map()

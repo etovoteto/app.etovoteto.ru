@@ -3,11 +3,12 @@ import { gun, hashObj, roomDb } from 'store@db'
 import { ref, reactive, computed } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { currentRoom } from 'model@room'
+
 import { user } from 'store@user'
 import { linking, link } from 'model@link'
+import { state } from 'model@room'
 
-export function useCount(tag, hashed = true, room = currentRoom?.pub) {
+export function useCount(tag, hashed = true, room = state.room) {
   const counter = reactive({})
   gun
     .get(`~${room}`)
@@ -22,7 +23,7 @@ export function useCount(tag, hashed = true, room = currentRoom?.pub) {
   return count
 }
 
-export function useList(tag = 'word', hashed = true, room = currentRoom.pub) {
+export function useList(tag = 'word', hashed = true, room = state.room) {
   const options = reactive({
     orderBy: 'timestamp',
     search: '',
@@ -81,7 +82,7 @@ export function useList(tag = 'word', hashed = true, room = currentRoom.pub) {
   }
 }
 
-export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
+export async function addHashedPersonal(tag, obj, room = state.room) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
   gun
@@ -92,7 +93,7 @@ export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   link({ hash, tag, ...obj })
 }
 
-export function getHashedPersonal(tag, hash, room = currentRoom.pub) {
+export function getHashedPersonal(tag, hash, room = state.room) {
   const record = reactive({})
   roomDb
     .get(`~${room}`)

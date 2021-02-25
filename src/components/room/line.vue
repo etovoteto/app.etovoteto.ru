@@ -1,13 +1,13 @@
 <template lang="pug">
 .room-line(
-  v-if="currentRoom.pub != appPub",
-  :style="{ background: pubGradient(currentRoom.pub, 90) }"
+  v-if="!state.isRoot",
+  :style="{ background: pubGradient(state.room, 90) }"
 ) 
   button(@click="leaveRoom(); $router.push({ query: { room: '' } })") Leave room
 </template>
 
 <script setup>
-import { currentRoom, appPub, leaveRoom } from "model@room";
+import { leaveRoom, state } from "model@room";
 import { pubGradient } from "use@colors";
 </script>
 

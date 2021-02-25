@@ -1,9 +1,9 @@
 <template lang="pug">
 section.current CURRENT ROOM
 .id(
-  :style="{ background: pubGradient(currentRoom.pub, 90) }",
-  :class="{ my: user.ownRooms[currentRoom.pub] }"
-) {{ currentRoom.pub }}
+  :style="{ background: pubGradient(state.room, 90) }",
+  :class="{ my: user.ownRooms[state.room] }"
+) {{ state.room }}
   .init(v-if="!checkCerts")
     textarea(v-model="pair")
     button(@click="initRoom(JSON.parse(pair))") Init
@@ -11,7 +11,7 @@ section.current CURRENT ROOM
 
 <script setup>
 import { computed, ref } from "vue";
-import { currentRoom, useRoomCerts, initRoom } from "../../model/room";
+import { useRoomCerts, initRoom, state } from "../../model/room";
 import { model } from "../../store/locale";
 import { user } from "../../store/user";
 import { pubGradient } from "../../use/colors";

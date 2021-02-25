@@ -1,13 +1,15 @@
 import { sea } from 'store@db'
 import { user, authUser, logIn } from 'store@user'
 import { gun } from 'store@db'
-import { currentRoom, joinRoom } from 'model@room'
+import { joinRoom } from 'model@room'
 import { reactive, ref } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
+
 import { links } from 'store@locale'
 import { capitalFirst } from './word'
 import { generateWords } from '../use/randomWords'
+import { state } from 'model@room'
 
 export { logIn }
 
@@ -28,7 +30,7 @@ export async function testAuthor(enc) {
   authUser(dec)
 }
 
-export function useAuthors(room = currentRoom.pub) {
+export function useAuthors(room = state.room) {
   const options = reactive({
     orderBy: 'joined',
     search: '',

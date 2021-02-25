@@ -1,7 +1,7 @@
 <template lang="pug">
 main
-  author-me(v-if="user.is?.pub")
-  author-auth(v-else)
+  my-profile(v-if="user.is?.pub")
+  my-auth(v-else)
   author-lists
 </template>
 

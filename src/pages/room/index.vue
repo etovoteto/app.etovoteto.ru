@@ -1,11 +1,11 @@
 <template lang="pug">
 main 
-  room-current(v-if="currentRoom.pub != appPub")
+  room-current(v-if="!state.isRoot")
   room-list
 </template>
 
 <script setup>
-import { appPub, currentRoom } from "../../model/room";
+import { state } from "model@room";
 </script>
 
 <style lang="stylus" scoped></style>

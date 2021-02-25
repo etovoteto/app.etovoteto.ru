@@ -1,19 +1,16 @@
 <template lang="pug">
-header
-  h1 
-    router-link(to="/") ЭТОВОТЭТО
-  app-nav
+app-header
 link-card
 router-view(v-slot="{Component}")
   transition(name="fade")
-    component(:is="Component", :key="currentRoom.pub")
+    component(:is="Component", :key="state.room")
 app-dev
 .auth(v-if="!user.is?.pub")
   author-auth
 </template>
 
 <script setup >
-import { currentRoom } from "./model/room";
+import { state } from "model@room";
 import { user } from "./store/user";
 </script>
 
