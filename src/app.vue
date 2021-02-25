@@ -6,12 +6,22 @@ router-view(v-slot="{Component}")
     component(:is="Component", :key="state.room")
 app-dev
 .auth(v-if="!user.is?.pub")
-  author-auth
+  my-auth
 </template>
 
 <script setup >
 import { state } from "model@room";
-import { user } from "./store/user";
+import { user } from "store@user";
+import { pubGradient } from "use@colors";
+import { watchEffect } from "vue";
+import { useRoute } from "vue-router";
+import { enterRoom } from "./model/room";
+const route = useRoute();
+watchEffect(() => {
+  if (route.query.room) {
+    enterRoom(route.query.room);
+  }
+});
 </script>
 
 <style lang="stylus">

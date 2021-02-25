@@ -3,9 +3,10 @@ router-link.room(
   :to="{ path: '/room/' + pub }",
   :style="{ background: pubGradient(pub, 90) }"
 ) 
-  author-avatar(:pub="room.owner", size="small")
+  author-avatar(:pub="room.host", size="small")
   .title {{ room.title }}
   .spacer
+  room-counters(:pub="pub")
 </template>
 
 <script setup>
@@ -19,7 +20,7 @@ const props = defineProps({
 
 const room = reactive({
   title: "",
-  owner: "",
+  host: "",
 });
 
 gun
@@ -31,7 +32,7 @@ gun
 
 gun
   .get("~" + props.pub)
-  .get("owner")
+  .get("host")
   .on((d) => {
     room.owner = d;
   });
@@ -41,4 +42,7 @@ gun
 .room
   display: flex
   align-items: center
+
+.title
+  font-size: 1.4em
 </style>

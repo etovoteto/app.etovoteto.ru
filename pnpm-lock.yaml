@@ -21,9 +21,9 @@ devDependencies:
   pug: 3.0.0
   stylus: 0.54.8
   vite: 2.0.3
-  vite-plugin-components: 0.6.12_vite@2.0.3
+  vite-plugin-components: 0.7.3_vite@2.0.3
   vite-plugin-purge-icons: 0.7.0_vite@2.0.3
-  vite-plugin-pwa: 0.5.3
+  vite-plugin-pwa: 0.5.4
   vite-plugin-voie: 0.7.3_ac0200be529c02e226dc8530140da528
 lockfileVersion: 5.2
 packages:
@@ -1275,7 +1275,7 @@ packages:
   /@vueuse/core/4.2.2_vue@3.0.6:
     dependencies:
       '@vueuse/shared': 4.2.2_vue@3.0.6
-      vue-demi: 0.6.0_vue@3.0.6
+      vue-demi: 0.6.1_vue@3.0.6
     dev: false
     peerDependencies:
       vue: '*'
@@ -1284,7 +1284,7 @@ packages:
   /@vueuse/router/4.2.2_vue-router@4.0.4+vue@3.0.6:
     dependencies:
       '@vueuse/shared': 4.2.2_vue@3.0.6
-      vue-demi: 0.6.0_vue@3.0.6
+      vue-demi: 0.6.1_vue@3.0.6
       vue-router: 4.0.4_vue@3.0.6
     dev: false
     peerDependencies:
@@ -1294,7 +1294,7 @@ packages:
       integrity: sha512-zO5F6RHWkgMC7f1JMtJQOlSI89yTRHp5SOwBA1RgD+iLLcsKFIcv2AgAiG7MFdQaKV9FeLLCk4GBaualraMPmg==
   /@vueuse/shared/4.2.2_vue@3.0.6:
     dependencies:
-      vue-demi: 0.6.0_vue@3.0.6
+      vue-demi: 0.6.1_vue@3.0.6
     dev: false
     peerDependencies:
       vue: '*'
@@ -2840,7 +2840,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /vite-plugin-components/0.6.12_vite@2.0.3:
+  /vite-plugin-components/0.7.3_vite@2.0.3:
     dependencies:
       chokidar: 3.5.1
       debug: 4.3.2
@@ -2851,7 +2851,7 @@ packages:
     peerDependencies:
       vite: ^2.0.0-beta.69
     resolution:
-      integrity: sha512-KTqUseGaeMPlq6KpvAso0VIAtI7KgZQWHB3JZXlsMYdvoy9nrqRBGQPpTd5/dadfWl3LF3PsuDuxGFzQwXd3Kg==
+      integrity: sha512-OomlwTsyZn8M1xhth7gUxOE2FJZ1v/wn/TQhcJiFCxcsFnxvRiCMleRHzFrJUdRcN0QiM3lTCX3sKRthdOd+9w==
   /vite-plugin-purge-icons/0.7.0_vite@2.0.3:
     dependencies:
       '@purge-icons/core': 0.7.0
@@ -2865,7 +2865,7 @@ packages:
       vite: ^2.0.0-beta.3
     resolution:
       integrity: sha512-oGZUKFAL4waIZIeiCPT5KZvGbBA500AO/03oxW+ODTKUMq+0jbh9s+T8NPzfJQFC1jtE7eUb2ium82IP/gxZjA==
-  /vite-plugin-pwa/0.5.3:
+  /vite-plugin-pwa/0.5.4:
     dependencies:
       debug: 4.3.2
       fast-glob: 3.2.5
@@ -2873,7 +2873,7 @@ packages:
       workbox-build: 6.1.0
     dev: true
     resolution:
-      integrity: sha512-xGh0gIgzczvYNj8ED5HhpJ2iT5kMiieim2qI8kT/3+rfo83hTyuzhEICkljIbhausvOaGxtzLKWE8RS6cUg0Fw==
+      integrity: sha512-Zcr190GixdvvHBS1poTevtuw0irRvRi9rLFdXUbkPyY5hozQ+JhR8i/ORRvl6a9wV6Gl/mVwJ3IaY5IjTf3zFw==
   /vite-plugin-voie/0.7.3_ac0200be529c02e226dc8530140da528:
     dependencies:
       fast-glob: 3.2.5
@@ -2916,7 +2916,7 @@ packages:
       vue: '*'
     resolution:
       integrity: sha512-3oa4wm9tTQEPFdEZychcqCF91PfsEZfvJZ62GoGJf9fpzDF5DnmNZJYQkGxzRbKYUvaIYm37DCd5yDn8btl0eA==
-  /vue-demi/0.6.0_vue@3.0.6:
+  /vue-demi/0.6.1_vue@3.0.6:
     dependencies:
       vue: 3.0.6
     dev: false
@@ -2925,7 +2925,7 @@ packages:
       vue: ^2.6.0 || >=3.0.0-rc.1
     requiresBuild: true
     resolution:
-      integrity: sha512-8GEJa0mHJpYJeGeq5fD1pJct2kfdl30PHfmL1NaJ97mgKPyKojlIRt/3inGBK4Y0ylCI6T5vOo3chwpqDOq/Hw==
+      integrity: sha512-2DI0owOzgEDnEBoXpp0nTBquAWLZqVf/+AOJpPUnviT17unMELEPNy5BdSRnQEz+DA0STtqaz+MZtwhzlDHm5Q==
   /vue-router/4.0.3_vue@3.0.6:
     dependencies:
       vue: 3.0.6
@@ -3185,9 +3185,9 @@ specifiers:
   pug: ^3.0.0
   stylus: ^0.54.8
   vite: ^2.0.3
-  vite-plugin-components: 0.6.12
+  vite-plugin-components: 0.7.3
   vite-plugin-purge-icons: ^0.7.0
-  vite-plugin-pwa: ^0.5.3
+  vite-plugin-pwa: ^0.5.4
   vite-plugin-voie: ^0.7.3
   vue: ^3.0.6
   vue-router: ^4.0.4

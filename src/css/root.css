@@ -1,6 +1,6 @@
 :root {
-  --background: hsla(0, 0%, 95%, 1);
-  --background-alt: hsla(0, 0%, 90%, 1);
+  --background: hsla(0, 0%, 90%, 1);
+  --background-alt: hsla(0, 0%, 98%, 1);
   --card-bg: hsla(0, 0%, 90%, 0.9);
   --top-bar: #ccc;
   --body-padding: 1em;

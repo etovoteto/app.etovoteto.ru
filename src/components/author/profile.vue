@@ -2,7 +2,7 @@
 .profile
   author-avatar(:pub="pub", size="big")
   .name {{ author.name }}
-  .room {{ author.currentRoom }}
+  .room {{ author.room }}
   .enter(v-if="author.test", @click="testAuthor(author.test)")
     i.iconify(data-icon="la:sign-in-alt")
 </template>
@@ -22,8 +22,8 @@ const author = reactive({
 
 const my = gun.get(`~${props.pub}`);
 
-my.get("currentRoom").on((d) => {
-  author.currentRoom = d;
+my.get("room").on((d) => {
+  author.room = d;
 });
 
 my.get("profile")

@@ -44,7 +44,7 @@ export function useList(tag = 'word', hashed = true, room = state.room) {
     .on(function (d, k) {
       timestamps = d['_']['>']
 
-      this.map().on(function (data, key) {
+      this.map().on((data, key) => {
         let hash = key
         let record = data
         let author = key.slice(-87)
@@ -62,6 +62,12 @@ export function useList(tag = 'word', hashed = true, room = state.room) {
         obj[hash].timestamp = timestamps?.[key]
         obj[hash].authors = obj[hash].authors || {}
         obj[hash].authors[author] = true
+        if (tag == 'room') {
+          gun
+            .get('~' + record.pub)
+            .get('title')
+            .once((title) => (obj[hash].title = title))
+        }
       })
     })
 

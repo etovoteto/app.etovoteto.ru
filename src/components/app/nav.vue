@@ -11,19 +11,14 @@ nav
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")
-    router-link.user(to="/room", v-if="state.isRoot")
+    router-link.user(to="/room")
       i.iconify(data-icon="la:comments")
-    router-link(
-      :to="{ path: '/room', query: { room: '' } }",
-      v-else,
-      @click="leaveRoom()"
-    )
-      i.iconify(data-icon="la:sign-out-alt")
 </template>
 
 <script setup>
 import { user } from "store@user";
 import { state } from "model@room";
+
 import { leaveRoom } from "model@room";
 </script>
 

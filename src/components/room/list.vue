@@ -1,8 +1,7 @@
 <template lang="pug">
 .rooms
-  button(@click="createRoom()") Create
   transition-group(name="list")
-    room-card(v-for="room in sorted.list", :key="room", :pub="room.pub") 
+    room-card(v-for="room in sorted.list", :key="room.pub", :pub="room.pub") 
     .more(
       key="more",
       ref="more",
@@ -14,9 +13,15 @@
 <script setup>
 import { pubGradient } from "use@colors";
 import { useList } from "store@list";
-import { createRoom } from "model@room";
+import { createRoom, newRoom } from "model@room";
+import { watchEffect } from "vue";
 
 const { sorted, options, more } = useList("room");
+
+watchEffect(() => {
+  options.main = "title";
+  options.search = newRoom.title;
+});
 </script>
 
 <style lang="stylus" scoped>

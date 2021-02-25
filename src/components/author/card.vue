@@ -36,10 +36,13 @@ my.get("test").once((d) => {
 <style lang="stylus" scoped>
 .card
   display: flex
-  padding: 1em
+  padding: 1em 0
+  margin: 1em 0
+  font-size: 1.4em
+  background-color: var(--background-alt)
+  align-items: center
 
 .enter
-  font-size: 1.2rem
   padding: 2px
   cursor: pointer
 </style>

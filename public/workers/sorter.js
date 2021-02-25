@@ -12,7 +12,9 @@ function sort({ data }) {
 
   if (search) {
     list = list.filter((item) => {
-      return item[main].toLowerCase().includes(search.toLowerCase())
+      if (item[main]) {
+        return item[main].toLowerCase().includes(search.toLowerCase())
+      } else return false
     })
   }
 

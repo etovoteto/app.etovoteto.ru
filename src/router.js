@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from 'voie-pages'
+import { state } from './model/room'
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -14,12 +15,20 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!hasQueryParams(to) && hasQueryParams(from)) {
-    next({ ...to, query: from.query })
+  if (!state.isRoot && !hasQueryParams(to)) {
+    next({ ...to, query: { room: state.room } })
   } else {
     next()
   }
 })
+
+// router.beforeEach((to, from, next) => {
+//   if (!hasQueryParams(to) && hasQueryParams(from)) {
+//     next({ ...to, query: from.query })
+//   } else {
+//     next()
+//   }
+// })
 
 function hasQueryParams(route) {
   return !!Object.keys(route.query).length

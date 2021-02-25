@@ -5,7 +5,7 @@ import { state } from 'model@room'
 export const linking = ref({})
 
 export function unlink() {
-  linking.value = null
+  linking.value = {}
 }
 
 export function isLinking(node) {
@@ -16,7 +16,7 @@ export function link(node, cb) {
   let lnk = linking.value
   if (lnk && lnk.hash && node && node.hash && lnk.tag != node.tag) {
     linkHashes(lnk.hash, node.hash)
-    linking.value = null
+    linking.value = {}
   } else {
     linking.value = node
     if (cb) cb()
