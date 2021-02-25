@@ -1,7 +1,6 @@
 <template lang="pug">
 main
-  room-current(v-if="!state.isRoot")
-  room-create
+  room-form
   room-list
 </template>
 

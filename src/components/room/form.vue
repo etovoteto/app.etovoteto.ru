@@ -1,8 +1,7 @@
 <template lang="pug">
 form(@submit.prevent)
-  .row
-    input(v-model="newRoom.title")
-  button(@click="create()") Создать
+  input(v-model="newRoom.title")
+  button(@click="create()", v-if="newRoom.title.length > 3") Создать
 </template>
 
 <script setup>
@@ -17,4 +16,12 @@ async function create() {
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+form
+  width: 100%
+  display: flex
+  flex-flow: column
+
+  input
+    text-align: center
+</style>

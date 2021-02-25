@@ -1,5 +1,9 @@
 <template lang="pug">
 .list
+  transition(name="fade")
+    .empty(v-if="sorted.total == 0")
+      h2 Слов не найдено
+      h3 Добавьте своё!
   transition-group(name="list") 
     word-card(
       v-for="(word, key) in sorted.list",
@@ -29,4 +33,8 @@ watchEffect(() => {
   display: flex
   flex-flow: column
   align-items: stretch
+
+.empty
+  text-align: center
+  padding: 4em 0
 </style>

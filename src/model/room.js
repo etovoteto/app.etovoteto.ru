@@ -82,6 +82,7 @@ export function initRoom(pair) {
   roomDb.user().auth(pair, async () => {
     roomDb.user().get('host').put(user.is.pub)
     roomDb.user().get('title').put(capitalFirst(newRoom.title))
+    newRoom.title = ''
 
     for (let tag in model) {
       let crt = await issueCert(tag, pair)
