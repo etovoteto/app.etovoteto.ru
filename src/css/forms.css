@@ -11,9 +11,14 @@ textarea {
 }
 
 button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
   border: none;
-  border-radius: 2em;
-  padding: 6px 7px;
+  border-radius: 2rem;
+  padding: 1rem 1rem;
   margin: 0 4px;
   cursor: pointer;
   transition: all 150ms ease;
@@ -22,7 +27,7 @@ button {
 }
 
 button svg {
-  font-size: 1.8em;
+  font-size: 1.4rem;
 }
 
 button:hover {

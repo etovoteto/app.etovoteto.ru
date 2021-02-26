@@ -1,6 +1,10 @@
 <template lang="pug">
 form(@submit.prevent.stop)
-  input(v-model="newWord.word", placeholder="Несуществующее слово")
+  input(
+    ref="input",
+    v-model="newWord.word",
+    placeholder="Несуществующее слово"
+  )
   .new-word(v-if="newWord.word")
     .letter(
       @click="addWord(i)",
@@ -11,6 +15,14 @@ form(@submit.prevent.stop)
 
 <script setup>
 import { addWord, capitalFirst, newWord, vowels, setStress } from "model@word";
+import { ref } from "vue";
+import { onStartTyping } from "@vueuse/core";
+
+const input = ref(null);
+
+onStartTyping(() => {
+  if (!input.value.active) input.value.focus();
+});
 </script>
 
 <style lang="stylus" scoped>

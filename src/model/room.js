@@ -3,9 +3,8 @@ import { user } from 'store@user'
 import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'
-import { generateWords } from '../use/randomWords'
 import { capitalFirst } from './word'
-import { issueCert } from '../use/certs'
+import { issueCert } from 'use@crypto'
 import { useTitle } from '@vueuse/core'
 
 export const roomKey = ref({})

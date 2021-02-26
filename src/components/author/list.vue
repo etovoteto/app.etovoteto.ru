@@ -26,7 +26,7 @@ section
 <script setup>
 import { user } from "store@user";
 import { useList } from "store@list";
-import { useAuthors } from "model@author";
+import { useAuthors } from "model@authors";
 
 const { sorted, options, more } = useAuthors();
 

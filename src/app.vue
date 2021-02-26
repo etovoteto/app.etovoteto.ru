@@ -5,8 +5,9 @@ router-view(v-slot="{Component}")
   transition(name="fade")
     component(:is="Component", :key="state.room")
 app-dev
-.auth(v-if="!user.is?.pub")
-  my-auth
+transition(name="fade")
+  .auth(v-if="!user.is?.pub")
+    my-auth
 </template>
 
 <script setup >

@@ -1,6 +1,7 @@
 <template lang="pug">
 .form
   textarea(
+    ref="input",
     placeholder="Понятие как минимум из двух слов и не короче 10 знаков",
     :rows="3",
     v-model="newDef.def",
@@ -19,6 +20,14 @@
 <script setup>
 import { newDef, isValid, addDef } from "model@def";
 import { parts } from "store@locale";
+import { ref } from "vue";
+import { onStartTyping } from "@vueuse/core";
+
+const input = ref(null);
+
+onStartTyping(() => {
+  if (!input.value.active) input.value.focus();
+});
 </script>
 
 <style lang="stylus" scoped>

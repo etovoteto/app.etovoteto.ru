@@ -1,7 +1,12 @@
 <template lang="pug">
 .rooms
   transition-group(name="list")
-    room-card(v-for="room in sorted.list", :key="room.pub", :pub="room.pub") 
+    room-card(
+      v-for="room in sorted.list",
+      :key="room.pub",
+      :pub="room.pub",
+      :data="room"
+    ) 
     .more(
       key="more",
       ref="more",

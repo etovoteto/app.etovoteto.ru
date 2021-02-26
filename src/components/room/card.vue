@@ -5,7 +5,7 @@ router-link.room(
 ) 
   author-avatar(:pub="room.host", size="small")
   .title {{ room.title }}
-  .spacer
+  .spacer 
   room-counters(:pub="pub")
 </template>
 
@@ -16,6 +16,7 @@ import { pubGradient } from "../../use/colors";
 
 const props = defineProps({
   pub: String,
+  data: Object,
 });
 
 const room = reactive({
