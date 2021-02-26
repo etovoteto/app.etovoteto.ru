@@ -6,7 +6,7 @@
     .spacer
     link-button(:record="record")
   .text {{ capitalFirst(record.def) }}
-  .links(v-if="record != linking")
+  .links(v-if="record != linkFrom")
     transition-group(name="list")
       word-link(
         v-for="(linker, hash) in links",
@@ -20,7 +20,7 @@
 import { defineProps } from "vue";
 import { capitalFirst } from "model@word";
 
-import { useLinks, linking } from "model@link";
+import { useLinks, linkFrom } from "model@link";
 import { parts } from "store@locale";
 
 const props = defineProps({

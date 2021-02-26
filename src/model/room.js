@@ -35,10 +35,11 @@ watchEffect(() => {
 })
 
 export async function enterRoom(pub) {
-  state.title = await gun
+  let title = await gun
     .get('~' + pub)
     .get('title')
     .then()
+  state.title = title || 'Без названия'
   joinRoom(pub)
   authRoom(pub)
 }

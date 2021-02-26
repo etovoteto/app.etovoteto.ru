@@ -19,7 +19,7 @@ gun.user().recall({ sessionStorage: true }, () => {
   logIn()
 })
 
-gun.on('auth', async () => {
+gun.on('auth', () => {
   logIn()
 })
 

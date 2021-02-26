@@ -9,11 +9,14 @@
   .count 
     i.iconify(data-icon="la:link")
     span {{ links / 2 }}
+  .count 
+    i.iconify(data-icon="la:user")
+    span {{ authors }}
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-import { useCount } from "../../store/list";
+import { useCount, countAuthors } from "store@list";
 const props = defineProps({
   pub: String,
 });
@@ -21,6 +24,7 @@ const props = defineProps({
 const words = useCount("word", true, props.pub);
 const defs = useCount("def", true, props.pub);
 const links = useCount("link", false, props.pub);
+const authors = countAuthors(props.pub);
 </script>
 
 <style lang="stylus" scoped>

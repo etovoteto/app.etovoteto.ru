@@ -10,7 +10,7 @@
     .spacer
     link-button(:record="record")
 
-  .links(v-if="record != linking")
+  .links(v-if="record != linkFrom")
     transition-group(name="list")
       def-link(
         v-for="(linker, hash) in links",
@@ -23,7 +23,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { renderWord } from "model@word";
-import { useLinks, linking } from "model@link";
+import { useLinks, linkFrom } from "model@link";
 import { safeHash } from "../../store/db";
 
 const props = defineProps({

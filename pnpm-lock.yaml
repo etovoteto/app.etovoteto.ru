@@ -10,6 +10,7 @@ dependencies:
   markdown-it: 12.0.4
   markdown-it-link-attributes: 3.0.0
   markdown-it-task-lists: 2.1.1
+  qrcode-svg-table: 1.1.2
   vue: 3.0.6
   vue-router: 4.0.4_vue@3.0.6
 devDependencies:
@@ -1012,7 +1013,7 @@ packages:
   /@nodelib/fs.scandir/2.1.4:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
-      run-parallel: 1.1.10
+      run-parallel: 1.2.0
     dev: true
     engines:
       node: '>= 8'
@@ -1027,7 +1028,7 @@ packages:
   /@nodelib/fs.walk/1.2.6:
     dependencies:
       '@nodelib/fs.scandir': 2.1.4
-      fastq: 1.10.1
+      fastq: 1.11.0
     dev: true
     engines:
       node: '>= 8'
@@ -1275,7 +1276,7 @@ packages:
   /@vueuse/core/4.2.2_vue@3.0.6:
     dependencies:
       '@vueuse/shared': 4.2.2_vue@3.0.6
-      vue-demi: 0.6.1_vue@3.0.6
+      vue-demi: 0.6.2_vue@3.0.6
     dev: false
     peerDependencies:
       vue: '*'
@@ -1284,7 +1285,7 @@ packages:
   /@vueuse/router/4.2.2_vue-router@4.0.4+vue@3.0.6:
     dependencies:
       '@vueuse/shared': 4.2.2_vue@3.0.6
-      vue-demi: 0.6.1_vue@3.0.6
+      vue-demi: 0.6.2_vue@3.0.6
       vue-router: 4.0.4_vue@3.0.6
     dev: false
     peerDependencies:
@@ -1294,7 +1295,7 @@ packages:
       integrity: sha512-zO5F6RHWkgMC7f1JMtJQOlSI89yTRHp5SOwBA1RgD+iLLcsKFIcv2AgAiG7MFdQaKV9FeLLCk4GBaualraMPmg==
   /@vueuse/shared/4.2.2_vue@3.0.6:
     dependencies:
-      vue-demi: 0.6.1_vue@3.0.6
+      vue-demi: 0.6.2_vue@3.0.6
     dev: false
     peerDependencies:
       vue: '*'
@@ -1742,12 +1743,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==
-  /fastq/1.10.1:
+  /fastq/1.11.0:
     dependencies:
       reusify: 1.0.4
     dev: true
     resolution:
-      integrity: sha512-AWuv6Ery3pM+dY7LYS8YIaCiQvUaos9OB1RyNgaOWnaX+Tik7Onvcsf8x8c+YtDeT0maYLniBip2hox5KtEXXA==
+      integrity: sha512-7Eczs8gIPDrVzT+EksYBcupqMyxSHXXrHOLRRxU2/DicV8789MRBRR8+Hc2uWzUupOs4YS4JzBmBxjjCVBxD/g==
   /fill-range/7.0.1:
     dependencies:
       to-regex-range: 5.0.1
@@ -2447,6 +2448,15 @@ packages:
     optional: true
     resolution:
       integrity: sha512-wLHYUQxWaXVQvKnwIDWFVKDJku9XDCvyhhxoq8dc5MFdIlRenyPI9eSfEtcvgHgD7FlvCyGAlWgOzRnZD99GZQ==
+  /qrcode-svg-table/1.1.2:
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-ZHokiYRH5LHPTMf2rkQ5mL5OrM+AwuCuy1mlOmr1BUWMYUWle+wO5/mU2EFpzIhYHO6hHez9oGXcHfdSXp01RQ==
+  /queue-microtask/1.2.2:
+    dev: true
+    resolution:
+      integrity: sha512-dB15eXv3p2jDlbOiNLyMabYg1/sXvppd8DP2J3EOCQ0AkuSXCW2tP7mnVouVLJKgUMY6yP0kcQDVpLCN13h4Xg==
   /ramda/0.26.1:
     dev: false
     optional: true
@@ -2561,10 +2571,12 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-VoWt8DysFGDVRGWuHTqZzT02J0ASgjVq/hPs9QcBOGMd7B+jfTr/iqMVEyOi901rE3xq+Deq66GzIT1yt7sGwQ==
-  /run-parallel/1.1.10:
+  /run-parallel/1.2.0:
+    dependencies:
+      queue-microtask: 1.2.2
     dev: true
     resolution:
-      integrity: sha512-zb/1OuZ6flOlH6tQyMPUrE3x3Ulxjlo9WIVXR4yVYi4H9UXQaeIsPbLn2R3O3vQCnDKkAl2qHiuocKKX4Tz/Sw==
+      integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==
   /safe-buffer/5.1.2:
     dev: true
     resolution:
@@ -2916,7 +2928,7 @@ packages:
       vue: '*'
     resolution:
       integrity: sha512-3oa4wm9tTQEPFdEZychcqCF91PfsEZfvJZ62GoGJf9fpzDF5DnmNZJYQkGxzRbKYUvaIYm37DCd5yDn8btl0eA==
-  /vue-demi/0.6.1_vue@3.0.6:
+  /vue-demi/0.6.2_vue@3.0.6:
     dependencies:
       vue: 3.0.6
     dev: false
@@ -2925,7 +2937,7 @@ packages:
       vue: ^2.6.0 || >=3.0.0-rc.1
     requiresBuild: true
     resolution:
-      integrity: sha512-2DI0owOzgEDnEBoXpp0nTBquAWLZqVf/+AOJpPUnviT17unMELEPNy5BdSRnQEz+DA0STtqaz+MZtwhzlDHm5Q==
+      integrity: sha512-4KfwxbqsZcDz7UryD11oHa6FLK9Gzx4MIwAEcP37IbUdXuF6DHg2w9L5Zv5t+FNqsuAjEQ2NnGVIZ3u71y435Q==
   /vue-router/4.0.3_vue@3.0.6:
     dependencies:
       vue: 3.0.6
@@ -3183,6 +3195,7 @@ specifiers:
   markdown-it-link-attributes: ^3.0.0
   markdown-it-task-lists: ^2.1.1
   pug: ^3.0.0
+  qrcode-svg-table: ^1.1.2
   stylus: ^0.54.8
   vite: ^2.0.3
   vite-plugin-components: 0.7.3

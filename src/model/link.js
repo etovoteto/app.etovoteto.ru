@@ -2,23 +2,23 @@ import { reactive, ref } from 'vue'
 import { author } from 'model@author'
 import { state } from 'model@room'
 
-export const linking = ref({})
+export const linkFrom = ref({})
 
 export function unlink() {
-  linking.value = {}
+  linkFrom.value = {}
 }
 
 export function isLinking(node) {
-  return linking.value == node
+  return linkFrom.value == node
 }
 
 export function link(node, cb) {
-  let lnk = linking.value
+  let lnk = linkFrom.value
   if (lnk && lnk.hash && node && node.hash && lnk.tag != node.tag) {
     linkHashes(lnk.hash, node.hash)
-    linking.value = {}
+    linkFrom.value = {}
   } else {
-    linking.value = node
+    linkFrom.value = node
     if (cb) cb()
   }
 }

@@ -5,8 +5,9 @@ import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 
 import { author } from 'model@author'
-import { linking, link } from 'model@link'
+import { linkFrom, link } from 'model@link'
 import { state } from 'model@room'
+import { links } from './locale'
 
 export function useCount(tag, hashed = true, room = state.room) {
   const counter = reactive({})
@@ -17,6 +18,23 @@ export function useCount(tag, hashed = true, room = state.room) {
     .once((d, k) => {
       counter[k] = true
     })
+  const count = computed(() => {
+    return Object.keys(counter).length
+  })
+  return count
+}
+
+export function countAuthors(room = state.room) {
+  const counter = reactive({})
+  Object.keys(links).forEach((tag) => {
+    gun
+      .get(`~${room}`)
+      .get(`#${tag}`)
+      .map()
+      .once((d, k) => {
+        counter[k.slice(-87)] = true
+      })
+  })
   const count = computed(() => {
     return Object.keys(counter).length
   })
