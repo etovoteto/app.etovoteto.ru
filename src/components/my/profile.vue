@@ -1,9 +1,9 @@
 <template lang="pug">
 .profile
   .row
-    author-avatar(:pub="user.is?.pub", size="big")
+    author-avatar(:pub="author.is?.pub", size="big")
     edit-title.name(
-      :title="user.profile.name",
+      :title="author.profile.name",
       :editable="true",
       @update="updateProfile('name', $event)"
     )
@@ -12,10 +12,7 @@
 </template>
 
 <script setup>
-import { user, logOut } from "store@user";
-import { reactive, ref, watchEffect } from "vue";
-import { gun } from "store@db";
-import { downloadPair, updateProfile } from "model@author";
+import { author, downloadPair, updateProfile } from "model@author";
 </script>
 
 <style lang="stylus" scoped>

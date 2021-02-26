@@ -6,17 +6,17 @@ router-view(v-slot="{Component}")
     component(:is="Component", :key="state.room")
 app-dev
 transition(name="fade")
-  .auth(v-if="!user.is?.pub")
+  .auth(v-if="!author.is?.pub")
+    p {{ author }}
     my-auth
 </template>
 
 <script setup >
-import { state } from "model@room";
-import { user } from "store@user";
+import { state, enterRoom } from "model@room";
+import { author } from "model@author";
 import { pubGradient } from "use@colors";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
-import { enterRoom } from "./model/room";
 const route = useRoute();
 watchEffect(() => {
   if (route.query.room) {

@@ -15,8 +15,7 @@ transition(name="fade")
 
 <script setup>
 import { ref } from "vue";
-import { downloadPair } from "../../model/author";
-import { logOut } from "../../store/user";
+import { downloadPair, logOut } from "../../model/author";
 
 const pair = ref();
 

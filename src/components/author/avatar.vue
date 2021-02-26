@@ -14,7 +14,7 @@
 <script setup >
 import { computed, defineProps, ref, watchEffect } from "vue";
 import { useAvatar } from "use@avatar";
-import { user } from "store@user";
+import { author } from "model@author";
 import { pubGradient } from "use@colors";
 
 const props = defineProps({
@@ -27,7 +27,7 @@ const props = defineProps({
 
 const pic = ref("");
 const current = computed(
-  () => props.pub == user.is?.pub || props.size == "nano"
+  () => props.pub == author.is?.pub || props.size == "nano"
 );
 
 watchEffect(() => {

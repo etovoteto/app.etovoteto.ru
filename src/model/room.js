@@ -1,5 +1,5 @@
 import { roomDb, sea, gun } from 'store@db'
-import { user } from 'store@user'
+import { author } from 'model@author'
 import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'
@@ -79,7 +79,7 @@ export async function createRoom() {
 
 export function initRoom(pair) {
   roomDb.user().auth(pair, async () => {
-    roomDb.user().get('host').put(user.is.pub)
+    roomDb.user().get('host').put(author.is.pub)
     roomDb.user().get('title').put(capitalFirst(newRoom.title))
     newRoom.title = ''
 

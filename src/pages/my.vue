@@ -1,12 +1,12 @@
 <template lang="pug">
 main
-  my-profile(v-if="user.is?.pub")
+  my-profile(v-if="author.is?.pub")
   my-auth(v-else)
   author-lists
 </template>
 
 <script setup>
-import { user } from "store@user";
+import { author } from "model@author";
 </script>
 
 <style lang="stylus" scoped></style>

@@ -1,5 +1,5 @@
 import { reactive, ref } from 'vue'
-import { user } from 'store@user'
+import { author } from 'model@author'
 import { state } from 'model@room'
 
 export const linking = ref({})
@@ -34,7 +34,7 @@ export async function linkHashes(from, to) {
     .get('link')
     .get(from)
     .get(to)
-    .put(user.is.pub, null, {
+    .put(author.is.pub, null, {
       opt: {
         cert: certificate,
       },
@@ -44,7 +44,7 @@ export async function linkHashes(from, to) {
     .get('link')
     .get(to)
     .get(from)
-    .put(user.is.pub, null, {
+    .put(author.is.pub, null, {
       opt: {
         cert: certificate,
       },

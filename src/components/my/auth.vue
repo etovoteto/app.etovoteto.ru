@@ -20,7 +20,7 @@ form(@submit.prevent.stop)
 </template>
 
 <script setup>
-import { generate, logIn, participate } from "model@author";
+import { generate, participate } from "model@author";
 import { ref } from "vue";
 
 const cont = ref(false);
