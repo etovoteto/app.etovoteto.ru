@@ -8,7 +8,7 @@
       :list="author"
     )
 
-    .more(
+    .text-2xl.p-8.bg-warm-gray-300(
       key="more",
       ref="more",
       v-if="sorted.more",
@@ -20,11 +20,6 @@
 import { useAuthors } from "model@authors";
 
 const { sorted, options, more } = useAuthors();
-
-function count(list) {
-  if (!list) return 0;
-  return Object.keys(list).length;
-}
 </script>
 
 <style lang="stylus" scoped></style>

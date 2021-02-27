@@ -1,6 +1,5 @@
 <template lang="pug">
 .list
-  loader(v-if="sorted.total == 0")
   transition-group(name="list") 
     word-card(
       v-for="(word, key) in sorted.list",
