@@ -26,23 +26,6 @@ watchEffect(() => {
 </script>
 
 <style lang="stylus">
-main
-  display: flex
-  flex-flow: column
-  justify-content: center
-  background-color: var(--background)
-
-header
-  background-color: var(--top-bar)
-  width: 100%
-  display: flex
-  flex-flow: column
-  align-items: center
-
-h1
-  text-align: center
-  margin: 2em 0 1em 0
-
 .auth
   position: fixed
   top: 0
@@ -53,8 +36,4 @@ h1
   display: flex
   flex-flow: column
   align-items: center
-
-  form
-    max-width: 55ch
-    margin: 10em
 </style>

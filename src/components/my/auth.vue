@@ -61,6 +61,7 @@ function parseJSON(json) {
 <style lang="stylus" scoped>
 form
   display: flex
+  max-width: 55ch
   flex-flow: column
 
 .action

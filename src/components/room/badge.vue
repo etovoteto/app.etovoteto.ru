@@ -1,5 +1,5 @@
 <template lang="pug">
-router-link.badge(
+router-link.p-4.m-2(
   :to="'/room/' + pub",
   :style="{ background: pubGradient(pub, 90) }"
 ) {{ title || pub }}
@@ -23,8 +23,4 @@ roomDb.get("title").on((d, k) => {
 });
 </script>
 
-<style lang="stylus" scoped>
-.badge
-  padding: 0.5em
-  margin: 2px
-</style>
+<style lang="stylus" scoped></style>

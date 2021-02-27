@@ -1,16 +1,13 @@
 <template lang="pug">
 .list
-  transition(name="fade")
-    .empty(v-if="sorted.total == 0")
-      h2 Слов не найдено
-      h3 Добавьте своё!
+  loader(v-if="sorted.total == 0")
   transition-group(name="list") 
     word-card(
       v-for="(word, key) in sorted.list",
       :key="word.timestamp",
       :record="word"
     )
-    .more(
+    .text-2xl.p-8.bg-warm-gray-300(
       key="more",
       ref="more",
       v-if="sorted.more",
@@ -28,13 +25,4 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="stylus" scoped>
-.list
-  display: flex
-  flex-flow: column
-  align-items: stretch
-
-.empty
-  text-align: center
-  padding: 4em 0
-</style>
+<style lang="stylus" scoped></style>

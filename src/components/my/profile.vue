@@ -1,20 +1,20 @@
 <template lang="pug">
-.profile
+.flex.flex-wrap
   aside
     author-avatar(:pub="account.is?.pub", size="big")
     my-credentials
-  .info
-    edit-title.name(
+  .p-6
+    edit-title.text-2xl.font-bold(
       :title="account.profile.name",
       :editable="true",
       @update="updateProfile('name', $event)"
     )
-    edit-title.real(
+    edit-title(
       :title="account.profile.real",
       :editable="true",
       @update="updateProfile('real', $event)"
     )
-    edit-subtitle.real(
+    edit-subtitle(
       :subtitle="account.profile.bio",
       :editable="true",
       @update="updateProfile('bio', $event)"
@@ -25,20 +25,4 @@
 import { account, downloadPair, updateProfile } from "model@author";
 </script>
 
-<style lang="stylus" scoped>
-.profile
-  display: flex
-  flex-flow: row wrap
-
-.row, .name
-  display: flex
-  flex-flow: column
-  align-items: center
-
-.name
-  font-size: 1.6em
-
-.rooms
-  display: flex
-  flex-flow: column
-</style>
+<style lang="stylus" scoped></style>

@@ -1,20 +1,13 @@
 <template lang="pug">
-section
+.flex.flex-col
   transition-group(name="list")
     author-card(
       v-for="(author, i) in sorted.list",
       :key="author.pub || i",
-      :pub="author?.pub"
+      :pub="author?.pub",
+      :list="author"
     )
-      .count
-        i.iconify(data-icon="la:comment-dots")
-        span {{ count(author.word) }}
-      .count 
-        i.iconify(data-icon="la:comment")
-        span {{ count(author.def) }}
-      .count 
-        i.iconify(data-icon="la:link")
-        span {{ count(author.link) / 2 }}
+
     .more(
       key="more",
       ref="more",
@@ -34,13 +27,4 @@ function count(list) {
 }
 </script>
 
-<style lang="stylus" scoped>
-section
-  width: 100%
-  display: flex
-  flex-flow: column
-  max-width: 55ch
-
-.count
-  padding: 0 1em
-</style>
+<style lang="stylus" scoped></style>

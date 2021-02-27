@@ -1,15 +1,15 @@
 <template lang="pug">
-header(
+header.w-full.flex.flex-col.items-center(
   :style="{ background: !state.isRoot ? pubGradient(state.room, 90) : 'var(--top-bar)' }"
 )
-  h1 
+  h1.text-3xl.mt-20.mb-4
     router-link(:to="link") {{ state.title }}
-    router-link(
-      v-if="!state.isRoot",
-      :to="{ path: '/room', query: { room: '' } }",
-      @click="leaveRoom()"
-    )
-      i.iconify(data-icon="la:sign-out-alt")
+  router-link.absolute.top-4.right-4.text-3xl(
+    v-if="!state.isRoot",
+    :to="{ path: '/room', query: { room: '' } }",
+    @click="leaveRoom()"
+  )
+    i.iconify(data-icon="la:times")
   app-nav
   app-dev
 </template>
@@ -28,15 +28,4 @@ const link = computed(() => {
 });
 </script>
 
-<style lang="stylus" scoped>
-header
-  background-color: var(--top-bar)
-  width: 100%
-  display: flex
-  flex-flow: column
-  align-items: center
-
-h1
-  text-align: center
-  margin: 2em 0 1em 0
-</style>
+<style lang="stylus" scoped></style>

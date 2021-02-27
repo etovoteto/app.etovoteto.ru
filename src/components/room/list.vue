@@ -1,5 +1,5 @@
 <template lang="pug">
-.rooms
+.flex.flex-col
   transition-group(name="list")
     room-card(
       v-for="room in sorted.list",
@@ -7,7 +7,7 @@
       :pub="room.pub",
       :data="room"
     ) 
-    .more(
+    .text-2xl.p-8.bg-warm-gray-300(
       key="more",
       ref="more",
       v-if="sorted.more",
@@ -29,16 +29,4 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="stylus" scoped>
-.rooms
-  padding: 0
-  display: flex
-  flex-flow: column
-
-  > div
-    padding: 1em
-
-  .room
-    padding: 1em
-    margin: 0.5em 0
-</style>
+<style lang="stylus" scoped></style>

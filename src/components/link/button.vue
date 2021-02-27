@@ -1,10 +1,10 @@
 <template lang="pug">
-button.link(
+.link(
   v-if="!isLinking(record)",
   @click="link(record, () => { $router.push('/' + links[record.tag]); })"
 ) 
   i.iconify(data-icon="la:link")
-button.link(v-else, @click="unlink()")
+.link(v-else, @click="unlink()")
   i.iconify(data-icon="la:unlink")
 </template>
 
@@ -18,4 +18,8 @@ const props = defineProps({
 });
 </script>
 
-<style lang="stylus" scoped></style>
+<style  scoped>
+.link {
+  @apply text-xl bg-warm-gray-300 rounded-full py-1 px-2 hover:bg-warm-gray-200 cursor-pointer transition-colors;
+}
+</style>

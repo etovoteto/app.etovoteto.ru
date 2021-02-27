@@ -1,6 +1,9 @@
 <template lang="pug">
 .page
-  .enter(v-if="test", @click="testAuthor(test)")
+  .absolute.top-4.left-4.text-3xl.cursor-pointer(
+    v-if="test",
+    @click="testAuthor(test)"
+  )
     i.iconify(data-icon="la:sign-in-alt")
   author-profile(:pub="pub")
 </template>
@@ -23,12 +26,4 @@ gun
   });
 </script>
 
-<style lang="stylus" scoped>
-.enter
-  font-size: 2rem
-  padding: 2px
-  cursor: pointer
-  position: fixed
-  top: 1em
-  left: 1em
-</style>
+<style lang="stylus" scoped></style>

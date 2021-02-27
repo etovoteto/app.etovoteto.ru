@@ -1,8 +1,8 @@
 <template lang="pug">
-.profile
+.flex.flex-col.items-center
   author-avatar(:pub="pub", size="big")
-  h1.name {{ author.name }}
-  h2.real {{ author.real }}
+  .text-3xl.font-bold.my-2 {{ author.name }}
+  .text-xl.my-2 {{ author.real }}
 </template>
 
 <script setup>
@@ -28,13 +28,4 @@ my.get("profile")
   .on((d, k) => (author[k] = d));
 </script>
 
-<style lang="stylus" scoped>
-.profile
-  display: flex
-  flex-flow: column
-  align-items: center
-  padding: 1em
-
-  h1, h2
-    margin: 0.5em
-</style>
+<style lang="stylus" scoped></style>

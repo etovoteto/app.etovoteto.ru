@@ -4,6 +4,7 @@ import PurgeIcons from 'vite-plugin-purge-icons'
 import vue from '@vitejs/plugin-vue'
 // import { VitePWA } from 'vite-plugin-pwa'
 import alias from '@rollup/plugin-alias'
+import WindiCSS, { PugTransformer } from 'vite-plugin-windicss'
 
 const moduleExclude = (match) => {
   const m = (id) => id.indexOf(match) > -1
@@ -42,6 +43,13 @@ export default {
     ],
   },
   plugins: [
+    WindiCSS({
+      scan: {
+        transformers: [
+          PugTransformer(), // <--
+        ],
+      },
+    }),
     moduleExclude('text-encoding'),
     // VitePWA({
     //   manifest: {

@@ -73,3 +73,7 @@ html {
     max-width: 55ch;
   }
 }
+
+#app img {
+  max-width: none;
+}

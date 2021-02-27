@@ -1,16 +1,16 @@
 <template lang="pug">
-.buttons
+.flex.flex-col.items-center
   button(@click="showPair()") 
     i.iconify(data-icon="la:key")
     .title Показать ключ
+  transition(name="fade")
+    textarea.key(rows="6", v-if="pair", :value="pair") 
   button(@click="downloadPair()") 
     i.iconify(data-icon="la:download")
     .title Скачать ключ
   button(@click="logOut()") 
     i.iconify(data-icon="la:sign-out-alt")
     .title Выйти
-transition(name="fade")
-  textarea.key(v-if="pair", :value="pair") 
 </template>
 
 <script setup>
@@ -28,12 +28,8 @@ function showPair() {
 }
 </script>
 
-<style lang="stylus" scoped>
-.buttons
-  display: flex
-  flex-flow: column
-  align-items: center
-
-  button
-    margin: 0.2em
+<style  scoped>
+button {
+  @apply my-1 py-2 px-3 bg-warm-gray-300;
+}
 </style>

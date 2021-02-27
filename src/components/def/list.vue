@@ -1,8 +1,8 @@
 <template lang="pug">
-.list 
+.list
   transition-group(name="list")
     def-card(v-for="(def, key) in sorted.list", :key="def.hash", :record="def") 
-    .more(
+    .more.text-2xl.p-8.bg-warm-gray-300(
       key="more",
       ref="more",
       v-if="sorted.more",
@@ -17,13 +17,4 @@ import { newDef } from "model@def";
 const { sorted, options, more } = useList("def");
 </script>
 
-<style lang="stylus" scoped>
-.list
-  display: flex
-  flex-flow: column
-
-  .more
-    font-size: 2em
-    padding: 3em
-    background-color: var(--top-bar)
-</style>
+<style lang="stylus" scoped></style>

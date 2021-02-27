@@ -1,11 +1,13 @@
 <template lang="pug">
-.row(v-if="record.data")
-  .content
-    .part(:style="{ textDecorationStyle: parts[record.data.part].underline }") {{ parts[record.data.part].name }}.
+.pt-4(v-if="record.data")
+  .flex.items-center
+    .part.undeline(
+      :style="{ textDecorationStyle: parts[record.data.part].underline }"
+    ) {{ parts[record.data.part].name }}.
     author-dots(:authors="record.authors")
     .spacer
     author-avatar(:pub="linker", size="nano")
-  .text {{ capitalFirst(record.data.def) }}
+  .text-lg {{ capitalFirst(record.data.def) }}
 </template>
 
 <script setup>
@@ -22,20 +24,4 @@ const props = defineProps({
 const { record } = getHashedPersonal("def", props.hash);
 </script>
 
-<style lang="stylus" scoped>
-.row
-  padding: 1em 0 0 0
-  margin: 0
-
-  .content
-    color: var(--text-light)
-    display: flex
-    align-items: center
-    flex-flow: row
-
-  .part
-    text-decoration: underline
-
-  .text
-    font-size: 1.2em
-</style>
+<style lang="stylus" scoped></style>

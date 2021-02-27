@@ -1,5 +1,5 @@
 <template lang="pug">
-.count {{ count }}
+.p-4 {{ count }}
 </template>
 
 <script setup>

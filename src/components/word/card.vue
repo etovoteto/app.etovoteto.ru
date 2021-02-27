@@ -1,7 +1,7 @@
 <template lang="pug">
-.card
-  .content
-    router-link.word(
+.my-4.p-6.bg-warm-gray-50
+  .flex
+    router-link.font-bold.text-2xl(
       :to="'/word/' + safeHash(record.hash)",
       :title="record.timestamp"
     )
@@ -32,23 +32,4 @@ const props = defineProps({
 const { links } = useLinks(props.record.hash);
 </script>
 
-<style lang="stylus" scoped>
-.card
-  padding: 2em
-  margin: 1em
-  display: flex
-  flex-flow: row wrap
-  align-items: center
-  background-color: var(--background-alt)
-
-  .content
-    width: 100%
-    color: var(--text-light)
-    display: flex
-    align-items: center
-    flex-flow: row
-
-.word
-  font-size: 1.7em
-  font-weight: bold
-</style>
+<style lang="stylus" scoped></style>

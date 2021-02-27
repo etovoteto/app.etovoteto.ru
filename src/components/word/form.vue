@@ -1,12 +1,14 @@
 <template lang="pug">
-form(@submit.prevent.stop)
-  input(
+form.flex.flex-col(@submit.prevent.stop)
+  input.p-6.text-center.text-xl(
     ref="input",
     v-model="newWord.word",
     placeholder="Несуществующее слово"
   )
-  .new-word(v-if="newWord.word")
-    .letter(
+  .flex.flex-wrap.text-4xl.justify-center.font-bold.select-none(
+    v-if="newWord.word"
+  )
+    .letter.m-1.p-1(
       @click="addWord(i)",
       v-for="(letter, i) in capitalFirst(newWord.word).slice('')",
       :class="{ vowel: vowels.includes(letter) }"
@@ -26,45 +28,19 @@ onStartTyping(() => {
 </script>
 
 <style lang="stylus" scoped>
-form
-  display: flex
-  flex-flow: column
+.letter
+  opacity: 0.8
+  cursor: default
 
-input
-  font-size: 1.6rem
-  text-align: center
+.vowel
+  cursor: pointer
+  opacity: 0.9
+  text-decoration: underline
 
-.new-word
-  display: flex
-  flex-flow: row wrap
-  font-size: 3em
-  justify-content: center
-  user-select: none
-  align-items: center
-  font-weight: bold
+  &:hover
+    opacity: 1
 
-  .letter
-    margin: 2px
-    padding: 4px
-    opacity: 0.8
-    cursor: default
-    position: relative
-
-  .stress
-    position: absolute
-    top: 0
-    opacity: 0
-    transition: all 300ms ease-in-out
-
-  .vowel
-    cursor: pointer
-    opacity: 0.9
-    text-decoration: underline
-
-    &:hover
-      opacity: 1
-
-      &::before
-        content: '´'
-        position: absolute
+    &::before
+      content: '´'
+      position: absolute
 </style>

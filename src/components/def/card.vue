@@ -1,11 +1,11 @@
 <template lang="pug">
-.card
-  .content 
+.flex.flex-col.p-6.my-4.bg-warm-gray-50
+  .flex.items-center
     .info {{ parts[record.part].name }}.
     author-dots(:authors="record.authors")
     .spacer
     link-button(:record="record")
-  .text {{ capitalFirst(record.def) }}
+  .text-lg {{ capitalFirst(record.def) }}
   .links(v-if="record != linkFrom")
     transition-group(name="list")
       word-link(
@@ -29,22 +29,4 @@ const props = defineProps({
 const { links } = useLinks(props.record.hash);
 </script>
 
-<style lang="stylus" scoped>
-.card
-  padding: 0.5em 1rem
-  display: flex
-  flex-flow: column
-  padding: 1em
-  margin: 1em 0
-  background-color: var(--background-alt)
-
-  .content
-    width: 100%
-    color: var(--text-light)
-    display: flex
-    align-items: center
-    flex-flow: row
-
-  .text
-    font-size: 1.2em
-</style>
+<style lang="stylus" scoped></style>

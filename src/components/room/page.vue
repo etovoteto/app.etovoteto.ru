@@ -1,12 +1,15 @@
 <template lang="pug">
 main
-  .head(:style="{ background: pubGradient(pub, 90) }") 
+  .p-6.text-xl(:style="{ background: pubGradient(pub, 90) }") 
     edit-title(
       :title="room.title",
       @update="updateRoomTitle()",
       :editable="true"
     )
-    button(v-if="state.room != pub", @click="enterRoom(pub)") Войти
+    button.bg-warm-gray-300.py-2.px-4(
+      v-if="state.room != pub",
+      @click="enterRoom(pub)"
+    ) Войти
   room-counters(:pub="pub")
 </template>
 

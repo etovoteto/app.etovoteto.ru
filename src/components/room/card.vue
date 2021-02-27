@@ -1,11 +1,10 @@
 <template lang="pug">
-router-link.room(
+router-link.p-4.my-2.flex.flex-col.items-center(
   :to="{ path: '/room/' + pub }",
   :style="{ background: pubGradient(pub, 90) }"
 ) 
   author-avatar(:pub="room.host", size="small")
-  .title {{ room.title }}
-  .spacer 
+  .text-2xl {{ room.title }}
   room-counters(:pub="pub")
 </template>
 
@@ -35,15 +34,8 @@ gun
   .get("~" + props.pub)
   .get("host")
   .on((d) => {
-    room.owner = d;
+    room.host = d;
   });
 </script>
 
-<style lang="stylus" scoped>
-.room
-  display: flex
-  align-items: center
-
-.title
-  font-size: 1.4em
-</style>
+<style lang="stylus" scoped></style>

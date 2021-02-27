@@ -1,5 +1,5 @@
 <template lang="pug">
-main(:key="account.is")
+main.container(:key="account.is")
   my-profile(v-if="account.is?.pub")
   my-auth(v-else)
   author-lists

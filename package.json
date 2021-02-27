@@ -47,6 +47,7 @@
     "vite-plugin-components": "0.7.3",
     "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-pwa": "^0.5.4",
-    "vite-plugin-voie": "^0.7.3"
+    "vite-plugin-voie": "^0.7.3",
+    "vite-plugin-windicss": "^0.6.0"
   }
 }

@@ -1,5 +1,5 @@
 <template lang="pug">
-nav
+nav.flex.items-center.text-3xl
   router-link(to="/word")
     i.iconify(data-icon="la:comment-dots")
   router-link(to="/def")
@@ -21,14 +21,9 @@ import { leaveRoom, state } from "model@room";
 </script>
 
 <style lang="stylus" scoped>
-nav
-  display: flex
-  align-items: center
-  font-size: 2em
+a
+  padding: 4px 0.5em
 
-  a
-    padding: 4px 0.5em
-
-  .router-link-active
-    background-color: var(--bar-color)
+.router-link-active
+  background-color: var(--bar-color)
 </style>

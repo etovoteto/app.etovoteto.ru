@@ -1,5 +1,5 @@
 <template lang="pug">
-.counts
+.flex.justify-center.text-2xl.py-4
   .count
     i.iconify(data-icon="la:comment-dots")
     span {{ words }}
@@ -28,12 +28,9 @@ const authors = countAuthors(props.pub);
 </script>
 
 <style lang="stylus" scoped>
-.counts
-  padding: 1em 0
-  display: flex
-  font-size: 1.4em
-  justify-content: center
-
 .count
-  padding: 0 1em
+  padding: 0 0.5rem
+
+  span
+    padding: 0 0.25rem
 </style>

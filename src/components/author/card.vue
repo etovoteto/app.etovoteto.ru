@@ -1,9 +1,21 @@
 <template lang="pug">
-router-link.card(:to="'/author/' + pub")
-  author-avatar(:pub="pub", size="small")
-  .name {{ author.name }}
-  .spacer
-  slot
+router-link.flex.flex-wrap.justify-start.py-6.px-2.my-2.text-xl.items-center.bg-warm-gray-50(
+  :to="'/author/' + pub"
+)
+  .flex.items-center.justify-start.flex-grow
+    author-avatar(:pub="pub", size="small")
+    .name {{ author.name }}
+
+  .flex.px-4.justify-start
+    .p-2
+      i.iconify(data-icon="la:comment-dots")
+      span {{ count(list.word) }}
+    .p-2 
+      i.iconify(data-icon="la:comment")
+      span {{ count(list.def) }}
+    .p-2
+      i.iconify(data-icon="la:link")
+      span {{ count(list.link) / 2 }}
 </template>
 
 <script setup>
@@ -13,8 +25,13 @@ import { testAuthor } from "model@author";
 
 const props = defineProps({
   pub: String,
-  author: Object,
+  list: Object,
 });
+
+function count(list) {
+  if (!list) return 0;
+  return Object.keys(list).length;
+}
 
 const author = reactive({
   name: "",
@@ -33,16 +50,4 @@ my.get("test").once((d) => {
 });
 </script>
 
-<style lang="stylus" scoped>
-.card
-  display: flex
-  padding: 1em 0
-  margin: 1em 0
-  font-size: 1.4em
-  background-color: var(--background-alt)
-  align-items: center
-
-.enter
-  padding: 2px
-  cursor: pointer
-</style>
+<style lang="stylus" scoped></style>

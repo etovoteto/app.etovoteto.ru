@@ -1,6 +1,6 @@
 <template lang="pug">
-.form
-  textarea(
+.flex.flex-col
+  textarea.text-xl.p-6(
     ref="input",
     placeholder="Понятие как минимум из двух слов и не короче 10 знаков",
     :rows="3",
@@ -8,8 +8,8 @@
     :class="{ valid: isValid }"
   )
   transition(name="fade")
-    .parts(v-if="isValid")
-      .part(
+    .flex.flex-wrap(v-if="isValid")
+      .part.m-2.py-6.text-2xl.underline.text-center.cursor-pointer.transition-colors.bg-warm-gray-50(
         v-for="(part, key) in parts",
         :key="key",
         @click="addDef(key)",
@@ -31,35 +31,12 @@ onStartTyping(() => {
 </script>
 
 <style lang="stylus" scoped>
-.form
-  position: relative
-  display: flex
-  flex-flow: column
-  margin: 1em 0
-
-textarea
-  font-size: 1.2rem
-  margin: 0
-  text-align: left
-
 .valid
   border: solid 1px green
 
-.parts
-  display: flex
-  flex-flow: row wrap
+.part
+  flex: 1 1 4em
 
-  .part
-    text-decoration: underline
-    padding: 1em 0
-    margin: 4px
-    font-size: 1.5rem
-    flex: 1 1 4em
-    text-align: center
-    transition: all 300ms ease-in-out
-    cursor: pointer
-    background-color: var(--background-alt)
-
-    &:hover
-      background-color: var(--top-bar)
+  &:hover
+    background-color: var(--top-bar)
 </style>

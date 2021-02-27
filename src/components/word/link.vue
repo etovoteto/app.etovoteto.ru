@@ -1,6 +1,6 @@
 <template lang="pug">
-.row(v-if="record.data")
-  .word
+.row.pt-2.flex.items-center(v-if="record.data")
+  .text-xl.font-bold
     span(
       v-if="record",
       v-html="renderWord(record.data.word, record.data.stress)"
@@ -24,15 +24,6 @@ const { record } = getHashedPersonal("word", props.hash);
 </script>
 
 <style lang="stylus" scoped>
-.row
-  padding: 1em 0
-  margin: 0
-  width: 100%
-  color: var(--text-light)
-  display: flex
-  align-items: center
-  flex-flow: row
-
 .word
   font-size: 1.4em
   font-weight: bold

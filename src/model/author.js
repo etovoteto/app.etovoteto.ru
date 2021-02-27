@@ -17,6 +17,8 @@ export const account = reactive({
   },
 })
 
+export const search = ref('')
+
 gun.user().recall({ sessionStorage: true }, () => {
   logIn()
 })

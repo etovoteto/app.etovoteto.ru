@@ -1,14 +1,15 @@
 <template lang="pug">
-form(@submit.prevent)
-  input(v-model="newRoom.title")
-  button(@click="create()", v-if="newRoom.title.length > 3") Создать
+form.flex.flex-col(@submit.prevent)
+  input.p-4.mb-4.text-center.text-xl(v-model="newRoom.title")
+  button.p-4.rounded-full.bg-warm-gray-300(
+    @click="create()",
+    v-if="newRoom.title.length > 3"
+  ) Создать
 </template>
 
 <script setup>
 import { createRoom, newRoom } from "model@room";
-import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import { generateWords } from "../../use/randomWords";
 const router = useRouter();
 async function create() {
   const roomPub = await createRoom();
@@ -16,12 +17,4 @@ async function create() {
 }
 </script>
 
-<style lang="stylus" scoped>
-form
-  width: 100%
-  display: flex
-  flex-flow: column
-
-  input
-    text-align: center
-</style>
+<style lang="stylus" scoped></style>
