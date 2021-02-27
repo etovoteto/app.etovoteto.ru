@@ -4,7 +4,7 @@ import { ref, reactive, computed } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 
-import { author } from 'model@author'
+import { account } from 'model@author'
 import { linkFrom, link } from 'model@link'
 import { state } from 'model@room'
 import { links } from './locale'
@@ -112,7 +112,7 @@ export async function addHashedPersonal(tag, obj, room = state.room) {
   gun
     .get(`~${room}`)
     .get(`#${tag}`)
-    .get(`${hash}#${author.is.pub}`)
+    .get(`${hash}#${account.is.pub}`)
     .put(text, null, { opt: { cert: certificate } })
   link({ hash, tag, ...obj })
 }

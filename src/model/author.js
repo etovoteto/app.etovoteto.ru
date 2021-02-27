@@ -3,16 +3,18 @@ import { joinRoom } from 'model@room'
 import { reactive, ref } from 'vue'
 import { capitalFirst } from './word'
 import { generateWords } from '../use/randomWords'
-import { state } from 'model@room'
 import { downloadText } from '../use/loader'
 
-export const author = reactive({
+export const account = reactive({
   is: null,
   profile: {
     name: '',
   },
-  ownRooms: {},
-  room: '',
+  room: {
+    current: '',
+    host: {},
+    fav: {},
+  },
 })
 
 gun.user().recall({ sessionStorage: true }, () => {
@@ -24,9 +26,9 @@ gun.on('auth', () => {
 })
 
 function logIn() {
-  author.is = gun.user().is
-  console.info('Logged in as ', author.is.pub)
-  loadProfile(author.is.pub)
+  account.is = gun.user().is
+  console.info('Logged in as ', account.is.pub)
+  loadProfile(account.is.pub)
 }
 
 export async function generate() {
@@ -56,14 +58,15 @@ export function loadProfile(pub) {
     .get('profile')
     .map()
     .on((data, key) => {
-      author.profile[key] = data
+      account.profile[key] = data
     })
   gun
     .user()
-    .get('ownRooms')
+    .get('room')
+    .get('host')
     .map()
     .once((d, k) => {
-      author.ownRooms[k] = d
+      account.room.host[k] = d
     })
 }
 
@@ -80,7 +83,7 @@ export function downloadPair() {
   downloadText(
     pair,
     'application/json',
-    author.profile.name + '@etovoteto.json',
+    account.profile.name + '@etovoteto.json',
   )
 }
 
@@ -91,11 +94,13 @@ export async function testAuthor(enc) {
 }
 
 export function logOut() {
-  let is = !!author.is?.pub
+  let is = !!account.is?.pub
   gun.user().leave()
   setTimeout(() => {
     if (is && !gun.user()._?.sea) {
-      author.is = null
+      account.is = null
+      account.profile = {}
+      account.room = { current: '', host: {}, fav: {} }
       console.info('User logged out')
     }
   }, 300)

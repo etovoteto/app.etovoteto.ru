@@ -5,9 +5,9 @@ nav
   router-link(to="/def")
     i.iconify(data-icon="la:comment")
   router-link(to="/my")
-    span(v-if="!author.is?.pub")
+    span(v-if="!account.is?.pub")
       i.iconify(data-icon="la:user-plus")
-    author-avatar(v-else, :pub="author.is?.pub", size="small")
+    author-avatar(v-else, :pub="account.is?.pub", size="small")
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")
@@ -16,7 +16,7 @@ nav
 </template>
 
 <script setup>
-import { author } from "model@author";
+import { account } from "model@author";
 import { leaveRoom, state } from "model@room";
 </script>
 

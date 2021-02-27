@@ -11,8 +11,8 @@ router-link.room(
 
 <script setup>
 import { defineProps, reactive } from "vue";
-import { gun } from "../../store/db";
-import { pubGradient } from "../../use/colors";
+import { gun } from "store@db";
+import { pubGradient } from "use@colors";
 
 const props = defineProps({
   pub: String,

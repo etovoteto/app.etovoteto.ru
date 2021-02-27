@@ -1,24 +1,34 @@
 <template lang="pug">
 .profile
-  .row
-    author-avatar(:pub="author.is?.pub", size="big")
+  aside
+    author-avatar(:pub="account.is?.pub", size="big")
+    my-credentials
+  .info
     edit-title.name(
-      :title="author.profile.name",
+      :title="account.profile.name",
       :editable="true",
       @update="updateProfile('name', $event)"
     )
-  my-credentials
-  .info
+    edit-title.real(
+      :title="account.profile.real",
+      :editable="true",
+      @update="updateProfile('real', $event)"
+    )
+    edit-subtitle.real(
+      :subtitle="account.profile.bio",
+      :editable="true",
+      @update="updateProfile('bio', $event)"
+    ) 
 </template>
 
 <script setup>
-import { author, downloadPair, updateProfile } from "model@author";
+import { account, downloadPair, updateProfile } from "model@author";
 </script>
 
 <style lang="stylus" scoped>
 .profile
   display: flex
-  flex-flow: column
+  flex-flow: row wrap
 
 .row, .name
   display: flex

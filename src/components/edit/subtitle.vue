@@ -1,7 +1,8 @@
-a<template lang="pug">
+<template lang="pug">
 .subtitle(v-if="text || editable")
   .title 
-    slot {{ $t('subtitle') }}
+    slot
+    .spacer
     button.edit(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
     button.save(v-if="open", @click="update()")
@@ -48,6 +49,9 @@ function update() {
   font-size: 0.8em
   padding: 0.5em 0
   color: var(--text-light)
+  display: flex
+  align-items: center
+  font-size: 1.2em
 
 .edit
   cursor: pointer
@@ -59,11 +63,11 @@ function update() {
   opacity: 1
 
 .subtitle
-  margin: 1em 0
+  margin: 0
   position: relative
   hyphens: auto
   display: flex
-  flex-flow: row wrap
+  flex-flow: column
 
 textarea
   width: 90%

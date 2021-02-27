@@ -1,5 +1,5 @@
 import { roomDb, sea, gun } from 'store@db'
-import { author } from 'model@author'
+import { account } from 'model@author'
 import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'
@@ -46,12 +46,12 @@ export async function enterRoom(pub) {
 
 export async function joinRoom(room = state.room) {
   state.room = room
-  gun.user().get('room').put(room)
-  gun.user().get('rooms').get(room).put(Date.now())
+  gun.user().get('room').get('current').put(room)
+  gun.user().get('room').get('fav').get(room).put(Date.now())
 }
 
 async function authRoom(pub) {
-  let enc = await gun.user().get('hosts').get(pub).then()
+  let enc = await gun.user().get('room').get('host').get(pub).then()
   if (!enc) return
   try {
     let pair = await sea.decrypt(enc, gun.user()._.sea)
@@ -62,7 +62,7 @@ async function authRoom(pub) {
 }
 
 export function leaveRoom(pub) {
-  gun.user().get('room').put(appPub)
+  gun.user().get('room').get('current').put(appPub)
   state.room = appPub
   state.title = appTitle
   roomDb.user().leave()
@@ -73,14 +73,14 @@ export async function createRoom() {
   let pair = await sea.pair()
   addHashedPersonal('room', { pub: pair.pub })
   let enc = await sea.encrypt(pair, gun.user()._.sea)
-  gun.user().get('hosts').get(pair.pub).put(enc)
+  gun.user().get('room').get('host').get(pair.pub).put(enc)
   initRoom(pair)
   return pair.pub
 }
 
 export function initRoom(pair) {
   roomDb.user().auth(pair, async () => {
-    roomDb.user().get('host').put(author.is.pub)
+    roomDb.user().get('host').put(account.is.pub)
     roomDb.user().get('title').put(capitalFirst(newRoom.title))
     newRoom.title = ''
 

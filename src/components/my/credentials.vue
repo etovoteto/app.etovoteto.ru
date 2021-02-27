@@ -15,7 +15,7 @@ transition(name="fade")
 
 <script setup>
 import { ref } from "vue";
-import { downloadPair, logOut } from "../../model/author";
+import { downloadPair, logOut } from "model@author";
 
 const pair = ref();
 
@@ -31,6 +31,9 @@ function showPair() {
 <style lang="stylus" scoped>
 .buttons
   display: flex
-  flex-flow: row wrap
-  padding: 1em 0
+  flex-flow: column
+  align-items: center
+
+  button
+    margin: 0.2em
 </style>

@@ -1,16 +1,13 @@
 <template lang="pug">
 .profile
   author-avatar(:pub="pub", size="big")
-  .name {{ author.name }}
-  .room {{ author.room }}
-  .enter(v-if="author.test", @click="testAuthor(author.test)")
-    i.iconify(data-icon="la:sign-in-alt")
+  h1.name {{ author.name }}
+  h2.real {{ author.real }}
 </template>
 
 <script setup>
 import { defineProps, reactive, ref } from "vue";
 import { gun } from "store@db";
-import { testAuthor } from "model@author";
 
 const props = defineProps({
   pub: String,
@@ -27,13 +24,8 @@ my.get("room").on((d) => {
 });
 
 my.get("profile")
-  .get("name")
-  .on((d) => (author.name = d));
-
-// TESTING AUTHORS
-my.get("test").once((d) => {
-  author.test = d;
-});
+  .map()
+  .on((d, k) => (author[k] = d));
 </script>
 
 <style lang="stylus" scoped>
@@ -43,8 +35,6 @@ my.get("test").once((d) => {
   align-items: center
   padding: 1em
 
-.enter
-  font-size: 1.2rem
-  padding: 2px
-  cursor: pointer
+  h1, h2
+    margin: 0.5em
 </style>
