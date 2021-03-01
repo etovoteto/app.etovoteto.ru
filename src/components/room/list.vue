@@ -16,16 +16,15 @@
 </template>
 
 <script setup>
-import { pubGradient } from "use@colors";
 import { useList } from "store@list";
-import { createRoom, newRoom } from "model@room";
+import { search } from "model@room";
 import { watchEffect } from "vue";
 
 const { sorted, options, more } = useList("room");
 
 watchEffect(() => {
   options.main = "title";
-  options.search = newRoom.title;
+  options.search = search.value;
 });
 </script>
 

@@ -5,7 +5,7 @@ main
 </template>
 
 <script setup>
-import { state } from "model@room";
+import { state } from "store@room";
 </script>
 
 <style lang="stylus" scoped></style>

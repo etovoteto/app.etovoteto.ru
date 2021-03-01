@@ -2,7 +2,7 @@
 main.container(:key="account.is")
   my-profile(v-if="account.is?.pub")
   my-auth(v-else)
-  author-lists
+  author-rooms(:pub="account.is?.pub")
 </template>
 
 <script setup>

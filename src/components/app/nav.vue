@@ -17,7 +17,7 @@ nav.flex.items-center.text-3xl
 
 <script setup>
 import { account } from "store@account";
-import { leaveRoom, state } from "model@room";
+import { leaveRoom, state } from "store@room";
 </script>
 
 <style lang="stylus" scoped>

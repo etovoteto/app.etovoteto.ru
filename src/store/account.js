@@ -1,17 +1,14 @@
+import { generateWords } from './../use/randomWords'
+import { capitalFirst } from './../model/word'
 import { reactive, ref } from 'vue'
 import { gun, sea } from 'store@db'
 import { downloadText } from '../use/loader'
-import { joinRoom } from 'model@room'
+import { joinRoom } from 'store@room'
 
 export const account = reactive({
   is: null,
   profile: {
     name: '',
-  },
-  room: {
-    current: '',
-    host: {},
-    fav: {},
   },
 })
 
@@ -46,7 +43,6 @@ export function logOut() {
     if (is && !gun.user()._?.sea) {
       account.is = null
       account.profile = {}
-      account.room = { current: '', host: {}, fav: {} }
       console.info('User logged out')
     }
   }, 300)

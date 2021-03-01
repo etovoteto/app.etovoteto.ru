@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from 'voie-pages'
-import { state } from './model/room'
+import { state } from 'store@room'
 
 export const router = createRouter({
   history: createWebHashHistory(),

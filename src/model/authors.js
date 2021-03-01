@@ -2,7 +2,7 @@ import { gun } from 'store@db'
 import { reactive, ref } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { state } from 'model@room'
+import { state } from 'store@room'
 import { watchEffect } from 'vue'
 import { withLinks, links } from '../store/locale'
 

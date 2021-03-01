@@ -12,7 +12,7 @@ transition(name="fade")
 </template>
 
 <script setup >
-import { state, enterRoom } from "model@room";
+import { state, enterRoom } from "store@room";
 import { account } from "store@account";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";

@@ -16,7 +16,7 @@ header.w-full.flex.flex-col.items-center(
 
 <script setup>
 import { computed } from "vue";
-import { state, leaveRoom } from "model@room";
+import { state, leaveRoom } from "store@room";
 import { pubGradient } from "use@colors";
 
 const link = computed(() => {

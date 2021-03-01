@@ -6,7 +6,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 
 import { account } from 'store@account'
 import { linkFrom, link } from 'model@link'
-import { state } from 'model@room'
+import { state } from 'store@room'
 import { links } from './locale'
 
 export function useCount(tag, hashed = true, room = state.room) {
