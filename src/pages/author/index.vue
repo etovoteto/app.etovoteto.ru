@@ -1,5 +1,6 @@
 <template lang="pug">
 main
+  author-search
   author-list
 </template>
 

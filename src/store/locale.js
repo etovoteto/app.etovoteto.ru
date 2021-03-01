@@ -8,6 +8,12 @@ export const links = {
   def: 'word',
 }
 
+export const withLinks = {
+  word: 'def',
+  def: 'word',
+  link: 'link',
+}
+
 export const model = {
   word: {
     title: 'Слово',

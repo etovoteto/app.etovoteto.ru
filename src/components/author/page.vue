@@ -6,10 +6,11 @@
   )
     i.iconify(data-icon="la:sign-in-alt")
   author-profile(:pub="pub")
+  author-rooms(:pub="pub")
 </template>
 
 <script setup>
-import { testAuthor } from "model@author";
+import { testAuthor } from "store@account";
 import { defineProps, ref } from "vue";
 
 const props = defineProps({

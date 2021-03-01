@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { account, downloadPair, updateProfile } from "model@author";
+import { account, downloadPair, updateProfile } from "store@account";
 </script>
 
 <style lang="stylus" scoped></style>

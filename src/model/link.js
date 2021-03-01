@@ -1,5 +1,5 @@
 import { reactive, ref } from 'vue'
-import { account } from 'model@author'
+import { account } from 'store@account'
 import { state } from 'model@room'
 
 export const linkFrom = ref({})

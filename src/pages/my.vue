@@ -6,7 +6,7 @@ main.container(:key="account.is")
 </template>
 
 <script setup>
-import { account } from "model@author";
+import { account } from "store@account";
 </script>
 
 <style lang="stylus" scoped></style>

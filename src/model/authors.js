@@ -2,50 +2,60 @@ import { gun } from 'store@db'
 import { reactive, ref } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { links } from 'store@locale'
 import { state } from 'model@room'
+import { watchEffect } from 'vue'
+import { withLinks, links } from '../store/locale'
 
 export function useAuthors(room = state.room) {
   const options = reactive({
-    orderBy: 'joined',
+    orderBy: 'sum',
     search: '',
     limit: 12,
     page: 12,
     total: 0,
-    main: 'author',
+    main: 'name',
   })
 
-  const authors = reactive({})
+  const counter = reactive({})
 
-  Object.keys(links).forEach((tag) => {
+  Object.keys(withLinks).forEach((tag) => {
     gun
       .get(`~${room}`)
       .get(`#${tag}`)
       .map()
       .once((data, key) => {
         let author = key.slice(-87)
-
         let hash = key.slice(0, 44)
-        let record = JSON.parse(data)
 
-        authors[author] = authors[author] || { pub: author }
-        authors[author][tag] = authors[author][tag] || {}
-        authors[author][tag][hash] = record
+        counter[author] = counter[author] || {}
+        counter[author][tag] = counter[author][tag] || {}
+        counter[author][tag][hash] = true
       })
   })
 
-  gun
-    .get(`~${room}`)
-    .get('link')
-    .map()
-    .map()
-    .once((data, key) => {
-      authors[data] = authors[data] || {}
-      authors[data]['link'] = authors[data]['link'] || {}
-      authors[data]['link'][key] = true
-    })
-
+  const authors = reactive({})
   const { sorted } = useSorter(authors, options)
+
+  watchEffect(() => {
+    for (let author in counter) {
+      authors[author] = authors[author] || { pub: author, sum: '0' }
+      gun
+        .get(`~${author}`)
+        .get('profile')
+        .get('name')
+        .once((d) => (authors[author].name = d))
+      let sum = 0
+      Object.keys(withLinks).forEach((tag) => {
+        if (typeof counter[author][tag] == 'object') {
+          authors[author][tag] = Object.keys(counter[author][tag]).length
+          sum += authors[author][tag]
+        } else {
+          authors[author][tag] = 0
+        }
+      })
+      authors[author].sum = sum
+    }
+  })
 
   const more = ref()
 

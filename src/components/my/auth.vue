@@ -1,12 +1,12 @@
 <template lang="pug">
-form(@submit.prevent.stop)
+form.flex.flex-col.p-8(@submit.prevent.stop)
   button.action(@click="generate()") 
     i.iconify(data-icon="la:plus")
     .text Начать
   button.action(@click="cont = !cont") 
     i.iconify(data-icon="la:upload")
     .text Продолжить
-  .options(v-if="cont")
+  .flex.flex-col(v-if="cont")
     textarea(
       @input="handleText($event.target.value)",
       placeholder="Вставьте сюда ваш ключ",
@@ -20,7 +20,7 @@ form(@submit.prevent.stop)
 </template>
 
 <script setup>
-import { generate, participate } from "model@author";
+import { generate, participate } from "store@account";
 import { ref } from "vue";
 
 const cont = ref(false);
@@ -59,22 +59,13 @@ function parseJSON(json) {
 </script>
 
 <style lang="stylus" scoped>
-form
-  display: flex
-  max-width: 55ch
-  flex-flow: column
-
 .action
   padding: 1em
   margin: 0.5em 0
   align-items: center
   font-size: 1rem
   display: flex
-
-.options
-  display: flex
-  flex-flow: column
-  align-items: center
+  background-color: var(--button)
 
 textarea.invalid
   background-color: hsla(0, 100%, 50%, 0.1)

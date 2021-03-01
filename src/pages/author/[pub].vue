@@ -1,5 +1,5 @@
 <template lang="pug">
-author-page(:pub="pub")
+author-page(:pub="pub", :key="pub")
 </template>
 
 <script setup>

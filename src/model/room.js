@@ -1,5 +1,5 @@
 import { roomDb, sea, gun } from 'store@db'
-import { account } from 'model@author'
+import { account } from 'store@account'
 import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@list'

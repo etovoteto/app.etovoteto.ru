@@ -14,7 +14,7 @@
 <script setup >
 import { computed, defineProps, ref, watchEffect } from "vue";
 import { useAvatar } from "use@avatar";
-import { account } from "model@author";
+import { account } from "store@account";
 import { pubGradient } from "use@colors";
 
 const props = defineProps({

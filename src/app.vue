@@ -13,8 +13,7 @@ transition(name="fade")
 
 <script setup >
 import { state, enterRoom } from "model@room";
-import { account } from "model@author";
-import { pubGradient } from "use@colors";
+import { account } from "store@account";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
 const route = useRoute();
