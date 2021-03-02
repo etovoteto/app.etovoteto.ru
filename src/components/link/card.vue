@@ -1,5 +1,5 @@
 <template lang="pug">
-.card(v-if="linkFrom.tag")
+.card(v-if="linkFrom.tag") 
   word-card(v-if="linkFrom.tag == 'word'", :record="linkFrom")
   def-card(v-if="linkFrom.tag == 'def'", :record="linkFrom")
 </template>

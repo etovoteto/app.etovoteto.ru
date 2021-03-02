@@ -1,6 +1,7 @@
+import { link } from 'model@link'
 import { reactive } from 'vue'
 import { account } from 'store@account'
-import { gun, roomDb } from './db'
+import { gun, hashObj, roomDb } from './db'
 import { state } from './room'
 
 export async function addHashedPersonal(tag, obj, room = state.room) {
@@ -23,6 +24,7 @@ export function getHashedPersonal(tag, hash, room = state.room) {
     .on(function (data, key) {
       if (key.includes(hash)) {
         record.hash = hash
+        record.tag = tag
         record.data = JSON.parse(data)
         record.authors = record.authors || {}
         record.authors[key.slice(-87)] = true

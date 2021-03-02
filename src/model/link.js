@@ -9,14 +9,13 @@ export function unlink() {
 }
 
 export function isLinking(node) {
-  return linkFrom.value == node
+  return linkFrom.value == node.data
 }
 
 export function link(node, cb) {
   let lnk = linkFrom.value
   if (lnk && lnk.hash && node && node.hash && lnk.tag != node.tag) {
     linkHashes(lnk.hash, node.hash)
-    linkFrom.value = {}
   } else {
     linkFrom.value = node
     if (cb) cb()
