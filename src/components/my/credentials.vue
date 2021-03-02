@@ -15,7 +15,7 @@
     transition(name="fade")
       textarea.key(rows="6", v-if="pair && show.text", :value="pair") 
     transition(name="fade")
-      qr-code(v-if="pair && show.qr", :data="pair")
+      util-qr(v-if="pair && show.qr", :data="pair")
   button.mt-3(@click="logOut()") 
     i.iconify(data-icon="la:sign-out-alt")
     .title Выйти

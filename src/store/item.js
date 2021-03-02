@@ -1,5 +1,6 @@
+import { reactive } from 'vue'
 import { account } from 'store@account'
-import { gun } from './db'
+import { gun, roomDb } from './db'
 import { state } from './room'
 
 export async function addHashedPersonal(tag, obj, room = state.room) {
@@ -15,12 +16,13 @@ export async function addHashedPersonal(tag, obj, room = state.room) {
 
 export function getHashedPersonal(tag, hash, room = state.room) {
   const record = reactive({})
-  roomDb
+  gun
     .get(`~${room}`)
     .get(`#${tag}`)
     .map()
     .on(function (data, key) {
       if (key.includes(hash)) {
+        record.hash = hash
         record.data = JSON.parse(data)
         record.authors = record.authors || {}
         record.authors[key.slice(-87)] = true

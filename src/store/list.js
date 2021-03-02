@@ -64,14 +64,14 @@ export function useList(tag = 'word', hashed = true, room = state.room) {
 
       this.map().on((data, key) => {
         let hash = key
-        let record = data
+        let record = {}
         let author = key.slice(-87)
         if (hashed) {
           hash = key.slice(0, 44)
-          record = JSON.parse(data)
+          record.data = JSON.parse(data)
         }
         if (typeof record != 'object') {
-          record = { data: record }
+          record.data = data
         }
         obj[hash] = obj[hash] || record
         obj[hash].tag = tag

@@ -3,9 +3,9 @@
   transition-group(name="list")
     room-card(
       v-for="room in sorted.list",
-      :key="room.pub",
-      :pub="room.pub",
-      :data="room"
+      :key="room.data.pub",
+      :pub="room.data.pub",
+      :data="room.data"
     ) 
     .text-2xl.p-8.bg-warm-gray-300(
       key="more",

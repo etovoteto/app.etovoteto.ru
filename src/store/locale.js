@@ -1,3 +1,5 @@
+export const appUrl = 'https://app.etovoteto.ru/'
+
 export const vowels = 'аеёиоуыэюя'
 export const stressMark = '&#x301;'
 export const wordMask = /^[а-яА-Я]+$/

@@ -1,11 +1,11 @@
 <template lang="pug">
 .flex.flex-col.p-6.my-4.bg-warm-gray-50
   .flex.items-center
-    .info {{ parts[record.part].name }}.
+    .info {{ parts[record.data.part].name }}.
     author-dots(:authors="record.authors")
     .spacer
     link-button(:record="record")
-  .text-lg {{ capitalFirst(record.def) }}
+  .text-lg {{ capitalFirst(record.data.def) }}
   .links(v-if="record != linkFrom")
     transition-group(name="list")
       word-link(

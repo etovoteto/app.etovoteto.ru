@@ -1,11 +1,14 @@
 <template lang="pug">
 .my-4.p-6.bg-warm-gray-50
-  .flex
+  .flex 
     router-link.font-bold.text-2xl(
       :to="'/word/' + safeHash(record.hash)",
       :title="record.timestamp"
     )
-      span(v-if="record", v-html="renderWord(record.word, record.stress)")
+      span(
+        v-if="record",
+        v-html="renderWord(record.data.word, record.data.stress)"
+      )
     author-dots(:authors="record.authors")
     .spacer
     link-button(:record="record")
