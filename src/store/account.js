@@ -1,8 +1,8 @@
-import { generateWords } from './../use/randomWords'
+import { generateWords } from '../../use/randomWords'
 import { capitalFirst } from './../model/word'
 import { reactive, ref } from 'vue'
 import { gun, sea } from 'store@db'
-import { downloadText } from '../use/loader'
+import { downloadText } from '../../use/loader'
 import { joinRoom } from 'store@room'
 
 export const account = reactive({

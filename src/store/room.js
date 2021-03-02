@@ -1,7 +1,7 @@
 import { roomDb, sea, gun } from 'store@db'
 import { account } from 'store@account'
 import { reactive, computed, ref, watchEffect } from 'vue'
-import { model } from 'store@locale'
+import { model } from '../../use/node_modules/store@locale'
 import { addHashedPersonal } from 'store@list'
 import { capitalFirst } from 'model@word'
 import { issueCert } from 'use@crypto'
