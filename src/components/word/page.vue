@@ -6,10 +6,11 @@ main.flex.flex-col
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, watchEffect } from "vue";
 import { getHashedPersonal } from "store@item";
-import { renderWord } from "model@word";
+import { capitalFirst } from "model@word";
 import { useLinks, linkFrom } from "model@link";
+import { useTitle } from "@vueuse/core";
 
 const props = defineProps({
   hash: String,
@@ -21,6 +22,7 @@ linkFrom.value = {
 };
 
 const { record } = getHashedPersonal("word", props.hash);
+const title = useTitle(capitalFirst(record?.data?.word));
 
 const { links } = useLinks(props.hash);
 </script>

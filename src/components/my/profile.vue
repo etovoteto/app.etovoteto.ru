@@ -30,7 +30,10 @@
 </template>
 
 <script setup>
+import { useTitle } from "@vueuse/core";
 import { account, downloadPair, updateProfile } from "store@account";
+
+const title = useTitle(account.profile?.name);
 </script>
 
 <style lang="stylus" scoped></style>

@@ -5,7 +5,8 @@ main
 </template>
 
 <script setup>
-import { state } from "store@room";
+import { useTitle } from "@vueuse/core";
+const title = useTitle("Комнаты | ЭТОВОТЭТО");
 </script>
 
 <style lang="stylus" scoped></style>

@@ -32,6 +32,8 @@ main
 </template>
 
 <script setup>
+import { useTitle } from "@vueuse/core";
+const title = useTitle("Онлайн-словарь ЭТОВОТЭТО");
 </script>
 
 <style lang="stylus" scoped>

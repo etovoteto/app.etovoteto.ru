@@ -44,7 +44,7 @@ watchEffect(() => {
   min-width: 0.5rem
   height: min-content
   min-height: 0.5rem
-  padding: 4px
+  padding: 0.2rem
   margin: 0
   display: flex
 

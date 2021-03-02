@@ -27,7 +27,8 @@ main
 import { enterRoom, state } from "store@room";
 import { favRoom, unFavRoom, isFav, useRoom } from "model@room";
 import { pubGradient } from "use@colors";
-import { defineProps, reactive } from "vue";
+import { defineProps, reactive, watchEffect } from "vue";
+import { useTitle } from "@vueuse/core";
 
 function updateRoomTitle() {
   console.log("updating");
@@ -38,6 +39,8 @@ const props = defineProps({
 });
 
 const room = useRoom(props.pub);
+
+const title = useTitle(room.title);
 </script>
 
 <style lang="stylus" scoped></style>

@@ -1,6 +1,6 @@
 <template lang="pug">
 .my-4.p-6.bg-warm-gray-50(v-if="record.data")
-  .flex 
+  .flex.items-center
     router-link.font-bold.text-2xl(
       :to="'/word/' + safeHash(record.hash)",
       :title="record.timestamp"

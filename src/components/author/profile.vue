@@ -14,6 +14,9 @@ const props = defineProps({
 });
 
 const profile = useProfile(props.pub);
+
+import { useTitle } from "@vueuse/core";
+const title = useTitle(profile.name);
 </script>
 
 <style lang="stylus" scoped></style>
