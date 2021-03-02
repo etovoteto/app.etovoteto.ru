@@ -1,10 +1,9 @@
 <template lang="pug">
-word-page(:hash="unsafeHash(hash)")
+p {{ hash }}
 </template>
 
 <script setup>
 import { defineProps } from "vue";
-import { unsafeHash } from "store@db";
 
 const props = defineProps({
   hash: String,

@@ -24,7 +24,7 @@
 import { defineProps } from "vue";
 import { renderWord } from "model@word";
 import { useLinks, linkFrom } from "model@link";
-import { safeHash } from "../../store/db";
+import { safeHash } from "store@db";
 
 const props = defineProps({
   record: Object,

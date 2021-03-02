@@ -105,30 +105,3 @@ export function useList(tag = 'word', hashed = true, room = state.room) {
     more,
   }
 }
-
-export async function addHashedPersonal(tag, obj, room = state.room) {
-  let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
-  const { text, hash } = await hashObj(obj)
-  gun
-    .get(`~${room}`)
-    .get(`#${tag}`)
-    .get(`${hash}#${account.is.pub}`)
-    .put(text, null, { opt: { cert: certificate } })
-  link({ hash, tag, ...obj })
-}
-
-export function getHashedPersonal(tag, hash, room = state.room) {
-  const record = reactive({})
-  roomDb
-    .get(`~${room}`)
-    .get(`#${tag}`)
-    .map()
-    .on(function (data, key) {
-      if (key.includes(hash)) {
-        record.data = JSON.parse(data)
-        record.authors = record.authors || {}
-        record.authors[key.slice(-87)] = true
-      }
-    })
-  return { record }
-}

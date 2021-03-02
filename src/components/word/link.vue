@@ -12,7 +12,7 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashedPersonal } from "store@list";
+import { getHashedPersonal } from "store@item";
 import { renderWord } from "model@word";
 
 const props = defineProps({

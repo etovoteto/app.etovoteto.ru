@@ -1,7 +1,7 @@
 import { parts, defMask } from 'store@locale'
 import { generateWords } from 'use@randomWords'
 import { computed, reactive } from 'vue'
-import { addHashedPersonal } from 'store@list'
+import { addHashedPersonal } from 'store@item'
 export const newDef = reactive({
   def: '',
   part: 'noun',

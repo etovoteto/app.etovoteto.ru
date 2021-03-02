@@ -1,5 +1,5 @@
-import { sea } from '../store/db'
-import { model } from '../store/locale'
+import { sea } from 'store@db'
+import { model } from 'store@locale'
 
 export async function issueCert(tag = 'word', pair = appPair, users = '*') {
   let hashed = model[tag].hashed

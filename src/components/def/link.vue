@@ -12,7 +12,7 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashedPersonal } from "store@list";
+import { getHashedPersonal } from "store@item";
 import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
 

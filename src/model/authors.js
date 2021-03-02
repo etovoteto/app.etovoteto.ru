@@ -1,10 +1,9 @@
 import { gun } from 'store@db'
-import { reactive, ref } from 'vue'
+import { reactive, ref, watchEffect } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { state } from 'store@room'
-import { watchEffect } from 'vue'
-import { withLinks, links } from '../store/locale'
+import { withLinks, links } from 'store@locale'
 
 export function useAuthors(room = state.room) {
   const options = reactive({
