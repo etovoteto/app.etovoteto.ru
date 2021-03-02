@@ -1,7 +1,7 @@
 import { reactive, watchEffect } from 'vue'
 import { addHashedPersonal } from 'store@list'
 
-import { vowels, stressMark, wordMask } from '../use/node_modules/store@locale'
+import { vowels, stressMark, wordMask } from 'store@locale'
 
 export { vowels }
 

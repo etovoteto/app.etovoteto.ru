@@ -1,4 +1,4 @@
-import { parts, defMask } from '../use/node_modules/store@locale'
+import { parts, defMask } from 'store@locale'
 import { generateWords } from 'use@randomWords'
 import { computed, reactive } from 'vue'
 import { addHashedPersonal } from 'store@list'
