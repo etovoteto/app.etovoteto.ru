@@ -1,6 +1,6 @@
 <template lang="pug">
 form.flex.flex-col(@submit.prevent)
-  input.p-4.mb-4.text-center.text-xl(v-model="search")
+  input.p-4.mb-4.text-center.text-xl(v-model="search", ref="input")
   button.p-4.rounded-full.bg-warm-gray-300(
     @click="create()",
     v-if="search.length > 3"
@@ -11,12 +11,20 @@ form.flex.flex-col(@submit.prevent)
 import { createRoom } from "store@room";
 import { search } from "model@room";
 import { useRouter } from "vue-router";
+import { onStartTyping } from "@vueuse/core";
+import { ref } from "vue";
 const router = useRouter();
 async function create() {
   const roomPub = await createRoom();
   search.value = "";
   router.push({ path: "/room/" + roomPub });
 }
+
+const input = ref(null);
+
+onStartTyping(() => {
+  if (!input.value.active) input.value.focus();
+});
 </script>
 
 <style lang="stylus" scoped></style>
