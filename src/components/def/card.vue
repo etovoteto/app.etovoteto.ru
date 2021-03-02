@@ -1,7 +1,7 @@
 <template lang="pug">
-.flex.flex-col.p-6.my-4.bg-warm-gray-50
+.flex.flex-col.p-6.my-4.bg-warm-gray-50(v-if="record.data")
   .flex.items-center
-    .info {{ parts[record.data.part].name }}.
+    router-link(:to="'/def/' + safeHash(record.hash)") {{ parts[record.data.part].name }}.
     author-dots(:authors="record.authors")
     .spacer
     link-button(:record="record")
@@ -19,7 +19,7 @@
 <script setup>
 import { defineProps } from "vue";
 import { capitalFirst } from "model@word";
-
+import { safeHash } from "store@db";
 import { useLinks, linkFrom } from "model@link";
 import { parts } from "store@locale";
 

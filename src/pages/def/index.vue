@@ -1,7 +1,7 @@
 <template lang="pug">
-router-view(v-slot="{Component}")
-  transition(name="fade")
-    component(:is="Component")
+main
+  def-form
+  def-list
 </template>
 
 <script setup>
