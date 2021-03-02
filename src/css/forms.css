@@ -10,7 +10,8 @@ textarea {
   font-family: 'Noto Sans', sans-serif;
 }
 
-button {
+button,
+label.action {
   display: flex;
   justify-content: center;
   align-items: center;

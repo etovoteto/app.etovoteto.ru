@@ -2,21 +2,29 @@
 form.flex.flex-col.p-8(@submit.prevent.stop)
   button.action(@click="generate()") 
     i.iconify(data-icon="la:plus")
-    .text Начать
+    .text Начать с нуля
   button.action(@click="cont = !cont") 
-    i.iconify(data-icon="la:upload")
-    .text Продолжить
+    i.iconify(data-icon="la:key")
+    .text У меня есть ключ
   .flex.flex-col(v-if="cont")
-    textarea(
+    textarea.my-4(
       @input="handleText($event.target.value)",
       placeholder="Вставьте сюда ваш ключ",
       :class="{ invalid: invalid }"
     )
-    input(
+
+    label.action(for="json-input")
+      i.iconify(data-icon="la:file-code")
+      .text Загрузить JSON-ключ
+    input#json-input.hidden(
       type="file",
       accept="application/json",
       @change="handleFile($event.target.files)"
     )
+    label.action(for="qr-input")
+      i.iconify(data-icon="la:qrcode")
+      .text Загрузить QR-ключ
+    util-load-qr.hidden(@loaded="handleText($event)")
 </template>
 
 <script setup>
@@ -66,6 +74,8 @@ function parseJSON(json) {
   font-size: 1rem
   display: flex
   background-color: var(--button)
+  border-radius: 4em
+  cursor: pointer
 
 textarea.invalid
   background-color: hsla(0, 100%, 50%, 0.1)

@@ -28,7 +28,10 @@ export function useRoom(pub) {
     title: '',
     isFav: false,
   })
-
+  gun
+    .get(`~${pub}`)
+    .get('host')
+    .once((d) => (room.host = d))
   gun
     .get(`~${pub}`)
     .get('title')

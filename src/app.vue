@@ -1,13 +1,12 @@
 <template lang="pug">
 app-header
 link-card
-router-view(v-slot="{Component}")
+router-view(v-slot="{ Component }")
   transition(name="fade")
     component(:is="Component", :key="state.room")
 app-dev
 transition(name="fade")
   .auth(v-if="!account.is?.pub")
-    p {{ account }}
     my-auth
 </template>
 
@@ -35,4 +34,5 @@ watchEffect(() => {
   display: flex
   flex-flow: column
   align-items: center
+  justify-content: center
 </style>

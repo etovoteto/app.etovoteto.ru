@@ -17,7 +17,7 @@ export function useAuthors(room = state.room) {
 
   const counter = reactive({})
 
-  Object.keys(withLinks).forEach((tag) => {
+  Object.keys(links).forEach((tag) => {
     gun
       .get(`~${room}`)
       .get(`#${tag}`)
@@ -31,6 +31,20 @@ export function useAuthors(room = state.room) {
         counter[author][tag][hash] = true
       })
   })
+
+  gun
+    .get(`~${room}`)
+    .get(`link`)
+    .map()
+    .map()
+    .once((data, key) => {
+      let author = data
+      let hash = key
+
+      counter[author] = counter[author] || {}
+      counter[author].link = counter[author].link || {}
+      counter[author]['link'][hash] = true
+    })
 
   const authors = reactive({})
   const { sorted } = useSorter(authors, options)

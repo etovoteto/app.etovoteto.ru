@@ -10,7 +10,7 @@
       i.iconify(data-icon="la:qrcode")
 
     button(@click="downloadPair()") 
-      i.iconify(data-icon="la:download")
+      i.iconify(data-icon="la:file-code")
   .flex 
     transition(name="fade")
       textarea.key(rows="6", v-if="pair && show.text", :value="pair") 

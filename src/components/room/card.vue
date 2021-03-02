@@ -3,7 +3,7 @@ router-link.p-4.my-2.flex.flex-col.items-center(
   :to="{ path: '/room/' + pub }",
   :style="{ background: pubGradient(pub, 90) }"
 ) 
-  author-avatar(:pub="room.host", size="small")
+  author-badge(:pub="room.host")
   .text-2xl {{ room.title }}
   room-counters(:pub="pub")
 </template>

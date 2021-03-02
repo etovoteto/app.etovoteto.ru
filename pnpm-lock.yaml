@@ -2,31 +2,32 @@ dependencies:
   '@iconify/iconify': 1.0.7
   '@mattkrick/sanitize-svg': 0.3.1
   '@qrcode/svg': 1.0.0-beta.2
-  '@vueuse/core': 4.3.1_vue@3.0.6
-  '@vueuse/router': 4.3.1_vue-router@4.0.4+vue@3.0.6
+  '@vueuse/core': 4.3.1_vue@3.0.7
+  '@vueuse/router': 4.3.1_vue-router@4.0.4+vue@3.0.7
   color-hash: 1.0.3
   gun: github.com/amark/gun/4ded14186f8b5393532bca2abb35fb45861aa237
   image-compressor: 2.0.3
+  jsqr: 1.3.1
   markdown-it: 12.0.4
   markdown-it-link-attributes: 3.0.0
   markdown-it-task-lists: 2.1.1
   qrcode-svg-table: 1.1.2
-  vue: 3.0.6
-  vue-router: 4.0.4_vue@3.0.6
+  vue: 3.0.7
+  vue-router: 4.0.4_vue@3.0.7
 devDependencies:
-  '@iconify/json': 1.1.310
+  '@iconify/json': 1.1.311
   '@prettier/plugin-pug': 1.13.5
   '@rollup/plugin-alias': 3.1.2
-  '@vitejs/plugin-vue': 1.1.5_@vue+compiler-sfc@3.0.6
-  '@vue/compiler-sfc': 3.0.6_vue@3.0.6
+  '@vitejs/plugin-vue': 1.1.5_@vue+compiler-sfc@3.0.7
+  '@vue/compiler-sfc': 3.0.7_vue@3.0.7
   pug: 3.0.2
   stylus: 0.54.8
-  vite: 2.0.4
-  vite-plugin-components: 0.7.5_vite@2.0.4
-  vite-plugin-purge-icons: 0.7.0_vite@2.0.4
+  vite: 2.0.5
+  vite-plugin-components: 0.7.5_vite@2.0.5
+  vite-plugin-purge-icons: 0.7.0_vite@2.0.5
   vite-plugin-pwa: 0.5.6
-  vite-plugin-voie: 0.7.3_4a121492511313a35fa407f8140d2bb0
-  vite-plugin-windicss: 0.6.2_vite@2.0.4
+  vite-plugin-voie: 0.7.3_5323dbf60c6a901b9fce8b49b29156a7
+  vite-plugin-windicss: 0.6.2_vite@2.0.5
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.12.11:
@@ -255,11 +256,18 @@ packages:
     resolution:
       integrity: sha512-i6rgnR/YgPEQzZZnbTHHuZdlE8qyoBNalD6F+q4vAFlcMEcqmkoG+mPqJYJCo63qPf74+Y1UZsl3l6f7/RIkmA==
   /@babel/parser/7.12.11:
+    dev: true
     engines:
       node: '>=6.0.0'
     hasBin: true
     resolution:
       integrity: sha512-N3UxG+uuF4CMYoNj8AhnbAcJF0PiuJ9KHuy1lQmkYsxTer/MAH9UBNHsBoAX/4s6NvlDD047No8mYVGGzLL4hg==
+  /@babel/parser/7.13.9:
+    engines:
+      node: '>=6.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-nEUfRiARCcaVo3ny3ZQjURjHQZUo/JkEw7rLlSZy/psWGnvwXFtPcr6jb7Yb41DVW5LTe6KRq9LGleRNsg1Frw==
   /@babel/plugin-proposal-async-generator-functions/7.12.12_@babel+core@7.12.10:
     dependencies:
       '@babel/core': 7.12.10
@@ -936,8 +944,16 @@ packages:
       '@babel/helper-validator-identifier': 7.12.11
       lodash: 4.17.20
       to-fast-properties: 2.0.0
+    dev: true
     resolution:
       integrity: sha512-lnIX7piTxOH22xE7fDXDbSHg9MM1/6ORnafpJmov5rs0kX5g4BZxeXNJLXsMRiO0U5Rb8/FvMS6xlTnTHvxonQ==
+  /@babel/types/7.13.0:
+    dependencies:
+      '@babel/helper-validator-identifier': 7.12.11
+      lodash: 4.17.21
+      to-fast-properties: 2.0.0
+    resolution:
+      integrity: sha512-hE+HE8rnG1Z6Wzo+MhaKE5lM5eMx71T4EHJgku2E3xIfaULhDcxiiRxUYgwX8qwP1BBSlag+TdGOt6JAidIZTA==
   /@hapi/address/2.1.4:
     deprecated: Moved to 'npm install @sideway/address'
     dev: true
@@ -986,10 +1002,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-pXvLXqLPQsjpDY4qbbyh5cPEtakTfWfQCAo6SdYNhYQzat+/0fbeEhScryqaketNAG0bT4/+deKezkJZTvbuSg==
-  /@iconify/json/1.1.310:
+  /@iconify/json/1.1.311:
     dev: true
     resolution:
-      integrity: sha512-gLCuqulJPC2ly3upqPILOA1nV2fYfb99Dx64hLvneUb0r22opL+TfMfl352AjSZTFMGKV6ve8pNSAOS5gvY3vg==
+      integrity: sha512-ghm5JynA3aft0goTlEt6w2aYZCTaOO4IE59Cf99ip81NDs0qw4OJ/JSoR09jIrcVDSVZJdp3jf0Tni1iRV1j+w==
   /@knightly/fast-glob/3.2.5-knightly-master.202101180131:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -1194,9 +1210,9 @@ packages:
     dev: true
     resolution:
       integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==
-  /@vitejs/plugin-vue/1.1.5_@vue+compiler-sfc@3.0.6:
+  /@vitejs/plugin-vue/1.1.5_@vue+compiler-sfc@3.0.7:
     dependencies:
-      '@vue/compiler-sfc': 3.0.6_vue@3.0.6
+      '@vue/compiler-sfc': 3.0.7_vue@3.0.7
     dev: true
     engines:
       node: '>=12.0.0'
@@ -1204,99 +1220,99 @@ packages:
       '@vue/compiler-sfc': ^3.0.6
     resolution:
       integrity: sha512-4DV8VPYo8/OR1YsnK39QN16xhKENt2XvcmJxqfRtyz75kvbjBYh1zTSHLp7XsXqv4R2I+fOZlbEBvxosMYLcPA==
-  /@vue/compiler-core/3.0.6:
+  /@vue/compiler-core/3.0.7:
     dependencies:
-      '@babel/parser': 7.12.11
-      '@babel/types': 7.12.12
-      '@vue/shared': 3.0.6
+      '@babel/parser': 7.13.9
+      '@babel/types': 7.13.0
+      '@vue/shared': 3.0.7
       estree-walker: 2.0.2
       source-map: 0.6.1
     resolution:
-      integrity: sha512-O7QzQ39DskOoPpEDWRvKwDX7Py9UNT7SvLHvBdIfckGA3OsAEBdiAtuYQNcVmUDeBajm+08v5wyvHWBbWgkilQ==
-  /@vue/compiler-dom/3.0.6:
+      integrity: sha512-JFohgBXoyUc3mdeI2WxlhjQZ5fakfemJkZHX8Gu/nFbEg3+lKVUZmNKWmmnp9aOzJQZKoj77LjmFxiP+P+7lMQ==
+  /@vue/compiler-dom/3.0.7:
     dependencies:
-      '@vue/compiler-core': 3.0.6
-      '@vue/shared': 3.0.6
+      '@vue/compiler-core': 3.0.7
+      '@vue/shared': 3.0.7
     resolution:
-      integrity: sha512-q1wfHzYwvDRAhBlx+Qa+n3Bu5nHr1qL/j0UbpNlbQDwIlt9zpvmXUrUCL+i55Bh5lLKvSe+mNo0qlwNEApm+jA==
-  /@vue/compiler-sfc/3.0.6_vue@3.0.6:
+      integrity: sha512-VnIH9EbWQm/Tkcp+8dCaNVsVvhm/vxCrIKWRkXY9215hTqOqQOvejT8IMjd2kc++nIsYMsdQk6H9qqBvoLe/Cw==
+  /@vue/compiler-sfc/3.0.7_vue@3.0.7:
     dependencies:
-      '@babel/parser': 7.12.11
-      '@babel/types': 7.12.12
-      '@vue/compiler-core': 3.0.6
-      '@vue/compiler-dom': 3.0.6
-      '@vue/compiler-ssr': 3.0.6
-      '@vue/shared': 3.0.6
+      '@babel/parser': 7.13.9
+      '@babel/types': 7.13.0
+      '@vue/compiler-core': 3.0.7
+      '@vue/compiler-dom': 3.0.7
+      '@vue/compiler-ssr': 3.0.7
+      '@vue/shared': 3.0.7
       consolidate: 0.16.0
       estree-walker: 2.0.2
       hash-sum: 2.0.0
       lru-cache: 5.1.1
       magic-string: 0.25.7
       merge-source-map: 1.1.0
-      postcss: 8.2.4
-      postcss-modules: 4.0.0_postcss@8.2.4
+      postcss: 8.2.6
+      postcss-modules: 4.0.0_postcss@8.2.6
       postcss-selector-parser: 6.0.4
       source-map: 0.6.1
-      vue: 3.0.6
+      vue: 3.0.7
     dev: true
     peerDependencies:
-      vue: 3.0.6
+      vue: 3.0.7
     resolution:
-      integrity: sha512-g1tkswnhtiJpj4ELQ3SzeGxtOd0t8E5GkT+n2VlElEnTI1BzueSvr41D5QthnUS+TNWZd52ZnPtdaNz+Lfum1w==
-  /@vue/compiler-ssr/3.0.6:
+      integrity: sha512-37/QILpGE+J3V+bP9Slg9e6xGqfk+MmS2Yj8ChR4fS0/qWUU/YoYHE0GPIzjmBdH0JVOOmJqunxowIXmqNiHng==
+  /@vue/compiler-ssr/3.0.7:
     dependencies:
-      '@vue/compiler-dom': 3.0.6
-      '@vue/shared': 3.0.6
+      '@vue/compiler-dom': 3.0.7
+      '@vue/shared': 3.0.7
     dev: true
     resolution:
-      integrity: sha512-Y4amPwRevUiiNQDho0cq1Ith9q6UU5N6CD6YiXkHIboFPeXEiGvH3ULJWjFzlGqn1eUV1AReNJpFJrhjtQNc7g==
-  /@vue/reactivity/3.0.6:
+      integrity: sha512-nHRbHeSpfXwjypettjrA16TjgfDcPEwq3m/zHnGyLC1QqdLtklXmpSM43/CPwwTCRa/qdt0pldJf22MiCEuTSQ==
+  /@vue/reactivity/3.0.7:
     dependencies:
-      '@vue/shared': 3.0.6
+      '@vue/shared': 3.0.7
     dev: false
     resolution:
-      integrity: sha512-hX8PnZayNMoljWSYrZW0OclQnRaMoHxvi5eeFVFPDr7+tzBeiftmmozKttxxCLoDxBWX1B4gNc237DIcYU63Lw==
-  /@vue/runtime-core/3.0.6:
+      integrity: sha512-FotWcNNaKhqpFZrdgsUOZ1enlJ5lhTt01CNTtLSyK7jYFgZBTuw8vKsEutZKDYZ1XKotOfoeO8N3pZQqmM6Etw==
+  /@vue/runtime-core/3.0.7:
     dependencies:
-      '@vue/reactivity': 3.0.6
-      '@vue/shared': 3.0.6
+      '@vue/reactivity': 3.0.7
+      '@vue/shared': 3.0.7
     dev: false
     resolution:
-      integrity: sha512-x6N38P0DeMyrHiAxCE/rACHTyydOzlg8IyUIPkSJ4rrSkuJnAtFKQicK6fm8NuD21dwdPr8KcZ4Cn4xaqL1JJg==
-  /@vue/runtime-dom/3.0.6:
+      integrity: sha512-DBAZAwVvdmMXuyd6/9qqj/kYr/GaLTmn1L2/QLxLwP+UfhIboiTSBc/tUUb8MRk7Bb98GzNeAWkkT6AfooS3dQ==
+  /@vue/runtime-dom/3.0.7:
     dependencies:
-      '@vue/runtime-core': 3.0.6
-      '@vue/shared': 3.0.6
-      csstype: 2.6.14
+      '@vue/runtime-core': 3.0.7
+      '@vue/shared': 3.0.7
+      csstype: 2.6.16
     dev: false
     resolution:
-      integrity: sha512-Y6y4Tak9//VXB2mp2NVQxbwC4a5xsnJpotpo8yBAB3qB3L4v4HQLpqxSkwThRwI6Y6Z7dydX/sgfraqLBE8BWg==
-  /@vue/shared/3.0.6:
+      integrity: sha512-Oij4ruOtnpQpCj+/Q3JPzgpTJ1Q7+N67pA53A8KVITEtxfvKL46NN6dhAZ5NGqwX6RWZpYqWQNewITeF0pHr8g==
+  /@vue/shared/3.0.7:
     resolution:
-      integrity: sha512-c37C60HpelUZIx+SNZVEINSxkFzQYhIXFg5AynnIA4QDBmY4iSPoACfGSwSUTCTKImukPeCgY2oqRJVP3R1Mnw==
-  /@vueuse/core/4.3.1_vue@3.0.6:
+      integrity: sha512-dn5FyfSc4ky424jH4FntiHno7Ss5yLkqKNmM/NXwANRnlkmqu74pnGetexDFVG5phMk9/FhwovUZCWGxsotVKg==
+  /@vueuse/core/4.3.1_vue@3.0.7:
     dependencies:
-      '@vueuse/shared': 4.3.1_vue@3.0.6
-      vue-demi: 0.7.1_vue@3.0.6
+      '@vueuse/shared': 4.3.1_vue@3.0.7
+      vue-demi: 0.7.1_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
       integrity: sha512-/UkL83zSkE1qb1aqidSjUxADB9ggRnchXe5CliqAb5Ak7Rt9IfdUC4zfvvAtwlIgNvT1Fo9YCtgRma4H2TVLEQ==
-  /@vueuse/router/4.3.1_vue-router@4.0.4+vue@3.0.6:
+  /@vueuse/router/4.3.1_vue-router@4.0.4+vue@3.0.7:
     dependencies:
-      '@vueuse/shared': 4.3.1_vue@3.0.6
-      vue-demi: 0.7.1_vue@3.0.6
-      vue-router: 4.0.4_vue@3.0.6
+      '@vueuse/shared': 4.3.1_vue@3.0.7
+      vue-demi: 0.7.1_vue@3.0.7
+      vue-router: 4.0.4_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
       vue-router: '>=4.0.0-rc.1'
     resolution:
       integrity: sha512-eTbK4mfxaT9nTGy6T5qvhVFfavCip+Aq4JF0Ocqlm3XAofngG/bJ7O0eDlwjAGHc35P/wj2CH8VpnPR5vi493A==
-  /@vueuse/shared/4.3.1_vue@3.0.6:
+  /@vueuse/shared/4.3.1_vue@3.0.7:
     dependencies:
-      vue-demi: 0.7.1_vue@3.0.6
+      vue-demi: 0.7.1_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
@@ -1527,6 +1543,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
+  /colorette/1.2.2:
+    dev: true
+    resolution:
+      integrity: sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
   /commander/2.20.3:
     dev: true
     resolution:
@@ -1603,10 +1623,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
-  /csstype/2.6.14:
+  /csstype/2.6.16:
     dev: false
     resolution:
-      integrity: sha512-2mSc+VEpGPblzAxyeR+vZhJKgYg0Og0nnRi7pmRXFYYxSfnOnW8A5wwQb4n4cE2nIOzqKOAzLCaEX6aBmNEv8A==
+      integrity: sha512-61FBWoDHp/gRtsoDkq/B1nWrCUG/ok1E3tUrcNbZjsE9Cxd9yzUirjS3+nAATB8U4cTtaQmAHbNndoFz5L6C9Q==
   /debug/3.1.0:
     dependencies:
       ms: 2.0.0
@@ -1724,6 +1744,12 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-GIaYGdMukH58hu+lf07XWAeESBYFAsz8fXnrylHDCbBXKOSNtFmoYA8PhSeSF+3/qzeJ0VjzV9AkLURo5yfu3g==
+  /esbuild/0.8.54:
+    dev: true
+    hasBin: true
+    requiresBuild: true
+    resolution:
+      integrity: sha512-DJH38OiTgXJxFb/EhHrCrY8eGmtdkTtWymHpN9IYN9AF+4jykT0dQArr7wzFejpVbaB0TMIq2+vfNRWr3LXpvw==
   /escalade/3.1.1:
     dev: true
     engines:
@@ -1912,9 +1938,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Bupvg2ead0njhs/h/oEq5dsiPe0=
-  /icss-utils/5.1.0_postcss@8.2.4:
+  /icss-utils/5.1.0_postcss@8.2.6:
     dependencies:
-      postcss: 8.2.4
+      postcss: 8.2.6
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -2081,6 +2107,10 @@ packages:
       graceful-fs: 4.2.4
     resolution:
       integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==
+  /jsqr/1.3.1:
+    dev: false
+    resolution:
+      integrity: sha512-zCTP6Qd/WwjrpuHFkJuXc5opRdKprUr7eI7+JCCtcetThJt45qptu82MWQ+eET+FtDrMo7+BYjo3iD0XIq1L9Q==
   /jstransformer/1.0.0:
     dependencies:
       is-promise: 2.2.2
@@ -2113,8 +2143,12 @@ packages:
     resolution:
       integrity: sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
   /lodash/4.17.20:
+    dev: true
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
+  /lodash/4.17.21:
+    resolution:
+      integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
   /lru-cache/5.1.1:
     dependencies:
       yallist: 3.1.1
@@ -2282,9 +2316,9 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-WuNqLTbMI3tmfef2TKxlQmAiLHKtFhlsCZnPIpuv2Ow0RDVO8lfy1Opf4NUzlMXLjPl+Men7AuVdX6TA+s+uGA==
-  /postcss-modules-extract-imports/3.0.0_postcss@8.2.4:
+  /postcss-modules-extract-imports/3.0.0_postcss@8.2.6:
     dependencies:
-      postcss: 8.2.4
+      postcss: 8.2.6
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -2292,10 +2326,10 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==
-  /postcss-modules-local-by-default/4.0.0_postcss@8.2.4:
+  /postcss-modules-local-by-default/4.0.0_postcss@8.2.6:
     dependencies:
-      icss-utils: 5.1.0_postcss@8.2.4
-      postcss: 8.2.4
+      icss-utils: 5.1.0_postcss@8.2.6
+      postcss: 8.2.6
       postcss-selector-parser: 6.0.4
       postcss-value-parser: 4.1.0
     dev: true
@@ -2305,9 +2339,9 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-sT7ihtmGSF9yhm6ggikHdV0hlziDTX7oFoXtuVWeDd3hHObNkcHRo9V3yg7vCAY7cONyxJC/XXCmmiHHcvX7bQ==
-  /postcss-modules-scope/3.0.0_postcss@8.2.4:
+  /postcss-modules-scope/3.0.0_postcss@8.2.6:
     dependencies:
-      postcss: 8.2.4
+      postcss: 8.2.6
       postcss-selector-parser: 6.0.4
     dev: true
     engines:
@@ -2316,10 +2350,10 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==
-  /postcss-modules-values/4.0.0_postcss@8.2.4:
+  /postcss-modules-values/4.0.0_postcss@8.2.6:
     dependencies:
-      icss-utils: 5.1.0_postcss@8.2.4
-      postcss: 8.2.4
+      icss-utils: 5.1.0_postcss@8.2.6
+      postcss: 8.2.6
     dev: true
     engines:
       node: ^10 || ^12 || >= 14
@@ -2327,16 +2361,16 @@ packages:
       postcss: ^8.1.0
     resolution:
       integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==
-  /postcss-modules/4.0.0_postcss@8.2.4:
+  /postcss-modules/4.0.0_postcss@8.2.6:
     dependencies:
       generic-names: 2.0.1
       icss-replace-symbols: 1.1.0
       lodash.camelcase: 4.3.0
-      postcss: 8.2.4
-      postcss-modules-extract-imports: 3.0.0_postcss@8.2.4
-      postcss-modules-local-by-default: 4.0.0_postcss@8.2.4
-      postcss-modules-scope: 3.0.0_postcss@8.2.4
-      postcss-modules-values: 4.0.0_postcss@8.2.4
+      postcss: 8.2.6
+      postcss-modules-extract-imports: 3.0.0_postcss@8.2.6
+      postcss-modules-local-by-default: 4.0.0_postcss@8.2.6
+      postcss-modules-scope: 3.0.0_postcss@8.2.6
+      postcss-modules-values: 4.0.0_postcss@8.2.6
       string-hash: 1.1.3
     dev: true
     peerDependencies:
@@ -2358,16 +2392,16 @@ packages:
     dev: true
     resolution:
       integrity: sha512-97DXOFbQJhk71ne5/Mt6cOu6yxsSfM0QGQyl0L25Gca4yGWEGJaig7l7gbCX623VqTBNGLRLaVUCnNkcedlRSQ==
-  /postcss/8.2.4:
+  /postcss/8.2.6:
     dependencies:
-      colorette: 1.2.1
+      colorette: 1.2.2
       nanoid: 3.1.20
       source-map: 0.6.1
     dev: true
     engines:
       node: ^10 || ^12 || >=14
     resolution:
-      integrity: sha512-kRFftRoExRVXZlwUuay9iC824qmXPcQQVzAjbCCgjpXnkdMCJYBu2gTwAaFBzv8ewND6O8xFb3aELmEkh9zTzg==
+      integrity: sha512-xpB8qYxgPuly166AGlpRjUdEYtmOWx2iCwGmrv4vqZL9YPVviDVPZPRXxnXr6xPZOdxQ9lp3ZBFCRgWJ7LE3Sg==
   /pretty-bytes/5.6.0:
     dev: true
     engines:
@@ -2577,6 +2611,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-rArEXAgsBG4UgRGcynxWIWKFvh/XZCcS8UJdHhwy91zwAvCZIbcs+vAbflgBnNjYMs/i/i+/Ux6IZhML1yPvxg==
+  /resolve/1.20.0:
+    dependencies:
+      is-core-module: 2.2.0
+      path-parse: 1.0.6
+    dev: true
+    resolution:
+      integrity: sha512-wENBPt4ySzg4ybFQW2TT1zMQucPK95HSh/nq2CFTZVOGut2+pQvSsgtda4d26YrYcr067wjbmzOG8byDPBX63A==
   /reusify/1.0.4:
     dev: true
     engines:
@@ -2614,6 +2655,15 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-VoWt8DysFGDVRGWuHTqZzT02J0ASgjVq/hPs9QcBOGMd7B+jfTr/iqMVEyOi901rE3xq+Deq66GzIT1yt7sGwQ==
+  /rollup/2.40.0:
+    dev: true
+    engines:
+      node: '>=10.0.0'
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    resolution:
+      integrity: sha512-WiOGAPbXoHu+TOz6hyYUxIksOwsY/21TRWoO593jgYt8mvYafYqQl+axaA8y1z2HFazNUUrsMSjahV2A6/2R9A==
   /run-parallel/1.2.0:
     dependencies:
       queue-microtask: 1.2.2
@@ -2901,24 +2951,24 @@ packages:
     dev: true
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /vite-plugin-components/0.7.5_vite@2.0.4:
+  /vite-plugin-components/0.7.5_vite@2.0.5:
     dependencies:
       chokidar: 3.5.1
       debug: 4.3.2
       fast-glob: /@knightly/fast-glob/3.2.5-knightly-master.202101180131
       minimatch: 3.0.4
-      vite: 2.0.4
+      vite: 2.0.5
     dev: true
     peerDependencies:
       vite: ^2.0.0-beta.69
     resolution:
       integrity: sha512-Sly+l1GMRqLeeOFXc9uT1wJUSZQ0LP/65h/c4NK9CWdw2HhHBuB/yyp3ocPLfaq2k+KUeIX2J/Vco/G4hGAy4w==
-  /vite-plugin-purge-icons/0.7.0_vite@2.0.4:
+  /vite-plugin-purge-icons/0.7.0_vite@2.0.5:
     dependencies:
       '@purge-icons/core': 0.7.0
       '@purge-icons/generated': 0.7.0
       rollup-plugin-purge-icons: 0.7.0
-      vite: 2.0.4
+      vite: 2.0.5
     dev: true
     engines:
       node: '>= 12'
@@ -2935,13 +2985,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-CQjfKdSm0YMRRdMkfdI1RqJyrCjOFUl61+puGfMNAUMM5tex9rjF9gHxqDV5pN/2jFMQoTKkLLQ7HOYM0VbF2w==
-  /vite-plugin-voie/0.7.3_4a121492511313a35fa407f8140d2bb0:
+  /vite-plugin-voie/0.7.3_5323dbf60c6a901b9fce8b49b29156a7:
     dependencies:
       fast-glob: 3.2.5
       glob-to-regexp: 0.4.1
-      vite: 2.0.4
-      voie-pages: 0.4.0_vue@3.0.6
-      vue-router: 4.0.4_vue@3.0.6
+      vite: 2.0.5
+      voie-pages: 0.4.0_vue@3.0.7
+      vue-router: 4.0.4_vue@3.0.7
     dev: true
     peerDependencies:
       vite: ^2.0.0-beta.3
@@ -2949,22 +2999,22 @@ packages:
       vue-router: ^4.0.0-beta.4
     resolution:
       integrity: sha512-OwAwziXPb8ywKHXfd9E1UXsEF2rRi4Dgb3F020s2lLWdtuY84xQH4JK84XwytFeht3TsexmJpVPHg2y17QdltQ==
-  /vite-plugin-windicss/0.6.2_vite@2.0.4:
+  /vite-plugin-windicss/0.6.2_vite@2.0.5:
     dependencies:
       '@windicss/plugin-utils': 0.6.2
-      vite: 2.0.4
+      vite: 2.0.5
       windicss: 2.2.0
     dev: true
     peerDependencies:
       vite: ^2.0.1
     resolution:
       integrity: sha512-V4WnjkxvriJSVQjswY+SrDKogOLNq1eG6dQw1wWcJRV+0QUz9pAGrMolSwed4d4MwSSbJrCA7If8xa+EFLUigw==
-  /vite/2.0.4:
+  /vite/2.0.5:
     dependencies:
-      esbuild: 0.8.53
-      postcss: 8.2.4
-      resolve: 1.19.0
-      rollup: 2.38.5
+      esbuild: 0.8.54
+      postcss: 8.2.6
+      resolve: 1.20.0
+      rollup: 2.40.0
     dev: true
     engines:
       node: '>=12.0.0'
@@ -2972,24 +3022,24 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     resolution:
-      integrity: sha512-+PP89D7AKXFE4gps8c5+4eP5yXTh5qCogjdYX7iSsIxbLZAa26JoGSq6OLk0qdb/fqDh7gtJqGiLbG2V6NvkKQ==
+      integrity: sha512-QTgEDbq1WsTtr6j+++ewjhBFEk6c8v0xz4fb/OWJQKNYU8ZZtphOshwOqAlnarSstPBtWCBR0tsugXx6ajfoUg==
   /void-elements/3.1.0:
     dev: true
     engines:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-YU9/v42AHwu18GYfWy9XhXUOTwk=
-  /voie-pages/0.4.0_vue@3.0.6:
+  /voie-pages/0.4.0_vue@3.0.7:
     dependencies:
-      vue-router: 4.0.3_vue@3.0.6
+      vue-router: 4.0.3_vue@3.0.7
     dev: true
     peerDependencies:
       vue: '*'
     resolution:
       integrity: sha512-3oa4wm9tTQEPFdEZychcqCF91PfsEZfvJZ62GoGJf9fpzDF5DnmNZJYQkGxzRbKYUvaIYm37DCd5yDn8btl0eA==
-  /vue-demi/0.7.1_vue@3.0.6:
+  /vue-demi/0.7.1_vue@3.0.7:
     dependencies:
-      vue: 3.0.6
+      vue: 3.0.7
     dev: false
     hasBin: true
     peerDependencies:
@@ -3001,30 +3051,30 @@ packages:
     requiresBuild: true
     resolution:
       integrity: sha512-cJ3QnpcbIqdpeV3NnNgSDwneCJifvHct+6JNvfYn/49geK/uv5VJicZDvyg20guNhz+DZmUHBHyRQTJ32lSC2g==
-  /vue-router/4.0.3_vue@3.0.6:
+  /vue-router/4.0.3_vue@3.0.7:
     dependencies:
-      vue: 3.0.6
+      vue: 3.0.7
     dev: true
     peerDependencies:
       vue: ^3.0.0
     resolution:
       integrity: sha512-AD1OjtVPyQHTSpoRsEGfPpxRQwhAhxcacOYO3zJ3KNkYP/r09mileSp6kdMQKhZWP2cFsPR3E2M3PZguSN5/ww==
-  /vue-router/4.0.4_vue@3.0.6:
+  /vue-router/4.0.4_vue@3.0.7:
     dependencies:
-      vue: 3.0.6
+      vue: 3.0.7
     dev: false
     peerDependencies:
       vue: ^3.0.0
     resolution:
       integrity: sha512-uN6PDEaYdU9aRO7mU+Dkr1uaY49hV3fucEDG/Vre/Qj8ct3RoJS16vcPrvKVzn69zDDjBV5b9Xw7fZA9r6b/Iw==
-  /vue/3.0.6:
+  /vue/3.0.7:
     dependencies:
-      '@vue/compiler-dom': 3.0.6
-      '@vue/runtime-dom': 3.0.6
-      '@vue/shared': 3.0.6
+      '@vue/compiler-dom': 3.0.7
+      '@vue/runtime-dom': 3.0.7
+      '@vue/shared': 3.0.7
     dev: false
     resolution:
-      integrity: sha512-fgjbe/+f1EsqG7ZbaFSnxdzQXF2DKoFCdJlPxZZJy9XMtyXS6SY8pGzLi8WYb4zmsPLHvTZz4bHW30kFDk7vfA==
+      integrity: sha512-8h4TikD+JabbMK9aRlBO4laG0AtNHRPHynxYgWZ9sq1YUPfzynd9Jeeb27XNyZytC7aCQRX9xe1+TQJuc181Tw==
   /webcrypto-core/1.2.0:
     dependencies:
       '@peculiar/asn1-schema': 2.0.27
@@ -3249,29 +3299,30 @@ packages:
     version: 0.2020.520
 specifiers:
   '@iconify/iconify': ^1.0.7
-  '@iconify/json': ^1.1.310
+  '@iconify/json': ^1.1.311
   '@mattkrick/sanitize-svg': ^0.3.1
   '@prettier/plugin-pug': ^1.13.5
   '@qrcode/svg': ^1.0.0-beta.2
   '@rollup/plugin-alias': ^3.1.2
   '@vitejs/plugin-vue': ^1.1.5
-  '@vue/compiler-sfc': ^3.0.6
+  '@vue/compiler-sfc': ^3.0.7
   '@vueuse/core': ^4.3.1
   '@vueuse/router': ^4.3.1
   color-hash: ^1.0.3
   gun: github:amark/gun
   image-compressor: ^2.0.3
+  jsqr: ^1.3.1
   markdown-it: ^12.0.4
   markdown-it-link-attributes: ^3.0.0
   markdown-it-task-lists: ^2.1.1
   pug: ^3.0.2
   qrcode-svg-table: ^1.1.2
   stylus: ^0.54.8
-  vite: ^2.0.4
+  vite: ^2.0.5
   vite-plugin-components: 0.7.5
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-pwa: ^0.5.6
   vite-plugin-voie: ^0.7.3
   vite-plugin-windicss: ^0.6.2
-  vue: ^3.0.6
+  vue: ^3.0.7
   vue-router: ^4.0.4
