@@ -15,7 +15,7 @@ form.flex.flex-col.p-8(@submit.prevent.stop)
 
     label.action(for="json-input")
       i.iconify(data-icon="la:file-code")
-      .text Загрузить JSON-ключ
+      .text Загрузить JSON-файл
     input#json-input.hidden(
       type="file",
       accept="application/json",
@@ -23,7 +23,7 @@ form.flex.flex-col.p-8(@submit.prevent.stop)
     )
     label.action(for="qr-input")
       i.iconify(data-icon="la:qrcode")
-      .text Загрузить QR-ключ
+      .text Загрузить QR фото
     util-load-qr.hidden(@loaded="handleText($event)")
 </template>
 
