@@ -1,10 +1,4 @@
 <template lang="pug">
-author-avatar(
-  v-for="(is, author) in authors",
-  :key="author",
-  :pub="author",
-  size="nano"
-)
 </template>
 
 <script setup>
