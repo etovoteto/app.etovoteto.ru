@@ -22,7 +22,7 @@ import { computed } from "vue";
 
 const link = computed(() => {
   if (currentRoom.isRoot) {
-    return "/";
+    return "/room";
   } else {
     return "/room/" + currentRoom.pub;
   }

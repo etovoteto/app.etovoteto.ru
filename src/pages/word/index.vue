@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   word-form
-  list-hash(tag="word", :search="newWord.word", v-slot="{ record }")
+  list-tag(tag="word", :search="newWord.word", v-slot="{ record }")
     word-card(:record="record", :key="record.hash")
 </template>
 

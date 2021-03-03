@@ -64,10 +64,10 @@ export function useList(
   gun
     .get(`~${room}`)
     .get(`${hashed ? '#' : ''}${tag}`)
-    .on(function (d, k) {
+    .once(function (d, k) {
       timestamps = d['_']['>']
 
-      this.map().on((data, key) => {
+      this.map().once((data, key) => {
         let hash = key
         let record = {}
         let author = key.slice(-87)

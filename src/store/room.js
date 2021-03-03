@@ -4,7 +4,6 @@ import { reactive, computed, ref, watchEffect } from 'vue'
 import { model } from 'store@locale'
 import { addHashedPersonal } from 'store@item'
 import { capitalFirst } from 'model@word'
-import { issueCert } from 'use@crypto'
 import { useTitle } from '@vueuse/core'
 import { search } from 'model@room'
 
@@ -78,13 +77,22 @@ export function initRoom(pair) {
   roomDb.user().auth(pair, async () => {
     roomDb.user().get('host').put(account.is.pub)
     roomDb.user().get('title').put(capitalFirst(search.value))
-
-    for (let tag in model) {
-      let crt = await issueCert(tag, pair)
-      roomDb.user().get('cert').get(tag).put(crt)
-    }
+    await setCerts(pair)
     enterRoom(pair.pub)
   })
+}
+
+export async function setCerts(pair) {
+  let certDb = roomDb.user().get('cert')
+  for (let tag in model) {
+    let crt = await issueCert(tag, pair)
+    certDb.get(tag).put(crt)
+  }
+  for (let tag of ['title', 'trash', 'banlist', 'info']) {
+    let crt = await issueCert(tag, pair, gun.user().is.pub)
+    certDb.get(tag).put(crt)
+  }
+  return true
 }
 
 export function useRoomCerts(pub = currentRoom.pub) {
@@ -97,4 +105,21 @@ export function useRoomCerts(pub = currentRoom.pub) {
       roomCerts[k] = d
     })
   return roomCerts
+}
+
+export async function issueCert(tag = 'word', pair = appPair, users = '*') {
+  let hashed = model?.[tag]?.hashed || false
+  let personal = model?.[tag]?.personal || false
+  let path = { '*': `${hashed ? '#' : ''}${tag}` }
+  if (personal) {
+    path['+'] = '*'
+  }
+  try {
+    let cert = await sea.certify(users, path, pair, null, {
+      blacklist: 'banlist',
+    })
+    return cert
+  } catch (e) {
+    console.log(e)
+  }
 }

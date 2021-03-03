@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   def-form
-  list-hash(tag="def", :search="newDef.def", v-slot="{ record }")
+  list-tag(tag="def", :search="newDef.def", v-slot="{ record }")
     def-card(:record="record", :key="record.hash")
 </template>
 

@@ -1,6 +1,6 @@
 <template lang="pug">
 form.flex.flex-col(@submit.prevent)
-  input.p-4.mb-4.text-center.text-xl(
+  input.p-4.mt-4.mb-3.text-center.text-xl(
     v-model="search",
     ref="input",
     placeholder="Название комнаты"
@@ -18,6 +18,7 @@ import { useRouter } from "vue-router";
 import { onStartTyping } from "@vueuse/core";
 import { ref } from "vue";
 const router = useRouter();
+
 async function create() {
   const roomPub = await createRoom();
   search.value = "";
