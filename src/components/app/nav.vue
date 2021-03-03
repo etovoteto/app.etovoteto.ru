@@ -11,13 +11,22 @@ nav.flex.items-center.text-3xl
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")
-    router-link.user(to="/room")
+    router-link.user(:to="link")
       i.iconify(data-icon="la:comments")
 </template>
 
 <script setup>
 import { account } from "store@account";
 import { leaveRoom, state } from "store@room";
+import { computed } from "vue";
+
+const link = computed(() => {
+  if (state.isRoot) {
+    return "/";
+  } else {
+    return "/room/" + state.room;
+  }
+});
 </script>
 
 <style lang="stylus" scoped>
