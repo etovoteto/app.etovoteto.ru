@@ -41,7 +41,12 @@ export function countAuthors(room = state.room) {
   return count
 }
 
-export function useList(tag = 'word', hashed = true, room = state.room) {
+export function useList(
+  tag = 'word',
+  personal,
+  room = state.room,
+  hashed = true,
+) {
   const options = reactive({
     orderBy: 'timestamp',
     search: '',
@@ -66,6 +71,7 @@ export function useList(tag = 'word', hashed = true, room = state.room) {
         let hash = key
         let record = {}
         let author = key.slice(-87)
+        if (personal && personal != author) return
         if (hashed) {
           hash = key.slice(0, 44)
           record.data = JSON.parse(data)

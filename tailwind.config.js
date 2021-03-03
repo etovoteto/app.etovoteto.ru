@@ -40,6 +40,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('windicss/plugin/scroll-snap'),
     plugin(function ({ addUtilities }) {
       const newUtilities = {
         '.skew-10deg': {

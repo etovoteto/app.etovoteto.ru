@@ -59,6 +59,7 @@ html {
   flex-flow: column;
   align-items: center;
   background-color: var(--background);
+  overscroll-behavior-x: contain;
 }
 
 #app > main {

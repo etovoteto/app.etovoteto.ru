@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   author-search
-  author-list
+  list-author
 </template>
 
 <script setup>

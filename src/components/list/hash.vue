@@ -1,10 +1,10 @@
 <template lang="pug">
-.list
+.flex.flex-col
   transition-group(name="list") 
-    word-card(
-      v-for="(word, key) in sorted.list",
-      :key="word.timestamp",
-      :record="word"
+    slot(
+      v-for="(record, key) in sorted.list",
+      :key="record.hash",
+      :record="record"
     )
     .text-2xl.p-8.bg-warm-gray-300(
       key="more",
@@ -16,11 +16,17 @@
 
 <script setup>
 import { useList } from "store@list";
-import { newWord } from "model@word";
 import { watchEffect } from "vue";
-const { sorted, options, more } = useList("word");
+import { defineProps } from "vue";
+
+const props = defineProps({
+  tag: String,
+  search: String,
+});
+
+const { sorted, options, more } = useList(props.tag);
 watchEffect(() => {
-  options.search = newWord.word;
+  options.search = props.search;
 });
 </script>
 

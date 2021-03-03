@@ -18,9 +18,9 @@
     .spacer
     link-button(:record="record")
 
-  .links(v-if="record != linkFrom")
+  .links.max-h-xs.overflow-y-scroll.snap(v-if="record != linkFrom")
     transition-group(name="list")
-      def-link(
+      def-link.snap-start(
         v-for="(linker, hash) in links",
         :key="hash + linker",
         :linker="linker",

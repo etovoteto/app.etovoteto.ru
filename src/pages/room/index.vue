@@ -1,7 +1,7 @@
 <template lang="pug">
 main
   room-form
-  room-list
+  list-room
 </template>
 
 <script setup>

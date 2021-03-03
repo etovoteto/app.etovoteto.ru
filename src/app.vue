@@ -4,7 +4,7 @@ link-card
 router-view(v-slot="{ Component }")
   transition(name="fade")
     component(:is="Component", :key="state.room")
-app-dev
+app-lab
 transition(name="fade")
   .auth(v-if="!account.is?.pub")
     my-auth

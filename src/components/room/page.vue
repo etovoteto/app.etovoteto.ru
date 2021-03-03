@@ -12,20 +12,13 @@ main
         v-if="state.room != pub",
         @click="enterRoom(pub)"
       ) Войти
-      transition(name="fade")
-      button.bg-warm-gray-300.py-2.px-4(
-        @click="favRoom(pub)",
-        v-if="!room.isFav"
-      )
-        i.iconify(data-icon="la:star-solid")
-      button.bg-warm-gray-300.py-2.px-4(v-else, @click="unFavRoom(pub)")
-        i.iconify(data-icon="la:star")
+      edit-fav(:pub="pub")
   room-counters(:pub="pub")
 </template>
 
 <script setup>
 import { enterRoom, state } from "store@room";
-import { favRoom, unFavRoom, isFav, useRoom } from "model@room";
+import { favRoom, unFavRoom, useRoom } from "model@room";
 import { pubGradient } from "use@colors";
 import { defineProps, reactive, watchEffect } from "vue";
 import { useTitle } from "@vueuse/core";

@@ -12,7 +12,7 @@
     )
     .spacer
     author-avatar(:pub="linker", size="nano")
-  .text-lg {{ capitalFirst(record.data.def) }}
+  router-link.text-lg.font-normal(:to="`/def/${safeHash(record.hash)}`") {{ capitalFirst(record.data.def) }}
 </template>
 
 <script setup>
@@ -20,7 +20,7 @@ import { defineProps, ref } from "vue";
 import { getHashedPersonal } from "store@item";
 import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
-
+import { safeHash } from "store@db";
 const props = defineProps({
   linker: String,
   hash: String,

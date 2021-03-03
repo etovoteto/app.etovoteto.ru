@@ -8,15 +8,14 @@ router-link(to="/lab")
 
 <style lang="stylus" scoped>
 a
-  position: fixed
-  padding: 0.5em
+  position: absolute
+  padding: 0.25em 0.5em
   font-size: 2em
-  right: 0
-  bottom: 0px
-  margin: 1em
-  background-color: var(--background-alt)
-  border-radius: 100%
+  right: calc(50% - 1em)
+  top: 0
+  border-radius: 2em
+  opacity: 0.15
 
   &.router-link-active
-    background-color: var(--top-bar)
+    background-color: var(--background-alt)
 </style>

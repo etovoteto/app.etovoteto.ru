@@ -1,3 +1,4 @@
+import { gun } from './../store/db'
 import { reactive, ref } from 'vue'
 
 export const search = ref('')
@@ -10,17 +11,17 @@ export function unFavRoom(pub) {
   gun.user().get('room').get('fav').get(pub).put(false)
 }
 
-export function isFav(pub) {
+export function useIsFav(pub) {
   let fav = ref(false)
   gun
-    .get(`~${pub}`)
+    .user()
     .get('room')
     .get('fav')
     .get(pub)
     .on((d) => {
-      fav.value - d
+      fav.value = d
     })
-  return fav.value
+  return { fav }
 }
 
 export function useRoom(pub) {

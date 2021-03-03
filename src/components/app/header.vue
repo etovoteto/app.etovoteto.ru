@@ -11,7 +11,6 @@ header.w-full.flex.flex-col.items-center(
   )
     i.iconify(data-icon="la:times")
   app-nav
-  app-dev
 </template>
 
 <script setup>

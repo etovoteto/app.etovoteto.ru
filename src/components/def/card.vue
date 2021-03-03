@@ -1,7 +1,7 @@
 <template lang="pug">
 .flex.flex-col.p-6.my-4.bg-warm-gray-50(v-if="record.data")
   .flex.items-center
-    router-link(:to="'/def/' + safeHash(record.hash)") {{ parts[record.data.part].name }}.
+    .part {{ parts[record.data.part].name }}.
     author-avatar(
       v-for="(is, author) in record.authors",
       :key="author",
@@ -10,7 +10,7 @@
     )
     .spacer
     link-button(:record="record")
-  .text-lg {{ capitalFirst(record.data.def) }}
+  router-link.text-lg.font-normal(:to="'/def/' + safeHash(record.hash)") {{ capitalFirst(record.data.def) }}
   .links(v-if="record != linkFrom")
     transition-group(name="list")
       word-link(

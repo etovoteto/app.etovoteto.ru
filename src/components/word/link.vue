@@ -1,10 +1,10 @@
 <template lang="pug">
 .row.pt-2.flex.items-center(v-if="record.data")
-  .text-xl.font-bold
-    span(
-      v-if="record",
-      v-html="renderWord(record.data.word, record.data.stress)"
-    )
+  router-link.text-xl.font-bold(
+    :to="`/word/${safeHash(record.hash)}`",
+    v-if="record",
+    v-html="renderWord(record.data.word, record.data.stress)"
+  )
   author-avatar(:pub="linker", size="nano") 
   .spacer
   author-avatar(
@@ -19,7 +19,7 @@
 import { defineProps, ref } from "vue";
 import { getHashedPersonal } from "store@item";
 import { renderWord } from "model@word";
-
+import { safeHash } from "store@db";
 const props = defineProps({
   linker: String,
   hash: String,

@@ -1,10 +1,14 @@
 <template lang="pug">
-router-link.p-4.my-2.flex.flex-col.items-center(
-  :to="{ path: '/room/' + pub }",
-  :style="{ background: pubGradient(pub, 90) }"
-) 
-  author-badge(:pub="room.host")
-  .text-2xl {{ room.title }}
+.my-2.flex.flex-col.items-stretch.bg-warm-gray-50
+  router-link.flex.flex-col.p-4.items-stretch(
+    :to="{ path: '/room/' + pub }",
+    :style="{ background: pubGradient(pub, 90) }"
+  )
+    .text-2xl.mb-4 {{ room.title }}
+    .flex.justify-center
+      author-badge.text-sm(:pub="room.host")
+      .spacer
+      edit-fav(:pub="pub")
   room-counters(:pub="pub")
 </template>
 
@@ -12,30 +16,14 @@ router-link.p-4.my-2.flex.flex-col.items-center(
 import { defineProps, reactive } from "vue";
 import { gun } from "store@db";
 import { pubGradient } from "use@colors";
+import { favRoom, unFavRoom, useRoom } from "model@room";
 
 const props = defineProps({
   pub: String,
   data: Object,
 });
 
-const room = reactive({
-  title: "",
-  host: "",
-});
-
-gun
-  .get("~" + props.pub)
-  .get("title")
-  .on((d) => {
-    room.title = d;
-  });
-
-gun
-  .get("~" + props.pub)
-  .get("host")
-  .on((d) => {
-    room.host = d;
-  });
+const room = useRoom(props.pub);
 </script>
 
 <style lang="stylus" scoped></style>

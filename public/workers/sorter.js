@@ -12,8 +12,8 @@ function sort({ data }) {
 
   if (search) {
     list = list.filter((item) => {
-      if (item[main]) {
-        return item[main].toLowerCase().includes(search.toLowerCase())
+      if (item.data[main]) {
+        return item.data[main].toLowerCase().includes(search.toLowerCase())
       } else return false
     })
   }

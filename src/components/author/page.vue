@@ -7,6 +7,7 @@
     i.iconify(data-icon="la:sign-in-alt")
   author-profile(:pub="pub")
   author-rooms(:pub="pub")
+  author-words(:pub="pub")
 </template>
 
 <script setup>
