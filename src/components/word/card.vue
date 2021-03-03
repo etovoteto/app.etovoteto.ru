@@ -9,7 +9,12 @@
         v-if="record",
         v-html="renderWord(record.data.word, record.data.stress)"
       )
-    author-dots(:authors="record.authors")
+    author-avatar(
+      v-for="(is, author) in record.authors",
+      :key="author",
+      :pub="author",
+      size="nano"
+    )
     .spacer
     link-button(:record="record")
 

@@ -7,7 +7,12 @@
     )
   author-avatar(:pub="linker", size="nano") 
   .spacer
-  author-dots(:authors="record.authors")
+  author-avatar(
+    v-for="(is, author) in record.authors",
+    :key="author",
+    :pub="author",
+    size="nano"
+  )
 </template>
 
 <script setup>

@@ -2,7 +2,12 @@
 .flex.flex-col.p-6.my-4.bg-warm-gray-50(v-if="record.data")
   .flex.items-center
     router-link(:to="'/def/' + safeHash(record.hash)") {{ parts[record.data.part].name }}.
-    author-dots(:authors="record.authors")
+    author-avatar(
+      v-for="(is, author) in record.authors",
+      :key="author",
+      :pub="author",
+      size="nano"
+    )
     .spacer
     link-button(:record="record")
   .text-lg {{ capitalFirst(record.data.def) }}
