@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/DeFUCC/app.etovoteto.ru"
   },
-  "version": "0.3.7",
+  "version": "0.4.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -45,7 +45,7 @@
     "pug": "^3.0.2",
     "stylus": "^0.54.8",
     "vite": "^2.0.5",
-    "vite-plugin-components": "0.7.5",
+    "vite-plugin-components": "0.8.0",
     "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-pwa": "^0.5.6",
     "vite-plugin-voie": "^0.7.3",

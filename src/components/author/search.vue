@@ -1,5 +1,9 @@
 <template lang="pug">
-input.p-6.text-center.text-lg(v-model="search", ref="input")
+input.p-6.text-center.text-lg(
+  v-model="search",
+  ref="input",
+  placeholder="Имя автора"
+)
 </template>
 
 <script setup>

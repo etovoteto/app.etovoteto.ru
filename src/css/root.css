@@ -60,6 +60,7 @@ html {
   align-items: center;
   background-color: var(--background);
   overscroll-behavior-x: contain;
+  overflow-x: hidden;
 }
 
 #app > main {
