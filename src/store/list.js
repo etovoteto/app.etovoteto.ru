@@ -6,10 +6,10 @@ import { useIntersectionObserver } from '@vueuse/core'
 
 import { account } from 'store@account'
 import { linkFrom, link } from 'model@link'
-import { state } from 'store@room'
+import { currentRoom } from 'store@room'
 import { links } from './locale'
 
-export function useCount(tag, hashed = true, room = state.room) {
+export function useCount(tag, hashed = true, room = currentRoom.pub) {
   const counter = reactive({})
   gun
     .get(`~${room}`)
@@ -24,7 +24,7 @@ export function useCount(tag, hashed = true, room = state.room) {
   return count
 }
 
-export function countAuthors(room = state.room) {
+export function countAuthors(room = currentRoom.pub) {
   const counter = reactive({})
   Object.keys(links).forEach((tag) => {
     gun
@@ -44,7 +44,7 @@ export function countAuthors(room = state.room) {
 export function useList(
   tag = 'word',
   personal,
-  room = state.room,
+  room = currentRoom.pub,
   hashed = true,
 ) {
   const options = reactive({

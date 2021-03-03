@@ -2,7 +2,7 @@ import { reactive, watchEffect } from 'vue'
 import { addHashedPersonal } from 'store@item'
 
 import { vowels, stressMark, wordMask } from 'store@locale'
-import { state } from 'store@room'
+import { currentRoom } from 'store@room'
 
 export { vowels }
 

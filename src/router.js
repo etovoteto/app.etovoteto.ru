@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import routes from 'voie-pages'
-import { state } from 'store@room'
+import { currentRoom } from 'store@room'
 
 export const router = createRouter({
   history: createWebHashHistory(),
@@ -15,8 +15,8 @@ export const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (!state.isRoot && !hasQueryParams(to)) {
-    next({ ...to, query: { room: state.room } })
+  if (!currentRoom.isRoot && !hasQueryParams(to)) {
+    next({ ...to, query: { room: currentRoom.pub } })
   } else {
     next()
   }

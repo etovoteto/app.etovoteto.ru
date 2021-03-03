@@ -2,9 +2,9 @@ import { link } from 'model@link'
 import { reactive } from 'vue'
 import { account } from 'store@account'
 import { gun, hashObj, roomDb } from './db'
-import { state } from './room'
+import { currentRoom } from './room'
 
-export async function addHashedPersonal(tag, obj, room = state.room) {
+export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
   gun
@@ -15,7 +15,7 @@ export async function addHashedPersonal(tag, obj, room = state.room) {
   link({ hash, tag, ...obj })
 }
 
-export function getHashedPersonal(tag, hash, room = state.room) {
+export function getHashedPersonal(tag, hash, room = currentRoom.pub) {
   const record = reactive({})
   gun
     .get(`~${room}`)

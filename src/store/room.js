@@ -13,12 +13,12 @@ const appTitle = 'ЭТОВОТЭТО'
 export const appPub =
   'vCHZH0AqZ_QfHXDngLzS69p-Xu7Mn3GJf1ZP4jzaKtE.lC8d78SghL84Eg1KO1u-zzjW_SgHw3cLQOQraerLAHQ'
 
-export const state = reactive({
+export const currentRoom = reactive({
   title: appTitle,
-  room: appPub,
+  pub: appPub,
   host: false,
   isRoot: computed(() => {
-    return appPub == state.room
+    return appPub == currentRoom.pub
   }),
 })
 
@@ -28,7 +28,7 @@ roomDb.on('auth', async () => {
 
 const pageTitle = useTitle()
 watchEffect(() => {
-  pageTitle.value = state.title
+  pageTitle.value = currentRoom.title
 })
 
 export async function enterRoom(pub) {
@@ -36,13 +36,13 @@ export async function enterRoom(pub) {
     .get('~' + pub)
     .get('title')
     .then()
-  state.title = title || 'Без названия'
+  currentRoom.title = title || 'Без названия'
   joinRoom(pub)
   authRoom(pub)
 }
 
-export async function joinRoom(room = state.room) {
-  state.room = room
+export async function joinRoom(room = currentRoom.pub) {
+  currentRoom.pub = room
   gun.user().get('room').get('current').put(room)
 }
 
@@ -59,8 +59,8 @@ async function authRoom(pub) {
 
 export function leaveRoom(pub) {
   gun.user().get('room').get('current').put(appPub)
-  state.room = appPub
-  state.title = appTitle
+  currentRoom.pub = appPub
+  currentRoom.title = appTitle
   roomDb.user().leave()
   console.info('You leaved the room')
 }
@@ -87,7 +87,7 @@ export function initRoom(pair) {
   })
 }
 
-export function useRoomCerts(pub = state.room) {
+export function useRoomCerts(pub = currentRoom.pub) {
   const roomCerts = reactive({})
   gun
     .get('~' + pub)

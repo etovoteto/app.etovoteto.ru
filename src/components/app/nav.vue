@@ -17,14 +17,14 @@ nav.flex.items-center.text-3xl
 
 <script setup>
 import { account } from "store@account";
-import { leaveRoom, state } from "store@room";
+import { leaveRoom, currentRoom } from "store@room";
 import { computed } from "vue";
 
 const link = computed(() => {
-  if (state.isRoot) {
+  if (currentRoom.isRoot) {
     return "/";
   } else {
-    return "/room/" + state.room;
+    return "/room/" + currentRoom.pub;
   }
 });
 </script>

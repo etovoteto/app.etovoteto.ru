@@ -2,10 +2,10 @@ import { gun } from 'store@db'
 import { reactive, ref, watchEffect } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-import { state } from 'store@room'
+import { currentRoom } from 'store@room'
 import { withLinks, links } from 'store@locale'
 
-export function useRooms(room = state.room) {
+export function useRooms(room = currentRoom.pub) {
   const options = reactive({
     orderBy: 'sum',
     search: '',

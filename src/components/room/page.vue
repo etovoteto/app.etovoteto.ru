@@ -9,7 +9,7 @@ main
     author-badge(:pub="room.host")
     .flex.flex-wrap.my-4
       button.bg-warm-gray-300.py-2.px-4(
-        v-if="state.room != pub",
+        v-if="currentRoom.pub != pub",
         @click="enterRoom(pub)"
       ) Войти
       edit-fav(:pub="pub")
@@ -17,7 +17,7 @@ main
 </template>
 
 <script setup>
-import { enterRoom, state } from "store@room";
+import { enterRoom, currentRoom } from "store@room";
 import { favRoom, unFavRoom, useRoom } from "model@room";
 import { pubGradient } from "use@colors";
 import { defineProps, reactive, watchEffect } from "vue";

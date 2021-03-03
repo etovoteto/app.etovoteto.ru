@@ -3,7 +3,7 @@ app-header
 link-card
 router-view(v-slot="{ Component }")
   transition(name="fade")
-    component(:is="Component", :key="state.room")
+    component(:is="Component", :key="currentRoom.pub")
 app-lab
 transition(name="fade")
   .auth(v-if="!account.is?.pub")
@@ -11,7 +11,7 @@ transition(name="fade")
 </template>
 
 <script setup >
-import { state, enterRoom } from "store@room";
+import { currentRoom, enterRoom } from "store@room";
 import { account } from "store@account";
 import { watchEffect } from "vue";
 import { useRoute } from "vue-router";
