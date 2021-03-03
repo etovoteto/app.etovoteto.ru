@@ -13,7 +13,7 @@ main
         @click="enterRoom(pub)"
       ) Войти
       edit-fav(:pub="pub")
-  room-counters(:pub="pub")
+  room-pub-counters(:pub="pub")
 </template>
 
 <script setup>

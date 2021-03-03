@@ -1,5 +1,5 @@
 <template lang="pug">
-.my-4.p-6.bg-warm-gray-50(v-if="record.data")
+.my-4.p-6.bg-warm-gray-50.shadow-lg(v-if="record.data")
   .flex.items-center
     router-link.font-bold.text-2xl(
       :to="'/word/' + safeHash(record.hash)",

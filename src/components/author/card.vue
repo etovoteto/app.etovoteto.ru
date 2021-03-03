@@ -1,5 +1,5 @@
 <template lang="pug">
-router-link.flex.flex-wrap.justify-start.py-6.px-2.my-2.text-xl.items-center.bg-warm-gray-50(
+router-link.flex.flex-wrap.justify-start.py-6.px-2.my-4.text-xl.items-center.bg-warm-gray-50.shadow-lg(
   :to="'/author/' + author.pub"
 )
   .flex.items-center.justify-start.flex-grow

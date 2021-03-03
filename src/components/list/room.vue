@@ -1,12 +1,7 @@
 <template lang="pug">
-.flex.flex-col
+.flex.flex-col 
   transition-group(name="list")
-    room-card(
-      v-for="room in sorted.list",
-      :key="room.data.pub",
-      :pub="room.data.pub",
-      :data="room.data"
-    ) 
+    room-card(v-for="room in sorted.list", :key="room.pub", :room="room")
     .text-2xl.p-8.bg-warm-gray-300(
       key="more",
       ref="more",
@@ -18,9 +13,12 @@
 <script setup>
 import { useList } from "store@list";
 import { search } from "model@room";
+import { useRooms } from "model@rooms";
 import { watchEffect } from "vue";
 
-const { sorted, options, more } = useList("room");
+// const { sorted, options, more } = useList("room");
+
+const { sorted, options, more } = useRooms();
 
 watchEffect(() => {
   options.main = "title";

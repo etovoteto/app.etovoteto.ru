@@ -2,24 +2,29 @@
 .flex.justify-center.text-2xl.py-4
   .count
     i.iconify(data-icon="la:comment-dots")
-    span {{ room.word }}
+    span {{ words }}
   .count 
     i.iconify(data-icon="la:comment")
-    span {{ room.def }}
+    span {{ defs }}
   .count 
     i.iconify(data-icon="la:link")
-    span {{ room.link }}
+    span {{ links / 2 }}
   .count 
     i.iconify(data-icon="la:user")
-    span {{ room.author }}
+    span {{ authors }}
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 import { useCount, countAuthors } from "store@list";
 const props = defineProps({
-  room: Object,
+  pub: String,
 });
+
+const words = useCount("word", true, props.pub);
+const defs = useCount("def", true, props.pub);
+const links = useCount("link", false, props.pub);
+const authors = countAuthors(props.pub);
 </script>
 
 <style lang="stylus" scoped>

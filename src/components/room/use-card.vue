@@ -1,15 +1,15 @@
 <template lang="pug">
-.my-4.flex.flex-col.items-stretch.bg-warm-gray-50.shadow-lg
+.my-2.flex.flex-col.items-stretch.bg-warm-gray-50
   router-link.flex.flex-col.p-4.items-stretch(
-    :to="{ path: '/room/' + room.pub }",
-    :style="{ background: pubGradient(room.pub, 90) }"
+    :to="{ path: '/room/' + pub }",
+    :style="{ background: pubGradient(pub, 90) }"
   )
-    .text-2xl.mb-4 {{ room.data.title }}
+    .text-2xl.mb-4 {{ room.title }}
     .flex.justify-center
       author-badge.text-sm(:pub="room.host")
       .spacer
-
-  room-counters(:room="room")
+      edit-fav(:pub="pub")
+  room-counters(:pub="pub")
 </template>
 
 <script setup>
@@ -19,8 +19,11 @@ import { pubGradient } from "use@colors";
 import { favRoom, unFavRoom, useRoom } from "model@room";
 
 const props = defineProps({
-  room: Object,
+  pub: String,
+  data: Object,
 });
+
+const room = useRoom(props.pub);
 </script>
 
 <style lang="stylus" scoped></style>

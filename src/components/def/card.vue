@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.flex-col.p-6.my-4.bg-warm-gray-50(v-if="record.data")
+.flex.flex-col.p-6.my-4.bg-warm-gray-50.shadow-lg(v-if="record.data")
   .flex.items-center
     .part {{ parts[record.data.part].name }}.
     author-avatar(

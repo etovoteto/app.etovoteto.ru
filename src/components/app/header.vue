@@ -1,5 +1,5 @@
 <template lang="pug">
-header.w-full.flex.flex-col.items-center(
+header.w-full.flex.flex-col.items-center.shadow-md(
   :style="{ background: !state.isRoot ? pubGradient(state.room, 90) : 'var(--top-bar)' }"
 )
   h1.text-3xl.mt-20.mb-4
