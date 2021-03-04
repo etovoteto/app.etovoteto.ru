@@ -17,6 +17,7 @@ module.exports = {
       blue: colors.lightBlue,
       red: colors.rose,
       pink: colors.fuchsia,
+      green: colors.lime,
       'warm-gray': colors.warmGray,
     },
     fontFamily: {

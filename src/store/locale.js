@@ -37,11 +37,6 @@ export const model = {
     hashed: true,
     personal: true,
   },
-  author: {
-    title: 'Автор',
-    hashed: false,
-    personal: true,
-  },
 }
 
 export const parts = {

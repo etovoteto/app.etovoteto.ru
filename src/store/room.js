@@ -16,13 +16,14 @@ export const currentRoom = reactive({
   title: appTitle,
   pub: appPub,
   host: false,
+  hosting: false,
   isRoot: computed(() => {
     return appPub == currentRoom.pub
   }),
 })
 
 roomDb.on('auth', async () => {
-  console.info('You logged in as the host of this room')
+  currentRoom.hosting = true
 })
 
 const pageTitle = useTitle()
@@ -31,11 +32,10 @@ watchEffect(() => {
 })
 
 export async function enterRoom(pub) {
-  let title = await gun
+  gun
     .get('~' + pub)
     .get('title')
-    .then()
-  currentRoom.title = title || 'Без названия'
+    .on((d) => (currentRoom.title = d || 'noname'))
   joinRoom(pub)
   authRoom(pub)
 }
@@ -60,6 +60,7 @@ export function leaveRoom(pub) {
   gun.user().get('room').get('current').put(appPub)
   currentRoom.pub = appPub
   currentRoom.title = appTitle
+  currentRoom.hosting = false
   roomDb.user().leave()
   console.info('You leaved the room')
 }
@@ -82,32 +83,21 @@ export function initRoom(pair) {
   })
 }
 
-export async function setCerts(pair) {
+export async function setCerts(pair = roomDb.user()._.sea) {
+  if (!pair) return
   let certDb = roomDb.user().get('cert')
   for (let tag in model) {
     let crt = await issueCert(tag, pair)
     certDb.get(tag).put(crt)
   }
-  for (let tag of ['title', 'trash', 'banlist', 'info']) {
-    let crt = await issueCert(tag, pair, gun.user().is.pub)
+  for (let tag of ['title', 'info', 'trash', 'ban']) {
+    let crt = await issueCert(tag, pair, { pub: gun.user().is.pub })
     certDb.get(tag).put(crt)
   }
   return true
 }
 
-export function useRoomCerts(pub = currentRoom.pub) {
-  const roomCerts = reactive({})
-  gun
-    .get('~' + pub)
-    .get('cert')
-    .map()
-    .on((d, k) => {
-      roomCerts[k] = d
-    })
-  return roomCerts
-}
-
-export async function issueCert(tag = 'word', pair = appPair, users = '*') {
+export async function issueCert(tag = 'word', pair, users = '*') {
   let hashed = model?.[tag]?.hashed || false
   let personal = model?.[tag]?.personal || false
   let path = { '*': `${hashed ? '#' : ''}${tag}` }
@@ -116,7 +106,7 @@ export async function issueCert(tag = 'word', pair = appPair, users = '*') {
   }
   try {
     let cert = await sea.certify(users, path, pair, null, {
-      blacklist: 'banlist',
+      blacklist: 'ban',
     })
     return cert
   } catch (e) {

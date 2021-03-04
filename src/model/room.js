@@ -1,5 +1,6 @@
 import { gun } from './../store/db'
 import { reactive, ref } from 'vue'
+import { currentRoom } from '../store/room'
 
 export const search = ref('')
 
@@ -26,26 +27,64 @@ export function useIsFav(pub) {
 
 export function useRoom(pub) {
   const room = reactive({
+    pub: pub,
     title: '',
+    info: {},
     isFav: false,
+    host: '',
   })
-  gun
-    .get(`~${pub}`)
-    .get('host')
-    .once((d) => (room.host = d))
   gun
     .get(`~${pub}`)
     .get('title')
     .on((d) => (room.title = d))
-
-  gun
-    .user()
-    .get('room')
-    .get('fav')
-    .get(pub)
-    .on((d) => {
-      room.isFav = d
-    })
+    .back()
+    .get('host')
+    .once((d) => (room.host = d))
+    .back()
+    .get('info')
+    .map()
+    .on((d, k) => (room.info[k] = d))
 
   return room
+}
+
+export async function setInfo(
+  tag = 'info',
+  content = true,
+  pub = currentRoom.pub,
+) {
+  let cert = await gun
+    .get('~' + pub)
+    .get('cert')
+    .get('info')
+    .then()
+  gun
+    .get('~' + pub)
+    .get('info')
+    .get(tag)
+    .put(content, null, { opt: { cert } })
+}
+
+export async function setTitle(title = 'noname', pub = currentRoom.pub) {
+  let cert = await gun
+    .get('~' + pub)
+    .get('cert')
+    .get('title')
+    .then()
+  gun
+    .get('~' + pub)
+    .get('title')
+    .put(title, null, { opt: { cert } })
+}
+
+export function useRoomCerts(pub = currentRoom.pub) {
+  const roomCerts = reactive({})
+  gun
+    .get('~' + pub)
+    .get('cert')
+    .map()
+    .on((d, k) => {
+      roomCerts[k] = d
+    })
+  return roomCerts
 }

@@ -27,7 +27,6 @@ const emit = defineEmit(["update"]);
 
 const props = defineProps({
   text: String,
-  id: String,
   editable: Boolean,
 });
 

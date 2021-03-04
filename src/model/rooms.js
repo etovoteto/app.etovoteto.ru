@@ -28,7 +28,13 @@ export function useRooms(room = currentRoom.pub) {
       gun
         .get(`~${pub}`)
         .get('title')
-        .once((d) => (rooms[pub].data.title = d))
+        .on((d) => (rooms[pub].data.title = d))
+
+      gun
+        .get(`~${pub}`)
+        .get('info')
+        .get('desc')
+        .on((d) => (rooms[pub].data.desc = d))
 
       counter[pub] = counter[pub] || {}
       Object.keys(links).forEach((tag) => {

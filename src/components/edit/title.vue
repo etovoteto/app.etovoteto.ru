@@ -1,11 +1,11 @@
 <template lang="pug">
-.title
-  h3(v-if="!edit") {{ title }}
-    span.edit(v-if="editable", @click="edit = true")
+.flex.flex-col.items-stretch.min-w-full
+  .text-2xl(v-if="!edit") {{ title }}
+    span.p-3(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
-  input(
+  input.min-w-full.p-4(
     v-else,
-    ref="title",
+    ref="input",
     @keyup.enter="$emit('update', $event.target.value); edit = false",
     @blur="edit = false",
     @keyup.esc="edit = false",
@@ -15,7 +15,8 @@
 </template>
 
 <script setup >
-import { defineEmit, ref, defineProps } from "vue";
+import { onStartTyping } from "@vueuse/core";
+import { defineEmit, ref, defineProps, onMounted, watchEffect } from "vue";
 
 defineEmit(["update"]);
 const props = defineProps({
@@ -23,23 +24,18 @@ const props = defineProps({
   title: String,
 });
 const edit = ref(false);
+
+const input = ref(null);
+
+watchEffect(() => {
+  if (edit) {
+    if (input.value && !input.value.active) input.value.focus();
+  }
+});
+
+onStartTyping(() => {
+  if (!input.value.active) input.value.focus();
+});
 </script>
 
-<style lang="stylus" scoped>
-.title
-  width: 100%
-  display: flex
-  align-items: center
-
-input
-  width: 80%
-  flex: 1
-
-.title h3
-  margin: 0.5em 0
-  font-size: 1.2em
-
-.edit
-  font-size: 16px
-  padding: 6px
-</style>
+<style lang="stylus" scoped></style>

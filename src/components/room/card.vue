@@ -1,15 +1,17 @@
 <template lang="pug">
-.my-4.flex.flex-col.items-stretch.bg-warm-gray-50.shadow-lg
-  router-link.flex.flex-col.p-4.items-stretch(
-    :to="{ path: '/room/' + room.pub }",
+router-link.my-4.flex.flex-col.items-stretch.bg-warm-gray-50.shadow-lg(
+  :to="{ path: '/room/' + room.pub }"
+)
+  .flex.flex-col.p-4.items-stretch(
     :style="{ background: pubGradient(room.pub, 90) }"
   )
     .text-2xl.mb-4 {{ room.data.title }}
     .flex.justify-center
       author-badge.text-sm(:pub="room.host")
       .spacer
-
-  room-counters(:room="room")
+  .p-4.text-lg.font-normal(v-if="room.data?.desc")
+    p {{ room.data?.desc }}
+  room-counters.bg-warm-gray-100(:room="room")
 </template>
 
 <script setup>
@@ -23,4 +25,9 @@ const props = defineProps({
 });
 </script>
 
-<style lang="stylus" scoped></style>
+<style  scoped>
+a:hover {
+  text-decoration: none;
+  @apply shadow-2xl;
+}
+</style>
