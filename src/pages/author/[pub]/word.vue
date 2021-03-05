@@ -1,6 +1,7 @@
 <template lang="pug">
 .flex.flex-col
-  author-words(:pub="pub")
+  list-tag(tag="word", :author="pub", v-slot="{ record }")
+    word-card(:record="record", :key="record.hash")
 </template>
 
 <script setup>

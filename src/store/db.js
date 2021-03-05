@@ -11,9 +11,10 @@ import 'gun/lib/store'
 import 'gun/lib/rindexed'
 // import 'gun/lib/webrtc'
 import 'gun/nts'
+//import 'zenbase/dist/main.js' - uncomment this to get zenbase working – so SIA Skynet is used to store data
 
-export const gun = Gun(config.peers)
-export const roomDb = Gun(config.peers)
+export const gun = Gun({ peers: config.peers, secret: 'etovoteto' })
+export const roomDb = Gun({ peers: config.peers, secret: 'etovoteto' })
 window.gun = gun //for debugging
 export const cert = config.cert
 export const soul = Gun.node.soul

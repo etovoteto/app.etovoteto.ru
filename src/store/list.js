@@ -9,13 +9,14 @@ import { linkFrom, link } from 'model@link'
 import { currentRoom } from 'store@room'
 import { links } from './locale'
 
-export function useCount(tag, hashed = true, room = currentRoom.pub) {
+export function useCount(tag, hashed = true, room = currentRoom.pub, author) {
   const counter = reactive({})
   gun
     .get(`~${room}`)
     .get(`${hashed ? '#' : ''}${tag}`)
     .map()
     .once((d, k) => {
+      if (author && k.slice(-87) != author) return
       counter[k] = true
     })
   const count = computed(() => {

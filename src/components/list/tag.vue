@@ -22,9 +22,10 @@ import { defineProps } from "vue";
 const props = defineProps({
   tag: String,
   search: String,
+  author: String,
 });
 
-const { sorted, options, more } = useList(props.tag);
+const { sorted, options, more } = useList(props.tag, props.author);
 watchEffect(() => {
   options.search = props.search;
 });

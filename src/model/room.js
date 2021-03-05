@@ -1,5 +1,5 @@
 import { gun } from './../store/db'
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { currentRoom } from '../store/room'
 
 export const search = ref('')
@@ -87,4 +87,20 @@ export function useRoomCerts(pub = currentRoom.pub) {
       roomCerts[k] = d
     })
   return roomCerts
+}
+
+export function useRoomCount(author) {
+  const counter = reactive({})
+  gun
+    .get(`~${author}`)
+    .get('room')
+    .get('host')
+    .map()
+    .on((d, k) => {
+      counter[k] = d
+    })
+  const count = computed(() => {
+    return Object.keys(counter).length
+  })
+  return count
 }

@@ -1,6 +1,6 @@
 <template lang="pug">
 .flex.flex-col
-  author-rooms(:pub="pub")
+  list-room(:pub="pub")
 </template>
 
 <script setup>

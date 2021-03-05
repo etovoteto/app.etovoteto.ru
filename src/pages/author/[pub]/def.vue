@@ -1,5 +1,7 @@
 <template lang="pug">
-p DEF
+.flex.flex-col
+  list-tag(tag="def", :author="pub", v-slot="{ record }")
+    def-card(:record="record", :key="record.hash")
 </template>
 
 <script setup>

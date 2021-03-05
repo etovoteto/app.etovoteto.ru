@@ -1,6 +1,7 @@
 import { reactive, ref } from 'vue'
 import { account } from 'store@account'
 import { currentRoom } from 'store@room'
+import { computed } from 'vue'
 
 export const linkFrom = ref({})
 
@@ -61,4 +62,21 @@ export function useLinks(hash) {
       links[k] = d
     })
   return { links }
+}
+
+export function useCountLinks(author, room = currentRoom.pub) {
+  const counter = reactive({})
+  gun
+    .get(`~${room}`)
+    .get('link')
+    .map()
+    .map()
+    .once((d, k) => {
+      if (author && d != author) return
+      counter[k] = true
+    })
+  const count = computed(() => {
+    return Object.keys(counter).length
+  })
+  return count
 }

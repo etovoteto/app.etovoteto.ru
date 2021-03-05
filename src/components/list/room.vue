@@ -11,14 +11,15 @@
 </template>
 
 <script setup>
-import { useList } from "store@list";
 import { search } from "model@room";
 import { useRooms } from "model@rooms";
-import { watchEffect } from "vue";
+import { defineProps, watchEffect } from "vue";
 
-// const { sorted, options, more } = useList("room");
+const props = defineProps({
+  pub: String,
+});
 
-const { sorted, options, more } = useRooms();
+const { sorted, options, more } = useRooms(props.pub);
 
 watchEffect(() => {
   options.main = "title";

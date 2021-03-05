@@ -1,5 +1,5 @@
 <template lang="pug">
-.pt-4(v-if="record.data")
+.pt-4(v-if="linker && record.data")
   .flex.items-center 
     .part.undeline(
       :style="{ textDecorationStyle: parts[record.data.part].underline }"

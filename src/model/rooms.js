@@ -5,7 +5,7 @@ import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { withLinks, links } from 'store@locale'
 
-export function useRooms(room = currentRoom.pub) {
+export function useRooms(author, room = currentRoom.pub) {
   const options = reactive({
     orderBy: 'sum',
     search: '',
@@ -23,6 +23,7 @@ export function useRooms(room = currentRoom.pub) {
     .map()
     .once((data, key) => {
       let host = key.slice(-87)
+      if (author && author != host) return
       let { pub } = JSON.parse(data)
       rooms[pub] = rooms[pub] || { pub, host, data: {} }
       gun

@@ -1,0 +1,41 @@
+<template lang="pug">
+.flex.justify-center.text-2xl
+  router-link.count(:to="`/author/${pub}/word`")
+    i.iconify(data-icon="la:comment-dots")
+    span {{ words }}
+  router-link.count(:to="`/author/${pub}/def`") 
+    i.iconify(data-icon="la:comment")
+    span {{ defs }}
+  .count 
+    i.iconify(data-icon="la:link")
+    span {{ links / 2 }}
+  router-link.count(:to="`/author/${pub}/room`") 
+    i.iconify(data-icon="la:comments")
+    span {{ rooms }}
+</template>
+
+<script setup>
+import { defineProps } from "vue";
+import { useCount } from "store@list";
+import { useCountLinks } from "model@link";
+import { useRoomCount } from "model@room";
+const props = defineProps({
+  pub: String,
+});
+
+const words = useCount("word", true, undefined, props.pub);
+const defs = useCount("def", true, undefined, props.pub);
+const links = useCountLinks(props.pub);
+const rooms = useRoomCount(props.pub);
+</script>
+
+<style lang="stylus" scoped>
+.count
+  @apply: p-4
+
+  &:hover
+    @apply: bg-warm-gray-200
+
+  &.router-link-active
+    @apply: bg-warm-gray-300
+</style>
