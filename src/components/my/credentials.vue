@@ -1,44 +1,61 @@
 <template lang="pug">
-.flex.flex-wrap.items-center.py-2
-  .flex.flex-wrap.p-2.items-center.bg-warm-gray-100.rounded-3xl
+.flex.flex-col.items-center.py-2.bg-warm-gray-100
+  .flex.flex-wrap.p-2.items-center
     span.text-xl.ml-3.mr-1
-      i.iconify(data-icon="la:key")
-    button(@click="showPair('text')") 
+      i.iconify(data-icon="la:lock")
+    button(@click="show('pass')") 
+      i.iconify(data-icon="la:asterisk")
+    button(@click="show('text')") 
       i.iconify(data-icon="la:eye")
-
-    button(@click="showPair('qr')") 
+    button(@click="show('qr')") 
       i.iconify(data-icon="la:qrcode")
-
     button(@click="downloadPair()") 
       i.iconify(data-icon="la:file-code")
-  .flex 
-    transition(name="fade")
-      textarea.key(rows="6", v-if="pair && show.text", :value="pair") 
-    transition(name="fade")
-      util-qr(v-if="pair && show.qr", :data="pair")
-  button.mt-3(@click="logOut()") 
-    i.iconify(data-icon="la:sign-out-alt")
-    .title Выйти
+    button(@click="show('test')", v-if="lab") 
+      i.iconify(data-icon="la:flask")
+  .flex.py-8(v-if="current")
+    transition-group(name="fade")
+      my-pass(key="pass", v-if="current == 'pass'")
+      textarea.key(
+        rows="6",
+        v-if="current == 'text'",
+        :value="pair",
+        key="text"
+      ) 
+      util-qr(v-if="current == 'qr'", :data="pair", key="qr")
+      .flex.flex-col(v-if="current == 'test'", key="lab")
+        .text-lg.text-center.mb-2 Тестовый автор
+        .text-center Создан вовремя разработки и открыт для всех
+        button.mt-4.p-2.bg-warm-gray-200 Стать самостоятельным
 </template>
 
 <script setup>
-import { reactive, ref } from "vue";
-import { downloadPair, logOut } from "store@account";
-const pair = ref();
-const show = reactive({
-  text: false,
-  qr: false,
-});
+import { onMounted, reactive, ref } from "vue";
+import { downloadPair } from "store@account";
+import { gun } from "store@db";
+const pair = ref(JSON.stringify(gun.user()._.sea));
 
-function showPair(view) {
-  if (!pair.value) {
-    pair.value = JSON.stringify(gun.user()._.sea);
-    show[view] = true;
+const current = ref("");
+const pass = ref("");
+
+function show(option) {
+  if (current.value != option) {
+    current.value = option;
   } else {
-    pair.value = null;
-    show[view] = false;
+    current.value = null;
   }
 }
+
+const lab = ref(false);
+
+onMounted(() => {
+  gun
+    .user()
+    .get("test")
+    .on((d, k) => {
+      lab.value = d;
+    });
+});
 </script>
 
 <style  scoped>

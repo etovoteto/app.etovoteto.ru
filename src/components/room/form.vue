@@ -5,10 +5,12 @@ form.flex.flex-col(@submit.prevent)
     ref="input",
     placeholder="Название комнаты"
   )
-  button.p-4.rounded-full.bg-warm-gray-300(
-    @click="create()",
-    v-if="search.length > 3"
-  ) Создать
+  .flex.flex-col.items-center(v-if="search.length > 3")
+    button.p-4.rounded-full.bg-warm-gray-300(
+      @click="create()",
+      v-if="account.is?.pub"
+    ) Создать
+    my-auth(v-else)
 </template>
 
 <script setup>
@@ -16,6 +18,7 @@ import { createRoom } from "store@room";
 import { search } from "model@room";
 import { useRouter } from "vue-router";
 import { onStartTyping } from "@vueuse/core";
+import { account } from "store@account";
 import { ref } from "vue";
 const router = useRouter();
 

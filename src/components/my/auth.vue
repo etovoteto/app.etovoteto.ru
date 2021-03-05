@@ -1,37 +1,49 @@
 <template lang="pug">
-form.flex.flex-col.p-8(@submit.prevent.stop)
-  button.action(@click="generate()") 
-    i.iconify(data-icon="la:plus")
-    .text Начать с нуля
-  button.action(@click="cont = !cont") 
-    i.iconify(data-icon="la:key")
-    .text У меня есть ключ
-  .flex.flex-col(v-if="cont")
-    textarea.my-4(
-      @input="handleText($event.target.value)",
-      placeholder="Вставьте сюда ваш ключ",
-      :class="{ invalid: invalid }"
-    )
-
-    label.action(for="json-input")
-      i.iconify(data-icon="la:file-code")
-      .text Загрузить JSON-файл
-    input#json-input.hidden(
-      type="file",
-      accept="application/json",
-      @change="handleFile($event.target.files)"
-    )
-    label.action(for="qr-input")
-      i.iconify(data-icon="la:qrcode")
-      .text Загрузить QR фото
-    util-load-qr.hidden(@loaded="handleText($event)")
+form.flex.flex-col.items-stretch.p-8(@submit.prevent.stop)
+  .flex.justify-center
+    button.action(@click="generate()") 
+      i.iconify(data-icon="la:plus")
+      .text Новый автор
+    button.action(@click="show.options = true", v-if="!show.options") 
+      i.iconify(data-icon="la:key")
+      .text Есть ключ
+    button.action(@click="show.options = false", v-else) 
+      i.iconify(data-icon="la:times")
+  transition(name="fade")
+    .flex.mt-8.flex-wrap(v-if="show.options")
+      button.action(@click="show.text = !show.text")
+        i.iconify(data-icon="la:sticky-note")
+        .text Текст
+      label.action(for="json-input")
+        i.iconify(data-icon="la:file-code")
+        .text JSON-файл
+      input#json-input.hidden(
+        type="file",
+        accept="application/json",
+        @change="handleFile($event.target.files)"
+      )
+      label.action(for="qr-input")
+        i.iconify(data-icon="la:qrcode")
+        .text QR-код
+      util-load-qr.hidden(@loaded="handleText($event)")
+  transition(name="fade")
+    .flex.flex-col(v-if="show.text")
+      textarea.my-4(
+        @input="handleText($event.target.value)",
+        placeholder="Вставьте сюда ваш ключ",
+        :class="{ invalid: invalid }"
+      )
 </template>
 
 <script setup>
 import { generate, participate } from "store@account";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
-const cont = ref(false);
+const show = reactive({
+  options: false,
+  text: false,
+});
+
 const invalid = ref(false);
 
 function handleText(text) {
@@ -66,17 +78,12 @@ function parseJSON(json) {
 }
 </script>
 
-<style lang="stylus" scoped>
-.action
-  padding: 1em
-  margin: 0.5em 0
-  align-items: center
-  font-size: 1rem
-  display: flex
-  background-color: var(--button)
-  border-radius: 4em
-  cursor: pointer
+<style  scoped>
+.action {
+  @apply p-4 mx-2 items-center flex bg-warm-gray-50 cursor-pointer;
+}
 
-textarea.invalid
-  background-color: hsla(0, 100%, 50%, 0.1)
+.action.active {
+  @apply bg-warm-gray-100;
+}
 </style>

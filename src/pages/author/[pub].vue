@@ -1,5 +1,13 @@
 <template lang="pug">
-author-page(:pub="pub", :key="pub")
+.flex.flex-col.min-w-full.items-center
+  author-profile.shadow-xl.z-2.bg-warm-gray-100.min-w-full(
+    :pub="pub",
+    :key="pub"
+  )
+  .flex.flex-col.items-center.max-w-55ch.bg-warm-gray-50.w-full.p-6
+    router-view(v-slot="{ Component }")
+      transition(name="fade")
+        component(:is="Component")
 </template>
 
 <script setup>
@@ -10,10 +18,4 @@ const props = defineProps({
 });
 </script>
 
-<style lang="stylus" scoped>
-.page
-  display: flex
-  flex-flow: column
-  align-items: center
-  padding: 1em
-</style>
+<style lang="stylus" scoped></style>

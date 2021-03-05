@@ -8,13 +8,15 @@
     :class="{ valid: isValid }"
   )
   transition(name="fade")
-    .flex.flex-wrap(v-if="isValid")
+  .flex(v-if="isValid")
+    .flex.flex-wrap(v-if="account.is?.pub")
       .part.m-2.py-6.text-2xl.underline.text-center.cursor-pointer.transition-colors.bg-warm-gray-50(
         v-for="(part, key) in parts",
         :key="key",
         @click="addDef(key)",
         :style="{ textDecorationStyle: part.underline }"
       ) {{ part.name }}.
+    my-auth(v-else)
 </template>
 
 <script setup>
@@ -22,7 +24,7 @@ import { newDef, isValid, addDef } from "model@def";
 import { parts } from "store@locale";
 import { ref } from "vue";
 import { onStartTyping } from "@vueuse/core";
-
+import { account } from "store@account";
 const input = ref(null);
 
 onStartTyping(() => {

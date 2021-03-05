@@ -65,7 +65,7 @@ export function useList(
     .get(`~${room}`)
     .get(`${hashed ? '#' : ''}${tag}`)
     .once(function (d, k) {
-      timestamps = d['_']['>']
+      timestamps = d?.['_']?.['>']
 
       this.map().once((data, key) => {
         let hash = key

@@ -4,6 +4,7 @@ import { reactive, ref } from 'vue'
 import { gun, sea } from 'store@db'
 import { downloadText } from 'use@loader'
 import { joinRoom } from 'store@room'
+import { computed } from 'vue'
 
 export const account = reactive({
   is: null,

@@ -29,9 +29,7 @@ export function useRooms(room = currentRoom.pub) {
         .get(`~${pub}`)
         .get('title')
         .on((d) => (rooms[pub].data.title = d))
-
-      gun
-        .get(`~${pub}`)
+        .back()
         .get('info')
         .get('desc')
         .on((d) => (rooms[pub].data.desc = d))

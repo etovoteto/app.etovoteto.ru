@@ -14,7 +14,6 @@ router-link.flex.flex-wrap.justify-start.py-6.px-2.my-4.text-xl.items-center.bg-
 <script setup>
 import { defineProps, reactive, ref } from "vue";
 import { gun } from "store@db";
-import { testAuthor } from "store@account";
 
 const props = defineProps({
   author: Object,

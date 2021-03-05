@@ -16,7 +16,8 @@
       i.iconify(data-icon="la:copy")
       .title Copy
   .flex
-    util-qr(v-if="show.qr", :data="`${appUrl}#${$route.fullPath}`")
+    transition(name="fade")
+      util-qr(v-if="show.qr", :data="`${appUrl}#${$route.fullPath}`")
 </template>
 
 <script setup>

@@ -5,21 +5,23 @@ form.flex.flex-col(@submit.prevent.stop)
     v-model="newWord.word",
     placeholder="Несуществующее слово"
   )
-  .flex.flex-wrap.text-4xl.justify-center.font-bold.select-none(
-    v-if="newWord.word"
-  )
-    .letter.m-1.p-1(
-      @click="addWord(i)",
-      v-for="(letter, i) in capitalFirst(newWord.word).slice('')",
-      :class="{ vowel: vowels.includes(letter) }"
-    ) {{ letter }}
+  .flex(v-if="newWord.word.length > 3")
+    .flex.flex-wrap.text-4xl.justify-center.font-bold.select-none(
+      v-if="account.is?.pub"
+    )
+      .letter.m-1.p-1(
+        @click="addWord(i)",
+        v-for="(letter, i) in capitalFirst(newWord.word).slice('')",
+        :class="{ vowel: vowels.includes(letter) }"
+      ) {{ letter }}
+    my-auth(v-else)
 </template>
 
 <script setup>
 import { addWord, capitalFirst, newWord, vowels, setStress } from "model@word";
 import { ref } from "vue";
 import { onStartTyping } from "@vueuse/core";
-
+import { account } from "store@account";
 const input = ref(null);
 
 onStartTyping(() => {

@@ -1,5 +1,5 @@
 <template lang="pug">
-router-link(to="/lab")
+router-link.z-200(to="/lab")
   i.iconify(data-icon="la:flask")
 </template>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.flex-col.items-stretch.min-w-full
+.flex.flex-col
   .text-2xl(v-if="!edit") {{ title }}
     span.p-3(v-if="editable", @click="edit = true")
       i.iconify(data-icon="la:pen")
