@@ -2,21 +2,19 @@
 router-link.my-4.flex.flex-col.items-stretch.bg-warm-gray-50.shadow-lg(
   :to="{ path: '/room/' + room.pub }"
 )
-  .flex.flex-col.p-4.items-stretch(
+  .flex.flex-col.p-4.items-stretch.text-center(
     :style="{ background: pubGradient(room.pub, 90) }"
   )
-    .text-2xl.mb-4 {{ room.data.title }}
+    .text-2xl.mt-4.mb-6 {{ room.data.title }}
     .flex.justify-center
       author-badge.text-sm(:pub="room.host")
       .spacer
-      button.bg-warm-gray-300.py-2.px-4.mx-2.flex.items-center(
+      button.bg-warm-gray-200.px-4.mx-2.flex.items-center(
         v-if="currentRoom.pub != room.pub",
         @click="$router.push({ path: '/check' }); enterRoom(room.pub)"
       ) 
-        span.pr-2
-          i.iconify(data-icon="la:door-open")
         .title Войти
-  .p-4.text-lg.font-normal(v-if="room.data?.desc")
+  .p-4.text-lg.font-normal.text-center(v-if="room.data?.desc")
     p {{ room.data?.desc }}
   room-counters.bg-warm-gray-100(:room="room")
 </template>

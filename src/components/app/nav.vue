@@ -7,7 +7,7 @@ nav.flex.items-center.text-3xl
   router-link(to="/my")
     span(v-if="!account.is?.pub")
       i.iconify(data-icon="la:user-plus")
-    author-avatar(v-else, :pub="account.is?.pub", size="small")
+    author-avatar(v-else, :pub="account.is?.pub", size="small", :noLink="true")
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")

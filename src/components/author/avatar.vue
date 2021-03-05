@@ -1,9 +1,10 @@
 <template lang="pug">
-.avatar(
+router-link.avatar.m-1.p-2.rounded-full(
+  :to="account.is?.pub == pub ? '/my' : `/author/${pub}`",
   v-if="pub",
   :style="{ background: current ? pubGradient(pub) : 'transparent' }"
 )
-  img.avatar(
+  img.avatar.rounded-full(
     v-if="pic",
     :src="pic",
     :title="pub",
@@ -39,13 +40,10 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .avatar
-  border-radius: 80em
   width: min-content
   min-width: 0.5rem
   height: min-content
   min-height: 0.5rem
-  padding: 0.2rem
-  margin: 0
   display: flex
 
 .small

@@ -13,7 +13,7 @@
       v-for="(is, author) in record.authors",
       :key="author",
       :pub="author",
-      size="nano"
+      size="small"
     )
     .spacer
     link-button(:record="record")
