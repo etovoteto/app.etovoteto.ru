@@ -1,22 +1,24 @@
 <template lang="pug">
 .subtitle(v-if="text || editable")
-  .title 
-    slot
+  .mb-2.flex.items-center.border-b.border-solid.border-warm-gray-800
+    .text-base.opacity-50
+      slot
     .spacer
-    button.edit(@click="open = !open", v-if="editable && !open")
+    button.p-2(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
-    button.save(v-if="open", @click="update()")
+    button.p-2(v-if="open", @click="update()")
       i.iconify(data-icon="la:check")
-    button(v-if="open", @click="open = false")
+    button.p-2(v-if="open", @click="open = false")
       i.iconify(data-icon="la:times")
   .text(v-if="text && !open") {{ text }}
-  form(v-if="open", @submit.prevent="")
-    textarea(
+  form.w-full(v-if="open", @submit.prevent="")
+    textarea.w-full(
       v-model="text",
       name="subtitle",
       @keyup.meta.enter="update()",
       @keyup.ctrl.enter="update()",
-      :rows="10"
+      :rows="10",
+      :cols="30"
     )
 </template>
 
@@ -44,14 +46,6 @@ function update() {
 </script>
 
 <style lang="stylus" scoped>
-.title
-  font-size: 0.8em
-  padding: 0.5em 0
-  color: var(--text-light)
-  display: flex
-  align-items: center
-  font-size: 1.2em
-
 .edit
   cursor: pointer
   padding: 8px
