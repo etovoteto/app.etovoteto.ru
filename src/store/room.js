@@ -50,7 +50,6 @@ async function authRoom(pub) {
   if (!enc) return
   try {
     let pair = await sea.decrypt(enc, gun.user()._.sea)
-    console.log(pair)
     roomDb.user().auth(pair)
   } catch (e) {
     console.error(e)

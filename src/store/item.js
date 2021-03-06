@@ -12,7 +12,7 @@ export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
     .get(`#${tag}`)
     .get(`${hash}#${account.is.pub}`)
     .put(text, null, { opt: { cert: certificate } })
-  link({ hash, tag, ...obj })
+  link({ hash, tag, data: obj })
 }
 
 export function getHashedPersonal(tag, hash, room = currentRoom.pub) {
