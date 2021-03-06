@@ -56,9 +56,12 @@ export function useAuthors(room = currentRoom.pub) {
         .get(`~${author}`)
         .get('profile')
         .get('name')
-        .once((d) => (authors[author].name = d))
+        .on((d) => (authors[author].name = d))
+        .back()
+        .get('real')
+        .on((d) => (authors[author].real = d))
       let sum = 0
-      Object.keys(withLinks).forEach((tag) => {
+      Object.keys(links).forEach((tag) => {
         if (typeof counter[author][tag] == 'object') {
           authors[author][tag] = Object.keys(counter[author][tag]).length
           sum += authors[author][tag]

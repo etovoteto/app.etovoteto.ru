@@ -17,7 +17,4 @@ const props = defineProps({
 const count = useCount(props.tag, props.hashed);
 </script>
 
-<style lang="stylus" scoped>
-.count
-  padding: 1em
-</style>
+<style lang="stylus" scoped></style>

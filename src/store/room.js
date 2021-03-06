@@ -10,7 +10,7 @@ import { search } from 'model@room'
 export const roomKey = ref({})
 const appTitle = 'ЭТОВОТЭТО'
 export const appPub =
-  'vCHZH0AqZ_QfHXDngLzS69p-Xu7Mn3GJf1ZP4jzaKtE.lC8d78SghL84Eg1KO1u-zzjW_SgHw3cLQOQraerLAHQ'
+  'uDid2xJvcK_MFWu1MKZ4ynU1hIARkHsd_h3pUVkJtQE.Yf1q5LgZ92PC5D53msLeZ7ltZYhF1g4tMb8mLxL8psc'
 
 export const currentRoom = reactive({
   title: appTitle,
@@ -50,6 +50,7 @@ async function authRoom(pub) {
   if (!enc) return
   try {
     let pair = await sea.decrypt(enc, gun.user()._.sea)
+    console.log(pair)
     roomDb.user().auth(pair)
   } catch (e) {
     console.error(e)

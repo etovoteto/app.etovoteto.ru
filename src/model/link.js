@@ -2,6 +2,7 @@ import { reactive, ref } from 'vue'
 import { account } from 'store@account'
 import { currentRoom } from 'store@room'
 import { computed } from 'vue'
+import { throttledWatch } from '@vueuse/core'
 
 export const linkFrom = ref({})
 
@@ -23,7 +24,7 @@ export function link(node, cb) {
   }
 }
 
-export async function linkHashes(from, to) {
+export async function linkHashes(from, to, del = false) {
   let certificate = await gun
     .get(`~${currentRoom.pub}`)
     .get('cert')
@@ -34,7 +35,8 @@ export async function linkHashes(from, to) {
     .get('link')
     .get(from)
     .get(to)
-    .put(account.is.pub, null, {
+    .get(gun.user().is.pub)
+    .put(!del ? true : false, null, {
       opt: {
         cert: certificate,
       },
@@ -44,23 +46,36 @@ export async function linkHashes(from, to) {
     .get('link')
     .get(to)
     .get(from)
-    .put(account.is.pub, null, {
+    .get(gun.user().is.pub)
+    .put(!del ? true : false, null, {
       opt: {
         cert: certificate,
       },
     })
 }
 
-export function useLinks(hash) {
-  const links = reactive({})
+export function useLinks(fromHash) {
+  const obj = reactive({})
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get(hash)
+    .get(fromHash)
     .map()
-    .on((d, k) => {
-      links[k] = d
+    .once(function (data, toHash) {
+      obj[toHash] = obj[toHash] || {}
+      this.map().on((is, by) => {
+        obj[toHash][by] = is
+      })
     })
+  const links = computed(() => {
+    let list = reactive({})
+    for (let link in obj) {
+      if (Object.values(obj[link]).filter(Boolean).length !== 0) {
+        list[link] = obj[link]
+      }
+    }
+    return list
+  })
   return { links }
 }
 

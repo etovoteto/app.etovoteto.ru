@@ -4,7 +4,9 @@ router-link.flex.flex-wrap.justify-start.py-6.px-2.my-4.text-xl.items-center.bg-
 )
   .flex.items-center.justify-start.flex-grow
     author-avatar(:pub="author.pub", size="small")
-    .name {{ author.name }}
+    .flex.flex-col
+      .text-xl {{ author.name }}
+      .text-base.font-normal {{ author.real }}
   .flex.px-4.justify-start
     .p-2
       i.iconify(data-icon="la:comment-medical")

@@ -47,12 +47,14 @@ export function useList(
   personal,
   room = currentRoom.pub,
   hashed = true,
+  limit = 5,
+  page = 5,
 ) {
   const options = reactive({
     orderBy: 'timestamp',
     search: '',
-    limit: 5,
-    page: 5,
+    limit: limit,
+    page: page,
     total: 0,
     main: tag,
   })

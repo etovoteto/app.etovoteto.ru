@@ -18,13 +18,14 @@
     .spacer
     link-button(:record="record")
 
-  .links.max-h-xs.overflow-y-scroll.snap(v-if="record != linkFrom")
+  .links.max-h-xs.overflow-y-scroll.snap
     transition-group(name="list")
       def-link.snap-start(
-        v-for="(linker, hash) in links",
-        :key="hash + linker",
-        :linker="linker",
-        :hash="hash"
+        v-for="(linkers, toHash) in links",
+        :key="toHash",
+        :linkers="linkers",
+        :hash="toHash",
+        :from="record.hash"
       )
 </template>
 

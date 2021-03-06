@@ -1,6 +1,6 @@
 <template lang="pug">
-.pt-4(v-if="linker && record.data")
-  .flex.items-center 
+.pt-4
+  .flex.items-center(v-if="record.data") 
     .part.undeline(
       :style="{ textDecorationStyle: parts[record.data.part].underline }"
     ) {{ parts[record.data.part].name }}.
@@ -11,8 +11,21 @@
       size="nano"
     )
     .spacer
-    author-avatar(:pub="linker", size="nano")
-  router-link.text-lg.font-normal(:to="`/def/${safeHash(record.hash)}`") {{ capitalFirst(record.data.def) }}
+    author-avatar(
+      v-for="(is, author) in linkers",
+      :key="author",
+      :pub="author",
+      size="nano"
+    )
+    .text-lg.pl-1.cursor-pointer(
+      v-if="linkers[account.is?.pub]",
+      @click="linkHashes(from, hash, true)"
+    )
+      i.iconify(data-icon="la:unlink")
+  router-link.text-lg.font-normal(
+    :to="`/def/${safeHash(record.hash)}`",
+    v-if="record.data"
+  ) {{ capitalFirst(record.data.def) }}
 </template>
 
 <script setup>
@@ -21,9 +34,13 @@ import { getHashedPersonal } from "store@item";
 import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
 import { safeHash } from "store@db";
+import { linkHashes } from "model@link";
+import { account } from "store@account";
+
 const props = defineProps({
-  linker: String,
+  linkers: Object,
   hash: String,
+  from: String,
 });
 
 const { record } = getHashedPersonal("def", props.hash);

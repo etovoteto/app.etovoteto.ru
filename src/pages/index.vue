@@ -1,33 +1,31 @@
 <template lang="pug">
-main
-  h2.text-2xl.p-6 Онлайн-словарь придуманных слов
-
+.flex.flex-col.w-full.max-w-45ch
   router-link(to="/word")
-    span
-      i.iconify(data-icon="la:comment-dots")
     .title Слова
     .spacer
+    span
+      i.iconify(data-icon="la:comment-dots")
     app-count(tag="word")
 
   router-link(to="/def")
-    span
-      i.iconify(data-icon="la:comment")
     .title Определения
     .spacer
+    span
+      i.iconify(data-icon="la:comment")
     app-count(tag="def")
 
   router-link(to="/author") 
-    span
-      i.iconify(data-icon="la:users")
     .title Авторы
     .spacer
+    span
+      i.iconify(data-icon="la:users")
     app-count(tag="author", :hashed="false")
 
   router-link(to="/room") 
-    span
-      i.iconify(data-icon="la:comments")
     .title Комнаты
     .spacer
+    span
+      i.iconify(data-icon="la:comments")
     app-count(tag="room")
 </template>
 
@@ -38,17 +36,8 @@ const title = useTitle("Онлайн-словарь ЭТОВОТЭТО");
 
 <style lang="stylus" scoped>
 a
-  padding: 0.5rem
-  margin: 0.5rem 0
-  font-size: 1.6rem
-  text-align: center
-  display: flex
-  align-items: center
-  background-color: var(--background-alt)
-
-  span
-    padding: 0.5rem
+  @apply: p-4 m-4 text-2xl flex text-center items-center bg-warm-gray-100 shadow-lg
 
   &:hover
-    background-color: var(--top-bar)
+    @apply: shadow-xl bg-warm-gray-50
 </style>

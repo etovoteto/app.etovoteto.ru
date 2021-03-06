@@ -30,7 +30,7 @@ export const model = {
   link: {
     title: 'Связь',
     hashed: false,
-    personal: false,
+    personal: true,
   },
   room: {
     title: 'Комната',
