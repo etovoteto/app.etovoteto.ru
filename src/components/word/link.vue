@@ -1,12 +1,12 @@
 <template lang="pug">
-.row.pt-2.flex.items-center(v-if="record.data")
+.row.pt-2.flex.items-center
   router-link.text-base.font-bold(
     :to="`/word/${safeHash(record.hash)}`",
-    v-if="record",
+    v-if="record.data",
     v-html="renderWord(record.data.word, record.data.stress)"
   )
   author-avatar(
-    v-for="(is, author) in record.authors",
+    v-for="(is, author) in record?.authors",
     :key="author",
     :pub="author",
     size="nano"
