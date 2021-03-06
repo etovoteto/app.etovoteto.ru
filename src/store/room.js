@@ -10,7 +10,7 @@ import { search } from 'model@room'
 export const roomKey = ref({})
 const appTitle = 'ЭТОВОТЭТО'
 export const appPub =
-  'uDid2xJvcK_MFWu1MKZ4ynU1hIARkHsd_h3pUVkJtQE.Yf1q5LgZ92PC5D53msLeZ7ltZYhF1g4tMb8mLxL8psc'
+  'YZOBPSkw75Ute2tFhdjDQgzR-GsGhlfSlZxgEZKuquI.2F-j9ItJY44U8vcRAsj-5lxnECG5TDyuPD8gEiuInp8'
 
 export const currentRoom = reactive({
   title: appTitle,

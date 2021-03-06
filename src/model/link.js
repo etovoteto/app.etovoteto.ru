@@ -33,20 +33,14 @@ export async function linkHashes(from, to, del = false) {
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get(from)
-    .get(to)
-    .get(gun.user().is.pub)
+    .get(`${from}.${to}@${gun.user().is.pub}`)
     .put(!del ? true : false, null, {
       opt: {
         cert: certificate,
       },
     })
-  gun
-    .get(`~${currentRoom.pub}`)
-    .get('link')
-    .get(to)
-    .get(from)
-    .get(gun.user().is.pub)
+    .back()
+    .get(`${to}.${from}@${gun.user().is.pub}`)
     .put(!del ? true : false, null, {
       opt: {
         cert: certificate,
@@ -59,19 +53,28 @@ export function useLinks(fromHash) {
   gun
     .get(`~${currentRoom.pub}`)
     .get('link')
-    .get(fromHash)
     .map()
-    .once(function (data, toHash) {
+    .on(function (data, key) {
+      let index = key.indexOf(fromHash)
+      if (index == -1) return
+      let toHash
+      if (index == 0) {
+        toHash = key.slice(45, 89)
+      } else {
+        toHash = key.slice(0, 44)
+      }
+      let author = key.slice(-87)
       obj[toHash] = obj[toHash] || {}
-      this.map().on((is, by) => {
-        obj[toHash][by] = is
-      })
+      obj[toHash][author] = data
     })
   const links = computed(() => {
-    let list = reactive({})
+    let list = {}
     for (let link in obj) {
       if (Object.values(obj[link]).filter(Boolean).length !== 0) {
-        list[link] = obj[link]
+        list[link] = {}
+        for (let by in obj[link]) {
+          if (obj[link][by]) list[link][by] = true
+        }
       }
     }
     return list
