@@ -20,7 +20,6 @@
 <script setup >
 import { onStartTyping } from "@vueuse/core";
 import { defineEmit, ref, defineProps, onMounted, watchEffect } from "vue";
-
 defineEmit(["update"]);
 const props = defineProps({
   editable: Boolean,
