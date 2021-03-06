@@ -17,7 +17,7 @@ dependencies:
   vue-router: 4.0.4_vue@3.0.7
   zenbase: 1.0.10
 devDependencies:
-  '@iconify/json': 1.1.312
+  '@iconify/json': 1.1.313
   '@prettier/plugin-pug': 1.13.5
   '@rollup/plugin-alias': 3.1.2
   '@vitejs/plugin-vue': 1.1.5_@vue+compiler-sfc@3.0.7
@@ -1010,10 +1010,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-pXvLXqLPQsjpDY4qbbyh5cPEtakTfWfQCAo6SdYNhYQzat+/0fbeEhScryqaketNAG0bT4/+deKezkJZTvbuSg==
-  /@iconify/json/1.1.312:
+  /@iconify/json/1.1.313:
     dev: true
     resolution:
-      integrity: sha512-bYgaMaNB17MkLL1UgRRD6fv9Vp80kny7KA4SVMxonBEsVtZ+53dCK0R7RccrC45X1mspG8MejUaEw/AaEmWHZQ==
+      integrity: sha512-gv00rSX4apKE0i/fUjXp5+sBb8LHzzdJqrXkBNVby7Nl7yzRqeQ/EyY+7ixtSpEu3f1P/co/vrgdbZN6wlw6DA==
   /@knightly/fast-glob/3.2.5-knightly-master.202101180131:
     dependencies:
       '@nodelib/fs.stat': 2.0.4
@@ -3374,7 +3374,7 @@ packages:
     version: 0.2020.520
 specifiers:
   '@iconify/iconify': ^1.0.7
-  '@iconify/json': ^1.1.312
+  '@iconify/json': ^1.1.313
   '@mattkrick/sanitize-svg': ^0.3.1
   '@prettier/plugin-pug': ^1.13.5
   '@qrcode/svg': ^1.0.0-beta.2
