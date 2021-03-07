@@ -17,6 +17,7 @@ export const currentRoom = reactive({
   pub: appPub,
   host: false,
   hosting: false,
+  trashing: false,
   isRoot: computed(() => {
     return appPub == currentRoom.pub
   }),
@@ -42,6 +43,13 @@ export async function enterRoom(pub) {
 
 export async function joinRoom(room = currentRoom.pub) {
   currentRoom.pub = room
+  gun
+    .get(`~${room}`)
+    .get('host')
+    .on((d, k) => {
+      currentRoom.host = d
+    })
+
   gun.user().get('room').get('current').put(room)
 }
 

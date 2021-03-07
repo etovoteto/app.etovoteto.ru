@@ -31,9 +31,7 @@ const props = defineProps({
 });
 </script>
 
-<style  scoped>
-a:hover {
-  text-decoration: none;
-  @apply shadow-2xl;
-}
+<style lang="stylus"  scoped>
+a:hover
+  @apply: shadow-2xl no-underline
 </style>

@@ -20,35 +20,9 @@
 import { onMounted, reactive, ref } from "vue";
 import { gun, sea } from "store@db";
 import { asyncComputed } from "@vueuse/core";
+import { usePassword } from "store@account";
 
-const pass = reactive({
-  text: "",
-  pair: "",
-});
-onMounted(() => {
-  gun
-    .user()
-    .get("pass")
-    .map()
-    .on((d, k) => {
-      pass[k] = d;
-    });
-});
-
-pass.is = asyncComputed(async () => {
-  if (pass.password) {
-    return await sea.decrypt(pass.password, gun.user()._.sea);
-  }
-});
-
-async function setPass(password) {
-  let pair = gun.user()._.sea;
-  let encPair = await sea.encrypt(pair, password);
-  let encPass = await sea.encrypt(password, pair);
-  gun.user().get("pass").get("pair").put(encPair);
-  gun.user().get("pass").get("password").put(encPass);
-  pass.text = "";
-}
+const { pass, setPass } = usePassword();
 </script>
 
 <style lang="stylus" scoped></style>

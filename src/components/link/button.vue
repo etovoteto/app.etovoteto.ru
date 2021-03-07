@@ -6,16 +6,26 @@
   i.iconify(data-icon="la:link")
 .link(v-else, @click="linkFrom = {}")
   i.iconify(data-icon="la:unlink")
+.link.ml-2(
+  :class="{ 'text-red-700': isTrashed }",
+  v-if="currentRoom.trashing",
+  @click="trashHash(record.hash, record.tag)"
+)
+  i.iconify(data-icon="la:trash")
 </template>
 
 <script setup>
 import { link, linkFrom } from "model@link";
-import { defineProps } from "vue";
+import { defineProps, ref } from "vue";
 import { links } from "store@locale";
+import { currentRoom } from "store@room";
+import { trashHash, useIsTrashed } from "store@item";
 
 const props = defineProps({
   record: Object,
 });
+
+const isTrashed = useIsTrashed(props.record.hash);
 </script>
 
 <style  scoped>

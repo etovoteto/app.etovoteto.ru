@@ -21,21 +21,18 @@
         :editable="true",
         @update="updateProfile('real', $event)"
       ) Настоящее имя
-      edit-subtitle(
-        :text="account.profile.bio",
-        :editable="true",
-        @update="updateProfile('bio', $event)"
-      ) Краткая биография
-
   my-credentials
-  button.mt-3(@click="logOut()") 
-    i.iconify(data-icon="la:sign-out-alt")
-    .title Выйти
+  .flex.justify-center.gap-8.p-4.my-4
+    edit-subtitle(
+      :text="account.profile.bio",
+      :editable="true",
+      @update="updateProfile('bio', $event)"
+    ) Немного о себе
 </template>
 
 <script setup>
 import { useTitle } from "@vueuse/core";
-import { account, logOut, updateProfile } from "store@account";
+import { account, updateProfile } from "store@account";
 
 const title = useTitle(account.profile?.name);
 </script>

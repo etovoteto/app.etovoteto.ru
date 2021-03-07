@@ -63,9 +63,11 @@ export function useLinks(fromHash) {
     let list = {}
     for (let link in obj) {
       if (Object.values(obj[link]).filter(Boolean).length !== 0) {
-        list[link] = {}
         for (let by in obj[link]) {
-          if (obj[link][by]) list[link][by] = true
+          if (obj[link][by]) {
+            list[link] = list[link] || {}
+            list[link][by] = true
+          }
         }
       }
     }

@@ -11,7 +11,7 @@ nav.flex.items-center.text-3xl
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")
-    router-link.user(:to="link")
+    router-link.user(to="/room")
       i.iconify(data-icon="la:comments")
 </template>
 

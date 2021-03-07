@@ -1,5 +1,8 @@
 <template lang="pug">
-.my-4.p-6.bg-warm-gray-50.shadow-lg(v-if="record.data")
+.card.my-4.p-6.bg-warm-gray-50.shadow-lg(
+  v-if="record.data",
+  :class="{ trash: isTrash }"
+)
   .flex.items-center
     router-link.font-bold.text-2xl(
       :to="'/word/' + safeHash(record.hash)",
@@ -18,7 +21,7 @@
     .spacer
     link-button(:record="record")
 
-  .links.max-h-xs.overflow-y-scroll.snap
+  .links.max-h-xs.overflow-y-scroll.snap(v-if="Object.keys(links).length > 0")
     transition-group(name="list")
       def-link.snap-start(
         v-for="(linkers, toHash) in links",
@@ -34,11 +37,23 @@ import { defineProps } from "vue";
 import { renderWord } from "model@word";
 import { useLinks, linkFrom } from "model@link";
 import { safeHash } from "store@db";
+import { useIsTrashed } from "store@item";
 
 const props = defineProps({
   record: Object,
 });
 const { links } = useLinks(props.record.hash);
+
+const isTrash = useIsTrashed(props.record.hash);
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.card:hover
+  @apply: shadow-xl no-underline
+
+.trash
+  @apply: opacity-20 text-red-500
+
+  &:hover
+    @apply: opacity-40
+</style>

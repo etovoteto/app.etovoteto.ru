@@ -1,5 +1,6 @@
 <template lang="pug">
 app-header
+app-admin(v-if="account.is?.pub == currentRoom.host", :key="currentRoom.pub")
 link-card
 router-view(v-slot="{ Component }")
   transition(name="fade")
@@ -20,16 +21,4 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="stylus">
-.auth
-  position: fixed
-  top: 0
-  left: 0
-  width: 100%
-  height: 100%
-  background-color: var(--background-transparent)
-  display: flex
-  flex-flow: column
-  align-items: center
-  justify-content: center
-</style>
+<style lang="stylus"></style>

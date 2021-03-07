@@ -69,8 +69,7 @@ export function useList(
     .get(`${hashed ? '#' : ''}${tag}`)
     .once(function (d, k) {
       timestamps = d?.['_']?.['>']
-
-      this.map().once((data, key) => {
+      this.map().once(async (data, key) => {
         let hash = key
         let record = {}
         let author = key.slice(-87)
@@ -82,10 +81,13 @@ export function useList(
         if (typeof record != 'object') {
           record.data = data
         }
+
+        let isTrash = await gun.get(`~${room}`).get('trash').get(hash).then()
+        if (isTrash) return
+
         obj[hash] = obj[hash] || record
         obj[hash].tag = tag
         obj[hash].hash = hash
-
         obj[hash].timestamp = timestamps?.[key]
         obj[hash].authors = obj[hash].authors || {}
         obj[hash].authors[author] = true

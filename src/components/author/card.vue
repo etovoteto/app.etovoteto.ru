@@ -22,4 +22,8 @@ const props = defineProps({
 });
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+a:hover
+  text-decoration: none
+  @apply: shadow-2xl
+</style>

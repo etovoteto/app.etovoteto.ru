@@ -79,3 +79,7 @@ html {
 #app img {
   max-width: none;
 }
+
+.card {
+  transition: all 300ms ease-in-out;
+}

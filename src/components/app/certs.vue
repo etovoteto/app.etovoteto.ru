@@ -6,6 +6,7 @@
     :title="cert"
   )
     i.iconify(data-icon="la:unlock-alt")
+
   .p-2(
     v-if="currentRoom.pub == pub && currentRoom.hosting",
     @click="setCerts()"
@@ -14,7 +15,7 @@
 </template>
 
 <script setup>
-import { setCerts, currentRoom } from "store@room";
+import { setCerts, currentRoom, enterRoom } from "store@room";
 import { useRoomCerts } from "model@room";
 import { account } from "store@account";
 import { defineProps } from "vue";

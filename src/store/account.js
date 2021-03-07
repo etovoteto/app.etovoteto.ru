@@ -5,6 +5,8 @@ import { gun, sea } from 'store@db'
 import { downloadText } from 'use@loader'
 import { joinRoom } from 'store@room'
 import { computed } from 'vue'
+import { asyncComputed } from '@vueuse/core'
+import { onMounted } from 'vue'
 
 export const account = reactive({
   is: null,
@@ -67,12 +69,6 @@ export async function generate() {
 
 export async function participate(pair) {
   gun.user().auth(pair, async () => {
-    // --
-    let enc = await sea.encrypt(pair, 'test')
-    // SAVING THE PAIR FOR TESTING PURPOSES
-    gun.user().get('test').put(enc)
-    // --
-
     let name = await gun.user().get('profile').get('name').then()
     if (!name) {
       gun.user().get('profile').get('name').put(capitalFirst(generateWords()))
@@ -91,4 +87,48 @@ export function updateProfile(field, data) {
 export async function testAuthor(enc) {
   let dec = await sea.decrypt(enc, 'test')
   participate(dec)
+}
+
+export function usePassword() {
+  const pass = reactive({
+    text: '',
+    pair: '',
+  })
+  onMounted(() => {
+    gun
+      .user()
+      .get('pass')
+      .map()
+      .on((d, k) => {
+        pass[k] = d
+      })
+  })
+
+  pass.is = asyncComputed(async () => {
+    if (pass.password) {
+      return await sea.decrypt(pass.password, gun.user()._.sea)
+    }
+  })
+
+  async function setPass(password) {
+    let pair = gun.user()._.sea
+    let encPair = await sea.encrypt(pair, password)
+    let encPass = await sea.encrypt(password, pair)
+    gun.user().get('pass').get('pair').put(encPair)
+    gun.user().get('pass').get('password').put(encPass)
+    pass.text = ''
+  }
+
+  return { pass, setPass }
+}
+
+export async function logWithPass(pub, password) {
+  let encPair = await gun.get(`~${pub}`).get('pass').get('pair').then()
+  let pair = await sea.decrypt(encPair, password)
+  participate(pair)
+}
+
+export async function hasPass(pub) {
+  let pass = await gun.get(`~${pub}`).get('pass').get('pair').then()
+  return pass
 }

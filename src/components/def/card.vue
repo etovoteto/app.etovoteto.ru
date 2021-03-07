@@ -1,5 +1,8 @@
 <template lang="pug">
-.flex.flex-col.p-6.my-4.bg-warm-gray-50.shadow-lg(v-if="record.data")
+.card.flex.flex-col.p-6.my-4.bg-warm-gray-50.shadow-lg(
+  v-if="record.data",
+  :class="{ trash: isTrash }"
+)
   .flex.items-center
     .part {{ parts[record.data.part].name }}.
     author-avatar(
@@ -29,11 +32,23 @@ import { capitalFirst } from "model@word";
 import { safeHash } from "store@db";
 import { useLinks, linkFrom } from "model@link";
 import { parts } from "store@locale";
+import { useIsTrashed } from "store@item";
 
 const props = defineProps({
   record: Object,
 });
 const { links } = useLinks(props.record.hash);
+
+const isTrash = useIsTrashed(props.record.hash);
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.card:hover
+  @apply: shadow-2xl no-underline
+
+.trash
+  @apply: opacity-20 text-red-500
+
+  &:hover
+    @apply: opacity-40
+</style>

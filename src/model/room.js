@@ -44,7 +44,6 @@ export function useRoom(pub) {
     .get('info')
     .map()
     .on((d, k) => (room.info[k] = d))
-
   return room
 }
 

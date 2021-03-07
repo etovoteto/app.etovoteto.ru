@@ -1,6 +1,8 @@
 <template lang="pug">
 .subtitle(v-if="text || editable")
-  .mb-2.flex.items-center.border-b.border-solid.border-warm-gray-800
+  .mb-2.flex.items-center.border-b.border-solid.border-warm-gray-800(
+    v-if="editable"
+  )
     .text-base.opacity-50
       slot
     .spacer
