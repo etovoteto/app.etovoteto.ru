@@ -1,5 +1,5 @@
 <template lang="pug">
-.pt-4
+.pt-4(:class="{ trash: isTrash }")
   .flex.items-center(v-if="record.data") 
     .part.undeline(
       :style="{ textDecorationStyle: parts[record.data.part].underline }"
@@ -30,7 +30,7 @@
 
 <script setup>
 import { defineProps, ref } from "vue";
-import { getHashedPersonal } from "store@item";
+import { getHashedPersonal, useIsTrashed } from "store@item";
 import { parts } from "store@locale";
 import { capitalFirst } from "model@word";
 import { safeHash } from "store@db";
@@ -43,7 +43,15 @@ const props = defineProps({
   from: String,
 });
 
+const isTrash = useIsTrashed(props.hash);
+
 const { record } = getHashedPersonal("def", props.hash);
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.trash
+  @apply: opacity-10 text-red-500
+
+  &:hover
+    @apply: opacity-20
+</style>
