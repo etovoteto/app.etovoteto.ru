@@ -46,7 +46,7 @@ export function useLinks(fromHash) {
     .get(`~${currentRoom.pub}`)
     .get('link')
     .map()
-    .on(function (data, key) {
+    .on(async function (data, key) {
       let index = key.indexOf(fromHash)
       if (index == -1) return
       let toHash
@@ -55,6 +55,14 @@ export function useLinks(fromHash) {
       } else {
         toHash = key.slice(0, 44)
       }
+
+      let isTrash = await gun
+        .get(`~${currentRoom.pub}`)
+        .get('trash')
+        .get(toHash)
+        .then()
+      if (isTrash) return
+
       let author = key.slice(-87)
       obj[toHash] = obj[toHash] || {}
       obj[toHash][author] = data
