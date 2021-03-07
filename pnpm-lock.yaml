@@ -29,7 +29,7 @@ devDependencies:
   vite-plugin-purge-icons: 0.7.0_vite@2.0.5
   vite-plugin-pwa: 0.5.6
   vite-plugin-voie: 0.7.3_5323dbf60c6a901b9fce8b49b29156a7
-  vite-plugin-windicss: 0.6.10_vite@2.0.5
+  vite-plugin-windicss: 0.6.11_vite@2.0.5
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.12.11:
@@ -1326,7 +1326,7 @@ packages:
       vue: '*'
     resolution:
       integrity: sha512-O1PxiG8cSD4YQKHJXWAeBVVTJNpBwCse7TkTsMqqLzqOjP2apbncfPzOcYJHVR5NkUXmtvPBIWAQuRavXKmHSw==
-  /@windicss/plugin-utils/0.6.10:
+  /@windicss/plugin-utils/0.6.11:
     dependencies:
       esbuild: 0.8.56
       esbuild-register: 2.2.0_esbuild@0.8.56
@@ -1335,7 +1335,7 @@ packages:
       windicss: 2.2.6
     dev: true
     resolution:
-      integrity: sha512-dMPHtUHmOktnikLah8tmMQjU2gb5AGxuXO8wen3lMo/G8YZI1H9Ua9qnMUIbaJ11mlGhpv89iYEsyfRHThbi/w==
+      integrity: sha512-UBPe1yb4ZzGjISjbHV+e9/sj3+bvK2Bb+Mcn18qSW4mUfPnTY+tXBV7yvoaYILgZat9BOppHrRk9dwrI2DJD3w==
   /acorn/7.4.1:
     dev: true
     engines:
@@ -3068,16 +3068,16 @@ packages:
       vue-router: ^4.0.0-beta.4
     resolution:
       integrity: sha512-OwAwziXPb8ywKHXfd9E1UXsEF2rRi4Dgb3F020s2lLWdtuY84xQH4JK84XwytFeht3TsexmJpVPHg2y17QdltQ==
-  /vite-plugin-windicss/0.6.10_vite@2.0.5:
+  /vite-plugin-windicss/0.6.11_vite@2.0.5:
     dependencies:
-      '@windicss/plugin-utils': 0.6.10
+      '@windicss/plugin-utils': 0.6.11
       vite: 2.0.5
       windicss: 2.2.6
     dev: true
     peerDependencies:
       vite: ^2.0.1
     resolution:
-      integrity: sha512-ofeJGvHu/Tz+HIP9Ap0uQHBt5YNi2uv/4yoJH30I3zFE5gAdsKN3GgzrcySQEPaQIgWmcDNbpWqAFejLHFLpzw==
+      integrity: sha512-cFHyEVyCHGZ5Bu7L3EmiMKVsYtsI23+YBEd/bggEbdhdbv93bBk0M3j8ZVwZxwvKgJhLVG9Fthl3jAE+FVl0EA==
   /vite/2.0.5:
     dependencies:
       esbuild: 0.8.54
@@ -3399,7 +3399,7 @@ specifiers:
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-pwa: ^0.5.6
   vite-plugin-voie: ^0.7.3
-  vite-plugin-windicss: ^0.6.10
+  vite-plugin-windicss: ^0.6.11
   vue: ^3.0.7
   vue-router: ^4.0.4
   zenbase: ^1.0.10
