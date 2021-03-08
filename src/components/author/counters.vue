@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.justify-center.text-2xl
+.flex.justify-center.text-2xl.bg-warm-gray-100.mt-6.shadow-md.p-4
   router-link.count(:to="`/author/${pub}/word`")
     i.iconify(data-icon="la:comment-dots")
     span {{ words }}

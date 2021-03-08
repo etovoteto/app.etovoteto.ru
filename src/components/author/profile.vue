@@ -22,7 +22,6 @@
       v-if="!account.is?.pub || account.is?.pub == pub",
       :pub="pub"
     )
-  author-counters(:pub="pub")
 </template>
 
 <script setup>

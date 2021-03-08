@@ -88,14 +88,14 @@ export function useRoomCerts(pub = currentRoom.pub) {
   return roomCerts
 }
 
-export function useRoomCount(author) {
+export function useRoomCount(author, room = currentRoom.pub) {
   const counter = reactive({})
   gun
-    .get(`~${author}`)
-    .get('room')
-    .get('host')
+    .get(`~${room}`)
+    .get('#room')
     .map()
     .on((d, k) => {
+      if (!k.includes(author)) return
       counter[k] = d
     })
   const count = computed(() => {

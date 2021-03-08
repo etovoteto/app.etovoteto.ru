@@ -90,9 +90,8 @@ export function useCountLinks(author, room = currentRoom.pub) {
     .get(`~${room}`)
     .get('link')
     .map()
-    .map()
     .once((d, k) => {
-      if (author && d != author) return
+      if (author && !k.includes(author)) return
       counter[k] = true
     })
   const count = computed(() => {

@@ -3,7 +3,7 @@
   .flex.flex-col.max-w-35ch
     edit-subtitle(
       :text="account.profile.bio",
-      :editable="true",
+      :editable="account.is?.pub == pub",
       @update="updateProfile('bio', $event)"
     ) Немного о себе
 </template>
