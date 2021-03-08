@@ -1,6 +1,6 @@
 <template lang="pug">
 router-link.avatar.m-1.p-2.rounded-full(
-  :to="account.is?.pub == pub ? '/my' : `/author/${pub}`",
+  :to="`/author/${pub}`",
   v-if="pub",
   :title="pub",
   :style="{ background: current ? pubGradient(pub) : 'transparent' }"

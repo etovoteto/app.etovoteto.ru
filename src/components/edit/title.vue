@@ -1,11 +1,11 @@
 <template lang="pug">
-.flex.flex-col
-  .flex.items-center.px-1.text-sm.border-b.border-warm-gray-800.border-solid(
+.flex.flex-col.text-center.mb-2(v-if="title || editable")
+  .flex.items-center.px-1.text-xs.border-b.border-warm-gray-800.border-solid(
     v-if="editable"
   )
     slot
     .spacer
-    button.p-1.text-2xl(v-if="editable", @click="edit = !edit")
+    button.p-1(v-if="editable", @click="edit = !edit")
       i.iconify(data-icon="la:pen")
   .p-1(v-if="!edit") {{ title }}
   input.min-w-full.p-4(

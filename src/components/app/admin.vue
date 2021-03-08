@@ -5,7 +5,7 @@
       @click="currentRoom.trashing = !currentRoom.trashing",
       :class="{ 'text-red-800': currentRoom.trashing }"
     )
-      i.iconify(data-icon="la:trash")
+      i.iconify(data-icon="la:eye-slash")
     router-link.p-2(to="/trash")
       i.iconify(data-icon="la:trash-alt")
     .p-2(@click="show.certs = !show.certs")

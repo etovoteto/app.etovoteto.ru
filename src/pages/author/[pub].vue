@@ -1,8 +1,6 @@
 <template lang="pug">
 .flex.flex-col.items-center
-  .shadow-lg.z-2.bg-warm-gray-100
-    author-profile(:pub="pub", :key="pub")
-    author-counters(:pub="pub")
+  author-profile(:pub="pub", :key="pub")
   .flex.flex-col.items-center.max-w-55ch.p-6
     router-view(v-slot="{ Component }")
       transition(name="fade")

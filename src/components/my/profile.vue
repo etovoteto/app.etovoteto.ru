@@ -14,13 +14,19 @@
         :title="account.profile.name",
         :editable="true",
         @update="updateProfile('name', $event)"
-      ) Псевдоним
+      ) Имя или псевдоним
       edit-title.text-lg(
         label="",
-        :title="account.profile.real",
+        :title="account.profile.full",
         :editable="true",
-        @update="updateProfile('real', $event)"
-      ) Настоящее имя
+        @update="updateProfile('full', $event)"
+      ) Полное имя
+      edit-title.text-lg(
+        label="",
+        :title="account.profile.city",
+        :editable="true",
+        @update="updateProfile('city', $event)"
+      ) Город/область
   my-credentials
   .flex.justify-center.gap-8.p-4.my-4
     edit-subtitle(

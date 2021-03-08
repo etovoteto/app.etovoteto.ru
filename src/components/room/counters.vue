@@ -7,11 +7,11 @@
     i.iconify(data-icon="la:comment")
     span {{ room.def }}
   .count 
-    i.iconify(data-icon="la:link")
-    span {{ room.link }}
-  .count 
     i.iconify(data-icon="la:user")
     span {{ room.author }}
+  .count 
+    i.iconify(data-icon="la:comments")
+    span {{ room.room }}
 </template>
 
 <script setup>

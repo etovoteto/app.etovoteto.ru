@@ -1,3 +1,4 @@
+import { onBeforeUnmount } from 'vue'
 import { gun } from 'store@db'
 import { reactive, ref, watchEffect } from 'vue'
 import { useSorter } from 'use@sorter'
@@ -36,7 +37,7 @@ export function useRooms(author, room = currentRoom.pub) {
         .on((d) => (rooms[pub].data.desc = d))
 
       counter[pub] = counter[pub] || {}
-      Object.keys(links).forEach((tag) => {
+      Object.keys({ ...links, room: true }).forEach((tag) => {
         counter[pub][tag] = counter[pub][tag] || {}
         gun
           .get(`~${pub}`)
@@ -50,18 +51,13 @@ export function useRooms(author, room = currentRoom.pub) {
             counter[pub].author[author] = true
           })
       })
-      counter[pub].link = counter[pub].link || {}
+      counter[pub].room = counter[pub].room || {}
       gun
         .get(`~${pub}`)
-        .get('link')
-        .map()
+        .get('room')
         .map()
         .once((d, k) => {
-          let author = d
-          let hash = k
-          counter[pub].link[hash] = author
-          counter[pub].author = counter[pub].author || {}
-          counter[pub].author[author] = true
+          counter[pub].room[k] = d
         })
     })
 
@@ -70,25 +66,32 @@ export function useRooms(author, room = currentRoom.pub) {
   watchEffect(() => {
     for (let pub in counter) {
       let sum = 0
-      Object.keys({ author: true, link: true, ...links }).forEach((tag) => {
-        if (typeof counter[pub][tag] == 'object') {
-          rooms[pub][tag] = Object.keys(counter[pub][tag]).length
-          sum += rooms[pub][tag]
-        } else {
-          rooms[pub][tag] = 0
-        }
-      })
+      Object.keys({ room: true, author: true, link: true, ...links }).forEach(
+        (tag) => {
+          if (typeof counter[pub][tag] == 'object') {
+            rooms[pub][tag] = Object.keys(counter[pub][tag]).length
+            sum += rooms[pub][tag]
+          } else {
+            rooms[pub][tag] = 0
+          }
+        },
+      )
       rooms[pub].sum = sum
     }
   })
 
   const more = ref()
 
-  useIntersectionObserver(more, ([{ isIntersecting }]) => {
+  const observer = useIntersectionObserver(more, ([{ isIntersecting }]) => {
     if (isIntersecting) {
       options.limit += options.page
     }
   })
+
+  onBeforeUnmount(() => {
+    observer.stop()
+  })
+
   return {
     rooms,
     sorted,

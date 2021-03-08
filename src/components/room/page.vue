@@ -1,30 +1,31 @@
 <template lang="pug">
-.flex.flex-col.w-full.max-w-45ch
+.flex.flex-col.max-w-45ch
   .p-6.flex.flex-col.items-center(
+    v-if="currentRoom.pub != pub",
     :style="{ background: pubGradient(pub, 90) }"
   ) 
-    edit-title.font-bold.text-2xl.mt-4.mb-8(
+    edit-title.font-bold.text-2xl(
       :title="room.title",
       @update="setTitle($event, pub)",
       :editable="account.is?.pub == room.host"
     ) Название
-    .mb-2 Модератор
-    author-badge(:pub="room.host")
-  .flex.bg-warm-gray-50.py-4
-    button.bg-warm-gray-300.py-2.px-4.mx-2(
-      v-if="currentRoom.pub != pub",
-      @click="enterRoom(pub)"
-    ) Войти
-    edit-fav(:pub="pub")
 
-  .p-4.bg-warm-gray-50.text-lg
+  .p-8.my-8.bg-warm-gray-50.text-xl.text-center.shadow-sm
     edit-subtitle(
       :text="room.info.desc",
       @update="setInfo('desc', $event, pub)",
       :editable="account.is?.pub == room.host"
     )
-  room-pub-counters(:pub="pub")
-  p {{ room.info }}
+  .flex.bg-warm-gray-50.mb-4.py-4.shadow-sm
+    .px-4.py-2.text-lg Ведущий
+    author-badge(:pub="room.host")
+    .spacer
+    button.bg-warm-gray-300.p-2.px-4.mx-2(
+      v-if="currentRoom.pub != pub",
+      @click="enterRoom(pub)"
+    ) Войти
+  room-big-counters(:pub="pub", :info="room.info")
+  util-share
 </template>
 
 <script setup>

@@ -4,10 +4,11 @@ nav.flex.items-center.text-3xl
     i.iconify(data-icon="la:comment-dots")
   router-link(to="/def")
     i.iconify(data-icon="la:comment")
-  router-link(to="/my")
+  author-avatar(v-if="account.is?.pub", :pub="account.is?.pub", size="small")
+  router-link(v-else, to="/my")
     span(v-if="!account.is?.pub")
       i.iconify(data-icon="la:user-plus")
-    author-avatar(v-else, :pub="account.is?.pub", size="small", :noLink="true")
+
   router-link(to="/author")
     i.iconify(data-icon="la:users")
   transition(name="fade")

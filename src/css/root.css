@@ -43,6 +43,7 @@ body {
   font-family: 'Commissioner', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
   font-size: 15px;
   line-height: 1.7em;
   word-break: break-word;

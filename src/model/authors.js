@@ -1,3 +1,4 @@
+import { onBeforeUnmount } from 'vue'
 import { gun } from 'store@db'
 import { reactive, ref, watchEffect } from 'vue'
 import { useSorter } from 'use@sorter'
@@ -58,8 +59,8 @@ export function useAuthors(room = currentRoom.pub) {
         .get('name')
         .on((d) => (authors[author].name = d))
         .back()
-        .get('real')
-        .on((d) => (authors[author].real = d))
+        .get('full')
+        .on((d) => (authors[author].full = d))
       let sum = 0
       Object.keys(links).forEach((tag) => {
         if (typeof counter[author][tag] == 'object') {
@@ -75,11 +76,16 @@ export function useAuthors(room = currentRoom.pub) {
 
   const more = ref()
 
-  useIntersectionObserver(more, ([{ isIntersecting }]) => {
+  const observer = useIntersectionObserver(more, ([{ isIntersecting }]) => {
     if (isIntersecting) {
       options.limit += options.page
     }
   })
+
+  onBeforeUnmount(() => {
+    observer.stop()
+  })
+
   return {
     authors,
     sorted,

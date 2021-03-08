@@ -11,7 +11,7 @@
   v-if="currentRoom.trashing",
   @click="trashHash(record.hash, record.tag)"
 )
-  i.iconify(data-icon="la:trash")
+  i.iconify(data-icon="la:eye-slash")
 </template>
 
 <script setup>

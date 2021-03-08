@@ -1,13 +1,17 @@
 <template lang="pug">
 .flex.flex-col.bg-warm-gray-100.p-4 
   .flex.flex-col.max-w-35ch
-    .text-base.items-center.px-1.text-sm.border-b.border-warm-gray-800.border-solid.mb-4 Краткая биография
-    .text-lg {{ profile.bio }}
+    edit-subtitle(
+      :text="account.profile.bio",
+      :editable="true",
+      @update="updateProfile('bio', $event)"
+    ) Немного о себе
 </template>
 
 <script setup>
 import { defineProps } from "vue";
 import { useProfile } from "model@author";
+import { account, updateProfile } from "store@account";
 const props = defineProps({
   pub: String,
 });

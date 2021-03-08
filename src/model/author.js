@@ -39,5 +39,13 @@ export function useAuthor(pub) {
     pub: pub,
   })
 
+  gun
+    .get(`~${pub}`)
+    .get('profile')
+    .get('name')
+    .once((d) => (author.name = d))
+    .back()
+    .get('full')
+    .once((d) => (author.full = d))
   return author
 }

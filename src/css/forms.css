@@ -9,33 +9,3 @@ textarea {
   border: 1px solid #999;
   font-family: 'Noto Sans', sans-serif;
 }
-
-button,
-label.action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem 1rem;
-  margin: 0 4px;
-  cursor: pointer;
-  transition: all 150ms ease;
-  color: var(--text-color);
-  background-color: var(--button-secondary);
-}
-
-button svg {
-  font-size: 1.4rem;
-}
-
-button:hover {
-  background-color: var(--button);
-}
-
-button:active,
-button.active {
-  background-color: var(--button-active);
-}

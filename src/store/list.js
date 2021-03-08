@@ -1,3 +1,4 @@
+import { onBeforeUnmount } from 'vue'
 import { gun, hashObj, roomDb } from 'store@db'
 
 import { ref, reactive, computed } from 'vue'
@@ -104,10 +105,14 @@ export function useList(
 
   const more = ref()
 
-  useIntersectionObserver(more, ([{ isIntersecting }]) => {
+  const observer = useIntersectionObserver(more, ([{ isIntersecting }]) => {
     if (isIntersecting) {
       options.limit += options.page
     }
+  })
+
+  onBeforeUnmount(() => {
+    observer.stop()
   })
   return {
     obj,

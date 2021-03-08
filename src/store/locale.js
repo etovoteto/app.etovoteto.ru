@@ -21,21 +21,25 @@ export const model = {
     title: 'Слово',
     hashed: true,
     personal: true,
+    icon: 'la:comment-dots',
   },
   def: {
     title: 'Значение',
     hashed: true,
     personal: true,
+    icon: 'la:comment',
   },
   link: {
     title: 'Связь',
     hashed: false,
     personal: true,
+    icon: 'la:link',
   },
   room: {
     title: 'Комната',
     hashed: true,
     personal: true,
+    icon: 'la:comments',
   },
 }
 

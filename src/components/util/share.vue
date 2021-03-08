@@ -1,5 +1,5 @@
 <template lang="pug">
-.flex.flex-col.mt-4.p-4.bg-warm-gray-50
+.flex.flex-col.mb-12.mt-4.p-4.bg-warm-gray-50
   .flex.items-center
     span.text-2xl
       i.iconify(data-icon="la:external-link-square-alt-solid")

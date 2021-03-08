@@ -21,4 +21,19 @@ watchEffect(() => {
 });
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+button, label.action
+  @apply: flex justify-center items-center rounded-full p-2 mx-2 cursor-pointer shadow-md
+
+  svg
+    font-size: 1.5em
+
+  .text
+    @apply: pl-2
+
+  $:hover
+    @apply: bg-warm-gray-300
+
+  $:active, $.active
+    @apply: bg-warm-gray-300
+</style>
