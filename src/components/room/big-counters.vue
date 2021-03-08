@@ -1,40 +1,64 @@
 <template lang="pug">
 .flex.flex-col
-  router-link(to="/word", @click="enterRoom(pub)")
-    .flex.flex-col.items-start
-      .title Слова
-      edit-subtitle.font-normal.text-lg.text-left(
-        @click.prevent.stop,
-        :text="info.wordDesc",
-        @update="setInfo('wordDesc', $event, pub)",
-        :editable="account.is?.pub == currentRoom.host"
-      )
-    .spacer
-    .flex
-      span
-        i.iconify(data-icon="la:comment-dots")
-      .tag {{ words }}
+  .row
+    router-link.flex.items-center.w-full(to="/word", @click="enterRoom(pub)")
+      .p-1 Слова
+      .spacer
+      .flex.items-center
+        .p-1
+          i.iconify(data-icon="la:comment-dots")
+        .whitespace-nowrap.p-2 {{ words }}
+    edit-subtitle.font-normal.text-lg.text-left(
+      @click.prevent.stop,
+      :text="info.wordDesc",
+      @update="setInfo('wordDesc', $event, pub)",
+      :editable="account.is?.pub == currentRoom.host"
+    ) Какие слова здесь собирают?
 
-  router-link(to="/def", @click="enterRoom(pub)")
-    .title Определения
-    .spacer
-    .icon
-      i.iconify(data-icon="la:comment")
-    .tag {{ defs }}
+  .row
+    router-link.flex.items-center.w-full(to="/def", @click="enterRoom(pub)")
+      .p-1 Определения
+      .spacer
+      .flex.items-center
+        .p-1
+          i.iconify(data-icon="la:comment")
+        .whitespace-nowrap.p-2 {{ defs }}
+    edit-subtitle.font-normal.text-lg.text-left(
+      @click.prevent.stop,
+      :text="info.defDesc",
+      @update="setInfo('defDesc', $event, pub)",
+      :editable="account.is?.pub == currentRoom.host"
+    ) Какие определения подходят сюда?
 
-  router-link(to="/author", @click="enterRoom(pub)") 
-    .title Авторы
-    .spacer
-    span
-      i.iconify(data-icon="la:users")
-    .tag {{ authors }}
+  .row
+    router-link.flex.items-center.w-full(to="/author", @click="enterRoom(pub)")
+      .p-1 Авторы
+      .spacer
+      .flex.items-center
+        .p-1
+          i.iconify(data-icon="la:users")
+        .whitespace-nowrap.p-2 {{ authors }}
+    edit-subtitle.font-normal.text-lg.text-left(
+      @click.prevent.stop,
+      :text="info.authorDesc",
+      @update="setInfo('authorDesc', $event, pub)",
+      :editable="account.is?.pub == currentRoom.host"
+    ) Кто те, кто пользуется этими словами и понятиями?
 
-  router-link(to="/room", @click="enterRoom(pub)") 
-    .title Комнаты
-    .spacer
-    span
-      i.iconify(data-icon="la:comments")
-    .tag {{ rooms }}
+  .row
+    router-link.flex.items-center.w-full(to="/room", @click="enterRoom(pub)")
+      .p-1 Комнаты
+      .spacer
+      .flex.items-center
+        .p-1
+          i.iconify(data-icon="la:comments")
+        .whitespace-nowrap.p-2 {{ rooms }}
+    edit-subtitle.font-normal.text-lg.text-left(
+      @click.prevent.stop,
+      :text="info.roomDesc",
+      @update="setInfo('roomDesc', $event, pub)",
+      :editable="account.is?.pub == currentRoom.host"
+    ) Для чего создаются новые комнаты внутри этой?
 </template>
 
 <script setup>
@@ -54,9 +78,9 @@ const rooms = useCount("room", true, props.pub);
 </script>
 
 <style lang="stylus" scoped>
-a
-  @apply: p-8 my-4 text-2xl flex text-center items-center bg-warm-gray-100 shadow-lg
+.row
+  @apply: py-4 px-6 my-4 text-2xl flex flex-col text-center items-center bg-warm-gray-100 shadow-lg
 
   &:hover
-    @apply: shadow-xl bg-warm-gray-50
+    @apply: shadow-xl bg-warm-gray-50 no-underline
 </style>

@@ -6,11 +6,11 @@
     .text-base.opacity-50
       slot
     .spacer
-    button.p-2(@click="open = !open", v-if="editable && !open")
+    .p-2(@click="open = !open", v-if="editable && !open")
       i.iconify(data-icon="la:pen-alt")
-    button.p-2(v-if="open", @click="update()")
+    .p-2(v-if="open", @click="update()")
       i.iconify(data-icon="la:check")
-    button.p-2(v-if="open", @click="open = false")
+    .p-2(v-if="open", @click="open = false")
       i.iconify(data-icon="la:times")
   .text(v-if="text && !open") {{ text }}
   form.w-full(v-if="open", @submit.prevent="")
