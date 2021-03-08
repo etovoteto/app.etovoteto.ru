@@ -1,5 +1,5 @@
 <template lang="pug">
-router-link.flex.flex-wrap.justify-start.py-6.px-2.my-4.text-xl.items-center.bg-warm-gray-50.shadow-lg(
+router-link.flex.flex.justify-start.p-2.my-4.text-xl.items-center.bg-warm-gray-50.shadow-lg(
   :to="'/author/' + author.pub"
 )
   .flex.items-center.justify-start.flex-grow
@@ -7,10 +7,13 @@ router-link.flex.flex-wrap.justify-start.py-6.px-2.my-4.text-xl.items-center.bg-
     .flex.flex-col
       .text-xl {{ author.name }}
       .text-base.font-normal {{ author.full }}
-  .flex.px-4.justify-start
+  .flex.flex-col.justify-start
     .p-2
-      i.iconify(data-icon="la:comment-medical")
-      span.ml-1 {{ author.sum }}
+      i.iconify(data-icon="la:comment-dots")
+      span.ml-1 {{ author.word }}
+    .p-2
+      i.iconify(data-icon="la:comment")
+      span.ml-1 {{ author.def }}
 </template>
 
 <script setup>
