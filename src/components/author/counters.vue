@@ -1,14 +1,14 @@
 <template lang="pug">
 .flex.justify-center.text-2xl.bg-warm-gray-100.mt-6.shadow-md.p-4
+  router-link.count(:to="`/author/${pub}/`")
+    i.iconify(data-icon="la:info-circle")
   router-link.count(:to="`/author/${pub}/word`")
     i.iconify(data-icon="la:comment-dots")
     span {{ words }}
   router-link.count(:to="`/author/${pub}/def`") 
     i.iconify(data-icon="la:comment")
     span {{ defs }}
-  .count 
-    i.iconify(data-icon="la:link")
-    span {{ links / 2 }}
+
   router-link.count(:to="`/author/${pub}/room`") 
     i.iconify(data-icon="la:comments")
     span {{ rooms }}
@@ -36,6 +36,6 @@ const rooms = useRoomCount(props.pub);
   &:hover
     @apply: bg-warm-gray-200
 
-  &.router-link-active
+  &.router-link-exact-active
     @apply: bg-warm-gray-300
 </style>

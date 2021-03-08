@@ -3,17 +3,17 @@
   router-link(to="/word", @click="enterRoom(pub)")
     .flex.flex-col.items-start
       .title Слова
-      edit-subtitle(
+      edit-subtitle.font-normal.text-lg.text-left(
         @click.prevent.stop,
         :text="info.wordDesc",
         @update="setInfo('wordDesc', $event, pub)",
         :editable="account.is?.pub == currentRoom.host"
       )
-      edit-subtitle(:value="info.wordDesc")
     .spacer
-    span
-      i.iconify(data-icon="la:comment-dots")
-    .tag {{ words }}
+    .flex
+      span
+        i.iconify(data-icon="la:comment-dots")
+      .tag {{ words }}
 
   router-link(to="/def", @click="enterRoom(pub)")
     .title Определения

@@ -1,5 +1,5 @@
 <template lang="pug">
-.subtitle(v-if="text || editable")
+.subtitle
   .mb-2.flex.items-center.border-b.border-solid.border-warm-gray-800(
     v-if="editable"
   )
@@ -15,7 +15,7 @@
   .text(v-if="text && !open") {{ text }}
   form.w-full(v-if="open", @submit.prevent="")
     textarea.w-full(
-      v-model="text",
+      v-model="txt",
       name="subtitle",
       @keyup.meta.enter="update()",
       @keyup.ctrl.enter="update()",
@@ -34,15 +34,15 @@ const props = defineProps({
   editable: Boolean,
 });
 
-const text = ref("");
+const txt = ref("");
 const open = ref(false);
 
 watchEffect(() => {
-  text.value = props.text;
+  txt.value = props.text;
 });
 
 function update() {
-  emit("update", text.value);
+  emit("update", txt.value);
   open.value = false;
 }
 </script>

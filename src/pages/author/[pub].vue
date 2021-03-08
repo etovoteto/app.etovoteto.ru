@@ -2,7 +2,7 @@
 .flex.flex-col.items-center.max-w-45ch
   author-profile(:pub="pub", :key="pub")
   author-counters.w-full(:pub="pub")
-  .flex.flex-col.items-center.p-6
+  .flex.flex-col.items-center.my-6
     router-view(v-slot="{ Component }")
       transition(name="fade")
         component(:is="Component")
