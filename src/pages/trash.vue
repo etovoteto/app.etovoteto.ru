@@ -19,3 +19,4 @@ const trash = useTrash();
 </script>
 
 <style lang="stylus" scoped></style>
+Тритнозны
