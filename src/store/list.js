@@ -1,14 +1,10 @@
 import { onBeforeUnmount } from 'vue'
 import { gun, hashObj, roomDb } from 'store@db'
-
 import { ref, reactive, computed } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
-
-import { account } from 'store@account'
-import { linkFrom, link } from 'model@link'
 import { currentRoom } from 'store@room'
-import { links } from './locale'
+import { links } from 'store@locale'
 
 export function useCount(tag, hashed = true, room = currentRoom.pub, author) {
   const counter = reactive({})

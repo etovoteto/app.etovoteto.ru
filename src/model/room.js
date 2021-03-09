@@ -1,6 +1,6 @@
-import { gun } from './../store/db'
+import { gun } from 'store@db'
 import { reactive, ref, computed } from 'vue'
-import { currentRoom } from '../store/room'
+import { currentRoom } from 'store@room'
 
 export const search = ref('')
 

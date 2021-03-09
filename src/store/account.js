@@ -1,13 +1,10 @@
 import { generateWords } from 'use@randomWords'
 import { capitalFirst } from 'model@word'
-import { reactive, ref } from 'vue'
-import { gun, sea } from 'store@db'
+import { reactive, ref, onMounted } from 'vue'
+import { gun, sea, getState } from 'store@db'
 import { downloadText } from 'use@loader'
 import { joinRoom } from 'store@room'
-import { computed } from 'vue'
 import { asyncComputed } from '@vueuse/core'
-import { onMounted } from 'vue'
-import { getState } from './db'
 
 // let beatTimer
 

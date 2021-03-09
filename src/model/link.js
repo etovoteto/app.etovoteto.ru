@@ -1,8 +1,6 @@
 import { reactive, ref } from 'vue'
-import { account } from 'store@account'
 import { currentRoom } from 'store@room'
 import { computed } from 'vue'
-import { throttledWatch } from '@vueuse/core'
 
 export const linkFrom = ref({})
 

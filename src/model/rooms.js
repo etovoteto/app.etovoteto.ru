@@ -1,6 +1,5 @@
-import { onBeforeUnmount } from 'vue'
 import { gun } from 'store@db'
-import { reactive, ref, watchEffect } from 'vue'
+import { reactive, ref, watchEffect, onBeforeUnmount } from 'vue'
 import { useSorter } from 'use@sorter'
 import { useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'

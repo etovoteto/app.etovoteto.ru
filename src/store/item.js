@@ -1,8 +1,8 @@
 import { link } from 'model@link'
 import { reactive, ref, computed } from 'vue'
 import { account } from 'store@account'
-import { gun, hashObj, roomDb } from './db'
-import { currentRoom } from './room'
+import { gun, hashObj, roomDb } from 'store@db'
+import { currentRoom } from 'store@room'
 
 export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
