@@ -17,25 +17,6 @@
   --background-transparent: hsla(0, 0%, 95%, 0.65);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: hsla(0, 0%, 30%, 1);
-    --background-alt: hsla(0, 0%, 20%, 1);
-    --top-bar: #444;
-    --body-padding: 1em;
-    --button-secondary: #222;
-    --button: #343434;
-    --button-active: #424242;
-    --bar-color: #333;
-    --small-radius: 4px;
-    --text-color: #eee;
-    --text-light: #aaa;
-    --mobile-size: 500px;
-    --border-color: #999;
-    --border-thin: 1px solid hsla(0, 0%, 100%, 0.2);
-  }
-}
-
 body {
   padding: 0;
   margin: 0;

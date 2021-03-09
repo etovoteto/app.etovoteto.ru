@@ -61,6 +61,9 @@ export function useAuthors(room = currentRoom.pub) {
         .back()
         .get('full')
         .on((d) => (authors[author].full = d))
+        .back()
+        .get('city')
+        .on((d) => (authors[author].city = d))
       let sum = 0
       Object.keys(links).forEach((tag) => {
         if (typeof counter[author][tag] == 'object') {
