@@ -1,3 +1,4 @@
+import { get } from '@vueuse/core'
 import { gun, sea } from 'store@db'
 import { reactive, ref } from 'vue'
 
@@ -9,6 +10,9 @@ export function useProfile(pub) {
   })
   gun
     .get(`~${pub}`)
+    .get('presence')
+    .on((d) => (profile.presence = d))
+    .back()
     .get('profile')
     .map()
     .on((d, k) => (profile[k] = d))
@@ -41,6 +45,9 @@ export function useAuthor(pub) {
 
   gun
     .get(`~${pub}`)
+    .get('presence')
+    .on((d) => (author.presence = d))
+    .back()
     .get('profile')
     .get('name')
     .once((d) => (author.name = d))

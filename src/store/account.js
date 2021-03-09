@@ -7,6 +7,9 @@ import { joinRoom } from 'store@room'
 import { computed } from 'vue'
 import { asyncComputed } from '@vueuse/core'
 import { onMounted } from 'vue'
+import { getState } from './db'
+
+// let beatTimer
 
 export const account = reactive({
   is: null,
@@ -25,6 +28,9 @@ gun.on('auth', () => {
 
 function logIn() {
   account.is = gun.user().is
+  // beatTimer = setInterval(() => {
+  //   gun.user().get('presence').put(getState())
+  // }, 2500)
   console.info('Logged in as ', account.is.pub)
   loadProfile(account.is.pub)
 }
@@ -42,6 +48,7 @@ export function loadProfile(pub) {
 export function logOut() {
   let is = !!account.is?.pub
   gun.user().leave()
+  // clearInterval(beatTimer)
   setTimeout(() => {
     if (is && !gun.user()._?.sea) {
       account.is = null

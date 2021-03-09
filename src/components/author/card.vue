@@ -8,6 +8,7 @@ router-link.flex.flex.justify-start.p-2.my-4.text-xl.items-center.bg-warm-gray-5
       .text-xl {{ author.name }}
       .text-base.font-normal {{ author.full }}
       .text-sm.font-normal.opacity-60 {{ author.city }}
+
   .flex.flex-col.justify-start
     .p-2
       i.iconify(data-icon="la:comment-dots")

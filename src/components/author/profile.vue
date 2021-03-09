@@ -18,7 +18,7 @@
       :editable="account.is?.pub == pub",
       @update="updateProfile('city', $event)"
     ) Город/область
-    edit-credentials(
+    edit-credentials.mt-6(
       v-if="!account.is?.pub || account.is?.pub == pub",
       :pub="pub"
     )

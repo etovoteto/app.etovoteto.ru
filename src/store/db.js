@@ -9,7 +9,7 @@ import 'gun/lib/radix'
 import 'gun/lib/radisk'
 import 'gun/lib/store'
 import 'gun/lib/rindexed'
-// import 'gun/lib/webrtc'
+import 'gun/lib/webrtc'
 import 'gun/nts'
 //import 'zenbase/dist/main.js' - uncomment this to get zenbase working – so SIA Skynet is used to store data
 
@@ -19,7 +19,8 @@ window.gun = gun //for debugging
 export const cert = config.cert
 export const soul = Gun.node.soul
 export const isNode = Gun.node.is
-export const getState = Gun.state.is //(node,'key') => timestamp
+export const getState = Gun.state
+// export const getState = Gun.state.is //(node,'key') => timestamp
 export const sea = SEA
 export const genUuid = Gun.text.random
 

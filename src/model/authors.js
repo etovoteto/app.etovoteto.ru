@@ -55,6 +55,9 @@ export function useAuthors(room = currentRoom.pub) {
       authors[author] = authors[author] || { pub: author, sum: '0' }
       gun
         .get(`~${author}`)
+        .get('presence')
+        .on((d) => (authors[author].presence = d))
+        .back()
         .get('profile')
         .get('name')
         .on((d) => (authors[author].name = d))
