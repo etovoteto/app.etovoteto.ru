@@ -9,6 +9,10 @@
       @update="setTitle($event, pub)",
       :editable="account.is?.pub == room.host"
     ) Название
+    button.bg-warm-gray-300.p-2.px-4.mx-2(
+      v-if="currentRoom.pub != pub",
+      @click="enterRoom(pub)"
+    ) Войти
 
   .p-8.my-8.bg-warm-gray-50.text-xl.text-center.shadow-sm
     edit-subtitle(
@@ -20,10 +24,7 @@
     .px-4.py-2.text-lg Ведущий
     author-badge(:pub="room.host")
     .spacer
-    button.bg-warm-gray-300.p-2.px-4.mx-2(
-      v-if="currentRoom.pub != pub",
-      @click="enterRoom(pub)"
-    ) Войти
+
   room-big-counters(:pub="pub", :info="room.info")
   util-share
 </template>

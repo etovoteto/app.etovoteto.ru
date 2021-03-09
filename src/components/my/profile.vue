@@ -27,7 +27,7 @@
         :editable="true",
         @update="updateProfile('city', $event)"
       ) Город/область
-  my-credentials
+  edit-credentials
   .flex.justify-center.gap-8.p-4.my-4
     edit-subtitle(
       :text="account.profile.bio",

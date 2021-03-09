@@ -7,6 +7,16 @@ import { currentRoom } from './room'
 export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
+  console.log(certificate, text, hash)
+
+  let already = await gun
+    .get(`~${room}`)
+    .get(`#${tag}`)
+    .get(`${hash}#${account.is.pub}`)
+    .then()
+  if (!already) {
+    gun.get(`~${room}`).get(`#${tag}`).put(`${hash}#${account.is.pub}`)
+  }
   gun
     .get(`~${room}`)
     .get(`#${tag}`)
