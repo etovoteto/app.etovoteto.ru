@@ -21,7 +21,9 @@
     .spacer
     link-button(:record="record")
 
-  .links.max-h-xs.overflow-y-scroll.snap(v-if="Object.keys(links).length > 0")
+  .links.max-h-xs.overflow-y-scroll.snap(
+    v-if="Object.keys(links).length > 0 && record != linkFrom"
+  )
     transition-group(name="list")
       def-link.snap-start(
         v-for="(linkers, toHash) in links",

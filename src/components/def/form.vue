@@ -2,7 +2,7 @@
 .flex.flex-col
   textarea.text-xl.p-6(
     ref="input",
-    placeholder="Понятие как минимум из двух слов и не короче 10 знаков",
+    placeholder="Придумайте понятие как минимум из двух слов и не короче 10 знаков",
     :rows="3",
     v-model="newDef.def",
     :class="{ valid: isValid }"

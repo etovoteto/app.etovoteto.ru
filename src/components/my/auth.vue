@@ -1,20 +1,17 @@
 <template lang="pug">
 form.flex.flex-col.items-stretch.p-8(@submit.prevent.stop)
-  .flex.justify-center
-    button.action(@click="generate()") 
+  .flex.flex-col.justify-center
+    .text-2xl.text-center Первый раз?
+    button.p-4.m-4(@click="generate()") 
       i.iconify(data-icon="la:plus")
       .text Новый автор
-    button.action(@click="show.options = true", v-if="!show.options") 
-      i.iconify(data-icon="la:key")
-      .text Есть ключ
-    button.action(@click="show.options = false", v-else) 
-      i.iconify(data-icon="la:times")
+    .text-2xl.text-center Уже есть ключ?
   transition(name="fade")
-    .flex.mt-8.flex-wrap(v-if="show.options")
-      button.action(@click="show.text = !show.text")
-        i.iconify(data-icon="la:sticky-note")
+    .flex.mt-8.flex-wrap.justify-center
+      button.action.m-2.p-4(@click="show.text = !show.text")
+        i.iconify(data-icon="la:key")
         .text Текст
-      label.action(for="json-input")
+      label.action.m-2.p-4(for="json-input")
         i.iconify(data-icon="la:file-code")
         .text JSON-файл
       input#json-input.hidden(
@@ -22,7 +19,7 @@ form.flex.flex-col.items-stretch.p-8(@submit.prevent.stop)
         accept="application/json",
         @change="handleFile($event.target.files)"
       )
-      label.action(for="qr-input")
+      label.action.m-2.p-4(for="qr-input")
         i.iconify(data-icon="la:qrcode")
         .text QR-код
       util-load-qr.hidden(@loaded="handleText($event)")
@@ -40,7 +37,7 @@ import { generate, participate } from "store@account";
 import { reactive, ref } from "vue";
 
 const show = reactive({
-  options: false,
+  options: true,
   text: false,
 });
 
@@ -78,12 +75,4 @@ function parseJSON(json) {
 }
 </script>
 
-<style  scoped>
-.action {
-  @apply p-4 mx-2 items-center flex bg-warm-gray-50 cursor-pointer;
-}
 
-.action.active {
-  @apply bg-warm-gray-100;
-}
-</style>

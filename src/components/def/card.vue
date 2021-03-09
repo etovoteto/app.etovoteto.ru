@@ -16,14 +16,15 @@
   router-link.text-lg.font-normal.border-b.border-solid.border-warm-gray-400.pb-4(
     :to="'/def/' + safeHash(record.hash)"
   ) {{ capitalFirst(record.data.def) }}
-  transition-group(name="list")
-    word-link.snap-start(
-      v-for="(linkers, toHash) in links",
-      :key="toHash",
-      :linkers="linkers",
-      :hash="toHash",
-      :from="record.hash"
-    ) 
+  .flex.flex-col(v-if="Object.keys(links).length > 0 && record != linkFrom")
+    transition-group(name="list")
+      word-link.snap-start(
+        v-for="(linkers, toHash) in links",
+        :key="toHash",
+        :linkers="linkers",
+        :hash="toHash",
+        :from="record.hash"
+      ) 
 </template>
 
 <script setup>

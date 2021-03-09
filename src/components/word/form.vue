@@ -3,7 +3,7 @@ form.flex.flex-col(@submit.prevent.stop)
   input.p-6.text-center.text-xl(
     ref="input",
     v-model="newWord.word",
-    placeholder="Несуществующее слово"
+    placeholder="Придумайте новое слово"
   )
   .flex(v-if="newWord.word.length > 3")
     .flex.flex-wrap.text-4xl.justify-center.font-bold.select-none(
