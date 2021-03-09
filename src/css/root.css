@@ -62,6 +62,8 @@ html {
   background-color: var(--background);
   overscroll-behavior-x: contain;
   overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 100vh;
 }
 
 #app > main {

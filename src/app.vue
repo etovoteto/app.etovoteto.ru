@@ -1,7 +1,6 @@
 <template lang="pug">
 app-header
 app-admin(v-if="account.is?.pub == currentRoom.host", :key="currentRoom.pub")
-link-card
 router-view(v-slot="{ Component }")
   transition(name="fade")
     component(:is="Component", :key="currentRoom.pub")

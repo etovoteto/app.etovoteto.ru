@@ -5,7 +5,7 @@ router-link.flex.items-center.font-normal.pr-2.rounded-full.bg-warm-gray-200(
   author-avatar(:pub="pub", size="small")
   .flex.flex-wrap
     .font-bold.mr-2(v-if="profile.name") {{ profile.name }}
-    .font-normal.mr-2(v-if="profile.full") ({{ profile.full }})
+    .font-normal.mr-2(v-if="profile.full") {{ profile.full }}
 </template>
 
 <script setup>

@@ -1,5 +1,6 @@
 <template lang="pug">
 .flex.flex-col
+  link-card.sticky
   transition-group(name="list") 
     slot(
       v-for="(record, key) in sorted.list",

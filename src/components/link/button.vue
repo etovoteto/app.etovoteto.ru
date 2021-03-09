@@ -28,8 +28,10 @@ const props = defineProps({
 const isTrashed = useIsTrashed(props.record.hash);
 </script>
 
-<style  scoped>
-.link {
-  @apply text-xl bg-warm-gray-300 rounded-full py-1 px-2 hover:bg-warm-gray-200 cursor-pointer transition-colors;
-}
+<style lang="stylus" scoped>
+.link
+  @apply: cursor-pointer text-xl transition-colors bg-warm-gray-300 rounded-full py-1 px-2
+
+  &:hover
+    @apply: bg-warm-gray-200
 </style>

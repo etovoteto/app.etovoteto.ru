@@ -1,7 +1,7 @@
 <template lang="pug">
-.card(v-if="linkFrom?.tag") 
-  word-card(v-if="linkFrom.tag == 'word'", :record="linkFrom")
-  def-card(v-if="linkFrom.tag == 'def'", :record="linkFrom")
+.sticky.top-12px.z-100.transform.scale-105(v-if="linkFrom?.tag") 
+  word-card.shadow-2xl(v-if="linkFrom.tag == 'word'", :record="linkFrom")
+  def-card.shadow-2xl(v-if="linkFrom.tag == 'def'", :record="linkFrom")
 </template>
 
 <script setup>
