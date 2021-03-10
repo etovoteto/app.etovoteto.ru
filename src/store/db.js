@@ -1,8 +1,5 @@
 const config = {
-  peers: [
-    'https://etogun.glitch.me/gun',
-    'https://etovoteto.herokuapp.com/gun',
-  ], //['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
+  peers: ['https://etogun.glitch.me/gun'], //     'https://etovoteto.herokuapp.com/gun', , ['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
 }
 
 import Gun from 'gun/gun'
@@ -12,12 +9,12 @@ import 'gun/lib/radix'
 import 'gun/lib/radisk'
 import 'gun/lib/store'
 import 'gun/lib/rindexed'
-import 'gun/lib/webrtc'
+// import 'gun/lib/webrtc'
 import 'gun/nts'
 //import 'zenbase/dist/main.js' - uncomment this to get zenbase working – so SIA Skynet is used to store data
 
-export const gun = Gun({ peers: config.peers, secret: 'etovoteto' })
-export const roomDb = Gun({ peers: config.peers, secret: 'etovoteto' })
+export const gun = Gun({ peers: config.peers, localStorage: false })
+export const roomDb = Gun({ peers: config.peers, localStorage: false })
 window.gun = gun //for debugging
 export const cert = config.cert
 export const soul = Gun.node.soul
