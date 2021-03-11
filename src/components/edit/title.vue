@@ -11,8 +11,8 @@
   input.min-w-full.p-4(
     v-if="editable && edit",
     ref="input",
+    @blur="$emit('update', $event.target.value); edit = false",
     @keyup.enter="$emit('update', $event.target.value); edit = false",
-    @blur="edit = false",
     @keyup.esc="edit = false",
     type="text",
     :value="title"

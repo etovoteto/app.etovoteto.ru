@@ -7,14 +7,7 @@ import { currentRoom } from 'store@room'
 export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
   let certificate = await gun.get(`~${room}`).get('cert').get(tag).then()
   const { text, hash } = await hashObj(obj)
-  let path = await gun
-    .get(`~${room}`)
-    .get(`#${tag}`)
-    .get(`${hash}#${account.is.pub}`)
-    .then()
-  if (!path) {
-    gun.get(`~${room}`).get(`#${tag}`).put(`${hash}#${account.is.pub}`)
-  }
+
   gun
     .get(`~${room}`)
     .get(`#${tag}`)
@@ -23,7 +16,6 @@ export async function addHashedPersonal(tag, obj, room = currentRoom.pub) {
       text,
       () => {
         if (linkFrom.value) {
-          console.log(linkFrom.value)
           link({ hash, tag, data: obj })
         }
       },

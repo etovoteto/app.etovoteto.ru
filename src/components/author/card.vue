@@ -3,8 +3,8 @@ router-link.flex.flex.justify-start.p-2.my-4.text-xl.items-center.bg-warm-gray-5
   :to="'/author/' + author.pub"
 )
   .flex.items-center.justify-start.flex-grow
-    author-avatar(:pub="author.pub", size="small")
-    .flex.flex-col
+    author-avatar.mr-2(:pub="author.pub", size="medium")
+    .flex.flex-col.px-2
       .text-xl {{ author.name }}
       .text-base.font-normal {{ author.full }}
       .text-sm.font-normal.opacity-60 {{ author.city }}

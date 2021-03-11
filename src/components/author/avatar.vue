@@ -47,6 +47,9 @@ watchEffect(() => {
   min-height: 0.5rem
   display: flex
 
+.auto
+  width: auto
+
 .small
   width: 1.5em
   height: 1.5em
@@ -61,6 +64,9 @@ watchEffect(() => {
 
 .large
   width: 10em
+
+.xl
+  width: 16em
 
 .huge
   width: 60vw

@@ -68,21 +68,23 @@ export function downloadPair() {
 
 export async function generate() {
   let pair = await sea.pair()
-  participate(pair)
+  console.log(pair)
 }
 
-export async function participate(pair) {
+export async function participate(pair, name) {
   gun.user().auth(pair, async () => {
-    let name = await gun.user().get('profile').get('name').then()
-    if (!name) {
-      gun.user().get('profile').get('name').put(capitalFirst(generateWords()))
+    if (name) {
+      let hadName = await gun.user().get('profile').get('name').then()
+      if (!hadName) {
+        gun.user().get('profile').get('name').put(name)
+      }
     }
     joinRoom()
   })
 }
 
 export function updateProfile(field, data) {
-  if (data) {
+  if (data !== undefined) {
     gun.user().get('profile').get(field).put(data)
   }
 }

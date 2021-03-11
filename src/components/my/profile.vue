@@ -1,39 +1,36 @@
 <template lang="pug">
 .flex.flex-col
-  .flex.justify-center.gap-8.p-4.my-4
-    .flex.flex-col.items-center
-      author-avatar(:pub="account.is?.pub", size="big")
-      router-link.my-2.p-2.rounded-3xl.bg-warm-gray-100.flex.items-center.text-2xl(
-        :to="'/author/' + account.is?.pub"
-      ) 
-        .mr-1
-          i.iconify(data-icon="la:newspaper")
-        .text-lg Моя страница
-    .flex.flex-col
-      edit-title.text-2xl.font-bold.my-2(
-        :title="account.profile.name",
-        :editable="true",
-        @update="updateProfile('name', $event)"
-      ) Имя или псевдоним
-      edit-title.text-lg(
-        label="",
-        :title="account.profile.full",
-        :editable="true",
-        @update="updateProfile('full', $event)"
-      ) Полное имя
-      edit-title.text-lg(
-        label="",
-        :title="account.profile.city",
-        :editable="true",
-        @update="updateProfile('city', $event)"
-      ) Город/область
-  edit-credentials
-  .flex.justify-center.gap-8.p-4.my-4
-    edit-subtitle(
-      :text="account.profile.bio",
-      :editable="true",
-      @update="updateProfile('bio', $event)"
-    ) Немного о себе
+  .flex.flex-col.items-center.text-center
+    author-avatar(:pub="account.is?.pub", size="big")
+    .text-3xl.my-4.font-bold {{ account.profile.name }}
+      .text-2xl.my-4 Добро пожаловать!
+  .flex.flex-col.items-center.text-center(v-if="!account.profile?.gotKey")
+    .text-4xl.mb-4
+      i.iconify(data-icon="la:lock")
+    .text-xl.font-bold.mb-4 Cохраните свой ключ
+    .text-lg Чтобы заходить в свой аккаунт вам понадобится ключ. Это небольшой текст, который вы можете скопировать к себе в заметки, сделать скриншот с QR-кодом или сохранить в виде файла на диск. Затем вы сможете использовать их для прямого входа в свой аккаунт.
+    .text-xl.mt-4 Храните свой ключ в секрете!
+
+    edit-credentials.p-6.border.border-solid.border-warm-gray-400.rounded-2xl.my-6(
+      :pub="account.is?.pub"
+    )
+    .flex
+      .flex.items-center.justify-center.text-4xl.p-6
+        i.iconify(data-icon="la:asterisk")
+      .text-sm.mt-4 Для входа в аккаунт вы также можете задать пароль. Ввести его можно будет на вашей авторской странице.
+    button.action.my-6(@click="updateProfile('gotKey', true)") Спасибо, ключ у меня
+  .flex.flex-col.items-center.text-center(v-if="account.profile?.gotKey")
+    p.text-lg.my-4 Добавляйте слова и определения в словарь, чтобы отображаться подниматься в списке его авторов.
+    router-link.m-8.p-2.rounded-3xl.bg-warm-gray-100.flex.items-center.text-2xl(
+      :to="'/author/' + account.is?.pub"
+    ) 
+      .mr-1
+        i.iconify(data-icon="la:newspaper")
+      .text-lg Перейти на мою страницу
+    button.action.my-6(
+      v-if="account.profile?.gotKey",
+      @click="updateProfile('gotKey', false)"
+    ) Я хочу сохранить свой ключ
 </template>
 
 <script setup>

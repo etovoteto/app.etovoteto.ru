@@ -1,5 +1,5 @@
 <template lang="pug">
-main.container(:key="account.is")
+main(:key="account.is")
   my-auth(v-if="!account.is?.pub")
   my-profile(v-else)
 </template>
