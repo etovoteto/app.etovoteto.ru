@@ -45,7 +45,6 @@ watchEffect(() => {
   min-width: 0.5rem
   height: min-content
   min-height: 0.5rem
-  display: flex
 
 .auto
   width: auto

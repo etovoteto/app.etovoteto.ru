@@ -8,11 +8,11 @@
   .text-center.text-2xl.py-4(v-if="pass.show") {{ pass.is }}
   input.p-4.mt-4(
     v-model="pass.text",
-    placeholder="Придумайте пароль > 5 символов"
+    placeholder="Придумайте пароль 5 или более символов"
   )
   button.mt-4.p-4.bg-warm-gray-200(
     @click="setPass(pass.text)",
-    v-if="pass.text.length > 5"
+    v-if="pass.text.length > 4"
   ) Задать
 </template>
 

@@ -1,8 +1,9 @@
 <template lang="pug">
-.flex.flex-col.items-center
+.flex.flex-col.items-center.border.border-solid.border-warm-gray-400.rounded-xl.my-4
   .text-2xl.text-center.mt-4 Уже есть ключ?
+  .text-lg.text-center.my-4 Загрузите
   transition(name="fade")
-    .flex.mt-8.flex-wrap.justify-center
+    .flex.flex-wrap.justify-center
       button.action.m-2.p-4(@click="show.text = !show.text")
         i.iconify(data-icon="la:key")
         .text Текст

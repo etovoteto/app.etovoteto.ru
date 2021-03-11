@@ -1,7 +1,7 @@
 <template lang="pug">
 .flex.flex-col.items-center.justify-center
   author-badge(:pub="pub", size="small")
-  util-qr(:data="pair")
+  util-qr.w-full(:data="pair")
 </template>
 
 <script setup>
