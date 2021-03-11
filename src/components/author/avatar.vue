@@ -41,9 +41,7 @@ watchEffect(() => {
 
 <style lang="stylus" scoped>
 .avatar
-  width: min-content
   min-width: 0.5rem
-  height: min-content
   min-height: 0.5rem
 
 .auto
