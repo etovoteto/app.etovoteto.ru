@@ -11,12 +11,12 @@
       span(
         v-if="record",
         v-html="renderWord(record.data.word, record.data.stress)"
-      )
-    author-avatar(
+      ) 
+    author-avatar.max-w-40(
       v-for="(is, author) in record.authors",
       :key="author",
       :pub="author",
-      size="small"
+      :size="25"
     )
     .spacer
     link-button(:record="record")

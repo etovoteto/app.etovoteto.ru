@@ -1,7 +1,7 @@
 <template lang="pug">
 .flex.flex-col
   .flex.flex-col.items-center.text-center
-    author-avatar(:pub="account.is?.pub", size="big")
+    author-avatar(:pub="account.is?.pub", :size="64")
     .text-3xl.my-4.font-bold {{ account.profile.name }}
       .text-2xl.my-4 Добро пожаловать!
   .flex.flex-col.items-center.text-center(v-if="!account.profile?.gotKey")

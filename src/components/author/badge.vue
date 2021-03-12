@@ -2,7 +2,7 @@
 router-link.flex.items-center.font-normal.pr-2.rounded-full.bg-warm-gray-200(
   :to="`/author/${pub}`"
 )
-  author-avatar(:pub="pub", size="small")
+  author-avatar(:pub="pub", :size="24")
   .flex.flex-wrap
     .font-bold.mr-2(v-if="profile.name") {{ profile.name }}
     .font-normal.mr-2(v-if="profile.full") {{ profile.full }}

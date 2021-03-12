@@ -9,14 +9,14 @@
     v-for="(is, author) in record?.authors",
     :key="author",
     :pub="author",
-    size="nano"
+    :size="8"
   )
   .spacer
   author-avatar(
     v-for="(is, author) in linkers",
     :key="author",
     :pub="author",
-    size="nano"
+    :size="8"
   )
   .text-lg.pl-1.cursor-pointer(
     v-if="linkers[account.is?.pub] && from",

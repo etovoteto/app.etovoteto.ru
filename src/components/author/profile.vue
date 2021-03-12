@@ -2,7 +2,7 @@
 .flex.flex-col.items-center.pt-6.w-full
   .flex.flex-col.items-center.shadow-lg.z-2.bg-warm-gray-100.p-6.w-full
     router-link.flex.flex-col.items-center(:to="`/author/${pub}/`")
-      author-avatar(:pub="pub", size="big")
+      author-avatar(:pub="pub", :size="242")
     edit-title.text-3xl.font-bold.my-2(
       :title="profile.name",
       :editable="account.is?.pub == pub",

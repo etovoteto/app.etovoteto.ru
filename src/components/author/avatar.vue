@@ -9,32 +9,31 @@ router-link.avatar.m-1.p-2.rounded-full(
     v-if="pic",
     :src="pic",
     :title="pub",
-    :class="{ [size]: true, current: current }"
+    :style="{ width: size }",
+    :class="{ current: current }"
   )
 </template>
 
 <script setup >
 import { computed, defineProps, ref, watchEffect } from "vue";
-import { useAvatar } from "use@avatar";
+import { gunAvatar } from "gun-avatar";
 import { account } from "store@account";
 import { pubGradient } from "use@colors";
 
 const props = defineProps({
   pub: String,
   size: {
-    type: String,
-    default: "big",
+    type: Number,
+    default: 400,
   },
 });
 
 const pic = ref("");
-const current = computed(
-  () => props.pub == account.is?.pub || props.size == "nano"
-);
+const current = computed(() => props.pub == account.is?.pub || props.size < 10);
 
 watchEffect(() => {
-  if (props.pub && props.pub.includes(".") && props.size != "nano") {
-    pic.value = useAvatar(props.pub);
+  if (props.pub && props.pub.includes(".") && props.size >= 10) {
+    pic.value = gunAvatar(props.pub, props.size);
   }
 });
 </script>
@@ -43,28 +42,4 @@ watchEffect(() => {
 .avatar
   min-width: 0.5rem
   min-height: 0.5rem
-
-.auto
-  width: auto
-
-.small
-  width: 1.5em
-  height: 1.5em
-
-.medium
-  width: 4em
-  height: 4em
-
-.big
-  width: 8em
-  height: 8em
-
-.large
-  width: 10em
-
-.xl
-  width: 16em
-
-.huge
-  width: 60vw
 </style>

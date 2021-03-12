@@ -26,7 +26,7 @@ export default {
     },
   },
   server: {
-    port: 3042,
+    port: 3060,
   },
   optimizeDeps: {
     include: [
