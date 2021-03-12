@@ -12,7 +12,13 @@ form.flex.flex-col.items-center.text-center.border.border-solid.border-warm-gray
   button.action.p-4(v-if="author.name", @click="generate()") 
     i.iconify(data-icon="la:key")
     .text Сгенерировать ключ
-  author-avatar.my-4(:v-if="author.pair", :pub="author.pair?.pub", size="240")
+
+  author-avatar.my-4(
+    :key="author.pair?.pub",
+    :v-if="author.pair",
+    :pub="author.pair?.pub",
+    :size="240"
+  )
   button.action.p-4.mb-4(
     v-if="author.name && author.pair",
     @click="participate(author.pair, author.name)"

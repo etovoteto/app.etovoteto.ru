@@ -9,7 +9,8 @@ router-link.avatar.m-1.p-2.rounded-full(
     v-if="pic",
     :src="pic",
     :title="pub",
-    :style="{ width: size }",
+    :width="size",
+    :height="size",
     :class="{ current: current }"
   )
 </template>
