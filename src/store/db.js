@@ -1,5 +1,5 @@
 const config = {
-  peers: ['https://etogun.glitch.me/gun'], //     'https://etovoteto.herokuapp.com/gun', , ['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
+  peers: ['https://gun.etovoteto.ru/gun'], //  'https://etogun.glitch.me/gun'    'https://etovoteto.herokuapp.com/gun', , ['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
 }
 
 import Gun from 'gun/gun'

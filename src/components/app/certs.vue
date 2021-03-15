@@ -1,5 +1,6 @@
 <template lang="pug">
 .flex.bg-warm-gray-300
+  p certs
   .font-bold.p-2.rounded-full.text-green-800(
     v-for="(cert, tag) in certs",
     :key="cert",
@@ -7,10 +8,7 @@
   )
     i.iconify(data-icon="la:unlock-alt")
 
-  .p-2(
-    v-if="currentRoom.pub == pub && currentRoom.hosting",
-    @click="setCerts()"
-  )
+  .p-2(@click="setCerts()")
     i.iconify(data-icon="la:file-contract")
 </template>
 
