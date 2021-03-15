@@ -32,7 +32,7 @@ watchEffect(() => {
   pageTitle.value = currentRoom.title
 })
 
-export async function enterRoom(pub) {
+export async function enterRoom(pub = currentRoom.pub) {
   gun
     .get('~' + pub)
     .get('title')

@@ -8,11 +8,14 @@
       i.iconify(data-icon="la:eye-slash")
     router-link.p-2(to="/trash")
       i.iconify(data-icon="la:trash-alt")
-    .p-2(@click="show.certs = !show.certs")
+    .p-2.cursor-pointer(@click="show.certs = !show.certs")
       i.iconify(data-icon="la:file-contract")
-    .p-2(v-if="!currentRoom.hosting", @click="enterRoom(pub)")
+    .p-2.cursor-pointer(
+      v-if="!currentRoom.hosting",
+      @click="enterRoom(currentRoom.pub)"
+    )
       i.iconify(data-icon="la:home")
-  app-certs(v-if="show.certs", :pub="currentRoom.pub")
+  app-certs(v-if="show.certs")
 </template>
 
 <script setup>
