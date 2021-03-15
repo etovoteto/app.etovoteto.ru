@@ -9,7 +9,7 @@ import 'gun/lib/radix'
 import 'gun/lib/radisk'
 import 'gun/lib/store'
 import 'gun/lib/rindexed'
-// import 'gun/lib/webrtc'
+import 'gun/lib/webrtc'
 import 'gun/nts'
 //import 'zenbase/dist/main.js' - uncomment this to get zenbase working – so SIA Skynet is used to store data
 
