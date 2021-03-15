@@ -23,8 +23,8 @@
     "@iconify/iconify": "^1.0.7",
     "@mattkrick/sanitize-svg": "^0.3.1",
     "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "^4.3.6",
-    "@vueuse/router": "^4.3.6",
+    "@vueuse/core": "^4.4.1",
+    "@vueuse/router": "^4.4.1",
     "color-hash": "^1.0.3",
     "gun": "github:amark/gun",
     "gun-avatar": "^1.2.3",
@@ -39,7 +39,7 @@
     "zenbase": "^1.0.10"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.315",
+    "@iconify/json": "^1.1.316",
     "@prettier/plugin-pug": "^1.13.5",
     "@rollup/plugin-alias": "^3.1.2",
     "@vitejs/plugin-vue": "^1.1.5",
@@ -47,7 +47,7 @@
     "pug": "^3.0.2",
     "stylus": "^0.54.8",
     "vite": "^2.0.5",
-    "vite-plugin-components": "0.8.0",
+    "vite-plugin-components": "0.8.3",
     "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-pwa": "^0.5.6",
     "vite-plugin-voie": "^0.7.3",

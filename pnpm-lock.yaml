@@ -2,8 +2,8 @@ dependencies:
   '@iconify/iconify': 1.0.7
   '@mattkrick/sanitize-svg': 0.3.1
   '@qrcode/svg': 1.0.0-beta.2
-  '@vueuse/core': 4.3.6_vue@3.0.7
-  '@vueuse/router': 4.3.6_vue-router@4.0.5+vue@3.0.7
+  '@vueuse/core': 4.4.1_vue@3.0.7
+  '@vueuse/router': 4.4.1_vue-router@4.0.5+vue@3.0.7
   color-hash: 1.0.3
   gun: github.com/amark/gun/508d38cd1b35fbbb285d622364aa0f6f18702a3e
   gun-avatar: 1.2.3
@@ -17,7 +17,7 @@ dependencies:
   vue-router: 4.0.5_vue@3.0.7
   zenbase: 1.0.10
 devDependencies:
-  '@iconify/json': 1.1.315
+  '@iconify/json': 1.1.316
   '@prettier/plugin-pug': 1.13.5
   '@rollup/plugin-alias': 3.1.2
   '@vitejs/plugin-vue': 1.1.5_@vue+compiler-sfc@3.0.7
@@ -25,7 +25,7 @@ devDependencies:
   pug: 3.0.2
   stylus: 0.54.8
   vite: 2.0.5
-  vite-plugin-components: 0.8.0_vite@2.0.5
+  vite-plugin-components: 0.8.3_vite@2.0.5
   vite-plugin-purge-icons: 0.7.0_vite@2.0.5
   vite-plugin-pwa: 0.5.6
   vite-plugin-voie: 0.7.3_ce0f637df458e08b5e66314fb95daced
@@ -1010,23 +1010,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-pXvLXqLPQsjpDY4qbbyh5cPEtakTfWfQCAo6SdYNhYQzat+/0fbeEhScryqaketNAG0bT4/+deKezkJZTvbuSg==
-  /@iconify/json/1.1.315:
+  /@iconify/json/1.1.316:
     dev: true
     resolution:
-      integrity: sha512-U3+0YA8IKDqwnZsAWnsuDQf27WaWp07N5w0YmA2GfnSuoOgqo/CIgOr3WHNiSi8XyJAEiyC8skTlrNlYymq4hw==
-  /@knightly/fast-glob/3.2.5-knightly-master.202101180131:
-    dependencies:
-      '@nodelib/fs.stat': 2.0.4
-      '@nodelib/fs.walk': 1.2.6
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.2
-      picomatch: 2.2.2
-    dev: true
-    engines:
-      node: '>=8'
-    resolution:
-      integrity: sha512-zf9RptV5EYbjpfrOB3EYA2M2QhTuM0fnU0OxmLrcOAKLmBzJ0p/2910I1sS2U5XjXIzV4N2/It95ztLedz4/+A==
+      integrity: sha512-PFXr6OExcIS9tdEO1j2YmwFUlVZL7YN/2EWoLxLDI5i2pfEE95vdMI1ghc7VWhmk7gM6/GL36tTJmtrzNkc1fQ==
   /@mattkrick/sanitize-svg/0.3.1:
     dev: false
     engines:
@@ -1298,34 +1285,34 @@ packages:
   /@vue/shared/3.0.7:
     resolution:
       integrity: sha512-dn5FyfSc4ky424jH4FntiHno7Ss5yLkqKNmM/NXwANRnlkmqu74pnGetexDFVG5phMk9/FhwovUZCWGxsotVKg==
-  /@vueuse/core/4.3.6_vue@3.0.7:
+  /@vueuse/core/4.4.1_vue@3.0.7:
     dependencies:
-      '@vueuse/shared': 4.3.6_vue@3.0.7
-      vue-demi: 0.7.2_vue@3.0.7
+      '@vueuse/shared': 4.4.1_vue@3.0.7
+      vue-demi: 0.7.3_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
-      integrity: sha512-XqfU/OIxHWq5Ii8pYLGyXADvY0Jbs4t9q3Nx5ItYNjtN9kCdZ1q+arwjqCgIyjCA25hfqdinZNtWjVXsheZUzQ==
-  /@vueuse/router/4.3.6_vue-router@4.0.5+vue@3.0.7:
+      integrity: sha512-L9TWFwI+pEqgEmfv+uWz2kQ9bXejtpaQdoS67UUyii22rSesjP1aTTU7z7XX5i7aIgsHKnKYv68cDCtEZbjsPA==
+  /@vueuse/router/4.4.1_vue-router@4.0.5+vue@3.0.7:
     dependencies:
-      '@vueuse/shared': 4.3.6_vue@3.0.7
-      vue-demi: 0.7.2_vue@3.0.7
+      '@vueuse/shared': 4.4.1_vue@3.0.7
+      vue-demi: 0.7.3_vue@3.0.7
       vue-router: 4.0.5_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
       vue-router: '>=4.0.0-rc.1'
     resolution:
-      integrity: sha512-4Cl9MQwpwvWj0XCnEjF+MYHX/UmGxFwKESj6frepDGMb1fifSxgS4oc1qVzzM6Jt2dzWUu53AOKx6Xe0DENrQw==
-  /@vueuse/shared/4.3.6_vue@3.0.7:
+      integrity: sha512-JgOw6essmMYfVTccX5Bf1cLCFSburpb8KmTEApQONvKMsRWGfzUYt7XwvvWH0X8RCPXpqxtQ0jUOr5qyQPqDAQ==
+  /@vueuse/shared/4.4.1_vue@3.0.7:
     dependencies:
-      vue-demi: 0.7.2_vue@3.0.7
+      vue-demi: 0.7.3_vue@3.0.7
     dev: false
     peerDependencies:
       vue: '*'
     resolution:
-      integrity: sha512-sGowcpeVxilaV03wD7N7XL+LZBy0e2FGreYyCWWofVN96PSYPw/hyVrxmZiBrfKn6fFllKf+87wi1TTs4C6ZXg==
+      integrity: sha512-pY7bXgYaA9g25XNREE3zeuIWfOwbyiKeQ0IppE4nIRuro4gVGuLoV/BIU6D0VOTv7hYefv5eqE+WS03v61y8xA==
   /@windicss/plugin-utils/0.6.11:
     dependencies:
       esbuild: 0.8.57
@@ -1541,7 +1528,7 @@ packages:
     dependencies:
       anymatch: 3.1.1
       braces: 3.0.2
-      glob-parent: 5.1.1
+      glob-parent: 5.1.2
       is-binary-path: 2.1.0
       is-glob: 4.0.1
       normalize-path: 3.0.0
@@ -3025,18 +3012,18 @@ packages:
     dev: true
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /vite-plugin-components/0.8.0_vite@2.0.5:
+  /vite-plugin-components/0.8.3_vite@2.0.5:
     dependencies:
       chokidar: 3.5.1
       debug: 4.3.2
-      fast-glob: /@knightly/fast-glob/3.2.5-knightly-master.202101180131
+      fast-glob: 3.2.5
       minimatch: 3.0.4
       vite: 2.0.5
     dev: true
     peerDependencies:
       vite: ^2.0.0-beta.69
     resolution:
-      integrity: sha512-VpYIffUxj1CiBUok41xJJV2dc9tI7MSrHM7oSJKSD0CT5SKwxXh+T+WesEP1Ey42vlofup0Lovwmk648Ms/vuw==
+      integrity: sha512-wqKt3DU7RzWJvE46qbZsi9E6TCaUwkOQZfRSDnRndKel72psJae02nD+qu/ObkRduqK9kdeGmAOcZw1qUkNUrg==
   /vite-plugin-purge-icons/0.7.0_vite@2.0.5:
     dependencies:
       '@purge-icons/core': 0.7.0
@@ -3111,7 +3098,7 @@ packages:
       vue: '*'
     resolution:
       integrity: sha512-3oa4wm9tTQEPFdEZychcqCF91PfsEZfvJZ62GoGJf9fpzDF5DnmNZJYQkGxzRbKYUvaIYm37DCd5yDn8btl0eA==
-  /vue-demi/0.7.2_vue@3.0.7:
+  /vue-demi/0.7.3_vue@3.0.7:
     dependencies:
       vue: 3.0.7
     dev: false
@@ -3124,7 +3111,7 @@ packages:
         optional: true
     requiresBuild: true
     resolution:
-      integrity: sha512-cRaQymWYC3gcj3Y8CGDjPI7r2BIvHNMuoLSlfyo7CeqtFzV6eIlYK7xPnExPl4m3j6y5D1FOqdclEIWeim5EJg==
+      integrity: sha512-vrzM26H4CZCXBf/eu4T8nks6o7qgziYM52myk8bg+atw4qYqpeWJf5c82W8VdmgGfSIdh9ulOOe9+GeLc3Z/8A==
   /vue-router/4.0.3_vue@3.0.7:
     dependencies:
       vue: 3.0.7
@@ -3379,15 +3366,15 @@ packages:
     version: 0.2020.520
 specifiers:
   '@iconify/iconify': ^1.0.7
-  '@iconify/json': ^1.1.315
+  '@iconify/json': ^1.1.316
   '@mattkrick/sanitize-svg': ^0.3.1
   '@prettier/plugin-pug': ^1.13.5
   '@qrcode/svg': ^1.0.0-beta.2
   '@rollup/plugin-alias': ^3.1.2
   '@vitejs/plugin-vue': ^1.1.5
   '@vue/compiler-sfc': ^3.0.7
-  '@vueuse/core': ^4.3.6
-  '@vueuse/router': ^4.3.6
+  '@vueuse/core': ^4.4.1
+  '@vueuse/router': ^4.4.1
   color-hash: ^1.0.3
   gun: github:amark/gun
   gun-avatar: ^1.2.3
@@ -3400,7 +3387,7 @@ specifiers:
   qrcode-svg-table: ^1.1.2
   stylus: ^0.54.8
   vite: ^2.0.5
-  vite-plugin-components: 0.8.0
+  vite-plugin-components: 0.8.3
   vite-plugin-purge-icons: ^0.7.0
   vite-plugin-pwa: ^0.5.6
   vite-plugin-voie: ^0.7.3
