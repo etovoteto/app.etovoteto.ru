@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import app from './app.vue'
 import { router } from './router'
 import './index.css'
-import 'windi.css'
+import 'virtual:windi.css'
 
 import '@iconify/iconify'
 import '@purge-icons/generated'
