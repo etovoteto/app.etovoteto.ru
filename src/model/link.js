@@ -53,15 +53,18 @@ export function useLinks(fromHash) {
       } else {
         toHash = key.slice(0, 44)
       }
+      let author = key.slice(-87)
 
       let isTrash = await gun.get(`~${room}`).get('trash').get(hash).then()
-      if (!isTrash) {
-        isTrash = await gun.user().get('trash').get(hash).then()
+      if (!isTrash && author != gun.user().is?.pub) {
+        isTrash = await gun
+          .get('~' + author)
+          .get('trash')
+          .get(hash)
+          .then()
       }
-
       if (isTrash) return
 
-      let author = key.slice(-87)
       obj[toHash] = obj[toHash] || {}
       obj[toHash][author] = data
     })

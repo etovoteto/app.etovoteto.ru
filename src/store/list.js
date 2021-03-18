@@ -86,10 +86,13 @@ export function useList(
         }
 
         let isTrash = await gun.get(`~${room}`).get('trash').get(hash).then()
-        if (!isTrash) {
-          isTrash = await gun.user().get('trash').get(hash).then()
+        if (!isTrash && author != gun.user().is?.pub) {
+          isTrash = await gun
+            .get('~' + author)
+            .get('trash')
+            .get(hash)
+            .then()
         }
-
         if (isTrash) return
 
         obj[hash] = obj[hash] || record
