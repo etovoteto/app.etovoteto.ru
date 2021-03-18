@@ -17,7 +17,7 @@ export function useRooms(author, room = currentRoom.pub) {
 
   const counter = reactive({})
   const rooms = reactive({})
-  gun
+  const request = gun
     .get(`~${room}`)
     .get(`#room`)
     .map()
@@ -96,6 +96,7 @@ export function useRooms(author, room = currentRoom.pub) {
 
   onBeforeUnmount(() => {
     observer.stop()
+    request.off()
   })
 
   return {
@@ -103,5 +104,6 @@ export function useRooms(author, room = currentRoom.pub) {
     sorted,
     options,
     more,
+    request,
   }
 }

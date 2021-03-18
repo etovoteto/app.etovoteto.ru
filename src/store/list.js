@@ -65,10 +65,9 @@ export function useList(
 
   const obj = reactive({})
 
-  let ev = null
   let timestamps = {}
 
-  gun
+  const request = gun
     .get(`~${room}`)
     .get(`${hashed ? '#' : ''}${tag}`)
     .once(function (d, k) {
@@ -116,11 +115,13 @@ export function useList(
 
   onBeforeUnmount(() => {
     observer.stop()
+    request.off()
   })
   return {
     obj,
     sorted,
     options,
     more,
+    request,
   }
 }

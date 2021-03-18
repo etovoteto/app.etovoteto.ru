@@ -33,7 +33,7 @@ export function useAuthors(room = currentRoom.pub) {
       })
   })
 
-  gun
+  const request = gun
     .get(`~${room}`)
     .get(`link`)
     .map()
@@ -90,6 +90,7 @@ export function useAuthors(room = currentRoom.pub) {
 
   onBeforeUnmount(() => {
     observer.stop()
+    request.off()
   })
 
   return {
@@ -97,5 +98,6 @@ export function useAuthors(room = currentRoom.pub) {
     sorted,
     options,
     more,
+    request,
   }
 }

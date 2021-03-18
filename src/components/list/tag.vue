@@ -17,7 +17,7 @@
 
 <script setup>
 import { useList } from "store@list";
-import { watchEffect } from "vue";
+import { onBeforeUnmount, watchEffect } from "vue";
 import { defineProps } from "vue";
 
 const props = defineProps({
@@ -26,9 +26,12 @@ const props = defineProps({
   author: String,
 });
 
-const { sorted, options, more } = useList(props.tag, props.author);
+const { sorted, options, more, request } = useList(props.tag, props.author);
 watchEffect(() => {
   options.search = props.search;
+});
+onBeforeUnmount(() => {
+  request.off();
 });
 </script>
 
