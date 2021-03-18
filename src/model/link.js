@@ -55,7 +55,11 @@ export function useLinks(fromHash) {
       }
       let author = key.slice(-87)
 
-      let isTrash = await gun.get(`~${room}`).get('trash').get(hash).then()
+      let isTrash = await gun
+        .get(`~${currentRoom.pub}`)
+        .get('trash')
+        .get(hash)
+        .then()
       if (!isTrash && author != gun.user().is?.pub) {
         isTrash = await gun
           .get('~' + author)
