@@ -12,14 +12,14 @@
       i.iconify(data-icon="la:file-contract")
     .p-2.cursor-pointer(
       v-if="!currentRoom.hosting",
-      @click="enterRoom(currentRoom.pub)"
+      @click="authRoom(currentRoom.pub)"
     )
       i.iconify(data-icon="la:home")
   app-certs(v-if="show.certs")
 </template>
 
 <script setup>
-import { setCerts, currentRoom, enterRoom } from "store@room";
+import { setCerts, currentRoom, authRoom } from "store@room";
 import { useRoomCerts } from "model@room";
 import { account } from "store@account";
 import { defineProps, reactive } from "vue";

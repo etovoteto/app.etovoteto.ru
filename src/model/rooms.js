@@ -1,7 +1,7 @@
 import { gun } from 'store@db'
 import { reactive, ref, watchEffect, onBeforeUnmount } from 'vue'
 import { useSorter } from 'use@sorter'
-import { useIntersectionObserver } from '@vueuse/core'
+import { get, useIntersectionObserver } from '@vueuse/core'
 import { currentRoom } from 'store@room'
 import { withLinks, links } from 'store@locale'
 
@@ -21,11 +21,18 @@ export function useRooms(author, room = currentRoom.pub) {
     .get(`~${room}`)
     .get(`#room`)
     .map()
-    .once((data, key) => {
+    .once(async (data, key) => {
       let host = key.slice(-87)
+      let hash = key.slice(0, 44)
+      let isTrashed = await gun
+        .get('~' + room)
+        .get('trash')
+        .get(hash)
+        .then()
+      if (isTrashed) return
       if (author && author != host) return
       let { pub } = JSON.parse(data)
-      rooms[pub] = rooms[pub] || { pub, host, data: {} }
+      rooms[pub] = rooms[pub] || { pub, hash, host, data: {} }
       gun
         .get(`~${pub}`)
         .get('title')

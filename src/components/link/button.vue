@@ -1,17 +1,18 @@
 <template lang="pug">
-.link(
-  v-if="linkFrom.hash != record.hash",
-  @click="link(record, () => { $router.push('/' + links[record.tag]); })"
-)
-  i.iconify(data-icon="la:link")
-.link(v-else, @click="linkFrom = {}")
-  i.iconify(data-icon="la:unlink")
-.link.ml-2(
-  :class="{ 'text-red-700': isTrashed }",
-  v-if="currentRoom.trashing",
-  @click="trashHash(record.hash, record.tag)"
-)
-  i.iconify(data-icon="la:eye-slash")
+.flex(v-if="account.is?.pub")
+  .link(
+    v-if="linkFrom.hash != record.hash",
+    @click="link(record, () => { $router.push('/' + links[record.tag]); })"
+  )
+    i.iconify(data-icon="la:link")
+  .link(v-else, @click="linkFrom = {}")
+    i.iconify(data-icon="la:unlink")
+  .link.ml-2(
+    :class="{ 'text-red-700': isTrashed }",
+    v-if="currentRoom.trashing",
+    @click="trashHash(record.hash, record.tag)"
+  )
+    i.iconify(data-icon="la:eye-slash")
 </template>
 
 <script setup>
@@ -20,6 +21,7 @@ import { defineProps, ref } from "vue";
 import { links } from "store@locale";
 import { currentRoom } from "store@room";
 import { trashHash, useIsTrashed } from "store@item";
+import { account } from "store@account";
 
 const props = defineProps({
   record: Object,

@@ -54,7 +54,6 @@ export async function trashHash(
     .get('trash')
     .get(hash)
     .put(!isIn ? tag : null, null, { opt: { cert: certificate } })
-  console.log(hash, tag)
 }
 
 export function useTrash(room = currentRoom.pub) {

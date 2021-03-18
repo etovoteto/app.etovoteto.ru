@@ -12,7 +12,14 @@ export function useCount(tag, hashed = true, room = currentRoom.pub, author) {
     .get(`~${room}`)
     .get(`${hashed ? '#' : ''}${tag}`)
     .map()
-    .once((d, k) => {
+    .once(async (d, k) => {
+      let hash = k.slice(0, 44)
+      let isTrashed = await gun
+        .get('~' + room)
+        .get('trash')
+        .get(hash)
+        .then()
+      if (isTrashed) return
       if (author && k.slice(-87) != author) return
       counter[k] = true
     })

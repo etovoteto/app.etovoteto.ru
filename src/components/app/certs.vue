@@ -15,7 +15,6 @@
 <script setup>
 import { setCerts, currentRoom, enterRoom } from "store@room";
 import { useRoomCerts } from "model@room";
-import { account } from "store@account";
 import { defineProps } from "vue";
 
 const props = defineProps({

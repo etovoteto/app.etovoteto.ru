@@ -12,13 +12,14 @@
         v-if="record",
         v-html="renderWord(record.data.word, record.data.stress)"
       ) 
+
+    .spacer
     author-avatar.max-w-40(
       v-for="(is, author) in record.authors",
       :key="author",
       :pub="author",
       :size="25"
     )
-    .spacer
     link-button(:record="record")
 
   .links.max-h-xs.overflow-y-scroll.snap(

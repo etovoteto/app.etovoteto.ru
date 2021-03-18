@@ -6,6 +6,7 @@ router-link.my-4.flex.flex-col.items-stretch.bg-warm-gray-50.shadow-lg(
     :style="{ background: pubGradient(room.pub, 90) }"
   )
     .text-2xl.mt-4.mb-6 {{ room.data.title }}
+      edit-hide(:hash="room.hash", tag="room")
     .flex.justify-center
       author-badge.text-sm(:pub="room.host")
       .spacer

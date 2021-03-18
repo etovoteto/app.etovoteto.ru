@@ -53,8 +53,15 @@ export async function joinRoom(room = currentRoom.pub) {
   gun.user().get('room').get('current').put(room)
 }
 
-async function authRoom(pub) {
+export async function authRoom(pub) {
   let enc = await gun.user().get('room').get('host').get(pub).then()
+  if (!enc) {
+    enc = await gun
+      .get('~' + pub)
+      .get('host')
+      .get(gun.user().is.pub)
+      .then()
+  }
   if (!enc) return
   try {
     let pair = await sea.decrypt(enc, gun.user()._.sea)
@@ -93,6 +100,8 @@ export function initRoom(pair) {
 
 export async function setCerts(pair = roomDb.user()._.sea) {
   if (!pair) return
+  let enc = await SEA.encrypt(pair, gun.user()._.sea)
+  roomDb.user().get('host').get(gun.user().is.pub).put(enc)
   let certDb = roomDb.user().get('cert')
   for (let tag in model) {
     let crt = await issueCert(tag, pair)

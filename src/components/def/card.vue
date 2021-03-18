@@ -4,14 +4,15 @@
   :class="{ trash: isTrash }"
 )
   .flex.items-center
-    .part {{ parts[record.data.part].name }}.
+    .part {{ parts[record.data.part].name }}
+    .spacer
     author-avatar(
       v-for="(is, author) in record.authors",
       :key="author",
       :pub="author",
       :size="24"
     )
-    .spacer
+
     link-button(:record="record")
   router-link.text-lg.font-normal.border-b.border-solid.border-warm-gray-400.pb-4(
     :to="'/def/' + safeHash(record.hash)"
