@@ -56,6 +56,28 @@ export async function trashHash(
     .put(!isIn ? tag : null, null, { opt: { cert: certificate } })
 }
 
+export async function trashMyHash(hash, tag) {
+  let isIn = await gun.user().get('trash').get(hash).then()
+  gun
+    .user()
+    .get('trash')
+    .get(hash)
+    .put(!isIn ? tag : null)
+}
+
+export function useIsMyTrashed(hash) {
+  const isMyTrashed = ref(false)
+
+  gun
+    .user()
+    .get('trash')
+    .get(hash)
+    .on((d, k) => {
+      isMyTrashed.value = !!d
+    })
+  return isMyTrashed
+}
+
 export function useTrash(room = currentRoom.pub) {
   const obj = reactive({})
   gun
