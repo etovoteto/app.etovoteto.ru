@@ -1,3 +1,4 @@
+import { onBeforeUnmount } from 'vue'
 import { reactive, ref } from 'vue'
 import { currentRoom } from 'store@room'
 import { computed } from 'vue'
@@ -40,11 +41,11 @@ export async function linkHashes(from, to, del = false) {
 
 export function useLinks(fromHash) {
   const obj = reactive({})
-  gun
+  const request = gun
     .get(`~${currentRoom.pub}`)
     .get('link')
     .map()
-    .on(async function (data, key) {
+    .on(function (data, key) {
       let index = key.indexOf(fromHash)
       if (index == -1) return
       let toHash
@@ -54,20 +55,6 @@ export function useLinks(fromHash) {
         toHash = key.slice(0, 44)
       }
       let author = key.slice(-87)
-
-      let isTrash = await gun
-        .get(`~${currentRoom.pub}`)
-        .get('trash')
-        .get(hash)
-        .then()
-      if (!isTrash && author != gun.user().is?.pub) {
-        isTrash = await gun
-          .get('~' + author)
-          .get('trash')
-          .get(hash)
-          .then()
-      }
-      if (isTrash) return
 
       obj[toHash] = obj[toHash] || {}
       obj[toHash][author] = data
@@ -85,6 +72,10 @@ export function useLinks(fromHash) {
       }
     }
     return list
+  })
+
+  onBeforeUnmount(() => {
+    request.off()
   })
   return { links }
 }
