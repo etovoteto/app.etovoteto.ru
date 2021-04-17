@@ -7,7 +7,7 @@
     .part {{ parts[record.data.part].name }}
     .spacer
     author-avatar(
-      v-for="(is, author) in record.authors",
+      v-for="(is, author) in record?.authors",
       :key="author",
       :pub="author",
       :size="24"
