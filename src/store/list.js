@@ -61,6 +61,7 @@ export function useList(
     page: page,
     total: 0,
     main: tag,
+    hashed,
   })
 
   const obj = reactive({})
@@ -79,21 +80,9 @@ export function useList(
         if (personal && personal != author) return
         if (hashed) {
           hash = key.slice(0, 44)
-          record.data = JSON.parse(data)
-        }
-        if (typeof record != 'object') {
-          record.data = data
         }
 
-        let isTrash = await gun.get(`~${room}`).get('trash').get(hash).then()
-        if (!isTrash && author != gun.user().is?.pub) {
-          isTrash = await gun
-            .get('~' + author)
-            .get('trash')
-            .get(hash)
-            .then()
-        }
-        if (isTrash) return
+        record.data = data
 
         obj[hash] = obj[hash] || record
         obj[hash].tag = tag

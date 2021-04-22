@@ -15,7 +15,7 @@
     i.iconify(data-icon="la:eye-slash")
   .link.ml-2(
     :class="{ 'text-red-700': isMyTrashed }",
-    v-if="record.authors[account.is?.pub]",
+    v-if="record?.authors && record.authors[account.is?.pub]",
     @click="trashMyHash(record.hash, record.tag)"
   )
     i.iconify(data-icon="la:eye-slash")

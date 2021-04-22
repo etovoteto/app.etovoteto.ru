@@ -1,5 +1,5 @@
 const config = {
-  peers: ['https://gun.etovoteto.ru/gun'], //  'https://etogun.glitch.me/gun'    'https://etovoteto.herokuapp.com/gun', , ['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
+  peers: '', // ['https://gun.etovoteto.ru/gun'], //  'https://etogun.glitch.me/gun'    'https://etovoteto.herokuapp.com/gun', , ['https://gun-feeds.glitch.me/gun'], 'http://127.0.0.1:4200/gun',
 }
 
 import Gun from 'gun/gun'
@@ -17,12 +17,12 @@ export const gun = Gun({ peers: config.peers, localStorage: false })
 export const roomDb = Gun({ peers: config.peers, localStorage: false })
 window.gun = gun //for debugging
 export const cert = config.cert
-export const soul = Gun.node.soul
-export const isNode = Gun.node.is
+export const soul = Gun.node?.soul
+export const isNode = Gun.node?.is
 export const getState = Gun.state
 // export const getState = Gun.state.is //(node,'key') => timestamp
 export const sea = SEA
-export const genUuid = Gun.text.random
+export const genUuid = Gun?.text?.random
 
 export function cutUuid(key) {
   if (!key) return

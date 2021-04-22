@@ -1,6 +1,10 @@
 <template lang="pug">
 main.flex.flex-col 
-  def-card(v-if="record?.data", :record="record")
+  def-card(v-if="record?.data", :record="record",
+    v-motion,
+    :initial="{ opacity: 0, y: 40 }",
+    :enter="{ opacity: 1, y: 0, scale: 1 }",
+    :visible="{ opacity: 1, y: 0, scale: 1 }",)
   word-form
   util-share
 </template>

@@ -5,7 +5,7 @@
       :style="{ textDecorationStyle: parts[record.data.part].underline }"
     ) {{ parts[record.data.part].name }}.
     author-avatar(
-      v-for="(is, author) in record.authors",
+      v-for="(is, author) in record?.authors",
       :key="author",
       :pub="author",
       :size="8"

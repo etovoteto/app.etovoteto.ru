@@ -1,7 +1,7 @@
 <template lang="pug">
 .card.my-4.p-6.bg-warm-gray-50.shadow-lg(
   v-if="record.data",
-  :class="{ trash: isTrash }"
+  :class="{ trash: isTrash }",   
 )
   .flex.items-center
     router-link.font-bold.text-2xl(
@@ -15,7 +15,7 @@
 
     .spacer
     author-avatar.max-w-40(
-      v-for="(is, author) in record.authors",
+      v-for="(is, author) in record?.authors",
       :key="author",
       :pub="author",
       :size="25"

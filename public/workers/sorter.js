@@ -6,9 +6,16 @@ function sort({ data }) {
   let list = Object.values(data.list)
   let more = false
   let total = list.length
-  let { orderBy, search, limit, main = 'word' } = data.options
+  let { orderBy, search, limit, hashed, main = 'word' } = data.options
 
   list = list.filter(Boolean)
+
+  if (hashed) {
+    list = list.map((item) => {
+      item.data = JSON.parse(item.data)
+      return item
+    })
+  }
 
   if (search) {
     list = list.filter((item) => {

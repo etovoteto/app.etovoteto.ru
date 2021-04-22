@@ -3,9 +3,9 @@
   link-card.sticky
   transition-group(name="list") 
     slot(
-      v-for="(record, key) in sorted.list",
-      :key="record.hash",
-      :record="record"
+    v-for="(record, key) in sorted.list",
+    :key="record.hash",
+    :record="record"
     )
     .text-2xl.p-8.bg-warm-gray-300.shadow.animate-pulse.cursor-pointer(
       key="more",
