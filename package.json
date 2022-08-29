@@ -1,57 +1,58 @@
 {
-  "name": "this-is-it",
-  "title": "ЭТОВОТЭТО",
-  "description": "Игра в придумывание слов и их значений",
-  "author": "davay <davay@etovoteto.ru> (https://defucc.me/)",
-  "license": "MIT",
-  "homepage": "https://app.etovoteto.ru",
-  "bugs": {
-    "url": "https://github.com/davay42/app.etovoteto.ru",
-    "email": "davay@etovoteto.ru"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/davay42/app.etovoteto.ru"
-  },
-  "version": "0.7.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview --port=5005"
-  },
-  "dependencies": {
-    "@iconify/iconify": "^1.0.7",
-    "@mattkrick/sanitize-svg": "^0.3.1",
-    "@qrcode/svg": "^1.0.0-beta.2",
-    "@vueuse/core": "^4.9.0",
-    "@vueuse/motion": "^1.5.4",
-    "@vueuse/router": "^4.9.0",
-    "color-hash": "1.0.3",
-    "gun": "github:amark/gun",
-    "gun-avatar": "^1.3.1",
-    "image-compressor": "^2.0.3",
-    "jsqr": "^1.3.1",
-    "markdown-it": "^12.0.6",
-    "markdown-it-link-attributes": "^3.0.0",
-    "markdown-it-task-lists": "^2.1.1",
-    "qrcode-svg-table": "^1.1.2",
-    "vue": "^3.0.11",
-    "vue-router": "^4.0.6",
-    "zenbase": "^2.0.0"
-  },
-  "devDependencies": {
-    "@iconify/json": "^1.1.332",
-    "@prettier/plugin-pug": "^1.13.5",
-    "@rollup/plugin-alias": "^3.1.2",
-    "@vitejs/plugin-vue": "^1.2.1",
-    "@vue/compiler-sfc": "^3.0.11",
-    "pug": "^3.0.2",
-    "stylus": "^0.54.8",
-    "vite": "^2.2.1",
-    "vite-plugin-components": "0.8.4",
-    "vite-plugin-purge-icons": "^0.7.0",
-    "vite-plugin-pwa": "^0.7.2",
-    "vite-plugin-voie": "^0.7.3",
-    "vite-plugin-windicss": "^0.15.2"
-  }
+	"name": "this-is-it",
+	"version": "0.7.0",
+	"description": "Игра в придумывание слов и их значений",
+	"homepage": "https://app.etovoteto.ru",
+	"bugs": {
+		"url": "https://github.com/davay42/app.etovoteto.ru",
+		"email": "davay@etovoteto.ru"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/etovoteto/app.etovoteto.ru"
+	},
+	"license": "MIT",
+	"author": "davay <davay@etovoteto.ru> (https://defucc.me/)",
+	"scripts": {
+		"build": "vite build",
+		"deploy": "sh deploy.sh",
+		"dev": "vite",
+		"serve": "vite preview --port=5005"
+	},
+	"dependencies": {
+		"@iconify/iconify": "^1.0.7",
+		"@mattkrick/sanitize-svg": "^0.3.1",
+		"@qrcode/svg": "^1.0.0-beta.2",
+		"@vueuse/core": "^4.9.0",
+		"@vueuse/motion": "^1.5.4",
+		"@vueuse/router": "^4.9.0",
+		"color-hash": "1.0.3",
+		"gun": "github:amark/gun",
+		"gun-avatar": "^1.3.1",
+		"image-compressor": "^2.0.3",
+		"jsqr": "^1.3.1",
+		"markdown-it": "^12.0.6",
+		"markdown-it-link-attributes": "^3.0.0",
+		"markdown-it-task-lists": "^2.1.1",
+		"qrcode-svg-table": "^1.1.2",
+		"vue": "^3.0.11",
+		"vue-router": "^4.0.6",
+		"zenbase": "^2.0.0"
+	},
+	"devDependencies": {
+		"@iconify/json": "^1.1.332",
+		"@prettier/plugin-pug": "^1.13.5",
+		"@rollup/plugin-alias": "^3.1.2",
+		"@vitejs/plugin-vue": "^1.2.1",
+		"@vue/compiler-sfc": "^3.0.11",
+		"pug": "^3.0.2",
+		"stylus": "^0.54.8",
+		"vite": "^2.2.1",
+		"vite-plugin-components": "0.8.4",
+		"vite-plugin-purge-icons": "^0.7.0",
+		"vite-plugin-pwa": "^0.7.2",
+		"vite-plugin-voie": "^0.7.3",
+		"vite-plugin-windicss": "^0.15.2"
+	},
+	"title": "ЭТОВОТЭТО"
 }
