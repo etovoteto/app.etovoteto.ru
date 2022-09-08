@@ -1,7 +1,8 @@
 <template lang="pug">
 main.error
   h1 Извините
-  p У нас нет слов
+  p Для этого слов у нас еще нет. Предложите своё!
+  a.text-4xl(href="/") Назад к словарю 
 </template>
 
 <script setup >
